@@ -23,13 +23,14 @@ interface AperitivoModalProps {
   setActiveIndex: (index: number) => void;
 }
 
-export default function AperitivoModal({
-  isOpen,
-  onClose,
-  items,
-  activeIndex,
-  setActiveIndex
-}: AperitivoModalProps) {
+export default function AperitivoModal(props: AperitivoModalProps) {
+  const {
+    isOpen,
+    onClose,
+    items,
+    activeIndex,
+    setActiveIndex
+  } = props;
   const item = items[activeIndex];
 
   // Lock scroll and hide global nav when modal is open
