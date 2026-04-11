@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { MapPin, ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const LOCATIONS = [
   { name: "LA BOTTEGA DI TOMMY", city: "Alghero", address: "Via Gilbert Ferret, 76", map: "https://g.page/enoteca-la-bottega-di-tommy?share" },
