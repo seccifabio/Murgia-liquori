@@ -29,7 +29,7 @@ export default function AperitivoModal({
   items,
   activeIndex,
   setActiveIndex
-}) {
+}: AperitivoModalProps) {
   const item = items[activeIndex];
 
   // Lock scroll and hide global nav when modal is open
