@@ -1,14 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const INGREDIENTS = [
-  { name: "Finocchio", detail: "Wild Fennel", desc: "L'anima aromatica del Bianco. Un'essenza selvatica radicata nelle terre di Villacidro per un vigore unico." },
-  { name: "Anice Stellato", detail: "Purezza Cristallina", desc: "La nota di testa che conferisce al Bianco la sua iconica trasparenza, rinfrescando il palato con rotondità." },
-  { name: "Semi di Finocchio", detail: "Intensità Murgia", desc: "Tostati e distillati secondo la tradizione familiare per un finale purissimo e persistentemente botanico." }
+  { name: "Licopodio", detail: "Spirito dei Boschi", desc: "Un'erba ancestrale che conferisce al Bianco la sua texture setosa e il suo profilo aromatico boschivo." },
+  { name: "Anice Stellato", detail: "Nota di Testa", desc: "La purezza dell'anice che definisce il carattere cristallino e rinfrescante di questo distillato." },
+  { name: "Erbe Aromatiche", detail: "Murgia Selection", desc: "Una sinfonia di botaniche sarde segrete, infuse per estrarre l'anima più delicata della terra." }
 ];
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   onView: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
 };

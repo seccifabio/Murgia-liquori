@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const INGREDIENTS = [
   { name: "Zafferano", detail: "Oro di San Gavino", desc: "Il cuore pulsante del Giallo. Raccolto all'alba per preservare l'essenza cromatica e aromatica più pura." },
@@ -8,7 +8,7 @@ const INGREDIENTS = [
   { name: "14 Erbe Segrete", detail: "Ricetta Gennaro Murgia", desc: "Un mosaico botanico tramandato dal 1882, distillato in piccoli lotti per un'anima irripetibile." }
 ];
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   onView: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
 };

@@ -50,7 +50,7 @@ export default function LocationsSection() {
   const cities = useMemo(() => Array.from(new Set(LOCATIONS.map(l => l.city))).sort(), []);
   const filtered = LOCATIONS.filter(loc => loc.city === activeCity);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -61,8 +61,8 @@ export default function LocationsSection() {
     }
   };
 
-  const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
+  const itemVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
     visible: { 
       y: 0, 
       opacity: 1, 

@@ -1,14 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
-const DETAILS = [
-  { name: "L'Errore", detail: "Unico & Distintivo", desc: "Un piccolo dettaglio nell'etichetta trasformato in un elemento di valore. La celebrazione del tocco umano." },
-  { name: "Numerata", detail: "1 di 200", desc: "Ogni bottiglia porta la sua identità unica, scritta a mano per chi sa apprezzare l'irripetibile." },
-  { name: "La Formula", detail: "Giallo Originale", desc: "Il sapore stratificato del Villacidro Giallo iconico, racchiuso in un formato da collezione." }
+const INGREDIENTS = [
+  { name: "Sbaglio Fondamentale", detail: "Caos Creativo", desc: "Non un errore, ma una deviazione consapevole dalla norma che ha generato un profilo aromatico inedito." },
+  { name: "Note di Testa", detail: "Intensità Speziata", desc: "Un'esplosione di spezie calde che sfidano la freschezza dell'anice in un contrasto perfetto." },
+  { name: "Eredità Murgia", detail: "Alchimia Contemporanea", desc: "La base storica del Giallo reinterpretata per un'esperienza più audace e sperimentale." }
 ];
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   onView: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
 };
