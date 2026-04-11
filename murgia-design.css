@@ -1,0 +1,67 @@
+:root {
+  /* Colors */
+  --color-primary: #F4B400; /* Villacidro Yellow */
+  --color-bg: #000000;      /* Obsidian Noir */
+  --color-text: #FFFFFF;    /* White */
+  --color-muted: #888888;
+  
+  /* Typography */
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2.5rem;
+  --font-size-3xl: 4rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  
+  /* Styles */
+  --radius: 0px;
+  --border-width: 1px;
+  --transition-slow: 0.5s ease;
+  --transition-fast: 0.2s ease;
+  
+  --shadow-premium: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  margin: 0;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  margin-top: 0;
+}
+
+button {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: var(--border-width) solid var(--color-primary);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-short);
+  border-radius: var(--radius);
+}
+
+button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}

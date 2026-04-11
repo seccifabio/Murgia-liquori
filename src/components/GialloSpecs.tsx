@@ -1,0 +1,66 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+const INGREDIENTS = [
+  { name: "Zafferano", detail: "Oro di San Gavino", desc: "Il cuore pulsante del Giallo. Raccolto all'alba per preservare l'essenza cromatica e aromatica più pura." },
+  { name: "Anice Stellato", detail: "Purezza Alchemica", desc: "La nota di testa che rinfresca il palato, bilanciando il calore delle spezie segrete." },
+  { name: "14 Erbe Segrete", detail: "Ricetta Gennaro Murgia", desc: "Un mosaico botanico tramandato dal 1882, distillato in piccoli lotti per un'anima irripetibile." }
+];
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  onView: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+};
+
+export default function GialloSpecs() {
+  return (
+    <section className="bg-noir py-32 px-6 md:px-20 relative z-10">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Ingredients Grid */}
+        <div className="grid md:grid-cols-3 gap-12 md:gap-20 mb-40">
+          {INGREDIENTS.map((ing, i) => (
+            <motion.div
+              key={ing.name}
+              initial="hidden"
+              whileInView="onView"
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2 }}
+              className="group space-y-6"
+            >
+              <div className="w-full h-px bg-white/10 group-hover:bg-primary transition-colors duration-700" />
+              <div className="space-y-4">
+                <span className="text-primary font-heading text-xs tracking-widest uppercase">{ing.detail}</span>
+                <h3 className="text-white font-heading text-4xl uppercase tracking-tighter">{ing.name}</h3>
+                <p className="text-white/40 font-body text-sm leading-relaxed uppercase tracking-widest italic">
+                  {ing.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Technical Alchemical Table */}
+        <motion.div 
+          initial="hidden"
+          whileInView="onView"
+          viewport={{ once: true }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-20 border-t border-white/5"
+        >
+          {[
+            { label: "Gradazione", value: "40% Vol." },
+            { label: "Formato", value: "70cl / 50cl" },
+            { label: "Origine", value: "Villacidro, SU" },
+            { label: "Formula", value: "Secret (1882)" }
+          ].map((spec) => (
+            <div key={spec.label} className="space-y-2">
+              <span className="text-white/20 font-heading text-[10px] tracking-widest uppercase">{spec.label}</span>
+              <p className="text-white font-heading text-2xl md:text-3xl tracking-tighter uppercase">{spec.value}</p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
