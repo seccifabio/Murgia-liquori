@@ -44,13 +44,15 @@ export default function StoriaPage() {
           transition={{ duration: 1, delay: 0.3 }}
           className="relative z-10 max-w-5xl px-6 text-center"
         >
-          <span className="text-primary font-heading text-xl tracking-[0.4em] uppercase mb-10 block">Il Manifesto</span>
-          <h2 className="text-white font-heading text-6xl md:text-9xl uppercase tracking-tighter leading-none mb-12 italic">
+          <h2 className="text-white font-heading text-6xl md:text-[10rem] uppercase tracking-tighter leading-[0.8] mb-12 italic">
             La Tradizione <br/> <span className="text-primary">Continua.</span>
           </h2>
-          <p className="text-white/70 font-body text-xl md:text-3xl max-w-4xl mx-auto leading-relaxed border-t border-white/10 pt-12 italic uppercase tracking-widest">
-            Oggi la produzione continua fedele alle <span className="bg-primary text-noir px-2 py-0.5 not-italic">antiche ricette del 1882</span>, mantenendo viva una <span className="bg-primary text-noir px-2 py-0.5 not-italic">visione secolare</span> per le <span className="bg-primary text-noir px-2 py-0.5 not-italic">generazioni future</span>.
-          </p>
+          <div className="space-y-8">
+            <span className="text-white font-heading text-xl md:text-2xl uppercase tracking-[0.4em] block">Quinta Generazione</span>
+            <p className="text-white/70 font-body text-xl md:text-3xl max-w-4xl mx-auto leading-relaxed border-t border-white/10 pt-12 italic uppercase tracking-widest">
+              Alessandro e Francesca Murgia rilanciano l&apos;azienda di famiglia con una visione contemporanea. Oggi la produzione continua fedele alle antiche ricette del 1882, portando sul mercato l&apos;eccellenza dell&apos;alchimia sarda contemporanea.
+            </p>
+          </div>
         </motion.div>
 
       </motion.section>

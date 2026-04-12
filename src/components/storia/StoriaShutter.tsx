@@ -33,16 +33,6 @@ const HISTORY_PHASES = [
     img: "/images/storia/storia_resilience_ledger_1775937773299.png",
     floatingImg: "/images/storia/image.webp",
     color: "bg-noir"
-  },
-  {
-    id: "rebirth",
-    year: "OGGI",
-    title: "La Tradizione Continua",
-    subtitle: "QUINTA GENERAZIONE",
-    description: "Alessandro e Francesca Murgia rilanciano l'azienda di famiglia con una visione contemporanea. Oggi la produzione continua fedele alle antiche ricette del 1882, portando sul mercato l'eccellenza dell'alchimia sarda contemporanea.",
-    img: "/images/storia/murgia_bianco_storia-1024x622.webp",
-    floatingImg: "/images/storia/murgia_bianco_storia-1024x622.webp",
-    color: "bg-noir-light"
   }
 ];
 

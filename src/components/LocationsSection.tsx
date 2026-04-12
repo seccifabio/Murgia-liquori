@@ -44,6 +44,7 @@ const LOCATIONS = [
 export default function LocationsSection() {
   const [mounted, setMounted] = useState(false);
   const [activeCity, setActiveCity] = useState("Alghero");
+  const [isPartnerFormOpen, setIsPartnerFormOpen] = useState(false);
   const [shopType, setShopType] = useState("bar");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
