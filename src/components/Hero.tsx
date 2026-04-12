@@ -85,8 +85,8 @@ export default function Hero() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-4"
         >
-          <span className="text-white/30 font-heading text-xs tracking-[0.3em] uppercase">
-            Scendi nell&apos;essenza
+          <span className="text-white/50 font-heading text-xs tracking-[0.3em] uppercase">
+            Scopri l&apos;essenza
           </span>
           <ArrowDown className="text-primary w-4 h-4" />
         </motion.div>

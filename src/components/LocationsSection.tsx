@@ -195,7 +195,7 @@ export default function LocationsSection() {
               className="w-full max-w-4xl px-6"
             >
               <div className="mb-12 flex justify-between items-center border-b border-white/5 pb-8">
-                <h4 className="text-primary font-heading text-4xl uppercase tracking-tighter">Partner Request</h4>
+                <h4 className="text-primary font-heading text-4xl uppercase tracking-tighter">Diventa un Villacidro Murgia Partner</h4>
                 <button 
                   onClick={() => setIsPartnerFormOpen(false)}
                   className="text-white/40 hover:text-white font-heading text-[10px] tracking-widest uppercase border border-white/10 px-4 py-2 hover:bg-white/5 transition-all"
@@ -262,10 +262,10 @@ export default function LocationsSection() {
         </AnimatePresence>
 
         {!isPartnerFormOpen && (
-          <div className="absolute top-12 left-1/2 -translate-x-1/2 flex items-center gap-4 text-white/10">
-            <div className="w-20 h-px bg-white/10" />
+          <div className="absolute top-12 left-1/2 -translate-x-1/2 flex items-center gap-4 text-white/40">
+            <div className="w-20 h-px bg-white/40" />
             <span className="font-heading text-[10px] tracking-[0.8em] uppercase">Partnership Ritual</span>
-            <div className="w-20 h-px bg-white/10" />
+            <div className="w-20 h-px bg-white/40" />
           </div>
         )}
       </motion.div>
