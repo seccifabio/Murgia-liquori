@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StoriaHero from "@/components/storia/StoriaHero";
 import StoriaShutter from "@/components/storia/StoriaShutter";
@@ -9,7 +8,6 @@ import { motion } from "framer-motion";
 export default function StoriaPage() {
   return (
     <main className="bg-noir min-h-screen">
-      <Navbar />
       
       {/* Cinematic Hero Stencil */}
       <StoriaHero />

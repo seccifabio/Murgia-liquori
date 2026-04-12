@@ -1,0 +1,130 @@
+"use client";
+
+import React, { createContext, useContext, useState, useEffect } from "react";
+
+interface CartItem {
+  id: string;
+  name: string;
+  price: string;
+  priceId: string;
+  quantity: number;
+  format: string; // New: 70cl, 20cl, etc.
+  img: string;
+}
+
+interface CartContextType {
+  items: CartItem[];
+  addItem: (item: CartItem) => void;
+  updateItem: (id: string, oldFormat: string, updates: Partial<CartItem>) => void;
+  removeItem: (id: string, format: string) => void;
+  clearCart: () => void;
+  isBagOpen: boolean;
+  setIsBagOpen: (open: boolean) => void;
+  showToast: boolean;
+  setShowToast: (show: boolean) => void;
+  total: number;
+}
+
+const CartContext = createContext<CartContextType | undefined>(undefined);
+
+export function CartProvider({ children }: { children: React.ReactNode }) {
+  const [items, setItems] = useState<CartItem[]>([]);
+  const [isBagOpen, setIsBagOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Persistence Ritual: Hydrate from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem("murgia_bag");
+    if (saved) {
+      try {
+        setItems(JSON.parse(saved));
+      } catch (e) {
+        console.error("Failed to hydrate bag manifest:", e);
+      }
+    }
+    setMounted(true);
+  }, []);
+
+  // Save changes to localStorage
+  useEffect(() => {
+    if (mounted) {
+      localStorage.setItem("murgia_bag", JSON.stringify(items));
+    }
+  }, [items, mounted]);
+
+  const addItem = (newItem: CartItem) => {
+    setItems((prev) => {
+      const existing = prev.find((i) => i.id === newItem.id && i.format === newItem.format);
+      if (existing) {
+        return prev.map((i) =>
+          (i.id === newItem.id && i.format === newItem.format) ? { ...i, quantity: i.quantity + newItem.quantity } : i
+        );
+      }
+      return [...prev, { ...newItem }];
+    });
+    
+    // Manifest Toast notification instead of opening drawer
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000); // Self-liquidation after 3s
+  };
+
+  const updateItem = (id: string, oldFormat: string, updates: Partial<CartItem>) => {
+    setItems((prev) => {
+      // If we are updating format, we might need to merge with an existing item
+      if (updates.format && updates.format !== oldFormat) {
+        const existing = prev.find((i) => i.id === id && i.format === updates.format);
+        const itemToMove = prev.find((i) => i.id === id && i.format === oldFormat);
+        
+        if (existing && itemToMove) {
+          return prev
+            .filter((i) => !(i.id === id && i.format === oldFormat))
+            .map((i) => (i.id === id && i.format === updates.format) 
+              ? { ...i, quantity: i.quantity + (updates.quantity || itemToMove.quantity) } 
+              : i
+            );
+        }
+      }
+
+      return prev.map((i) => 
+        (i.id === id && i.format === oldFormat) ? { ...i, ...updates } : i
+      );
+    });
+  };
+
+  const removeItem = (id: string, format: string) => {
+    setItems((prev) => prev.filter((i) => !(i.id === id && i.format === format)));
+  };
+
+  const clearCart = () => setItems([]);
+
+  const total = items.reduce((acc, item) => {
+    const priceNum = parseFloat(item.price.replace("€", "").replace(",", "."));
+    return acc + priceNum * item.quantity;
+  }, 0);
+
+  return (
+    <CartContext.Provider
+      value={{
+        items,
+        addItem,
+        updateItem,
+        removeItem,
+        clearCart,
+        isBagOpen,
+        setIsBagOpen,
+        showToast,
+        setShowToast,
+        total,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+}
+
+export function useCart() {
+  const context = useContext(CartContext);
+  if (!context) throw new Error("useCart must be used within a CartProvider");
+  return context;
+}

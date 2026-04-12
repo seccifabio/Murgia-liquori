@@ -19,7 +19,7 @@ export default function GialloSpecs() {
       <div className="max-w-7xl mx-auto">
 
         {/* Ingredients Grid */}
-        <div className="grid md:grid-cols-3 gap-12 md:gap-20 mb-40">
+        <div className="grid md:grid-cols-3 gap-12 md:gap-20 mb-32">
           {INGREDIENTS.map((ing, i) => (
             <motion.div
               key={ing.name}
@@ -41,7 +41,7 @@ export default function GialloSpecs() {
           ))}
         </div>
 
-        {/* Technical Alchemical Table */}
+        {/* Technical Details */}
         <motion.div 
           initial="hidden"
           whileInView="onView"

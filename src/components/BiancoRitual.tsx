@@ -2,11 +2,25 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef } from "react";
+import { useCart } from "@/context/CartContext";
 
 export default function BiancoRitual() {
+  const { addItem } = useCart();
   const [selectedFormat, setSelectedFormat] = useState("50cl");
   const [quantity, setQuantity] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleAddToCart = () => {
+    addItem({
+      id: "murgia-bianco",
+      name: "Murgia Bianco",
+      price: "21€",
+      priceId: "price_bianco_123",
+      quantity: quantity,
+      format: selectedFormat,
+      img: "/images/products/bianco.png"
+    });
+  };
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -95,10 +109,13 @@ export default function BiancoRitual() {
             </div>
           </div>
 
-          <div className="group relative px-20 py-8 md:px-32 overflow-hidden bg-noir text-white hover:text-noir font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer">
-            <span className="relative z-10">Acquista &mdash; &euro;21.00</span>
+          <button 
+            onClick={handleAddToCart}
+            className="group relative px-20 py-8 md:px-32 overflow-hidden bg-noir text-white hover:text-noir font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            <span className="relative z-10">Aggiungi al carrello &mdash; &euro;{(21 * quantity).toFixed(2)}</span>
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-          </div>
+          </button>
         </motion.div>
 
       </div>

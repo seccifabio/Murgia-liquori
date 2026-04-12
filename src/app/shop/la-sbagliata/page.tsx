@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import SbagliataHero from "@/components/SbagliataHero";
 import SbagliataRitual from "@/components/SbagliataRitual";
 import SbagliataSpecs from "@/components/SbagliataSpecs";
@@ -16,7 +15,6 @@ export default function LaSbagliataPage() {
 
   return (
     <main className="bg-noir min-h-screen selection:bg-primary selection:text-noir overflow-x-hidden relative">
-      <Navbar />
       
       {/* Cinematic Phase 1: The Arrival */}
       <SbagliataHero />

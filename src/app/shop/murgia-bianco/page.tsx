@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import BiancoHero from "@/components/BiancoHero";
 import BiancoRitual from "@/components/BiancoRitual";
 import BiancoSpecs from "@/components/BiancoSpecs";
@@ -16,7 +15,6 @@ export default function MurgiaBiancoPage() {
 
   return (
     <main className="bg-noir min-h-screen selection:bg-white selection:text-noir overflow-x-hidden relative">
-      <Navbar />
       
       {/* Cinematic Phase 1: The Arrival */}
       <BiancoHero />

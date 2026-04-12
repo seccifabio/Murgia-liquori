@@ -6,15 +6,19 @@ import Link from "next/link";
 import { ShoppingBag, X, Menu as BurgerIcon } from "lucide-react";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/context/CartContext";
 
 const NAV_LINKS = ["La Storia", "La Collezione", "Contatti"];
 
 export default function Navbar() {
   const { scrollY } = useScroll();
   const pathname = usePathname();
+  const { setIsBagOpen, items } = useCart();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+
+  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     // Visibility: Show only at the top of the page
@@ -66,8 +70,16 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-8 md:gap-10 pointer-events-auto relative">
-          <button className={`transition-all duration-300 hover:scale-110 ${iconColor}`}>
+          <button 
+            onClick={() => setIsBagOpen(true)}
+            className={`relative transition-all duration-300 hover:scale-110 ${iconColor}`}
+          >
             <ShoppingBag className="w-5 h-5 md:w-6 md:h-6" />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 bg-primary text-noir text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-in zoom-in duration-300">
+                {totalItems}
+              </span>
+            )}
           </button>
           <button 
             onClick={() => setIsOpen(true)}

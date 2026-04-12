@@ -19,6 +19,9 @@ export const metadata: Metadata = {
 };
 
 import Navbar from "@/components/Navbar";
+import { CartProvider } from "@/context/CartContext";
+import BagDrawer from "@/components/BagDrawer";
+import CartToast from "@/components/CartToast";
 
 export default function RootLayout({
   children,
@@ -34,8 +37,12 @@ export default function RootLayout({
         {/* Cinematic Grain Texture Layer */}
         <div className="bg-texture fixed inset-0 z-50 mix-blend-overlay" />
         
-        <Navbar />
-        {children}
+        <CartProvider>
+          <Navbar />
+          <BagDrawer />
+          <CartToast />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

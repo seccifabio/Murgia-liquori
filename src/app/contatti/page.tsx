@@ -1,13 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export default function ContattiPage() {
   return (
     <main className="bg-noir min-h-screen">
-      <Navbar />
 
       <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-60 pb-20 px-6">
         {/* Interaction Sanctuary: Monolithic Terminal */}

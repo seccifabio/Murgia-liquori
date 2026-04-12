@@ -19,7 +19,7 @@ export default function BiancoSpecs() {
       <div className="max-w-7xl mx-auto">
 
         {/* Ingredients Grid */}
-        <div className="grid md:grid-cols-3 gap-12 md:gap-20 mb-40">
+        <div className="grid md:grid-cols-3 gap-12 md:gap-20 mb-32">
           {INGREDIENTS.map((ing, i) => (
             <motion.div
               key={ing.name}
@@ -29,9 +29,9 @@ export default function BiancoSpecs() {
               transition={{ delay: i * 0.2 }}
               className="group space-y-6"
             >
-              <div className="w-full h-px bg-white/10 group-hover:bg-white transition-colors duration-700" />
+              <div className="w-full h-px bg-white/10 group-hover:bg-primary transition-colors duration-700" />
               <div className="space-y-4">
-                <span className="text-white/40 font-heading text-xs tracking-widest uppercase">{ing.detail}</span>
+                <span className="text-primary font-heading text-xs tracking-widest uppercase">{ing.detail}</span>
                 <h3 className="text-white font-heading text-4xl uppercase tracking-tighter">{ing.name}</h3>
                 <p className="text-white/40 font-body text-sm leading-relaxed uppercase tracking-widest italic">
                   {ing.desc}
@@ -41,7 +41,7 @@ export default function BiancoSpecs() {
           ))}
         </div>
 
-        {/* Technical Table */}
+        {/* Technical Details */}
         <motion.div 
           initial="hidden"
           whileInView="onView"

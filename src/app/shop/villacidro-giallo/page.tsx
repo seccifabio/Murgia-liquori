@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import GialloHero from "@/components/GialloHero";
 import GialloRitual from "@/components/GialloRitual";
 import GialloSpecs from "@/components/GialloSpecs";
@@ -17,7 +16,6 @@ export default function VillacidroGialloPage() {
 
   return (
     <main className="bg-noir min-h-screen selection:bg-primary selection:text-noir overflow-x-hidden relative">
-      <Navbar />
       
       {/* Cinematic Phase 1: The Arrival */}
       <GialloHero />

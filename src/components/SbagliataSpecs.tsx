@@ -17,7 +17,7 @@ export default function SbagliataSpecs() {
   return (
     <section className="bg-noir py-32 px-6 md:px-20 relative z-10">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-12 md:gap-20 mb-40">
+        <div className="grid md:grid-cols-3 gap-12 md:gap-20 mb-32">
           {INGREDIENTS.map((ing, i) => (
             <motion.div
               key={ing.name}

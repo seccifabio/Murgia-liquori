@@ -1,6 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -15,7 +14,6 @@ const products = [
 export default function ProdottiPage() {
   return (
     <main className="bg-noir min-h-screen">
-      <Navbar />
       
       <section className="relative pt-32 pb-32 px-6 md:px-20 overflow-hidden">
         <div className="max-w-7xl mx-auto">
