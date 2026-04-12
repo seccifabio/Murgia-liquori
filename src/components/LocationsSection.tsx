@@ -138,7 +138,7 @@ export default function LocationsSection() {
                 rel="noopener noreferrer"
                 className="shrink-0 flex items-center gap-2 text-noir font-heading text-[10px] tracking-[0.2em] uppercase hover:underline transition-all pointer-events-auto"
               >
-                Vedi Mappa ↗ <ArrowUpRight className="w-3 h-3" />
+                Vedi Mappa <ArrowUpRight className="w-3 h-3" />
               </a>
             </div>
           ))}
