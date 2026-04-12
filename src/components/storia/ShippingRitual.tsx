@@ -42,16 +42,8 @@ export default function ShippingRitual() {
     <section ref={containerRef} className="relative h-[300vh] bg-noir">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         
-        {/* Header Ritual */}
-        <div className="absolute top-12 left-1/2 -translate-x-1/2 z-50 text-center">
-          <motion.span 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 0.3 }}
-            className="font-heading text-[10px] tracking-[0.8em] uppercase text-white"
-          >
-            Fulfillment Ritual
-          </motion.span>
-        </div>
+        {/* Header Ritual - Label Liquidated */}
+        <div className="absolute top-12 left-1/2 -translate-x-1/2 z-50 text-center" />
 
         {/* Horizontal Manifestation Vessel */}
         <motion.div style={{ x }} className="flex h-full w-[300vw]">

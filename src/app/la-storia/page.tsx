@@ -3,6 +3,7 @@
 import Footer from "@/components/Footer";
 import StoriaHero from "@/components/storia/StoriaHero";
 import StoriaShutter from "@/components/storia/StoriaShutter";
+import ShippingRitual from "@/components/storia/ShippingRitual";
 import { motion } from "framer-motion";
 
 export default function StoriaPage() {
@@ -13,6 +14,9 @@ export default function StoriaPage() {
       <StoriaHero />
 
       <StoriaShutter />
+      
+      {/* The Fulfillment Manifest: Horizontal Kinetic Journey */}
+      <ShippingRitual />
 
       {/* Closing Manifesto Ritual: Full-Stage Takeover */}
       <motion.section 
