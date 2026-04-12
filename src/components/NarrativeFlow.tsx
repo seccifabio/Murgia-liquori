@@ -69,7 +69,7 @@ export default function NarrativeFlow() {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl w-full">
               <div className="space-y-6">
                 <span className="text-primary font-heading text-xl tracking-widest block uppercase">Le Origini</span>
-                <h2 className="text-white font-heading text-4xl md:text-8xl leading-[1.1] md:leading-none uppercase">
+                <h2 className="text-white font-heading text-[2.5rem] md:text-8xl leading-[1.1] md:leading-none uppercase">
                   L&apos;Arte della <br /> <span className="text-primary italic">Distillazione</span>
                 </h2>
                 <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
@@ -94,7 +94,7 @@ export default function NarrativeFlow() {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl w-full">
               <div className="space-y-6">
                 <span className="text-primary font-heading text-xl tracking-widest block uppercase underline decoration-primary underline-offset-8">Villacidro Murgia</span>
-                <h2 className="text-white font-heading text-4xl md:text-8xl leading-[1.1] md:leading-none uppercase">
+                <h2 className="text-white font-heading text-[2.5rem] md:text-8xl leading-[1.1] md:leading-none uppercase">
                   Il Colore <br /> della <span className="text-primary italic">Storia</span>
                 </h2>
                 <p className="text-white/60 font-body text-lg max-w-md leading-relaxed italic">
@@ -147,9 +147,13 @@ export default function NarrativeFlow() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: i * 0.1 }}
                   >
-                    <div className="aspect-[4/5] max-h-[55vh] bg-noir rounded-[2vw] overflow-hidden transition-all relative">
+                    <div className="aspect-[2/3] md:aspect-[4/5] max-h-[60vh] bg-noir rounded-[2vw] overflow-hidden transition-all relative">
                       <div className="w-full h-full rounded-[2vw] overflow-hidden">
-                        <LiquidImage src={p.img} alt={p.name} />
+                        <LiquidImage 
+                          src={p.img} 
+                          alt={p.name} 
+                          className="object-contain p-4" 
+                        />
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-noir via-transparent to-transparent pointer-events-none z-10 rounded-[2vw]" />
                       <div className="absolute bottom-6 left-6 right-6 pointer-events-none text-center z-20">
