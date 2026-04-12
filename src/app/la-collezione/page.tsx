@@ -17,16 +17,16 @@ export default function ProdottiPage() {
     <main className="bg-noir min-h-screen">
       <Navbar />
       
-      <section className="relative pt-48 pb-32 px-6 md:px-20 overflow-hidden">
+      <section className="relative pt-32 pb-32 px-6 md:px-20 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           {/* Symmetrical Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-24"
+            className="text-center mb-12"
           >
             <span className="text-primary font-heading text-xl tracking-widest block uppercase mb-6">La Collezione Murgia</span>
-            <div className="w-px h-16 bg-gradient-to-b from-primary/60 to-transparent mx-auto" />
+            <div className="w-px h-8 bg-gradient-to-b from-primary/60 to-transparent mx-auto" />
           </motion.div>
 
           {/* The Exact Homepage Grid Manifest */}
