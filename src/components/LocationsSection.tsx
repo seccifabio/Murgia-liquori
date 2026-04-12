@@ -272,7 +272,7 @@ export default function LocationsSection() {
                 >
                   <CheckCircle2 className="w-16 h-16 text-primary" />
                   <div className="space-y-4">
-                    <h4 className="text-white font-heading text-4xl uppercase tracking-tighter">Manifestazione Ricevuta</h4>
+                    <h4 className="text-white font-heading text-4xl uppercase tracking-tighter">Richiesta Ricevuta</h4>
                     <p className="text-white/40 font-body text-sm uppercase tracking-widest leading-relaxed">
                       La tua richiesta è stata registrata nel nostro laboratorio. <br/>
                       Presto un nostro specialista ti contatterà.
@@ -396,7 +396,7 @@ export default function LocationsSection() {
                       className={`w-[85%] max-w-[300px] md:max-w-none md:w-auto group relative py-7 md:py-8 px-10 md:px-24 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.5em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 ${isSubmitting ? "opacity-70" : ""}`}
                     >
                       <span className="relative z-10 text-xs md:text-sm">
-                        {isSubmitting ? "Invio..." : "Invia Manifestazione"}
+                        {isSubmitting ? "Invio..." : "Invia Richiesta"}
                       </span>
                       {isSubmitting && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
                       <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
