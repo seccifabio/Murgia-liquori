@@ -4,10 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createCheckoutSession } from "@/app/actions/stripe";
+import { Loader2 } from "lucide-react";
 
 export default function BagDrawer() {
   const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total } = useCart();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   // Scroll Lockdown Ritual
   useEffect(() => {
@@ -20,6 +24,23 @@ export default function BagDrawer() {
       document.body.style.overflow = "unset";
     };
   }, [isBagOpen]);
+
+  const handleCheckout = async () => {
+    if (isLoading || items.length === 0) return;
+    
+    setIsLoading(true);
+    try {
+      const { url } = await createCheckoutSession(items);
+      if (url) {
+        window.location.href = url;
+      }
+    } catch (error) {
+      console.error("Checkout Manifestation Error:", error);
+      // In a real scenario, we would trigger a localized error toast here.
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -166,9 +187,16 @@ export default function BagDrawer() {
             {/* Footer: Collective Total & Conversion */}
             {items.length > 0 && (
               <div className="p-8 border-t border-white/5 bg-noir/50 backdrop-blur-xl">
-                <button className="w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4">
-                  <span className="relative z-10 font-bold">Procedi al Pagamento &mdash; &euro;{total.toFixed(2)}</span>
-                  <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />
+                <button 
+                  onClick={handleCheckout}
+                  disabled={isLoading}
+                  className={`w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 ${isLoading ? "opacity-70 cursor-wait" : ""}`}
+                >
+                  <span className="relative z-10 font-bold">
+                    {isLoading ? "Inizializzazione..." : `Procedi al Pagamento — €${total.toFixed(2)}`}
+                  </span>
+                  {!isLoading && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}
+                  {isLoading && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
                   <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                 </button>
                 

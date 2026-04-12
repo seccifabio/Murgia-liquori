@@ -3,6 +3,8 @@
 import { useState, useMemo, useEffect } from "react";
 import { MapPin, ArrowUpRight } from "lucide-react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
+import { sendPartnerRequest } from "@/app/actions/partner";
+import { Loader2, CheckCircle2 } from "lucide-react";
 
 const LOCATIONS = [
   { name: "LA BOTTEGA DI TOMMY", city: "Alghero", address: "Via Gilbert Ferret, 76", map: "https://g.page/enoteca-la-bottega-di-tommy?share" },
@@ -42,8 +44,18 @@ const LOCATIONS = [
 export default function LocationsSection() {
   const [mounted, setMounted] = useState(false);
   const [activeCity, setActiveCity] = useState("Alghero");
-  const [isPartnerFormOpen, setIsPartnerFormOpen] = useState(false);
   const [shopType, setShopType] = useState("bar");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState("");
+  
+  const [formData, setFormData] = useState({
+    name: "",
+    city: "",
+    phone: "",
+    email: "",
+    message: ""
+  });
 
   useEffect(() => {
     setMounted(true);
@@ -78,6 +90,32 @@ export default function LocationsSection() {
   if (!mounted) return <div className="min-h-screen bg-primary" />;
 
   const shopTypes = ["bar", "pub", "ristorante", "enoteca", "negozio"];
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      await sendPartnerRequest({ ...formData, shopType });
+      setIsSent(true);
+      // Reset form after 5 seconds to allow new entry
+      setTimeout(() => {
+        setIsSent(false);
+        setIsPartnerFormOpen(false);
+        setFormData({ name: "", city: "", phone: "", email: "", message: "" });
+      }, 5000);
+    } catch (err: any) {
+      setError(err.message || "Qualcosa è andato storto. Riprova.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section 
@@ -204,59 +242,128 @@ export default function LocationsSection() {
                 </button>
               </div>
 
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                <div className="space-y-2">
-                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Nome & Cognome</label>
-                  <input type="text" className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" placeholder="ROSSI MARIO" />
-                </div>
-                
-                <div className="space-y-2">
-                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Città / Location</label>
-                  <input type="text" className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" placeholder="CAGLIARI / MILANO" />
-                </div>
-
-                <div className="space-y-4 md:col-span-2 py-4">
-                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Tipologia Attività</label>
-                  <div className="flex flex-wrap gap-3">
-                    {shopTypes.map((type) => (
-                      <button
-                        key={type}
-                        type="button"
-                        onClick={() => setShopType(type)}
-                        className={`px-6 py-3 border font-heading text-[10px] tracking-widest uppercase transition-all ${
-                          shopType === type 
-                            ? "bg-primary border-primary text-noir" 
-                            : "bg-transparent border-white/20 text-white/60 hover:border-white/40"
-                        }`}
-                      >
-                        {type}
-                      </button>
-                    ))}
+              {isSent ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="py-20 flex flex-col items-center gap-6"
+                >
+                  <CheckCircle2 className="w-16 h-16 text-primary" />
+                  <div className="space-y-4">
+                    <h4 className="text-white font-heading text-4xl uppercase tracking-tighter">Manifestazione Ricevuta</h4>
+                    <p className="text-white/40 font-body text-sm uppercase tracking-widest leading-relaxed">
+                      La tua richiesta è stata registrata nel nostro laboratorio. <br/>
+                      Presto un nostro specialista ti contatterà.
+                    </p>
                   </div>
-                </div>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                  <div className="space-y-2">
+                    <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Nome & Cognome</label>
+                    <input 
+                      required
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      type="text" 
+                      className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" 
+                      placeholder="ROSSI MARIO" 
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Città / Location</label>
+                    <input 
+                      required
+                      name="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                      type="text" 
+                      className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" 
+                      placeholder="CAGLIARI / MILANO" 
+                    />
+                  </div>
 
-                <div className="space-y-2">
-                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Telefono</label>
-                  <input type="tel" className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" placeholder="+39 000 0000000" />
-                </div>
+                  <div className="space-y-4 md:col-span-2 py-4">
+                    <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Tipologia Attività</label>
+                    <div className="flex flex-wrap gap-3">
+                      {shopTypes.map((type) => (
+                        <button
+                          key={type}
+                          type="button"
+                          onClick={() => setShopType(type)}
+                          className={`px-6 py-3 border font-heading text-[10px] tracking-widest uppercase transition-all ${
+                            shopType === type 
+                              ? "bg-primary border-primary text-noir" 
+                              : "bg-transparent border-white/20 text-white/60 hover:border-white/40"
+                          }`}
+                        >
+                          {type}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
 
-                <div className="space-y-2">
-                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Email</label>
-                  <input type="email" className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" placeholder="EMAIL@PARTNER.IT" />
-                </div>
+                  <div className="space-y-2">
+                    <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Telefono</label>
+                    <input 
+                      required
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      type="tel" 
+                      className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" 
+                      placeholder="+39 000 0000000" 
+                    />
+                  </div>
 
-                <div className="space-y-2 md:col-span-2">
-                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Messaggio</label>
-                  <textarea rows={4} className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm resize-none" placeholder="DESCRIVI IL TUO PROGETTO..." />
-                </div>
+                  <div className="space-y-2">
+                    <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Email</label>
+                    <input 
+                      required
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      type="email" 
+                      className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" 
+                      placeholder="EMAIL@PARTNER.IT" 
+                    />
+                  </div>
 
-                <div className="md:col-span-2 pt-8">
-                  <button className="w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.5em] transition-all transform hover:scale-[1.02] active:scale-95">
-                    <span className="relative z-10">Invia Manifestazione d'Interesse</span>
-                    <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                  </button>
-                </div>
-              </form>
+                  <div className="space-y-2 md:col-span-2">
+                    <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Messaggio</label>
+                    <textarea 
+                      required
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      rows={4} 
+                      className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm resize-none" 
+                      placeholder="DESCRIVI IL TUO PROGETTO..." 
+                    />
+                  </div>
+
+                  {error && (
+                    <div className="md:col-span-2 text-red-500 font-heading text-[10px] tracking-widest uppercase">
+                      {error}
+                    </div>
+                  )}
+
+                  <div className="md:col-span-2 pt-8">
+                    <button 
+                      disabled={isSubmitting}
+                      className={`w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.5em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 ${isSubmitting ? "opacity-70" : ""}`}
+                    >
+                      <span className="relative z-10">
+                        {isSubmitting ? "Invio in corso..." : "Invia Manifestazione d'Interesse"}
+                      </span>
+                      {isSubmitting && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
+                      <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                    </button>
+                  </div>
+                </form>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

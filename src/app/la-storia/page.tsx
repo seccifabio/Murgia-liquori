@@ -16,22 +16,32 @@ export default function StoriaPage() {
       <StoriaShutter />
 
       {/* Closing Manifesto Ritual: Full-Stage Takeover */}
-      <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+      <motion.section 
+        initial={{ opacity: 0, scale: 0.95, y: 40 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        className="relative min-h-[80vh] md:min-h-screen w-full flex flex-col items-center justify-center overflow-hidden my-20 md:my-0"
+      >
         {/* Archival Backdrop Manifest */}
         <div className="absolute inset-0 z-0">
-          <img 
+          <motion.img 
+            initial={{ scale: 1.15 }}
+            whileInView={{ scale: 1 }}
+            transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
             src="/images/storia/murgia_bianco_storia-1024x622.webp" 
             alt="La Tradizione Continua" 
-            className="w-full h-full object-cover grayscale brightness-75"
+            className="w-full h-full object-cover grayscale brightness-[0.4]"
           />
-          <div className="absolute inset-0 bg-noir/60 backdrop-blur-[2px]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-noir via-transparent to-noir/40" />
+          <div className="absolute inset-0 bg-noir/40 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-noir via-transparent to-noir" />
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
           className="relative z-10 max-w-5xl px-6 text-center"
         >
           <span className="text-primary font-heading text-xl tracking-[0.4em] uppercase mb-10 block">Il Manifesto</span>
@@ -43,7 +53,7 @@ export default function StoriaPage() {
           </p>
         </motion.div>
 
-      </section>
+      </motion.section>
 
       <Footer />
     </main>
