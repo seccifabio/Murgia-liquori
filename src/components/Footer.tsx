@@ -43,7 +43,7 @@ export default function Footer() {
           <h2 className="font-heading text-8xl md:text-[14rem] text-primary tracking-tighter leading-none mb-6">
             MURGIA
           </h2>
-          <p className="font-heading text-xl md:text-3xl tracking-[0.3em] uppercase italic text-white/40">
+          <p className="font-heading text-xl md:text-3xl tracking-[0.3em] uppercase italic text-white/60">
             L&apos;Arte della Distillazione in Sardegna
           </p>
         </motion.div>
@@ -52,7 +52,7 @@ export default function Footer() {
         <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-20 text-center md:text-left mb-24 items-start justify-center w-full max-w-4xl">
           <div className="flex-1 space-y-6">
             <h4 className="font-heading text-xs tracking-widest text-primary uppercase">Contatti</h4>
-            <div className="space-y-2 font-body text-sm tracking-widest text-white/30 uppercase leading-loose">
+            <div className="space-y-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
               <p>Email: murglialiquori@gmail.com</p>
               <p>Tel: +39 070 931 52 09</p>
             </div>
@@ -60,7 +60,7 @@ export default function Footer() {
 
           <div className="flex-1 space-y-6">
             <h4 className="font-heading text-xs tracking-widest text-primary uppercase">Social</h4>
-            <div className="flex flex-col gap-2 font-body text-sm tracking-widest text-white/30 uppercase leading-loose">
+            <div className="flex flex-col gap-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
               <a href="#" className="hover:text-primary transition-colors">Instagram</a>
               <a href="#" className="hover:text-primary transition-colors">Facebook</a>
             </div>
@@ -68,7 +68,7 @@ export default function Footer() {
           
           <div className="flex-1 space-y-6">
             <h4 className="font-heading text-xs tracking-widest text-primary uppercase">Sede</h4>
-            <div className="space-y-2 font-body text-sm tracking-widest text-white/30 uppercase leading-loose">
+            <div className="space-y-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
               <p>Via Nazionale 213</p>
               <p>09039 Villacidro (SU)</p>
             </div>
@@ -78,10 +78,10 @@ export default function Footer() {
         {/* METADATA: Centered row above line */}
         <motion.div variants={itemVariants} className="w-full flex flex-col items-center gap-8 mb-12">
            <div className="flex flex-col items-center gap-2 text-center">
-              <p className="text-[10px] tracking-[0.5em] text-white/20 uppercase">
+              <p className="text-[10px] tracking-[0.5em] text-white/40 uppercase">
                 P.IVA: 00065810921 — © 2024 Murgia Liquori
               </p>
-              <p className="text-[10px] tracking-[0.4em] text-white/10 uppercase">
+              <p className="text-[10px] tracking-[0.4em] text-white/30 uppercase">
                 Gennaro Murgia eredi Alessandro Pietro Murgia S.a.s
               </p>
            </div>
@@ -95,7 +95,7 @@ export default function Footer() {
             onClick={scrollToTop}
             className="group flex flex-col items-center gap-4 text-primary transition-transform hover:-translate-y-2 duration-500"
           >
-            <span className="font-heading text-[10px] tracking-[0.5em] uppercase text-primary/40 group-hover:text-primary">Tornas&ugrave;</span>
+            <span className="font-heading text-[10px] tracking-[0.5em] uppercase text-primary/60 group-hover:text-primary">Tornas&ugrave;</span>
             <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center group-hover:border-primary transition-colors duration-500">
               <ArrowUp className="w-4 h-4" />
             </div>

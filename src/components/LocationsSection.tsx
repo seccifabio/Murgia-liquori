@@ -125,13 +125,13 @@ export default function LocationsSection() {
               className="border-b border-noir/10 pb-10 flex flex-col md:flex-row md:items-center justify-between gap-6"
             >
               <div className="pointer-events-auto">
-                <span className="text-noir/60 text-[10px] tracking-[0.3em] font-heading uppercase block mb-2">
+                <span className="text-black text-[10px] tracking-[0.3em] font-heading uppercase block mb-2">
                   {loc.city}
                 </span>
-                <h4 className="text-noir font-heading text-2xl md:text-3xl uppercase tracking-tight mb-2 leading-none">
+                <h4 className="text-black font-heading text-2xl md:text-3xl uppercase tracking-tight mb-2 leading-none">
                   {loc.name}
                 </h4>
-                <p className="text-noir/70 text-xs font-body tracking-[0.1em] uppercase">
+                <p className="text-black text-xs font-body tracking-[0.1em] uppercase">
                   {loc.address}
                 </p>
               </div>
@@ -140,7 +140,7 @@ export default function LocationsSection() {
                 href={loc.map} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="shrink-0 flex items-center gap-2 text-noir font-heading text-[10px] tracking-[0.2em] uppercase hover:underline transition-all pointer-events-auto"
+                className="shrink-0 flex items-center gap-2 text-black font-heading text-[10px] tracking-[0.2em] uppercase hover:underline transition-all pointer-events-auto"
               >
                 Vedi Mappa <ArrowUpRight className="w-3 h-3" />
               </a>
@@ -172,14 +172,14 @@ export default function LocationsSection() {
                 <h3 className="text-primary font-heading text-6xl md:text-8xl lg:text-[10rem] uppercase tracking-tighter leading-[0.85]">
                   Diventa un <br/> <span className="text-white italic">Partner Murgia</span>
                 </h3>
-                <p className="text-white/30 font-body text-base md:text-xl uppercase tracking-[0.3em] max-w-3xl mx-auto leading-relaxed pt-8">
+                <p className="text-white/50 font-body text-base md:text-xl uppercase tracking-[0.3em] max-w-3xl mx-auto leading-relaxed pt-8">
                   Porta l'autenticità di Villacidro nel tuo locale. Unisciti alla nostra rete di distribuzione e scopri i vantaggi riservati ai professionisti della mixology.
                 </p>
               </div>
               
               <button 
                 onClick={() => setIsPartnerFormOpen(true)}
-                className="group relative px-16 py-8 md:px-24 overflow-hidden bg-primary text-noir font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 pointer-events-auto"
+                className="group relative px-16 py-8 md:px-24 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 pointer-events-auto"
               >
                 <span className="relative z-10">Richiedi Informazioni</span>
                 <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -198,7 +198,7 @@ export default function LocationsSection() {
                 <h4 className="text-primary font-heading text-4xl uppercase tracking-tighter">Partner Request</h4>
                 <button 
                   onClick={() => setIsPartnerFormOpen(false)}
-                  className="text-white/20 hover:text-white font-heading text-[10px] tracking-widest uppercase border border-white/10 px-4 py-2 hover:bg-white/5 transition-all"
+                  className="text-white/40 hover:text-white font-heading text-[10px] tracking-widest uppercase border border-white/10 px-4 py-2 hover:bg-white/5 transition-all"
                 >
                   Indietro
                 </button>
@@ -206,17 +206,17 @@ export default function LocationsSection() {
 
               <form className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
                 <div className="space-y-2">
-                  <label className="text-white/40 font-heading text-[10px] tracking-widest uppercase ml-1">Nome & Cognome</label>
+                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Nome & Cognome</label>
                   <input type="text" className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" placeholder="ROSSI MARIO" />
                 </div>
                 
                 <div className="space-y-2">
-                  <label className="text-white/40 font-heading text-[10px] tracking-widest uppercase ml-1">Città / Location</label>
+                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Città / Location</label>
                   <input type="text" className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" placeholder="CAGLIARI / MILANO" />
                 </div>
 
                 <div className="space-y-4 md:col-span-2 py-4">
-                  <label className="text-white/40 font-heading text-[10px] tracking-widest uppercase ml-1">Tipologia Attività</label>
+                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Tipologia Attività</label>
                   <div className="flex flex-wrap gap-3">
                     {shopTypes.map((type) => (
                       <button
@@ -226,7 +226,7 @@ export default function LocationsSection() {
                         className={`px-6 py-3 border font-heading text-[10px] tracking-widest uppercase transition-all ${
                           shopType === type 
                             ? "bg-primary border-primary text-noir" 
-                            : "bg-transparent border-white/10 text-white/40 hover:border-white/30"
+                            : "bg-transparent border-white/20 text-white/60 hover:border-white/40"
                         }`}
                       >
                         {type}
@@ -236,22 +236,22 @@ export default function LocationsSection() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-white/40 font-heading text-[10px] tracking-widest uppercase ml-1">Telefono</label>
+                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Telefono</label>
                   <input type="tel" className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" placeholder="+39 000 0000000" />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-white/40 font-heading text-[10px] tracking-widest uppercase ml-1">Email</label>
+                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Email</label>
                   <input type="email" className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm" placeholder="EMAIL@PARTNER.IT" />
                 </div>
 
                 <div className="space-y-2 md:col-span-2">
-                  <label className="text-white/40 font-heading text-[10px] tracking-widest uppercase ml-1">Messaggio</label>
+                  <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Messaggio</label>
                   <textarea rows={4} className="w-full bg-white/5 border border-white/10 p-5 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm resize-none" placeholder="DESCRIVI IL TUO PROGETTO..." />
                 </div>
 
                 <div className="md:col-span-2 pt-8">
-                  <button className="w-full group relative py-8 overflow-hidden bg-primary text-noir font-heading uppercase text-sm tracking-[0.5em] transition-all transform hover:scale-[1.02] active:scale-95">
+                  <button className="w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.5em] transition-all transform hover:scale-[1.02] active:scale-95">
                     <span className="relative z-10">Invia Manifestazione d'Interesse</span>
                     <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                   </button>

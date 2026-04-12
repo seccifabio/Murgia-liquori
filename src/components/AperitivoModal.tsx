@@ -119,7 +119,7 @@ export default function AperitivoModal(props: AperitivoModalProps) {
                     className={`px-5 py-2.5 rounded-full border font-heading text-[10px] tracking-[0.2em] uppercase transition-all duration-500
                       ${activeIndex === index 
                         ? "bg-primary border-primary text-noir" 
-                        : "bg-white/5 border-white/10 text-white/40 hover:text-white"
+                        : "bg-white/5 border-white/10 text-white/60 hover:text-white"
                       }`}
                   >
                     {navItem.name}
@@ -167,7 +167,7 @@ export default function AperitivoModal(props: AperitivoModalProps) {
                       </div>
                       <ol className="space-y-6">
                         {item.instructions.map((step, i) => (
-                          <li key={i} className="relative pl-8 text-white/40 font-body text-xs tracking-widest uppercase leading-relaxed">
+                          <li key={i} className="relative pl-8 text-white/60 font-body text-xs tracking-widest uppercase leading-relaxed">
                             <span className="absolute left-0 top-0 text-primary font-heading text-[9px]">{i + 1}.</span>
                             {step}
                           </li>
@@ -179,7 +179,7 @@ export default function AperitivoModal(props: AperitivoModalProps) {
               </AnimatePresence>
 
               {/* Decorative Footer */}
-              <div className="mt-auto pt-16 flex items-center justify-between opacity-20 hover:opacity-100 transition-opacity">
+              <div className="mt-auto pt-16 flex items-center justify-between opacity-40 hover:opacity-100 transition-opacity">
                 <span className="font-heading text-[8px] tracking-[0.5em] text-white uppercase">Murgia Heritage Laboratory</span>
                 <img src="/Assets/murgia-logo.png" alt="Murgia" className="h-6 invert opacity-50" />
               </div>

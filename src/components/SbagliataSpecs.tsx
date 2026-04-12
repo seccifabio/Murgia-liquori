@@ -31,7 +31,7 @@ export default function SbagliataSpecs() {
               <div className="space-y-4">
                 <span className="text-primary font-heading text-xs tracking-widest uppercase">{ing.detail}</span>
                 <h3 className="text-white font-heading text-4xl uppercase tracking-tighter">{ing.name}</h3>
-                <p className="text-white/40 font-body text-sm leading-relaxed uppercase tracking-widest italic">
+                <p className="text-white/60 font-body text-sm leading-relaxed uppercase tracking-widest italic">
                   {ing.desc}
                 </p>
               </div>
@@ -53,7 +53,7 @@ export default function SbagliataSpecs() {
             { label: "Liquid", value: "Original Giallo" }
           ].map((spec) => (
             <div key={spec.label} className="space-y-2">
-              <span className="text-white/20 font-heading text-[10px] tracking-widest uppercase">{spec.label}</span>
+              <span className="text-white/40 font-heading text-[10px] tracking-widest uppercase">{spec.label}</span>
               <p className="text-white font-heading text-2xl md:text-3xl tracking-tighter uppercase">{spec.value}</p>
             </div>
           ))}

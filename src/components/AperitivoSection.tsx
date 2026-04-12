@@ -174,23 +174,23 @@ export default function AperitivoSection() {
           className="absolute inset-0 z-[20] bg-primary flex flex-col items-center justify-start pt-32 px-6 transition-opacity duration-700"
         >
           <div className="text-center mb-8">
-            <span className="text-noir font-heading text-sm tracking-[0.4em] uppercase underline decoration-noir/30 underline-offset-8 italic mb-8 block">
+            <span className="text-black font-heading text-sm tracking-[0.4em] uppercase underline decoration-black/30 underline-offset-8 italic mb-8 block font-bold">
               The Murgia Experience
             </span>
-            <h2 className="text-noir font-heading text-6xl md:text-8xl uppercase tracking-tighter leading-none italic mb-12">
+            <h2 className="text-black font-heading text-6xl md:text-8xl uppercase tracking-tighter leading-none italic mb-12">
               L&apos;Arte del <span className="opacity-40">Mixing.</span>
             </h2>
 
             <div className="flex items-center justify-center gap-4 bg-noir/5 p-2 rounded-full backdrop-blur-sm border border-noir/10 w-fit mx-auto pointer-events-auto">
               <button 
                 onClick={() => setActiveTab('cocktails')}
-                className={`px-8 py-3 rounded-full font-heading text-xs tracking-widest uppercase transition-all duration-500 ${activeTab === 'cocktails' ? 'bg-noir text-primary shadow-xl scale-105' : 'text-noir/60 hover:text-noir'}`}
+                className={`px-8 py-3 rounded-full font-heading text-xs tracking-widest uppercase transition-all duration-500 ${activeTab === 'cocktails' ? 'bg-noir text-primary shadow-xl scale-105' : 'text-black/60 hover:text-black font-bold'}`}
               >
                 Cocktail
               </button>
               <button 
                 onClick={() => setActiveTab('recipes')}
-                className={`px-8 py-3 rounded-full font-heading text-xs tracking-widest uppercase transition-all duration-500 ${activeTab === 'recipes' ? 'bg-noir text-primary shadow-xl scale-105' : 'text-noir/60 hover:text-noir'}`}
+                className={`px-8 py-3 rounded-full font-heading text-xs tracking-widest uppercase transition-all duration-500 ${activeTab === 'recipes' ? 'bg-noir text-primary shadow-xl scale-105' : 'text-black/60 hover:text-black font-bold'}`}
               >
                 Ricette
               </button>
