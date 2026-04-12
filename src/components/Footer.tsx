@@ -30,7 +30,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#000000] text-white py-40 px-6 overflow-hidden border-t border-white/5">
+    <footer className="relative bg-[#000000] text-white py-40 px-6 overflow-hidden">
       <motion.div
         variants={containerVariants}
         initial="hidden"
