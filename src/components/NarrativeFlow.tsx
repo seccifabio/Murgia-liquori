@@ -69,7 +69,7 @@ export default function NarrativeFlow() {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl w-full">
               <div className="space-y-6">
                 <span className="text-primary font-heading text-xl tracking-widest block uppercase">Le Origini</span>
-                <h2 className="text-white font-heading text-6xl md:text-8xl leading-none uppercase">
+                <h2 className="text-white font-heading text-4xl md:text-8xl leading-[1.1] md:leading-none uppercase">
                   L&apos;Arte della <br /> <span className="text-primary italic">Distillazione</span>
                 </h2>
                 <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
@@ -94,7 +94,7 @@ export default function NarrativeFlow() {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl w-full">
               <div className="space-y-6">
                 <span className="text-primary font-heading text-xl tracking-widest block uppercase underline decoration-primary underline-offset-8">Villacidro Murgia</span>
-                <h2 className="text-white font-heading text-6xl md:text-8xl leading-none uppercase">
+                <h2 className="text-white font-heading text-4xl md:text-8xl leading-[1.1] md:leading-none uppercase">
                   Il Colore <br /> della <span className="text-primary italic">Storia</span>
                 </h2>
                 <p className="text-white/60 font-body text-lg max-w-md leading-relaxed italic">
@@ -129,7 +129,7 @@ export default function NarrativeFlow() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="absolute inset-0 z-30 flex flex-col items-center justify-center pt-10"
+            className="absolute inset-0 z-30 flex flex-col items-center justify-start lg:justify-center pt-24 pb-20 overflow-y-auto"
           >
             <header className="text-center mb-10 mt-10">
               <span className="text-noir font-heading text-xl tracking-widest block uppercase">La Collezione Murgia</span>

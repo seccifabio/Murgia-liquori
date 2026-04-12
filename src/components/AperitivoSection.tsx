@@ -111,7 +111,17 @@ export default function AperitivoSection() {
     offset: ["start start", "end end"]
   });
 
-  const textX = useTransform(scrollYProgress, [0.05, 0.40], [1500, -4500]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  const textX = useTransform(
+    scrollYProgress, 
+    isMobile ? [0, 0.50] : [0.05, 0.40], 
+    isMobile ? [1500, -2000] : [1500, -4500]
+  );
   const maskOpacity = useTransform(scrollYProgress, [0.8, 0.95], [1, 1]);
   const stageY = useTransform(scrollYProgress, [0.42, 0.90], ["0px", "-200px"]);
 
@@ -152,10 +162,12 @@ export default function AperitivoSection() {
                     y="1500" 
                     textAnchor="middle" 
                     dominantBaseline="middle" 
-                    className="font-heading text-[300px] uppercase font-black origin-center italic" 
+                    className="font-heading text-[280px] md:text-[300px] uppercase font-black origin-center italic" 
                     fill="black"
                   >
-                    COCKTAIL & RICETTE
+                    <tspan x="1500" dy="-120" className="md:hidden">COCKTAIL</tspan>
+                    <tspan x="1500" dy="280" className="md:hidden">& RICETTE</tspan>
+                    <tspan className="hidden md:inline">COCKTAIL & RICETTE</tspan>
                   </motion.text>
                 </mask>
               </defs>

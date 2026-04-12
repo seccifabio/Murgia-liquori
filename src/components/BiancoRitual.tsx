@@ -60,14 +60,14 @@ export default function BiancoRitual() {
           </p>
         </motion.div>
 
-        {/* Manifestation Ritual */}
+        {/* Manifestation Ritual - HIDDEN ON MOBILE */}
         <motion.div
           style={{ scale }}
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="absolute bottom-[-50px] right-0 z-20 pointer-events-none"
+          className="absolute bottom-[-50px] right-0 z-20 pointer-events-none hidden md:block"
         >
           <img 
             src="/images/products/bianco.png" 

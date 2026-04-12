@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { MapPin, ArrowUpRight } from "lucide-react";
+import { MapPin, ArrowUpRight, ChevronDown } from "lucide-react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { sendPartnerRequest } from "@/app/actions/partner";
 import { Loader2, CheckCircle2 } from "lucide-react";
@@ -138,8 +138,8 @@ export default function LocationsSection() {
           </h2>
         </motion.header>
 
-        {/* Town Chips Navigation */}
-        <motion.div variants={itemVariants} className="flex flex-wrap gap-2 mb-16 justify-center md:justify-start">
+        {/* Town Chips Navigation - DESKTOP */}
+        <motion.div variants={itemVariants} className="hidden md:flex flex-wrap gap-2 mb-16 justify-start">
           {cities.map((city) => (
             <button
               key={city}
@@ -154,6 +154,27 @@ export default function LocationsSection() {
               {city}
             </button>
           ))}
+        </motion.div>
+
+        {/* Town Dropdown - MOBILE NATIVE INTEGRATION */}
+        <motion.div variants={itemVariants} className="block md:hidden mb-12 relative">
+          <label className="block text-noir/40 font-heading text-[10px] tracking-[0.3em] uppercase mb-4 ml-1">Seleziona Città</label>
+          <div className="relative">
+            <select
+              value={activeCity}
+              onChange={(e) => setActiveCity(e.target.value)}
+              className="w-full bg-transparent border-2 border-noir p-5 pr-12 font-heading text-lg tracking-widest uppercase appearance-none focus:outline-none rounded-none text-noir pointer-events-auto"
+            >
+              {cities.map((city) => (
+                <option key={city} value={city} className="bg-primary text-noir">
+                  {city}
+                </option>
+              ))}
+            </select>
+            <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none">
+              <ChevronDown className="w-5 h-5 text-noir" />
+            </div>
+          </div>
         </motion.div>
 
         {/* Location List */}
@@ -218,7 +239,7 @@ export default function LocationsSection() {
               
               <button 
                 onClick={() => setIsPartnerFormOpen(true)}
-                className="group relative px-16 py-8 md:px-24 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 pointer-events-auto"
+                className="group relative px-10 py-7 md:px-24 md:py-8 w-[85%] max-w-[300px] md:max-w-none md:w-auto overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 pointer-events-auto mx-auto md:mx-0"
               >
                 <span className="relative z-10">Richiedi Informazioni</span>
                 <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
@@ -233,14 +254,14 @@ export default function LocationsSection() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="w-full max-w-4xl px-6"
             >
-              <div className="mb-12 flex justify-between items-center border-b border-white/5 pb-8">
-                <h4 className="text-primary font-heading text-4xl uppercase tracking-tighter">Diventa un Villacidro Murgia Partner</h4>
+              <div className="mb-12 border-b border-white/5 pb-8 space-y-8">
                 <button 
                   onClick={() => setIsPartnerFormOpen(false)}
-                  className="text-white/40 hover:text-white font-heading text-[10px] tracking-widest uppercase border border-white/10 px-4 py-2 hover:bg-white/5 transition-all"
+                  className="text-white/40 hover:text-white font-heading text-[10px] tracking-widest uppercase border border-white/10 px-6 py-3 hover:bg-white/5 transition-all block"
                 >
-                  Indietro
+                  ← Indietro
                 </button>
+                <h4 className="text-primary font-heading text-4xl uppercase tracking-tighter">Diventa un Villacidro Murgia Partner</h4>
               </div>
 
               {isSent ? (
@@ -288,7 +309,9 @@ export default function LocationsSection() {
 
                   <div className="space-y-4 md:col-span-2 py-4">
                     <label className="text-white/60 font-heading text-[10px] tracking-widest uppercase ml-1">Tipologia Attività</label>
-                    <div className="flex flex-wrap gap-3">
+                    
+                    {/* Desktop Chips */}
+                    <div className="hidden md:flex flex-wrap gap-3">
                       {shopTypes.map((type) => (
                         <button
                           key={type}
@@ -303,6 +326,22 @@ export default function LocationsSection() {
                           {type}
                         </button>
                       ))}
+                    </div>
+
+                    {/* Mobile Dropdown */}
+                    <div className="block md:hidden relative">
+                      <select 
+                        value={shopType}
+                        onChange={(e) => setShopType(e.target.value)}
+                        className="w-full bg-white/5 border border-white/10 p-5 pr-12 font-heading text-white focus:border-primary outline-none transition-all uppercase tracking-widest text-sm appearance-none rounded-none"
+                      >
+                        {shopTypes.map((type) => (
+                          <option key={type} value={type} className="bg-noir text-white">{type}</option>
+                        ))}
+                      </select>
+                      <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <ChevronDown className="w-4 h-4 text-white/40" />
+                      </div>
                     </div>
                   </div>
 
@@ -351,13 +390,13 @@ export default function LocationsSection() {
                     </div>
                   )}
 
-                  <div className="md:col-span-2 pt-8">
+                  <div className="md:col-span-2 pt-8 flex justify-center md:justify-start">
                     <button 
                       disabled={isSubmitting}
-                      className={`w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.5em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 ${isSubmitting ? "opacity-70" : ""}`}
+                      className={`w-[85%] max-w-[300px] md:max-w-none md:w-auto group relative py-7 md:py-8 px-10 md:px-24 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.5em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 ${isSubmitting ? "opacity-70" : ""}`}
                     >
-                      <span className="relative z-10">
-                        {isSubmitting ? "Invio in corso..." : "Invia Manifestazione d'Interesse"}
+                      <span className="relative z-10 text-xs md:text-sm">
+                        {isSubmitting ? "Invio..." : "Invia Manifestazione"}
                       </span>
                       {isSubmitting && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
                       <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />

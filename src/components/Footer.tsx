@@ -49,7 +49,7 @@ export default function Footer() {
         </motion.div>
 
         {/* UTILITY GRID: Centered Info */}
-        <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-20 text-center md:text-left mb-24 items-start justify-center w-full max-w-4xl">
+        <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-20 text-center md:text-left mb-24 items-center md:items-start justify-center w-full max-w-4xl">
           <div className="flex-1 space-y-6">
             <h4 className="font-heading text-xs tracking-widest text-primary uppercase">Contatti</h4>
             <div className="space-y-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">

@@ -40,7 +40,7 @@ export default function SbagliataHero() {
       {/* Narrative HUD */}
       <motion.div 
         style={{ y: textY, opacity: textOpacity }}
-        className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6"
+        className="relative z-10 h-full flex flex-col items-center justify-start md:justify-center text-center px-6 pt-32 md:pt-0"
       >
         <motion.span 
           initial={{ opacity: 0 }}
@@ -81,6 +81,17 @@ export default function SbagliataHero() {
           Omaggio all&apos;Imperfezione
         </p>
 
+        {/* Mobile Status Label */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.8, duration: 1 }}
+          className="md:hidden mt-8 border border-primary/20 p-3 backdrop-blur-sm"
+        >
+          <span className="text-primary font-heading text-[8px] tracking-[0.4em] block uppercase opacity-60 mb-1">Status</span>
+          <span className="text-white font-heading text-lg uppercase tracking-widest italic">200 Bottles Only</span>
+        </motion.div>
+
         <motion.div 
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
@@ -92,15 +103,15 @@ export default function SbagliataHero() {
 
       {/* Hero Product Bottle - Stationary Anchor */}
       <motion.div
-        initial={{ y: 80, opacity: 0, x: 50 }}
+        initial={{ y: 80, opacity: 0, x: 0 }}
         animate={{ y: 0, opacity: 1, x: 0 }}
         transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 1 }}
-        className="absolute bottom-[-5%] right-[5%] z-20 pointer-events-none hidden md:block"
+        className="absolute bottom-[5%] md:bottom-[-5%] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[5%] z-20 pointer-events-none"
       >
         <img 
           src="/images/products/sbagliata.png" 
           alt="La Sbagliata Villacidro Murgia" 
-          className="h-[75vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.8)]"
+          className="h-[40vh] md:h-[75vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.8)]"
         />
       </motion.div>
 
@@ -109,7 +120,7 @@ export default function SbagliataHero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-20 left-10 md:left-20 z-20"
+        className="absolute bottom-20 left-10 md:left-20 z-20 hidden md:block"
       >
         <div className="border border-primary/30 p-4 backdrop-blur-md">
           <span className="text-primary font-heading text-[10px] tracking-widest block uppercase opacity-60">Status</span>

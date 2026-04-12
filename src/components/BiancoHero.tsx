@@ -40,7 +40,7 @@ export default function BiancoHero() {
       {/* Narrative HUD */}
       <motion.div 
         style={{ y: textY, opacity: textOpacity }}
-        className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6"
+        className="relative z-10 h-full flex flex-col items-center justify-start md:justify-center text-center px-6 pt-32 md:pt-0"
       >
         <h1 className="font-heading text-7xl md:text-[12rem] lg:text-[16rem] text-white uppercase tracking-tighter leading-[0.8] mb-6 drop-shadow-2xl overflow-hidden py-4">
           {"Villacidro".split("").map((char, i) => (
@@ -86,12 +86,12 @@ export default function BiancoHero() {
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 1 }}
-        className="absolute bottom-[-10%] right-[-5%] z-20 pointer-events-none hidden md:block"
+        className="absolute bottom-[5%] md:bottom-[-10%] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[-5%] z-20 pointer-events-none"
       >
         <img 
           src="/images/products/bianco.png" 
           alt="Villacidro Bianco Murgia" 
-          className="h-[75vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.8)]"
+          className="h-[40vh] md:h-[75vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.8)]"
         />
       </motion.div>
     </section>
