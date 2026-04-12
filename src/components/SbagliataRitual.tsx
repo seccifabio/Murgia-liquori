@@ -105,9 +105,9 @@ export default function SbagliataRitual() {
 
           <button 
             onClick={handleAddToCart}
-            className="group relative px-12 py-6 overflow-hidden bg-primary text-black font-heading uppercase text-xs tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 flex items-center gap-4"
+            className="group relative px-20 py-8 md:px-32 overflow-hidden bg-noir text-primary font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer border border-primary/20"
           >
-            <span className="relative z-10 font-bold">Aggiungi al Carrello &mdash; &euro;{(28 * quantity).toFixed(2)}</span>
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-black font-bold">Aggiungi al carrello &mdash; &euro;{(15 * quantity).toFixed(2)}</span>
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           </button>
         </motion.div>
