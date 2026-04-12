@@ -105,7 +105,7 @@ export default function LocationsSection() {
               className={`px-6 py-2 rounded-full border border-noir/10 font-heading text-[10px] tracking-widest uppercase transition-colors pointer-events-auto
                 ${activeCity === city 
                   ? "bg-noir border-noir text-primary" 
-                  : "bg-transparent text-noir/40 hover:text-noir"
+                  : "bg-transparent text-noir/70 hover:text-noir"
                 }`}
             >
               {city}
@@ -121,13 +121,13 @@ export default function LocationsSection() {
               className="border-b border-noir/10 pb-10 flex flex-col md:flex-row md:items-center justify-between gap-6"
             >
               <div className="pointer-events-auto">
-                <span className="text-noir/30 text-[10px] tracking-[0.3em] font-heading uppercase block mb-2">
+                <span className="text-noir/60 text-[10px] tracking-[0.3em] font-heading uppercase block mb-2">
                   {loc.city}
                 </span>
                 <h4 className="text-noir font-heading text-2xl md:text-3xl uppercase tracking-tight mb-2 leading-none">
                   {loc.name}
                 </h4>
-                <p className="text-noir/40 text-xs font-body tracking-[0.1em] uppercase">
+                <p className="text-noir/70 text-xs font-body tracking-[0.1em] uppercase">
                   {loc.address}
                 </p>
               </div>
