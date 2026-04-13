@@ -20,6 +20,8 @@ interface CartContextType {
   clearCart: () => void;
   isBagOpen: boolean;
   setIsBagOpen: (open: boolean) => void;
+  isMenuOpen: boolean;
+  setIsMenuOpen: (open: boolean) => void;
   showToast: boolean;
   setShowToast: (show: boolean) => void;
   total: number;
@@ -129,6 +131,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         clearCart,
         isBagOpen,
         setIsBagOpen,
+        isMenuOpen,
+        setIsMenuOpen,
         showToast,
         setShowToast,
         total,

@@ -13,9 +13,8 @@ const NAV_LINKS = ["La Storia", "La Collezione", "Contatti"];
 export default function Navbar() {
   const { scrollY } = useScroll();
   const pathname = usePathname();
-  const { setIsBagOpen, items, isBannerVisible } = useCart();
+  const { setIsBagOpen, items, isBannerVisible, isMenuOpen, setIsMenuOpen } = useCart();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [currentTop, setCurrentTop] = useState(52);
 
@@ -94,7 +93,7 @@ export default function Navbar() {
             )}
           </button>
           <button 
-            onClick={() => setIsOpen(true)}
+            onClick={() => setIsMenuOpen(true)}
             className={`transition-all duration-300 hover:rotate-90 ${iconColor}`}
           >
             <BurgerIcon className="w-6 h-6 md:w-7 md:h-7" />
@@ -103,7 +102,7 @@ export default function Navbar() {
       </motion.nav>
 
       <AnimatePresence mode="wait">
-        {isOpen && (
+        {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -111,7 +110,7 @@ export default function Navbar() {
             className="fixed inset-0 z-[10001] bg-noir flex flex-col justify-center items-start px-12 md:px-24"
           >
             <button 
-              onClick={() => setIsOpen(false)}
+              onClick={() => setIsMenuOpen(false)}
               className="absolute top-10 right-10 text-white/50 hover:text-white transition-colors"
             >
               <X className="w-10 h-10" />

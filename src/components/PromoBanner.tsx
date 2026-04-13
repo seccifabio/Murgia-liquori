@@ -8,12 +8,15 @@ import { usePathname } from "next/navigation";
 
 export default function PromoBanner() {
   const [copied, setCopied] = useState(false);
-  const { setAppliedCode, isBannerVisible, setIsBannerVisible } = useCart();
+  const { setAppliedCode, isBannerVisible, setIsBannerVisible, isMenuOpen } = useCart();
   const pathname = usePathname();
   const promoCode = "MURGIA1882";
 
   // Visibility Manifest: Only on Home and Product pages
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
+
+  // Hide on restricted pages or when menu/takeovers are manifest
+  if (!isEligiblePage || isMenuOpen) return null;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(promoCode);
