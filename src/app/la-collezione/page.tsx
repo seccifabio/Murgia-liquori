@@ -13,7 +13,7 @@ const products = [
 
 export default function ProdottiPage() {
   return (
-    <main className="bg-noir min-h-screen">
+    <main className="bg-primary min-h-screen">
       
       <section className="relative pt-32 pb-32 px-6 md:px-20 overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -23,8 +23,8 @@ export default function ProdottiPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <span className="text-primary font-heading text-xl tracking-widest block uppercase mb-6">La Collezione Murgia</span>
-            <div className="w-px h-8 bg-gradient-to-b from-primary/60 to-transparent mx-auto" />
+            <span className="text-noir font-heading text-xl tracking-widest block uppercase mb-6">La Collezione Murgia</span>
+            <div className="w-px h-8 bg-gradient-to-b from-noir/40 to-transparent mx-auto" />
           </motion.div>
 
           {/* The Exact Homepage Grid Manifest */}
@@ -40,7 +40,7 @@ export default function ProdottiPage() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: i * 0.1, duration: 0.8 }}
                 >
-                  <div className="aspect-[4/5] max-h-[65vh] bg-noir/40 rounded-[2vw] overflow-hidden transition-all duration-700 relative border border-white/5 group-hover:border-primary/30">
+                  <div className="aspect-[4/5] max-h-[65vh] bg-noir rounded-[2vw] overflow-hidden transition-all duration-700 relative border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                     <div className="w-full h-full rounded-[2vw] overflow-hidden">
                       <LiquidImage src={p.img} alt={p.name} />
                     </div>

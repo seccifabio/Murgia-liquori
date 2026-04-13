@@ -69,7 +69,7 @@ export default function NarrativeFlow() {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl w-full">
               <div className="space-y-6">
                 <span className="text-primary font-heading text-xl tracking-widest block uppercase">Le Origini</span>
-                <h2 className="text-white font-heading text-[2.5rem] md:text-8xl leading-[1.1] md:leading-none uppercase">
+                <h2 className="text-white font-heading text-[2.5rem] md:text-8xl leading-[1.2] md:leading-none uppercase py-2">
                   L&apos;Arte della <br /> <span className="text-primary italic">Distillazione</span>
                 </h2>
                 <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
@@ -94,7 +94,7 @@ export default function NarrativeFlow() {
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl w-full">
               <div className="space-y-6">
                 <span className="text-primary font-heading text-xl tracking-widest block uppercase underline decoration-primary underline-offset-8">Villacidro Murgia</span>
-                <h2 className="text-white font-heading text-[2.5rem] md:text-8xl leading-[1.1] md:leading-none uppercase">
+                <h2 className="text-white font-heading text-[2.5rem] md:text-8xl leading-[1.2] md:leading-none uppercase py-2">
                   Il Colore <br /> della <span className="text-primary italic">Storia</span>
                 </h2>
                 <p className="text-white/60 font-body text-lg max-w-md leading-relaxed italic">
@@ -129,7 +129,7 @@ export default function NarrativeFlow() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="absolute inset-0 z-30 flex flex-col items-center justify-start lg:justify-center pt-24 pb-20 overflow-y-auto"
+            className="absolute inset-0 z-30 flex flex-col items-center justify-start lg:justify-center pt-24 pb-20 overflow-y-auto bg-primary"
           >
             <header className="text-center mb-10 mt-10">
               <span className="text-noir font-heading text-xl tracking-widest block uppercase">La Collezione Murgia</span>
@@ -147,7 +147,7 @@ export default function NarrativeFlow() {
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: i * 0.1 }}
                   >
-                    <div className="aspect-[2/3] md:aspect-[4/5] max-h-[60vh] bg-noir rounded-[2vw] overflow-hidden transition-all relative">
+                    <div className="aspect-[4/5] md:aspect-[4/5] max-h-[50vh] md:max-h-[60vh] bg-noir rounded-[2vw] overflow-hidden transition-all relative border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
                       <div className="w-full h-full rounded-[2vw] overflow-hidden">
                         <LiquidImage 
                           src={p.img} 
@@ -157,8 +157,8 @@ export default function NarrativeFlow() {
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-noir via-transparent to-transparent pointer-events-none z-10 rounded-[2vw]" />
                       <div className="absolute bottom-6 left-6 right-6 pointer-events-none text-center z-20">
-                        <h4 className="text-white font-heading text-xl uppercase tracking-tighter mt-[100px]">{p.name}</h4>
-                        <p className="text-primary font-heading text-lg">{p.price}</p>
+                        <h4 className="text-white font-heading text-2xl uppercase tracking-tighter">{p.name}</h4>
+                        <p className="text-primary font-heading text-xl">{p.price}</p>
                       </div>
                     </div>
                   </motion.div>

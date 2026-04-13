@@ -49,8 +49,9 @@ export default function Navbar() {
   });
 
   const isStoriaPage = pathname?.includes("/la-storia");
-  const activeTheme = (isDarkTheme || isStoriaPage) ? "dark" : "light";
-  const iconColor = (isDarkTheme || isStoriaPage) ? "text-noir" : "text-white";
+  const isCollezionePage = pathname?.includes("/la-collezione");
+  const activeTheme = (isDarkTheme || isStoriaPage || isCollezionePage) ? "dark" : "light";
+  const iconColor = (isDarkTheme || isStoriaPage || isCollezionePage) ? "text-noir" : "text-white";
   
   return (
     <>

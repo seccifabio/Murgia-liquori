@@ -130,7 +130,7 @@ function StoriaPhase({
             <motion.span style={{ y: bodyY }} className={`text-primary font-heading text-xl tracking-[0.4em] uppercase block mb-8 border-l-2 border-primary pl-6 ${i === 3 ? 'border-l-0 pl-0' : ''}`}>
               {phase.year}
             </motion.span>
-            <motion.h2 style={{ y: titleY }} className="text-white font-heading text-6xl md:text-8xl lg:text-[10rem] uppercase tracking-tighter leading-[0.7] italic mb-10">
+            <motion.h2 style={{ y: titleY }} className="text-white font-heading text-6xl md:text-8xl lg:text-[10rem] uppercase tracking-tighter leading-[0.9] md:leading-[0.7] italic mb-10">
               {phase.title}
             </motion.h2>
             <motion.h3 style={{ y: bodyY }} className="text-white/40 font-heading text-2xl md:text-3xl uppercase tracking-widest">
