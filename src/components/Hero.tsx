@@ -9,9 +9,10 @@ import { usePathname } from "next/navigation";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll();
+  const { scrollY } = useScroll();
   const { isBannerVisible } = useCart();
   const pathname = usePathname();
+  const [currentTop, setCurrentTop] = useState(52);
 
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
 
@@ -31,6 +32,12 @@ export default function Hero() {
   const contentOpacity = useTransform(scrollY, [0, 100], [1, 0]);
   const contentScale = useTransform(scrollY, [0, 100], [1, 0.95]);
 
+  useEffect(() => {
+    // Initial delay for the shutter effect
+    const timer = setTimeout(() => setShowText(true), 800);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section 
       ref={containerRef}
@@ -42,90 +49,84 @@ export default function Hero() {
     >
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-noir/40 z-10" /> 
-        <video
-          autoPlay
-          muted
-          loop
+        <video 
+          autoPlay 
+          muted 
+          loop 
           playsInline
-          onTimeUpdate={(e) => {
-            const video = e.currentTarget;
-            if (video.currentTime > 2 && !showText) setShowText(true);
-          }}
           className="h-full w-full object-cover saturate-[0.3] brightness-75 opacity-70"
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src="/videos/hero_bg.mp4" type="video/mp4" />
         </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-noir/40 via-transparent to-noir" />
       </div>
 
-      {/* Main Narrative Content */}
+      {/* Main Narrative Ritual */}
       <motion.div 
         style={{ opacity: contentOpacity, scale: contentScale }}
-        className="relative z-20 text-center px-4 max-w-7xl mx-auto pt-20"
+        className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center px-6"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12"
-        >
-          <Logo variant="large" />
-        </motion.div>
-
-        {/* Shutter Reveal Text Container */}
-        <div className="relative overflow-hidden min-h-[6rem] flex flex-col items-center">
+        <div className="flex flex-col items-center max-w-7xl">
           <motion.div
-            initial={{ y: "100%", opacity: 0 }}
-            animate={{ y: showText ? "0%" : "100%", opacity: showText ? 1 : 0 }}
-            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-primary/90 font-body text-xs md:text-sm max-w-md mx-auto tracking-[0.3em] uppercase leading-loose drop-shadow-xl text-center">
-              L&apos;alchimia del giallo che rompe gli schemi. <br />
-              Un&apos;eredit&agrave; distillata nel cuore della Sardegna.
-            </p>
-            <motion.div 
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: showText ? 1 : 0 }}
-              transition={{ delay: 1, duration: 1 }}
-              className="mt-8 w-px h-12 bg-gradient-to-b from-primary/60 to-transparent origin-top" 
-            />
+            <Logo theme="light" className="w-32 h-auto md:w-48 mb-12 opacity-80" />
           </motion.div>
-        </div>
-      </motion.div>
 
-      {/* Floating UI Elements */}
-      <motion.div 
-        style={{ opacity: contentOpacity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-4"
+          <div className="overflow-hidden mb-6">
+            <motion.h1 
+              initial={{ y: "100%" }}
+              animate={showText ? { y: 0 } : { y: "100%" }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+              className="font-heading text-white text-5xl md:text-[8rem] lg:text-[12rem] leading-[0.8] tracking-tighter uppercase italic"
+            >
+              L&apos;Alchimia <br/> <span className="text-primary tracking-normal">del Rito.</span>
+            </motion.h1>
+          </div>
+
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={showText ? { opacity: 0.6 } : { opacity: 0 }}
+            transition={{ duration: 1.5, delay: 0.8 }}
+            className="text-white font-heading text-sm md:text-xl tracking-[0.4em] uppercase max-w-2xl px-4"
+          >
+            Distillati d&apos;eccellenza dal 1882. La tradizione sarda incontra l&apos;avanguardia.
+          </motion.p>
+        </div>
+
+        {/* Scroll Ritual Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={showText ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1.5, delay: 1.2 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
         >
-          <span className="text-white/50 font-heading text-xs tracking-[0.3em] uppercase">
-            Scopri l&apos;essenza
-          </span>
-          <ArrowDown className="text-primary w-4 h-4" />
+           <span className="text-white/40 text-[10px] uppercase tracking-[0.6em] font-heading">Scopri l&apos;essenza</span>
+           <motion.div
+             animate={{ y: [0, 10, 0] }}
+             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+           >
+             <ArrowDown className="w-5 h-5 text-primary/60" />
+           </motion.div>
         </motion.div>
       </motion.div>
 
-      {/* Side Decorative Text */}
-      <motion.div 
-        style={{ opacity: contentOpacity }}
-        className="absolute left-10 bottom-10 hidden lg:block z-30"
-      >
-        <div className="rotate-[-90deg] origin-left flex items-center gap-8">
-          <span className="text-white/20 font-heading text-xs tracking-[0.2em] uppercase">
-            Artigianato Sardo
-          </span>
-          <div className="w-12 h-[1px] bg-white/20" />
-          <span className="text-white/20 font-heading text-xs tracking-[0.2em] uppercase">
-            Tradizione Gennaro Murgia
-          </span>
-        </div>
-      </motion.div>
+      {/* Side HUD Details */}
+      <div className="absolute left-10 bottom-10 hidden md:flex flex-col gap-6 opacity-30">
+        <div className="h-px w-20 bg-white" />
+        <span className="text-white text-[10px] uppercase tracking-[0.4em] origin-left rotate-90 translate-x-1 -translate-y-20 font-heading">
+          Tradizione Gennaro Murgia
+        </span>
+      </div>
+
+      <div className="absolute right-10 bottom-10 hidden md:flex flex-col items-end gap-6 opacity-30">
+        <span className="text-white text-[10px] uppercase tracking-[0.4em] origin-right -rotate-90 -translate-x-1 -translate-y-20 font-heading">
+          Artigianato Sardo
+        </span>
+        <div className="h-px w-20 bg-white" />
+      </div>
     </section>
   );
 }
