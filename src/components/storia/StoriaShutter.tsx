@@ -97,28 +97,27 @@ function StoriaPhase({
           
           {/* Layer 2: Monumental Alchemical Fragment */}
           <div className="absolute inset-0 z-20 flex items-center justify-center p-4 md:p-12 lg:p-16">
-            <motion.div 
-              animate={{ 
-                x: [0, 30, -30, 0], 
-                y: [0, -20, 20, 0],
-                scale: [1, 1.05, 1],
-              }}
-              transition={{ 
-                duration: 25, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              className="w-full h-full flex items-center justify-center pointer-events-none"
-            >
-              <div className="p-3 md:p-5 bg-white shadow-[0_60px_120px_rgba(0,0,0,0.95)] transform -rotate-2">
-                <img 
+            <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
+              {/* White Frame acting as a Mask */}
+              <div className="p-3 md:p-5 bg-white shadow-[0_60px_120px_rgba(0,0,0,0.95)] transform -rotate-2 overflow-hidden flex items-center justify-center aspect-square md:aspect-[4/5] max-h-[65vh] md:max-h-[88vh]">
+                <motion.img 
+                  animate={{ 
+                    x: [-40, 40, -40], 
+                    y: [-30, 30, -30],
+                    scale: [1.2, 1.35, 1.2],
+                  }}
+                  transition={{ 
+                    duration: 30, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
                   src={phase.floatingImg} 
                   alt="Archival Monument" 
-                  className="w-full h-full object-contain max-h-[65vh] md:max-h-[92vh]" 
+                  className="min-w-full min-h-full object-cover" 
                 />
               </div>
               <div className="absolute inset-0 bg-primary/5 blur-[200px] rounded-full -z-10" />
-            </motion.div>
+            </div>
           </div>
 
           <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent to-noir" />
