@@ -56,9 +56,9 @@ export default function Hero() {
       ref={containerRef}
       style={{ 
         top: currentTop,
-        height: (isEligiblePage && isBannerVisible) ? `calc(100vh - ${currentTop}px)` : '100vh'
+        height: (isEligiblePage && isBannerVisible) ? `calc(100dvh - ${currentTop}px)` : '100dvh'
       }}
-      className="fixed left-0 w-full overflow-hidden bg-noir flex items-center justify-center z-0"
+      className="fixed left-0 w-full overflow-hidden bg-noir flex items-center justify-center z-0 transition-[height] duration-300"
     >
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0">

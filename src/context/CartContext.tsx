@@ -40,6 +40,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [showToast, setShowToast] = useState(false);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
   const [isBannerVisible, setIsBannerVisible] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [discount, setDiscount] = useState(0);
   const [mounted, setMounted] = useState(false);
 
   // Persistence Ritual: Hydrate from localStorage
