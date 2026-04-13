@@ -26,6 +26,8 @@ interface CartContextType {
   appliedCode: string | null;
   setAppliedCode: (code: string | null) => void;
   discount: number;
+  isBannerVisible: boolean;
+  setIsBannerVisible: (visible: boolean) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -35,6 +37,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isBagOpen, setIsBagOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
+  const [isBannerVisible, setIsBannerVisible] = useState(true);
   const [mounted, setMounted] = useState(false);
 
   // Persistence Ritual: Hydrate from localStorage
@@ -132,6 +135,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         appliedCode,
         setAppliedCode,
         discount,
+        isBannerVisible,
+        setIsBannerVisible,
       }}
     >
       {children}

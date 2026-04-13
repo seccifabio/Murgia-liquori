@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Trash2, ShoppingBag, ArrowRight, Edit3 } from "lucide-react";
+import { X, Trash2, ShoppingBag, ArrowRight, Edit3, Check } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -12,6 +12,16 @@ export default function BagDrawer() {
   const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total, appliedCode, setAppliedCode, discount } = useCart();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isEditingCode, setIsEditingCode] = useState(false);
+  const [promoInput, setPromoInput] = useState("");
+
+  const applyPromo = () => {
+    if (promoInput) {
+      setAppliedCode(promoInput.toUpperCase());
+    }
+    setIsEditingCode(false);
+    setPromoInput("");
+  };
 
   // Scroll Lockdown Ritual
   useEffect(() => {
@@ -191,35 +201,55 @@ export default function BagDrawer() {
                 <div className="flex flex-col gap-4 py-4 border-b border-white/5">
                   <div className="flex items-center justify-between">
                     <span className="text-white/40 font-heading text-[10px] tracking-[0.2em] uppercase">MANIFIESTO VOUCHER</span>
-                    {appliedCode ? (
-                      <div className="flex items-center gap-3">
-                        <span className="text-primary font-heading text-sm tracking-widest">{appliedCode}</span>
+                    
+                    {isEditingCode ? (
+                      <div className="flex items-center gap-2 flex-1 ml-4">
+                        <input
+                          autoFocus
+                          type="text"
+                          placeholder="Codice..."
+                          value={promoInput}
+                          onChange={(e) => setPromoInput(e.target.value)}
+                          onKeyDown={(e) => e.key === 'Enter' && applyPromo()}
+                          className="flex-1 bg-white/5 border border-white/10 rounded-sm px-3 py-1 text-sm font-heading tracking-widest text-primary focus:outline-none focus:border-primary/50 uppercase"
+                        />
                         <button 
-                          onClick={() => {
-                            const code = prompt("Modifica codice promozionale:", appliedCode);
-                            if (code !== null) setAppliedCode(code.toUpperCase());
-                          }}
-                          className="text-white/30 hover:text-white transition-colors p-1"
+                          onClick={applyPromo}
+                          className="text-primary hover:text-white transition-colors p-1"
                         >
-                          <Edit3 className="w-4 h-4" />
-                        </button>
-                        <button 
-                          onClick={() => setAppliedCode(null)}
-                          className="text-white/30 hover:text-red-500 transition-colors p-1"
-                        >
-                          <X className="w-4 h-4" />
+                          <Check className="w-5 h-5" />
                         </button>
                       </div>
                     ) : (
-                      <button 
-                        onClick={() => {
-                          const code = prompt("Inserisci il codice promozionale:");
-                          if (code) setAppliedCode(code.toUpperCase());
-                        }}
-                        className="text-white/30 hover:text-primary transition-colors font-heading text-[10px] tracking-widest uppercase border-b border-white/10 hover:border-primary"
-                      >
-                        Aggiungi Codice
-                      </button>
+                      <div className="flex items-center gap-3">
+                        {appliedCode ? (
+                          <>
+                            <span className="text-primary font-heading text-sm tracking-widest">{appliedCode}</span>
+                            <button 
+                              onClick={() => {
+                                setPromoInput(appliedCode);
+                                setIsEditingCode(true);
+                              }}
+                              className="text-white/30 hover:text-white transition-colors p-1"
+                            >
+                              <Edit3 className="w-4 h-4" />
+                            </button>
+                            <button 
+                              onClick={() => setAppliedCode(null)}
+                              className="text-white/30 hover:text-red-500 transition-colors p-1"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          </>
+                        ) : (
+                          <button 
+                            onClick={() => setIsEditingCode(true)}
+                            className="text-white/30 hover:text-primary transition-colors font-heading text-[10px] tracking-widest uppercase border-b border-white/10 hover:border-primary"
+                          >
+                            Aggiungi Codice
+                          </button>
+                        )}
+                      </div>
                     )}
                   </div>
                   
