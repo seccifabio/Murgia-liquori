@@ -13,10 +13,12 @@ const NAV_LINKS = ["La Storia", "La Collezione", "Contatti"];
 export default function Navbar() {
   const { scrollY } = useScroll();
   const pathname = usePathname();
-  const { setIsBagOpen, items } = useCart();
+  const { setIsBagOpen, items, isBannerVisible } = useCart();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+
+  const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
 
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -62,7 +64,8 @@ export default function Navbar() {
           opacity: isVisible ? 1 : 0
         }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="sticky top-0 left-0 right-0 z-[9999] px-6 py-8 md:px-12 flex items-center justify-between pointer-events-none"
+        style={{ top: (isEligiblePage && isBannerVisible) ? 'var(--banner-height)' : '0' }}
+        className="fixed left-0 right-0 z-[9999] px-6 py-8 md:px-12 flex items-center justify-between pointer-events-none transition-[top] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
       >
         <div className="pointer-events-auto relative">
           <Link href="/" className="group">
