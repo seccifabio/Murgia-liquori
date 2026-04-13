@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import Logo from "./Logo";
 import { useRef, useState, useEffect } from "react";
@@ -15,21 +15,30 @@ export default function Hero() {
 
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
 
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (isEligiblePage && isBannerVisible) {
+      const offset = Math.max(0, 52 - latest);
+      setCurrentTop(offset);
+    } else {
+      setCurrentTop(0);
+    }
+  });
+
   // State to trigger the smooth shutter reveal
   const [showText, setShowText] = useState(false);
 
   // Fade out content as we scroll
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const contentScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95]);
+  const contentOpacity = useTransform(scrollY, [0, 100], [1, 0]);
+  const contentScale = useTransform(scrollY, [0, 100], [1, 0.95]);
 
   return (
     <section 
       ref={containerRef}
       style={{ 
-        top: (isEligiblePage && isBannerVisible) ? 'var(--banner-height)' : '0',
-        height: (isEligiblePage && isBannerVisible) ? 'calc(100vh - var(--banner-height))' : '100vh'
+        top: currentTop,
+        height: (isEligiblePage && isBannerVisible) ? `calc(100vh - ${currentTop}px)` : '100vh'
       }}
-      className="fixed left-0 w-full overflow-hidden bg-noir flex items-center justify-center z-0 transition-[top,height] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+      className="fixed left-0 w-full overflow-hidden bg-noir flex items-center justify-center z-0"
     >
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0">

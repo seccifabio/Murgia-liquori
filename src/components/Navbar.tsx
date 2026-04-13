@@ -17,6 +17,7 @@ export default function Navbar() {
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [currentTop, setCurrentTop] = useState(52);
 
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
 
@@ -25,6 +26,13 @@ export default function Navbar() {
   useMotionValueEvent(scrollY, "change", (latest) => {
     // Visibility: Show only at the top of the page
     setIsVisible(latest < 100);
+
+    // Dynamic Top Offset
+    if (isEligiblePage && isBannerVisible) {
+      setCurrentTop(Math.max(0, 52 - latest));
+    } else {
+      setCurrentTop(0);
+    }
 
     if (typeof window !== "undefined") {
       const vh = window.innerHeight;
@@ -64,8 +72,8 @@ export default function Navbar() {
           opacity: isVisible ? 1 : 0
         }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        style={{ top: (isEligiblePage && isBannerVisible) ? 'var(--banner-height)' : '0' }}
-        className="fixed left-0 right-0 z-[9999] px-6 py-8 md:px-12 flex items-center justify-between pointer-events-none transition-[top] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ top: currentTop }}
+        className="fixed left-0 right-0 z-[9999] px-6 py-8 md:px-12 flex items-center justify-between pointer-events-none"
       >
         <div className="pointer-events-auto relative">
           <Link href="/" className="group">
