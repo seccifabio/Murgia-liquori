@@ -53,76 +53,66 @@ export default function NarrativeFlow() {
       ref={containerRef}
       className="relative bg-noir z-10"
     >
-      {/* 📱 MOBILE LAYOUT (Standard Vertical Stack) */}
-      <div className="md:hidden flex flex-col gap-24 py-24 px-6 overflow-hidden">
-        {/* Phase 1 */}
+      {/* 📱 MOBILE: Simple Vertical Manifest */}
+      <div className="md:hidden flex flex-col gap-32 py-24 px-6">
         <div className="space-y-8">
           <span className="text-primary font-heading text-xl tracking-widest block uppercase">Le Origini</span>
-          <h2 className="text-white font-heading text-[2.5rem] leading-[1.2] uppercase">
+          <h2 className="text-white font-heading text-[2.5rem] leading-[1.2] md:leading-none uppercase">
             L&apos;Arte della <br /> <span className="text-primary italic">Distillazione</span>
           </h2>
           <div className="aspect-[4/5] relative overflow-hidden rounded-[2vw] border border-white/10">
             <LiquidImage src="/images/products/bianco.png" alt="Murgia Heritage Still" />
           </div>
-          <p className="text-white/60 font-body text-lg leading-relaxed">
+          <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
             Dal 1882, trasformiamo i frutti della terra sarda in essenze immortali. 
           </p>
         </div>
 
-        {/* Phase 2 */}
-        <div className="space-y-8 mt-12">
+        <div className="space-y-8">
           <span className="text-primary font-heading text-xl tracking-widest block uppercase underline decoration-primary underline-offset-8">Villacidro Murgia</span>
-          <h2 className="text-white font-heading text-[2.5rem] leading-[1.2] uppercase">
+          <h2 className="text-white font-heading text-[2.5rem] leading-[1.2] md:leading-none uppercase">
             Il Colore <br /> della <span className="text-primary italic">Storia</span>
           </h2>
           <div className="aspect-[4/5] relative overflow-hidden rounded-[2vw] border border-white/10">
             <LiquidImage src="/images/giallo.webp" alt="Villacidro Giallo Murgia" />
           </div>
-          <p className="text-white/60 font-body text-lg leading-relaxed italic">
-            Zafferano, Anice e Segreti di Famiglia.
-          </p>
         </div>
 
-        {/* Collection Grid */}
-        <div className="bg-primary -mx-6 px-6 py-20 mt-12">
-          <header className="text-center mb-10">
-            <span className="text-noir font-heading text-xl tracking-widest block uppercase">La Collezione Murgia</span>
-          </header>
-          <div className="grid grid-cols-1 gap-8">
+        {/* Collection fallback for mobile */}
+        <div className="bg-primary -mx-6 px-6 py-20">
+          <div className="grid grid-cols-1 gap-12 max-w-7xl w-full">
             {products.map((p) => (
               <Link key={p.name} href={p.href} className="group relative block">
                 <div className="aspect-[4/5] bg-noir rounded-[2vw] overflow-hidden relative border border-white/5 shadow-2xl">
-                  <LiquidImage src={p.img} alt={p.name} className="object-contain p-4" />
-                  <div className="absolute bottom-6 left-6 right-6 text-center">
-                    <h4 className="text-white font-heading text-2xl uppercase">{p.name}</h4>
+                  <LiquidImage src={p.img} alt={p.name} className="object-contain p-8" />
+                  <div className="absolute inset-x-0 bottom-8 text-center px-4">
+                    <h4 className="text-white font-heading text-2xl uppercase tracking-tighter">{p.name}</h4>
                     <p className="text-primary font-heading text-xl">{p.price}</p>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
-          <Link href="/la-collezione" className="group relative mt-12 px-12 py-6 bg-noir text-primary font-heading uppercase text-sm tracking-widest text-center block">
-            Vedi tutti
-          </Link>
         </div>
       </div>
 
-      {/* 🖥️ DESKTOP LAYOUT (Cinematic Scroll) */}
+      {/* 🖥️ DESKTOP: Original Cinematic Architecture */}
       <div className="hidden md:block min-h-[400vh]">
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
-          <div className="absolute inset-0 pt-32 pb-20 px-20">
+        <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-32 pb-20 px-20">
+          
+          <div className="flex-1 relative z-10">
             {/* Phase 1 */}
             <motion.div
               style={{ clipPath: section1Clip }}
-              className="absolute inset-0 flex items-center justify-center bg-noir"
+              className="absolute inset-0 flex flex-col items-center justify-center bg-noir"
             >
-              <div className="grid grid-cols-2 gap-20 items-center max-w-6xl w-full">
+              <div className="grid grid-cols-2 gap-12 items-center max-w-6xl w-full">
                 <div className="space-y-6">
                   <span className="text-primary font-heading text-xl tracking-widest block uppercase">Le Origini</span>
                   <h2 className="text-white font-heading text-8xl leading-none uppercase">
                     L&apos;Arte della <br /> <span className="text-primary italic">Distillazione</span>
                   </h2>
-                  <p className="text-white/60 font-body text-xl max-w-md leading-relaxed">
+                  <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
                     Dal 1882, trasformiamo i frutti della terra sarda in essenze immortali. 
                   </p>
                 </div>
@@ -135,15 +125,15 @@ export default function NarrativeFlow() {
             {/* Phase 2 */}
             <motion.div
               style={{ clipPath: section2Clip }}
-              className="absolute inset-0 flex items-center justify-center bg-noir"
+              className="absolute inset-0 flex flex-col items-center justify-center bg-noir"
             >
-              <div className="grid grid-cols-2 gap-20 items-center max-w-6xl w-full">
+              <div className="grid grid-cols-2 gap-12 items-center max-w-6xl w-full">
                 <div className="space-y-6">
                   <span className="text-primary font-heading text-xl tracking-widest block uppercase underline decoration-primary underline-offset-8">Villacidro Murgia</span>
                   <h2 className="text-white font-heading text-8xl leading-none uppercase">
                     Il Colore <br /> della <span className="text-primary italic">Storia</span>
                   </h2>
-                  <p className="text-white/60 font-body text-xl max-w-md leading-relaxed italic">
+                  <p className="text-white/60 font-body text-lg max-w-md leading-relaxed italic">
                     Zafferano, Anice e Segreti di Famiglia.
                   </p>
                 </div>
@@ -152,43 +142,42 @@ export default function NarrativeFlow() {
                 </motion.div>
               </div>
             </motion.div>
-
-            {/* Curtains */}
-            <motion.div initial={false} animate={{ height: isSealed ? "51%" : "0%" }} className="absolute top-0 left-0 w-full bg-primary z-20" />
-            <motion.div initial={false} animate={{ height: isSealed ? "51%" : "0%" }} className="absolute bottom-0 left-0 w-full bg-primary z-20" />
-
-            {/* Collection Reveal */}
-            <motion.div
-              animate={{ opacity: isSealed ? 1 : 0, scale: isSealed ? 1 : 0.95 }}
-              className={`absolute inset-0 z-30 flex flex-col items-center justify-center bg-primary p-20 ${isSealed ? 'pointer-events-auto' : 'pointer-events-none'}`}
-            >
-              <header className="text-center mb-16">
-                <span className="text-noir font-heading text-2xl tracking-widest block uppercase">La Collezione Murgia</span>
-              </header>
-              <div className="grid grid-cols-3 gap-12 max-w-7xl w-full">
-                {products.map((p, i) => (
-                  <Link key={p.name} href={p.href} className="group relative">
-                    <motion.div initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: i * 0.1 }}>
-                      <div className="aspect-[4/5] bg-noir rounded-[2vw] overflow-hidden relative border border-white/5 shadow-2xl">
-                        <LiquidImage src={p.img} alt={p.name} className="object-contain p-8" />
-                        <div className="absolute inset-x-0 bottom-8 text-center">
-                          <h4 className="text-white font-heading text-3xl uppercase">{p.name}</h4>
-                          <p className="text-primary font-heading text-2xl">{p.price}</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </Link>
-                ))}
-              </div>
-              <Link href="/la-collezione" className="group relative mt-16 px-16 py-6 bg-noir text-primary font-heading uppercase text-sm tracking-[0.4em] transform hover:scale-105 transition-all">
-                Vedi tutti i prodotti
-              </Link>
-            </motion.div>
           </div>
+
+          <motion.div initial={false} animate={{ height: isSealed ? "51%" : "0%" }} className="absolute top-0 left-0 w-full bg-primary z-20" />
+          <motion.div initial={false} animate={{ height: isSealed ? "51%" : "0%" }} className="absolute bottom-0 left-0 w-full bg-primary z-20" />
+
+          <motion.div
+            animate={{ opacity: isSealed ? 1 : 0 }}
+            className={`absolute inset-0 z-30 flex flex-col items-center justify-center pt-24 pb-20 bg-primary transition-opacity duration-700 ${isSealed ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+          >
+            <header className="text-center mb-10 mt-10">
+              <span className="text-noir font-heading text-xl tracking-widest block uppercase">La Collezione Murgia</span>
+            </header>
+
+            <div className="grid grid-cols-3 gap-8 px-20 max-w-6xl w-full">
+              {products.map((p, i) => (
+                <Link key={p.name} href={p.href} className="group relative block cursor-pointer">
+                  <motion.div initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: i * 0.1 }}>
+                    <div className="aspect-[4/5] max-h-[60vh] bg-noir rounded-[2vw] overflow-hidden relative border border-white/5 shadow-2xl">
+                      <LiquidImage src={p.img} alt={p.name} className="object-contain p-4" />
+                      <div className="absolute inset-x-0 bottom-6 text-center">
+                        <h4 className="text-white font-heading text-2xl uppercase tracking-tighter">{p.name}</h4>
+                        <p className="text-primary font-heading text-xl">{p.price}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              ))}
+            </div>
+            
+            <Link href="/la-collezione" className="group relative mt-12 px-16 py-6 bg-noir text-primary font-heading uppercase text-sm tracking-[0.4em] transform hover:scale-105 duration-300">
+              Vedi i prodotti
+            </Link>
+          </motion.div>
+
         </div>
       </div>
     </motion.section>
-  );
-}
   );
 }
