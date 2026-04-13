@@ -19,7 +19,7 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      className="fixed top-0 left-0 h-screen w-full overflow-hidden bg-noir flex items-center justify-center z-0"
+      className="fixed top-[var(--banner-height)] left-0 h-screen w-full overflow-hidden bg-noir flex items-center justify-center z-0"
     >
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0">

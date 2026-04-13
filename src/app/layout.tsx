@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 };
 
 import Navbar from "@/components/Navbar";
+import PromoBanner from "@/components/PromoBanner";
 import { CartProvider } from "@/context/CartContext";
 import BagDrawer from "@/components/BagDrawer";
 import CartToast from "@/components/CartToast";
@@ -38,6 +39,7 @@ export default function RootLayout({
         <div className="bg-texture fixed inset-0 z-50 mix-blend-overlay" />
         
         <CartProvider>
+          <PromoBanner />
           <Navbar />
           <BagDrawer />
           <CartToast />

@@ -62,7 +62,7 @@ export default function Navbar() {
           opacity: isVisible ? 1 : 0
         }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 left-0 right-0 z-[9999] px-6 py-8 md:px-12 flex items-center justify-between pointer-events-none"
+        className="sticky top-0 left-0 right-0 z-[9999] px-6 py-8 md:px-12 flex items-center justify-between pointer-events-none"
       >
         <div className="pointer-events-auto relative">
           <Link href="/" className="group">

@@ -16,6 +16,7 @@
   --background: #040404;
   --foreground: #ffffff;
   --primary: #F4B400;
+  --banner-height: 52px;
 }
 
 body {

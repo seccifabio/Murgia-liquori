@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
+import { X, Trash2, ShoppingBag, ArrowRight, Edit3 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ import { createCheckoutSession } from "@/app/actions/stripe";
 import { Loader2 } from "lucide-react";
 
 export default function BagDrawer() {
-  const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total } = useCart();
+  const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total, appliedCode, setAppliedCode, discount } = useCart();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -186,14 +186,58 @@ export default function BagDrawer() {
 
             {/* Footer: Collective Total & Conversion */}
             {items.length > 0 && (
-              <div className="p-8 border-t border-white/5 bg-noir/50 backdrop-blur-xl">
+              <div className="p-8 border-t border-white/5 bg-noir/50 backdrop-blur-xl space-y-6">
+                {/* Promo Manifest Row */}
+                <div className="flex flex-col gap-4 py-4 border-b border-white/5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-white/40 font-heading text-[10px] tracking-[0.2em] uppercase">MANIFIESTO VOUCHER</span>
+                    {appliedCode ? (
+                      <div className="flex items-center gap-3">
+                        <span className="text-primary font-heading text-sm tracking-widest">{appliedCode}</span>
+                        <button 
+                          onClick={() => {
+                            const code = prompt("Modifica codice promozionale:", appliedCode);
+                            if (code !== null) setAppliedCode(code.toUpperCase());
+                          }}
+                          className="text-white/30 hover:text-white transition-colors p-1"
+                        >
+                          <Edit3 className="w-4 h-4" />
+                        </button>
+                        <button 
+                          onClick={() => setAppliedCode(null)}
+                          className="text-white/30 hover:text-red-500 transition-colors p-1"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ) : (
+                      <button 
+                        onClick={() => {
+                          const code = prompt("Inserisci il codice promozionale:");
+                          if (code) setAppliedCode(code.toUpperCase());
+                        }}
+                        className="text-white/30 hover:text-primary transition-colors font-heading text-[10px] tracking-widest uppercase border-b border-white/10 hover:border-primary"
+                      >
+                        Aggiungi Codice
+                      </button>
+                    )}
+                  </div>
+                  
+                  {discount > 0 && (
+                    <div className="flex items-center justify-between text-primary/80 italic">
+                      <span className="font-heading text-[10px] tracking-widest uppercase">SCONTO ALCHIMIA (10%)</span>
+                      <span className="font-heading text-sm">- €{discount.toFixed(2)}</span>
+                    </div>
+                  )}
+                </div>
+
                 <button 
                   onClick={handleCheckout}
                   disabled={isLoading}
                   className={`w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 ${isLoading ? "opacity-70 cursor-wait" : ""}`}
                 >
                   <span className="relative z-10 font-bold">
-                    {isLoading ? "Inizializzazione..." : `Procedi al Pagamento — €${total.toFixed(2)}`}
+                    {isLoading ? "Inizializzazione..." : `Procedi al Pagamento — €${(total - discount).toFixed(2)}`}
                   </span>
                   {!isLoading && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}
                   {isLoading && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}

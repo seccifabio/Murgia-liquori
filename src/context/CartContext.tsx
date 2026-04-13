@@ -23,6 +23,9 @@ interface CartContextType {
   showToast: boolean;
   setShowToast: (show: boolean) => void;
   total: number;
+  appliedCode: string | null;
+  setAppliedCode: (code: string | null) => void;
+  discount: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -31,11 +34,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isBagOpen, setIsBagOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [appliedCode, setAppliedCode] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
   // Persistence Ritual: Hydrate from localStorage
   useEffect(() => {
     const saved = localStorage.getItem("murgia_bag");
+    const savedCode = localStorage.getItem("murgia_promo");
     if (saved) {
       try {
         setItems(JSON.parse(saved));
@@ -43,6 +48,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         console.error("Failed to hydrate bag manifest:", e);
       }
     }
+    if (savedCode) setAppliedCode(savedCode);
     setMounted(true);
   }, []);
 
@@ -50,8 +56,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (mounted) {
       localStorage.setItem("murgia_bag", JSON.stringify(items));
+      if (appliedCode) {
+        localStorage.setItem("murgia_promo", appliedCode);
+      } else {
+        localStorage.removeItem("murgia_promo");
+      }
     }
-  }, [items, mounted]);
+  }, [items, appliedCode, mounted]);
 
   const addItem = (newItem: CartItem) => {
     setItems((prev) => {
@@ -103,6 +114,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     return acc + priceNum * item.quantity;
   }, 0);
 
+  const discount = appliedCode === "MURGIA1882" ? total * 0.1 : 0;
+
   return (
     <CartContext.Provider
       value={{
@@ -116,6 +129,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         showToast,
         setShowToast,
         total,
+        appliedCode,
+        setAppliedCode,
+        discount,
       }}
     >
       {children}
