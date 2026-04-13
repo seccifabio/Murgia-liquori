@@ -1,5 +1,7 @@
 "use client";
 
+/* Navigation Ritual: Orchestration of discovery pathways */
+
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
