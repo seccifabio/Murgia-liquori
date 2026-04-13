@@ -1,15 +1,40 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Play, X } from "lucide-react";
 
 export default function StoriaVideo() {
   const [isRevealed, setIsRevealed] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const videoId = "TpAl52rlf4s";
-  // Sync mute state with reveal to allow audio when focused
-  const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${isRevealed ? "0" : "1"}&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`;
+  // Logic: Keep mute=1 always in the URL to ensure it autoplays in background on mobile.
+  // We will unmute via postMessage API in the ritual click.
+  const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=1`;
+
+  const handleStartRitual = () => {
+    setIsRevealed(true);
+    // Command the player to unmute and ensure it's playing via YouTube JS API
+    if (iframeRef.current) {
+      const player = iframeRef.current.contentWindow;
+      if (player) {
+        player.postMessage(JSON.stringify({ event: "command", func: "unMute", args: [] }), "*");
+        player.postMessage(JSON.stringify({ event: "command", func: "playVideo", args: [] }), "*");
+      }
+    }
+  };
+
+  const handleCloseRitual = () => {
+    setIsRevealed(false);
+    // Command the player to mute again
+    if (iframeRef.current) {
+      const player = iframeRef.current.contentWindow;
+      if (player) {
+        player.postMessage(JSON.stringify({ event: "command", func: "mute", args: [] }), "*");
+      }
+    }
+  };
 
   return (
     <section className="relative h-[80vh] md:h-screen w-full bg-noir overflow-hidden border-t border-white/5">
@@ -17,6 +42,7 @@ export default function StoriaVideo() {
       <div className={`absolute inset-0 z-0 transition-all duration-1000 ${isRevealed ? "opacity-100 scale-100" : "opacity-60 grayscale scale-105"}`}>
         <div className="relative w-full h-full">
           <iframe
+            ref={iframeRef}
             src={videoSrc}
             title="Murgia Cinema"
             className={`w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ${isRevealed ? "pointer-events-auto" : "pointer-events-none"}`}
@@ -51,7 +77,7 @@ export default function StoriaVideo() {
               
               {/* Play Ritual Button */}
               <button 
-                onClick={() => setIsRevealed(true)}
+                onClick={handleStartRitual}
                 className="mt-16 mx-auto group relative flex items-center justify-center"
               >
                 <div className="absolute inset-0 bg-primary/20 rounded-full scale-110 blur-xl group-hover:bg-primary/40 transition-all duration-500" />
@@ -80,7 +106,7 @@ export default function StoriaVideo() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
-            onClick={() => setIsRevealed(false)}
+            onClick={handleCloseRitual}
             className="absolute top-12 right-12 z-50 flex items-center gap-4 group"
           >
             <span className="text-[10px] uppercase tracking-[0.4em] text-white opacity-0 group-hover:opacity-100 transition-all duration-300">Chiudi Visione</span>
