@@ -96,20 +96,28 @@ function StoriaPhase({
           </motion.div>
           
           {/* Layer 2: Monumental Alchemical Fragment */}
-          <div className="absolute inset-0 z-20 flex items-center justify-center p-12 md:p-24 lg:p-32">
+          <div className="absolute inset-0 z-20 flex items-center justify-center p-4 md:p-12 lg:p-16">
             <motion.div 
-              animate={{ x: [-10, 10, -10], y: [-5, 5, -5] }}
-              transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+              animate={{ 
+                x: [0, 30, -30, 0], 
+                y: [0, -20, 20, 0],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{ 
+                duration: 25, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
               className="w-full h-full flex items-center justify-center pointer-events-none"
             >
-              <div className="p-3 md:p-4 bg-white shadow-[0_50px_100px_rgba(0,0,0,0.9)] transform -rotate-2">
+              <div className="p-3 md:p-5 bg-white shadow-[0_60px_120px_rgba(0,0,0,0.95)] transform -rotate-2">
                 <img 
                   src={phase.floatingImg} 
                   alt="Archival Monument" 
-                  className="w-full h-full object-contain max-h-[50vh] md:max-h-[70vh]" 
+                  className="w-full h-full object-contain max-h-[65vh] md:max-h-[92vh]" 
                 />
               </div>
-              <div className="absolute inset-0 bg-primary/5 blur-[160px] rounded-full -z-10" />
+              <div className="absolute inset-0 bg-primary/5 blur-[200px] rounded-full -z-10" />
             </motion.div>
           </div>
 
