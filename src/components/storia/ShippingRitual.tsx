@@ -81,7 +81,7 @@ export default function ShippingRitual() {
                     <span className="text-primary">{stage.title.split(' ')[1]}</span>
                   </h3>
                   
-                  <p className="font-body text-white/60 text-lg md:text-2xl uppercase tracking-[0.2em] leading-relaxed max-w-xl border-l border-white/10 pl-8">
+                  <p className="font-body text-white/60 text-lg md:text-2xl italic tracking-wide leading-relaxed max-w-xl border-l border-white/10 pl-8">
                     {stage.description}
                   </p>
                 </motion.div>
@@ -107,7 +107,7 @@ export default function ShippingRitual() {
                 {STAGES.map((_, idx) => (
                   <div 
                     key={idx}
-                    className={`h-1 transition-all duration-500 ${i === idx ? "w-12 bg-primary" : "w-4 bg-white/10"}`}
+                    className={`h-1 transition-all duration-500 ${i === idx ? "w-12 bg-primary" : "w-4 bg-white"}`}
                   />
                 ))}
               </div>

@@ -60,7 +60,7 @@ function StoriaPhase({
   const imgClipPath = useTransform(
     scrollYProgress,
     [start, start + 0.05],
-    [i === 0 ? "inset(0% 0 0 0)" : "inset(100% 0 0 0)", "inset(0% 0 0 0)"]
+    [i === 0 ? "inset(0% 0 0 0)" : "inset(0 0 100% 0)", "inset(0% 0 0 0)"]
   );
 
   const textOpacity = useTransform(
@@ -72,13 +72,13 @@ function StoriaPhase({
   return (
     <div 
       className="md:absolute inset-0 w-full md:h-full md:overflow-hidden relative mb-24 md:mb-0" 
-      style={{ zIndex: i + 10, clipPath: isMobile ? 'none' : undefined }}
+      style={{ zIndex: i + 10, clipPath: isMobile ? 'none' : imgClipPath }}
     >
       <div className="md:absolute inset-0 w-full h-full flex flex-col md:flex-row">
         {/* Visual Section: Monumental Stage */}
         <motion.div 
           style={{ clipPath: isMobile ? 'none' : imgClipPath }}
-          className="relative h-[50vh] md:h-full overflow-hidden perspective-[1000px] w-full md:w-1/2 border-r border-white/5"
+          className="relative h-[50vh] md:h-full overflow-hidden perspective-[1000px] w-full md:w-1/2"
         >
           {/* Layer 1: Atmospheric Base */}
           <motion.div 
@@ -99,23 +99,23 @@ function StoriaPhase({
           <div className="absolute inset-0 z-20 flex items-center justify-center p-4 md:p-12 lg:p-16">
             <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
               {/* Structural White Frame */}
-              <div className="p-4 md:p-8 bg-white shadow-[0_80px_160px_rgba(0,0,0,0.95)] transform -rotate-2 aspect-square md:aspect-[4/5] max-h-[70vh] md:max-h-[92vh]">
+              <div className="p-4 md:p-8 bg-white shadow-[0_80px_160px_rgba(0,0,0,0.95)] transform -rotate-2 aspect-square md:aspect-[4/5] w-full max-w-[85%] md:max-w-none max-h-[70vh] md:max-h-[90vh]">
                 {/* Internal Mask Terminal */}
-                <div className="relative w-full h-full overflow-hidden bg-noir shadow-inner flex items-center justify-center">
+                <div className="relative w-full h-full overflow-hidden bg-noir shadow-inner">
                   <motion.img 
                     animate={{ 
-                      x: [-60, 60, -60], 
-                      y: [-40, 40, -40],
-                      scale: [1.4, 1.55, 1.4],
+                      x: ["-5%", "5%", "-5%"], 
+                      y: ["-3%", "3%", "-3%"],
+                      scale: [1, 1.05, 1],
                     }}
                     transition={{ 
-                      duration: 40, 
+                      duration: 45, 
                       repeat: Infinity, 
-                      ease: "easeInOut" 
+                      ease: "linear" 
                     }}
                     src={phase.floatingImg} 
                     alt="Archival Monument" 
-                    className="min-w-full min-h-full object-cover absolute" 
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[115%] min-h-[115%] w-auto h-auto object-cover max-w-none" 
                   />
                 </div>
               </div>
@@ -130,20 +130,20 @@ function StoriaPhase({
         {/* Narrative Section: Staggered Content */}
         <motion.div 
           style={{ opacity: isMobile ? 1 : textOpacity }}
-          className="relative h-full p-8 md:p-20 lg:p-32 pt-12 md:pt-48 flex flex-col justify-start md:justify-center z-30 w-full md:w-1/2 bg-noir"
+          className="relative h-full p-8 md:p-20 lg:p-32 pt-24 md:pt-32 flex flex-col justify-center z-30 w-full md:w-1/2 bg-noir"
         >
-          <div className="mb-12">
-            <motion.span style={{ y: isMobile ? 0 : bodyY }} className="text-primary font-heading text-xl tracking-[0.4em] uppercase block mb-8 border-l-2 border-primary pl-6">
+          <div className="mb-8">
+            <motion.span style={{ y: isMobile ? 0 : bodyY }} className="text-primary font-heading text-xl tracking-[0.4em] uppercase block mb-6 border-l-2 border-primary pl-6">
               {phase.year}
             </motion.span>
-            <motion.h2 style={{ y: isMobile ? 0 : titleY }} className="text-white font-heading text-6xl md:text-8xl lg:text-[10rem] uppercase tracking-tighter leading-[0.9] md:leading-[0.7] italic mb-10">
+            <motion.h2 style={{ y: isMobile ? 0 : titleY }} className="text-white font-heading text-6xl md:text-8xl lg:text-[10rem] uppercase tracking-tighter leading-[0.9] md:leading-[0.7] italic mt-8 mb-10">
               {phase.title}
             </motion.h2>
             <motion.h3 style={{ y: isMobile ? 0 : bodyY }} className="text-white/40 font-heading text-2xl md:text-3xl uppercase tracking-widest">
               {phase.subtitle}
             </motion.h3>
           </div>
-          <motion.p style={{ y: isMobile ? 0 : bodyY }} className="text-white/70 font-body text-base md:text-xl lg:text-2xl leading-relaxed uppercase tracking-widest italic border-t border-white/10 pt-10 max-w-2xl">
+          <motion.p style={{ y: isMobile ? 0 : bodyY }} className="text-white/70 font-body text-sm md:text-lg lg:text-xl leading-relaxed tracking-wide italic max-w-2xl mt-8">
             {phase.description}
           </motion.p>
           <div className="mt-12 md:mt-20 flex items-center gap-12 opacity-20">
@@ -162,9 +162,11 @@ export default function StoriaShutter() {
     offset: ["start start", "end end"]
   });
 
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(false); // Default to false to match server/desktop first pass
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    setHasMounted(true);
     const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
     checkIsMobile();
     window.addEventListener('resize', checkIsMobile);
@@ -173,19 +175,21 @@ export default function StoriaShutter() {
 
   return (
     <div ref={containerRef} className="relative h-auto md:h-[600vh] bg-noir">
-      <div className="md:sticky top-0 md:h-screen w-full md:overflow-hidden">
-        <div className="flex flex-col md:block">
-          {HISTORY_PHASES.map((phase, i) => (
-            <StoriaPhase 
-              key={phase.id} 
-              phase={phase} 
-              i={i} 
-              scrollYProgress={scrollYProgress} 
-              isMobile={isMobile}
-            />
-          ))}
+      {hasMounted && (
+        <div className="md:sticky top-0 md:h-screen w-full md:overflow-hidden">
+          <div className="flex flex-col md:block">
+            {HISTORY_PHASES.map((phase, i) => (
+              <StoriaPhase 
+                key={phase.id} 
+                phase={phase} 
+                i={i} 
+                scrollYProgress={scrollYProgress} 
+                isMobile={isMobile}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
