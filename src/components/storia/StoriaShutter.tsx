@@ -70,7 +70,7 @@ function StoriaPhase({
   );
 
   return (
-    <div 
+    <motion.div 
       className="md:absolute inset-0 w-full md:h-full md:overflow-hidden relative mb-24 md:mb-0" 
       style={{ zIndex: i + 10, clipPath: isMobile ? 'none' : imgClipPath }}
     >
@@ -152,7 +152,7 @@ function StoriaPhase({
           </div>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 export default function StoriaShutter() {
