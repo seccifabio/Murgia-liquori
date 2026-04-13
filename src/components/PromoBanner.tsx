@@ -40,12 +40,21 @@ export default function PromoBanner() {
           onClick={handleCopy}
         >
           <div className="flex items-center gap-4 text-black overflow-hidden whitespace-nowrap">
-            <span className="font-heading text-[10px] md:text-sm tracking-[0.3em] uppercase font-bold">
-              OFFERTA ESCLUSIVA DISPONIBILE — USA IL CODICE:
+            {/* Mobile Manifest: Minimalist frequency */}
+            <span className="font-heading text-xs tracking-[0.2em] uppercase font-bold md:hidden">
+              SCONTO 10% &mdash; 
             </span>
-            <div className="bg-black text-primary px-3 py-1 font-heading text-sm md:text-base tracking-[0.2em] font-black italic rounded-sm transition-transform duration-500 group-hover:scale-110">
+
+            {/* Desktop Manifest: Editorial depth */}
+            <span className="font-heading text-sm tracking-[0.3em] uppercase font-bold hidden md:inline">
+              OFFERTA ESCLUSIVA DISPONIBILE &mdash; USA IL CODICE:
+            </span>
+
+            <div className="bg-black text-primary px-3 py-1 font-heading text-sm md:text-base tracking-[0.2em] font-black italic rounded-sm transition-transform duration-500 group-hover:scale-110 flex items-center gap-2">
+              <span className="md:hidden text-[10px] opacity-70 not-italic">CODICE:</span>
               {promoCode}
             </div>
+
             <span className="font-heading text-[10px] md:text-sm tracking-[0.3em] uppercase font-bold hidden md:inline">
               PER IL 10% DI SCONTO SULLA TUA COLLEZIONE
             </span>
