@@ -53,6 +53,9 @@ export default function NarrativeFlow() {
   // Alchemical Atmosphere: Accelerated
   const liquidGold = useTransform(scrollYProgress, [0, 0.2, 0.7, 0.75], ["rgba(244, 180, 0, 0)", "rgba(244, 180, 0, 0.4)", "rgba(244, 180, 0, 0.4)", "rgba(244, 180, 0, 0)"]);
 
+  const phase1Y = useTransform(scrollYProgress, [0, 0.35], [50, -50]);
+  const phase2Y = useTransform(scrollYProgress, [0.35, 0.8], [50, -50]);
+
   const products = [
     { name: "Murgia Bianco", price: "24€", img: "/images/products/bianco.png", href: "/shop/murgia-bianco" },
     { name: "Murgia Giallo", price: "26€", img: "/images/giallo.webp", href: "/shop/villacidro-giallo" },
@@ -86,7 +89,7 @@ export default function NarrativeFlow() {
                 </p>
               </div>
               <motion.div
-                style={{ y: isDesktop ? useTransform(scrollYProgress, [0, 0.35], [50, -50]) : 0 }}
+                style={{ y: isDesktop ? phase1Y : 0 }}
                 className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10"
               >
                 <LiquidImage src="/images/products/bianco.png" alt="Murgia Heritage Still" />
@@ -111,7 +114,7 @@ export default function NarrativeFlow() {
                 </p>
               </div>
               <motion.div
-                style={{ y: isDesktop ? useTransform(scrollYProgress, [0.35, 0.8], [50, -50]) : 0 }}
+                style={{ y: isDesktop ? phase2Y : 0 }}
                 className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10"
               >
                 <LiquidImage src="/images/giallo.webp" alt="Villacidro Giallo Murgia" />
