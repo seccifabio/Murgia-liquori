@@ -54,17 +54,17 @@ export default function NarrativeFlow() {
   return (
     <motion.section
       ref={containerRef}
-      className="relative min-h-[400vh] bg-noir z-10"
+      className="relative min-h-screen md:min-h-[400vh] bg-noir z-10"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-32 pb-20 px-6 md:px-20">
+      <div className="md:sticky top-0 md:h-screen w-full md:overflow-hidden flex flex-col pt-24 md:pt-32 pb-20 px-6 md:px-20">
         
         {/* ── NARRATIVE STAGE ───────────────────────────────────────── */}
-        <div className="flex-1 relative z-10">
+        <div className="flex-1 relative z-10 flex flex-col gap-32 md:block">
           
           {/* Phase 1: L'Arte della Distillazione */}
           <motion.div
-            style={{ clipPath: section1Clip }}
-            className="absolute inset-0 flex flex-col items-center justify-center bg-noir"
+            style={{ clipPath: typeof window !== 'undefined' && window.innerWidth > 768 ? section1Clip : 'none' }}
+            className="md:absolute inset-0 flex flex-col items-center justify-center bg-noir"
           >
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl w-full">
               <div className="space-y-6">
@@ -78,7 +78,7 @@ export default function NarrativeFlow() {
                 </p>
               </div>
               <motion.div
-                style={{ y: useTransform(scrollYProgress, [0, 0.35], [50, -50]) }}
+                style={{ y: typeof window !== 'undefined' && window.innerWidth > 768 ? useTransform(scrollYProgress, [0, 0.35], [50, -50]) : 0 }}
                 className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10"
               >
                 <LiquidImage src="/images/products/bianco.png" alt="Murgia Heritage Still" />
@@ -88,8 +88,8 @@ export default function NarrativeFlow() {
 
           {/* Phase 2: Il Colore della Storia */}
           <motion.div
-            style={{ clipPath: section2Clip }}
-            className="absolute inset-0 flex flex-col items-center justify-center bg-noir"
+            style={{ clipPath: typeof window !== 'undefined' && window.innerWidth > 768 ? section2Clip : 'none' }}
+            className="md:absolute inset-0 flex flex-col items-center justify-center bg-noir mt-24 md:mt-0"
           >
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl w-full">
               <div className="space-y-6">
@@ -103,7 +103,7 @@ export default function NarrativeFlow() {
                 </p>
               </div>
               <motion.div
-                style={{ y: useTransform(scrollYProgress, [0.35, 0.8], [50, -50]) }}
+                style={{ y: typeof window !== 'undefined' && window.innerWidth > 768 ? useTransform(scrollYProgress, [0.35, 0.8], [50, -50]) : 0 }}
                 className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10"
               >
                 <LiquidImage src="/images/giallo.webp" alt="Villacidro Giallo Murgia" />
@@ -112,66 +112,67 @@ export default function NarrativeFlow() {
           </motion.div>
         </div>
 
-        {/* ── ALCHEMICAL CURTAIN (z-20) ────────────────────────────── */}
-        <motion.div
-          initial={false}
-          animate={{ height: isSealed ? "51%" : "0%" }}
-          className="absolute top-0 left-0 w-full bg-primary z-20"
-        />
-        <motion.div
-          initial={false}
-          animate={{ height: isSealed ? "51%" : "0%" }}
-          className="absolute bottom-0 left-0 w-full bg-primary z-20"
-        />
-
-        {/* ── THE COLLECTION REVEAL (z-30) ─────────────────────────── */}
-        {isSealed && (
+        {/* ── ALCHEMICAL CURTAIN (Desktop Only) ────────────────────────────── */}
+        <div className="hidden md:block">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="absolute inset-0 z-30 flex flex-col items-center justify-start lg:justify-center pt-24 pb-20 overflow-y-auto bg-primary"
-          >
-            <header className="text-center mb-10 mt-10">
-              <span className="text-noir font-heading text-xl tracking-widest block uppercase">La Collezione Murgia</span>
-            </header>
+            initial={false}
+            animate={{ height: isSealed ? "51%" : "0%" }}
+            className="absolute top-0 left-0 w-full bg-primary z-20"
+          />
+          <motion.div
+            initial={false}
+            animate={{ height: isSealed ? "51%" : "0%" }}
+            className="absolute bottom-0 left-0 w-full bg-primary z-20"
+          />
+        </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-20 max-w-6xl w-full">
-              {products.map((p, i) => (
-                <Link 
-                  key={p.name}
-                  href={p.href}
-                  className="group relative block cursor-pointer"
+        {/* ── THE COLLECTION REVEAL ─────────────────────────── */}
+        <motion.div
+          className={`relative md:absolute inset-0 z-30 flex flex-col items-center justify-start lg:justify-center pt-24 pb-20 md:overflow-y-auto bg-primary transition-opacity duration-700 mt-32 md:mt-0 ${
+            typeof window !== 'undefined' && window.innerWidth > 768 ? (isSealed ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none') : 'opacity-100'
+          }`}
+        >
+          <header className="text-center mb-10 mt-10">
+            <span className="text-noir font-heading text-xl tracking-widest block uppercase">La Collezione Murgia</span>
+          </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 md:px-20 max-w-6xl w-full">
+            {products.map((p, i) => (
+              <Link 
+                key={p.name}
+                href={p.href}
+                className="group relative block cursor-pointer"
+              >
+                <motion.div
+                  initial={{ y: 50, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
                 >
-                  <motion.div
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: i * 0.1 }}
-                  >
-                    <div className="aspect-[4/5] md:aspect-[4/5] max-h-[50vh] md:max-h-[60vh] bg-noir rounded-[2vw] overflow-hidden transition-all relative border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-                      <div className="w-full h-full rounded-[2vw] overflow-hidden">
-                        <LiquidImage 
-                          src={p.img} 
-                          alt={p.name} 
-                          className="object-contain p-4" 
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-noir via-transparent to-transparent pointer-events-none z-10 rounded-[2vw]" />
-                      <div className="absolute bottom-6 left-6 right-6 pointer-events-none text-center z-20">
-                        <h4 className="text-white font-heading text-2xl uppercase tracking-tighter">{p.name}</h4>
-                        <p className="text-primary font-heading text-xl">{p.price}</p>
-                      </div>
+                  <div className="aspect-[4/5] md:aspect-[4/5] max-h-[50vh] md:max-h-[60vh] bg-noir rounded-[2vw] overflow-hidden transition-all relative border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+                    <div className="w-full h-full rounded-[2vw] overflow-hidden">
+                      <LiquidImage 
+                        src={p.img} 
+                        alt={p.name} 
+                        className="object-contain p-4" 
+                      />
                     </div>
-                  </motion.div>
-                </Link>
-              ))}
-            </div>
-            
-            <Link href="/la-collezione" className="group relative mt-12 px-16 py-6 overflow-hidden bg-noir text-primary hover:text-noir font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 z-40 block">
-              <span className="relative z-10">Vedi i prodotti</span>
-              <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-            </Link>
-          </motion.div>
-        )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-noir via-transparent to-transparent pointer-events-none z-10 rounded-[2vw]" />
+                    <div className="absolute bottom-6 left-6 right-6 pointer-events-none text-center z-20">
+                      <h4 className="text-white font-heading text-2xl uppercase tracking-tighter">{p.name}</h4>
+                      <p className="text-primary font-heading text-xl">{p.price}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </Link>
+            ))}
+          </div>
+          
+          <Link href="/la-collezione" className="group relative mt-12 px-16 py-6 overflow-hidden bg-noir text-primary hover:text-noir font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 z-40 block">
+            <span className="relative z-10">Vedi i prodotti</span>
+            <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+          </Link>
+        </motion.div>
 
       </div>
     </motion.section>
