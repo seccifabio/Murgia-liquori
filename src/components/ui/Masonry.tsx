@@ -99,10 +99,12 @@ const Masonry: React.FC<MasonryProps> = ({
     preloadImages(items.map(i => i.img)).then(() => setImagesReady(true));
   }, [items]);
 
+  const isSmallMobile = useMedia(['(max-width:480px)'], [1], 0);
+
   const grid = useMemo<GridItem[]>(() => {
     if (!width) return [];
     const colHeights = new Array(columns).fill(0);
-    const gap = 24;
+    const gap = isSmallMobile ? 12 : 24;
     const totalGaps = (columns - 1) * gap;
     const columnWidth = (width - totalGaps) / columns;
     
@@ -114,13 +116,20 @@ const Masonry: React.FC<MasonryProps> = ({
     return items.map(child => {
       const col = colHeights.indexOf(Math.min(...colHeights));
       const x = (col * (columnWidth + gap)) + centeringOffset;
-      const height = (child.height || 400); 
+      // Scale height for mobile to avoid massive cards
+      const baseHeight = (child.height || 400); 
+      const height = isSmallMobile ? baseHeight * 0.8 : baseHeight;
       const y = colHeights[col];
 
       colHeights[col] += height + gap;
       return { ...child, x, y, w: columnWidth, h: height };
     });
-  }, [columns, items, width]);
+  }, [columns, items, width, isSmallMobile]);
+
+  const containerHeight = useMemo(() => {
+    if (grid.length === 0) return 600;
+    return Math.max(...grid.map(i => i.y + i.h));
+  }, [grid]);
 
   useLayoutEffect(() => {
     if (!imagesReady || !isTriggered || hasRevealed || grid.length === 0) return;
@@ -180,13 +189,24 @@ const Masonry: React.FC<MasonryProps> = ({
   };
 
   return (
-    <div ref={containerRef} className="relative w-full min-h-[600px] mb-20">
+    <div 
+      ref={containerRef} 
+      className="relative w-full mb-20"
+      style={{ height: containerHeight }}
+    >
       {grid.map(item => (
         <div
           key={item.id}
           data-key={item.id}
           className="absolute box-border cursor-pointer overflow-hidden group rounded-lg"
-          style={{ willChange: 'transform, width, height, opacity' }}
+          style={{ 
+            willChange: 'transform, width, height, opacity',
+            width: item.w, 
+            height: item.h,
+            left: 0,
+            top: 0,
+            transform: `translate(${item.x}px, ${item.y}px)`
+          }}
           onMouseEnter={e => handleMouseEnter(e.currentTarget)}
           onMouseLeave={e => handleMouseLeave(e.currentTarget)}
           onClick={() => onItemClick?.(item.id)}
@@ -208,7 +228,7 @@ const Masonry: React.FC<MasonryProps> = ({
               <span className="text-primary font-heading text-[9px] tracking-[0.4em] uppercase block mb-1 opacity-70 group-hover:opacity-100 transition-opacity">
                 {item.tagline}
               </span>
-              <h3 className="card-title text-white font-heading text-3xl uppercase tracking-tighter leading-none pointer-events-none">
+              <h3 className="card-title text-white font-heading text-xl md:text-3xl uppercase tracking-tighter leading-none pointer-events-none">
                 {item.name}
               </h3>
             </div>

@@ -69,7 +69,7 @@ export default function GialloCocktails() {
   };
 
   return (
-    <section ref={sectionRef} className="bg-noir py-32 px-6 md:px-20 relative overflow-hidden">
+    <section ref={sectionRef} className="bg-noir py-20 md:py-32 px-6 md:px-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="mb-20">
           <div className="flex flex-col items-start gap-4">

@@ -183,7 +183,7 @@ export default function AperitivoSection() {
             y: stageY,
             pointerEvents: hasRevealed ? 'auto' : 'none'
           }}
-          className="absolute inset-0 z-[20] bg-primary flex flex-col items-center justify-start pt-32 px-6 transition-opacity duration-700"
+          className="absolute inset-0 z-[20] bg-primary flex flex-col items-center justify-start pt-20 md:pt-32 px-6 transition-opacity duration-700"
         >
           <div className="text-center mb-8">
             <span className="text-black font-heading text-sm tracking-[0.4em] uppercase underline decoration-black/30 underline-offset-8 italic mb-8 block font-bold">
