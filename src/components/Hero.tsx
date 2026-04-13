@@ -9,12 +9,25 @@ import { usePathname } from "next/navigation";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollY } = useScroll();
   const { isBannerVisible } = useCart();
   const pathname = usePathname();
-  const [currentTop, setCurrentTop] = useState(52);
+  const [currentTop, setCurrentTop] = useState(0);
 
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
+
+  useEffect(() => {
+    // Initial top offset setup
+    if (isEligiblePage && isBannerVisible) {
+      setCurrentTop(52);
+    }
+
+    // Force video playback (critical for production/mobile)
+    if (videoRef.current) {
+      videoRef.current.play().catch(err => console.log("Video play blocked:", err));
+    }
+  }, [isEligiblePage, isBannerVisible]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (isEligiblePage && isBannerVisible) {
@@ -50,10 +63,12 @@ export default function Hero() {
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0">
         <video 
+          ref={videoRef}
           autoPlay 
           muted 
           loop 
           playsInline
+          preload="auto"
           className="h-full w-full object-cover saturate-[0.3] brightness-75 opacity-70"
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
