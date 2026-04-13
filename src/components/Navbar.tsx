@@ -124,7 +124,7 @@ export default function Navbar() {
                   animate={{ x: 0, opacity: 1, transition: { delay: i * 0.1 } }}
                   className="block cursor-pointer"
                 >
-                  <Link href={`/${link.toLowerCase().replace(" ", "-")}`} onClick={() => setIsOpen(false)}>
+                  <Link href={link === "La Storia" ? "/la-storia" : link === "La Collezione" ? "/la-collezione" : `/${link.toLowerCase().replace(" ", "-")}`} onClick={() => setIsMenuOpen(false)}>
                     <div className="font-heading text-primary hover:text-white text-4xl md:text-6xl lg:text-7xl uppercase tracking-tighter leading-none transition-all duration-300 transform hover:translate-x-4">
                       {link}
                     </div>
