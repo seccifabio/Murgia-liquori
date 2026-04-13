@@ -183,7 +183,7 @@ export default function AperitivoSection() {
             y: stageY,
             pointerEvents: hasRevealed ? 'auto' : 'none'
           }}
-          className="absolute inset-0 z-[20] bg-primary flex flex-col items-center justify-start pt-20 md:pt-32 px-6 transition-opacity duration-700"
+          className="absolute inset-x-0 top-0 h-full z-[20] bg-primary flex flex-col items-center justify-start pt-10 md:pt-32 px-6 transition-opacity duration-700 overflow-y-auto md:overflow-visible pb-20"
         >
           <div className="text-center mb-8">
             <span className="text-black font-heading text-sm tracking-[0.4em] uppercase underline decoration-black/30 underline-offset-8 italic mb-8 block font-bold">
@@ -209,7 +209,7 @@ export default function AperitivoSection() {
             </div>
           </div>
 
-          <div className="w-full max-w-[1600px] mt-12 mb-0 px-4 md:px-0">
+          <div className="w-full max-w-[1600px] mt-6 mb-0 px-4 md:px-0">
             <Masonry 
               key={activeTab} 
               items={currentItems} 

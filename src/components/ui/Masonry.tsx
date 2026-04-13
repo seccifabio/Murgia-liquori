@@ -118,7 +118,7 @@ const Masonry: React.FC<MasonryProps> = ({
       const x = (col * (columnWidth + gap)) + centeringOffset;
       // Scale height for mobile to avoid massive cards
       const baseHeight = (child.height || 400); 
-      const height = isSmallMobile ? baseHeight * 0.8 : baseHeight;
+      const height = isSmallMobile ? baseHeight * 0.65 : baseHeight;
       const y = colHeights[col];
 
       colHeights[col] += height + gap;
