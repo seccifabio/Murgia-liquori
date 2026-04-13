@@ -55,6 +55,7 @@ function StoriaPhase({
   const titleY = useTransform(scrollYProgress, [start, end], [40, -40]);
   const bodyY = useTransform(scrollYProgress, [start, end], [20, -20]);
   const imgScale = useTransform(scrollYProgress, [start, end], [1.1, 1]);
+  const imgX = useTransform(scrollYProgress, [start, end], [30, -30]);
 
   const imgClipPath = useTransform(
     scrollYProgress,
@@ -83,7 +84,7 @@ function StoriaPhase({
           <motion.div 
             style={{ 
               scale: isMobile ? 1 : imgScale,
-              x: isMobile ? 0 : useTransform(scrollYProgress, [start, end], [30, -30])
+              x: isMobile ? 0 : imgX
             }}
             className="absolute inset-0 w-full h-full opacity-40"
           >
