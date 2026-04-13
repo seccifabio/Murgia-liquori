@@ -141,7 +141,10 @@ export default function AperitivoSection() {
   const currentItems = activeTab === 'cocktails' ? COCKTAIL_ITEMS : RECIPE_ITEMS;
 
   return (
-    <section ref={containerRef} className="relative z-[100] bg-noir h-[240vh]">
+    <section 
+      ref={containerRef} 
+      className={`relative bg-noir h-[240vh] transition-[z-index] duration-0 ${isModalOpen ? 'z-[100000]' : 'z-[100]'}`}
+    >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         {/* Step 1: Video Background */}
         <video 
