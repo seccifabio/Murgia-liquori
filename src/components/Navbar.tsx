@@ -8,7 +8,7 @@ import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 
-const NAV_LINKS = ["La Storia", "La Collezione", "Contatti"];
+const NAV_LINKS = ["La Storia", "La Collezione", "Dove Ci Trovi", "Contatti"];
 
 export default function Navbar() {
   const { scrollY } = useScroll();
@@ -59,8 +59,9 @@ export default function Navbar() {
 
   const isStoriaPage = pathname?.includes("/la-storia");
   const isCollezionePage = pathname?.includes("/la-collezione");
-  const activeTheme = (isDarkTheme || isStoriaPage || isCollezionePage) ? "dark" : "light";
-  const iconColor = (isDarkTheme || isStoriaPage || isCollezionePage) ? "text-noir" : "text-white";
+  const isDoveCiTroviPage = pathname?.includes("/dove-ci-trovi");
+  const activeTheme = (isDarkTheme || isStoriaPage || isCollezionePage || isDoveCiTroviPage) ? "dark" : "light";
+  const iconColor = (isDarkTheme || isStoriaPage || isCollezionePage || isDoveCiTroviPage) ? "text-noir" : "text-white";
   
   return (
     <>
@@ -124,7 +125,7 @@ export default function Navbar() {
                   animate={{ x: 0, opacity: 1, transition: { delay: i * 0.1 } }}
                   className="block cursor-pointer"
                 >
-                  <Link href={link === "La Storia" ? "/la-storia" : link === "La Collezione" ? "/la-collezione" : `/${link.toLowerCase().replace(" ", "-")}`} onClick={() => setIsMenuOpen(false)}>
+                  <Link href={link === "La Storia" ? "/la-storia" : link === "La Collezione" ? "/la-collezione" : `/${link.toLowerCase().replaceAll(" ", "-")}`} onClick={() => setIsMenuOpen(false)}>
                     <div className="font-heading text-primary hover:text-white text-4xl md:text-6xl lg:text-7xl uppercase tracking-tighter leading-none transition-all duration-300 transform hover:translate-x-4">
                       {link}
                     </div>
