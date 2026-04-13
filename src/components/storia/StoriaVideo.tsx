@@ -17,11 +17,11 @@ export default function StoriaVideo() {
       <div className={`absolute inset-0 z-0 transition-all duration-1000 ${isRevealed ? "opacity-100 scale-100" : "opacity-60 grayscale scale-105"}`}>
         <div className="relative w-full h-full">
           <iframe
-            key={isRevealed ? "revealed" : "background"}
             src={videoSrc}
             title="Murgia Cinema"
-            className="w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-            allow="autoplay; encrypted-media"
+            className={`w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ${isRevealed ? "pointer-events-auto" : "pointer-events-none"}`}
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
           />
         </div>
         
