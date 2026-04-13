@@ -25,8 +25,11 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      style={{ top: (isEligiblePage && isBannerVisible) ? 'var(--banner-height)' : '0' }}
-      className="fixed left-0 h-screen w-full overflow-hidden bg-noir flex items-center justify-center z-0 transition-[top] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+      style={{ 
+        top: (isEligiblePage && isBannerVisible) ? 'var(--banner-height)' : '0',
+        height: (isEligiblePage && isBannerVisible) ? 'calc(100vh - var(--banner-height))' : '100vh'
+      }}
+      className="fixed left-0 w-full overflow-hidden bg-noir flex items-center justify-center z-0 transition-[top,height] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
     >
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0">
