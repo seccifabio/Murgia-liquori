@@ -5,6 +5,7 @@ import { ArrowDown } from "lucide-react";
 import Logo from "./Logo";
 import { useRef, useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
+import { usePathname } from "next/navigation";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
