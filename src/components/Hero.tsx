@@ -10,6 +10,9 @@ export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll();
   const { isBannerVisible } = useCart();
+  const pathname = usePathname();
+
+  const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
 
   // State to trigger the smooth shutter reveal
   const [showText, setShowText] = useState(false);
@@ -21,7 +24,7 @@ export default function Hero() {
   return (
     <section 
       ref={containerRef}
-      style={{ top: isBannerVisible ? 'var(--banner-height)' : '0' }}
+      style={{ top: (isEligiblePage && isBannerVisible) ? 'var(--banner-height)' : '0' }}
       className="fixed left-0 h-screen w-full overflow-hidden bg-noir flex items-center justify-center z-0 transition-[top] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
     >
       {/* Background Video Layer */}
