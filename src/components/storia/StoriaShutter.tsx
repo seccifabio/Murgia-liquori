@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const HISTORY_PHASES = [
   {
@@ -39,17 +39,18 @@ const HISTORY_PHASES = [
 function StoriaPhase({ 
   phase, 
   i, 
-  scrollYProgress 
+  scrollYProgress,
+  isMobile
 }: { 
   phase: any, 
   i: number, 
-  scrollYProgress: MotionValue<number> 
+  scrollYProgress: MotionValue<number>,
+  isMobile: boolean
 }) {
   const start = i / HISTORY_PHASES.length;
   const end = (i + 1) / HISTORY_PHASES.length;
   
   // NARRATIVE ANIMATIONS (Desktop Only)
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const titleY = useTransform(scrollYProgress, [start, end], [40, -40]);
   const bodyY = useTransform(scrollYProgress, [start, end], [20, -20]);
@@ -141,13 +142,21 @@ function StoriaPhase({
     </div>
   );
 }
-
 export default function StoriaShutter() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
+
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   return (
     <div ref={containerRef} className="relative h-auto md:h-[600vh] bg-noir">
@@ -159,6 +168,7 @@ export default function StoriaShutter() {
               phase={phase} 
               i={i} 
               scrollYProgress={scrollYProgress} 
+              isMobile={isMobile}
             />
           ))}
         </div>

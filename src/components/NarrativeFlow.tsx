@@ -8,6 +8,14 @@ import Link from "next/link";
 export default function NarrativeFlow() {
   const containerRef = useRef<HTMLElement>(null);
   const [isSealed, setIsSealed] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkIsDesktop = () => setIsDesktop(window.innerWidth > 768);
+    checkIsDesktop();
+    window.addEventListener('resize', checkIsDesktop);
+    return () => window.removeEventListener('resize', checkIsDesktop);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -63,7 +71,7 @@ export default function NarrativeFlow() {
           
           {/* Phase 1: L'Arte della Distillazione */}
           <motion.div
-            style={{ clipPath: typeof window !== 'undefined' && window.innerWidth > 768 ? section1Clip : 'none' }}
+            style={{ clipPath: isDesktop ? section1Clip : 'none' }}
             className="md:absolute inset-0 flex flex-col items-center justify-center bg-noir"
           >
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl w-full">
@@ -78,7 +86,7 @@ export default function NarrativeFlow() {
                 </p>
               </div>
               <motion.div
-                style={{ y: typeof window !== 'undefined' && window.innerWidth > 768 ? useTransform(scrollYProgress, [0, 0.35], [50, -50]) : 0 }}
+                style={{ y: isDesktop ? useTransform(scrollYProgress, [0, 0.35], [50, -50]) : 0 }}
                 className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10"
               >
                 <LiquidImage src="/images/products/bianco.png" alt="Murgia Heritage Still" />
@@ -88,7 +96,7 @@ export default function NarrativeFlow() {
 
           {/* Phase 2: Il Colore della Storia */}
           <motion.div
-            style={{ clipPath: typeof window !== 'undefined' && window.innerWidth > 768 ? section2Clip : 'none' }}
+            style={{ clipPath: isDesktop ? section2Clip : 'none' }}
             className="md:absolute inset-0 flex flex-col items-center justify-center bg-noir mt-24 md:mt-0"
           >
             <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl w-full">
@@ -103,7 +111,7 @@ export default function NarrativeFlow() {
                 </p>
               </div>
               <motion.div
-                style={{ y: typeof window !== 'undefined' && window.innerWidth > 768 ? useTransform(scrollYProgress, [0.35, 0.8], [50, -50]) : 0 }}
+                style={{ y: isDesktop ? useTransform(scrollYProgress, [0.35, 0.8], [50, -50]) : 0 }}
                 className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10"
               >
                 <LiquidImage src="/images/giallo.webp" alt="Villacidro Giallo Murgia" />
@@ -129,7 +137,7 @@ export default function NarrativeFlow() {
         {/* ── THE COLLECTION REVEAL ─────────────────────────── */}
         <motion.div
           className={`relative md:absolute inset-0 z-30 flex flex-col items-center justify-start lg:justify-center pt-24 pb-20 md:overflow-y-auto bg-primary transition-opacity duration-700 mt-32 md:mt-0 ${
-            typeof window !== 'undefined' && window.innerWidth > 768 ? (isSealed ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none') : 'opacity-100'
+            isDesktop ? (isSealed ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none') : 'opacity-100'
           }`}
         >
           <header className="text-center mb-10 mt-10">
