@@ -58,7 +58,7 @@ export default function StoriaHero() {
           transition={{ delay: 0.5, duration: 1 }}
           className="absolute bottom-20 left-12 md:left-24 z-20 max-w-xl"
         >
-          <span className="text-primary font-heading text-xl tracking-[0.3em] uppercase mb-4 block underline decoration-primary/30 underline-offset-8">
+          <span className="text-primary font-heading text-xl tracking-[0.3em] uppercase mb-4 block">
             L&apos;Inizio del Rito
           </span>
           <h1 className="text-white font-heading text-6xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-[0.8]">

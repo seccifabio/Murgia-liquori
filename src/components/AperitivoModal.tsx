@@ -71,7 +71,7 @@ export default function AperitivoModal(props: AperitivoModalProps) {
             {/* Close Button */}
             <button 
               onClick={onClose}
-              className="absolute top-8 right-8 z-50 p-4 rounded-full bg-black md:bg-white/5 border border-white/10 hover:bg-primary hover:text-noir transition-all duration-500 group shadow-2xl"
+              className="absolute top-16 md:top-8 right-8 z-50 p-4 rounded-full bg-black md:bg-white/5 border border-white/10 hover:bg-primary hover:text-noir transition-all duration-500 group shadow-2xl"
             >
               <X className="w-6 h-6 transform group-hover:rotate-90 transition-transform duration-500 text-white" />
             </button>
