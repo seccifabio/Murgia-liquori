@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
 import { ShoppingBag, X, Menu as BurgerIcon } from "lucide-react";
@@ -16,9 +16,17 @@ export default function Navbar() {
   const { setIsBagOpen, items, isBannerVisible, isMenuOpen, setIsMenuOpen } = useCart();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [currentTop, setCurrentTop] = useState(52);
+  const [currentTop, setCurrentTop] = useState(0);
 
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
+
+  useEffect(() => {
+    if (isEligiblePage && isBannerVisible) {
+      setCurrentTop(52);
+    } else {
+      setCurrentTop(0);
+    }
+  }, [isEligiblePage, isBannerVisible]);
 
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
 
