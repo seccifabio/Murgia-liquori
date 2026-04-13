@@ -9,7 +9,7 @@ export default function StoriaVideo() {
 
   const videoId = "TpAl52rlf4s";
   // Sync mute state with reveal to allow audio when focused
-  const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${isRevealed ? "0" : "1"}&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3`;
+  const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${isRevealed ? "0" : "1"}&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`;
 
   return (
     <section className="relative h-[80vh] md:h-screen w-full bg-noir overflow-hidden border-t border-white/5">

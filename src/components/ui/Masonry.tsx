@@ -118,7 +118,7 @@ const Masonry: React.FC<MasonryProps> = ({
       const x = (col * (columnWidth + gap)) + centeringOffset;
       // Scale height for mobile to avoid massive cards
       const baseHeight = (child.height || 400); 
-      const height = isSmallMobile ? baseHeight * 0.65 : baseHeight;
+      const height = isSmallMobile ? baseHeight * 0.55 : baseHeight;
       const y = colHeights[col];
 
       colHeights[col] += height + gap;
@@ -127,9 +127,10 @@ const Masonry: React.FC<MasonryProps> = ({
   }, [columns, items, width, isSmallMobile]);
 
   const containerHeight = useMemo(() => {
-    if (grid.length === 0) return 600;
-    return Math.max(...grid.map(i => i.y + i.h));
-  }, [grid]);
+    if (grid.length === 0) return 0;
+    const totalHeight = Math.max(...grid.map(i => i.y + i.h));
+    return isSmallMobile ? totalHeight + 100 : totalHeight;
+  }, [grid, isSmallMobile]);
 
   useLayoutEffect(() => {
     if (!imagesReady || !isTriggered || hasRevealed || grid.length === 0) return;

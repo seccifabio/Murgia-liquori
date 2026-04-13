@@ -97,7 +97,6 @@ export default function AperitivoSection() {
   const [activeTab, setActiveTab] = useState<'cocktails' | 'recipes'>('cocktails');
   const [hasRevealed, setHasRevealed] = useState(false);
   const [showBranding, setShowBranding] = useState(true);
-
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -123,7 +122,7 @@ export default function AperitivoSection() {
     isMobile ? [1500, -2000] : [1500, -4500]
   );
   const maskOpacity = useTransform(scrollYProgress, [0.8, 0.95], [1, 1]);
-  const stageY = useTransform(scrollYProgress, [0.42, 0.90], ["0px", "-200px"]);
+  const stageY = useTransform(scrollYProgress, [0.42, 0.90], isMobile ? ["0px", "0px"] : ["0px", "-200px"]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     if (v > 0.05 && showBranding) setShowBranding(false);
@@ -145,10 +144,19 @@ export default function AperitivoSection() {
     <section ref={containerRef} className="relative z-[100] bg-noir h-[240vh]">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         {/* Step 1: Video Background */}
-        <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
+        <video 
+          key="aperitivo-video"
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          preload="auto"
+          poster="/images/aperitivo/Apericidr.webp"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
           <source src="/videos/aperitivo.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/20 z-[1]" />
+        <div className="absolute inset-0 bg-black/40 md:bg-black/20 z-[1]" />
 
         {/* Step 2: The Mask Stencil */}
         <motion.div style={{ opacity: maskOpacity }} className="absolute inset-0 w-full h-full flex flex-col items-center justify-center z-10 overflow-hidden">
