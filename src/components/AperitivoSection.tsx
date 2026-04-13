@@ -140,6 +140,66 @@ export default function AperitivoSection() {
 
   const currentItems = activeTab === 'cocktails' ? COCKTAIL_ITEMS : RECIPE_ITEMS;
 
+  if (isMobile) {
+    return (
+      <section 
+        className={`relative bg-primary py-24 px-6 flex flex-col items-center ${isModalOpen ? 'z-[100000]' : 'z-[10]'}`}
+      >
+        <div className="text-center mb-12">
+           <motion.div
+             initial={{ opacity: 0, y: 30 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 1 }}
+           >
+             <span className="text-black font-heading text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-60">
+               The Murgia Experience
+             </span>
+             <h2 className="text-black font-heading text-6xl uppercase tracking-tighter leading-none italic mb-12">
+               L&apos;Arte del <span className="opacity-40 text-noir/30">Mixing.</span>
+             </h2>
+           </motion.div>
+
+           <div className="flex items-center justify-center gap-4 bg-noir/5 p-2 rounded-full backdrop-blur-sm border border-noir/10 w-fit mx-auto">
+             <button 
+               onClick={() => setActiveTab('cocktails')}
+               className={`px-8 py-3 rounded-full font-heading text-xs tracking-widest uppercase transition-all duration-500 ${activeTab === 'cocktails' ? 'bg-noir text-primary shadow-xl scale-105' : 'text-black/60 hover:text-black font-bold'}`}
+             >
+               Cocktail
+             </button>
+             <button 
+               onClick={() => setActiveTab('recipes')}
+               className={`px-8 py-3 rounded-full font-heading text-xs tracking-widest uppercase transition-all duration-500 ${activeTab === 'recipes' ? 'bg-noir text-primary shadow-xl scale-105' : 'text-black/60 hover:text-black font-bold'}`}
+             >
+               Ricette
+             </button>
+           </div>
+        </div>
+
+        <div className="w-full max-w-[1600px]">
+          <Masonry 
+            key={activeTab} 
+            items={currentItems} 
+            isTriggered={true}
+            onItemClick={(id) => {
+              const idx = currentItems.findIndex(i => i.id === id);
+              handleItemClick(id, idx);
+            }}
+          />
+        </div>
+
+        {/* Modal Takeover */}
+        <AperitivoModal 
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          items={currentItems}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+        />
+      </section>
+    );
+  }
+
   return (
     <section 
       ref={containerRef} 
