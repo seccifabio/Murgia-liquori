@@ -58,7 +58,7 @@ export default function AperitivoModal(props: AperitivoModalProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[20000] flex items-end justify-center bg-noir/95 backdrop-blur-2xl px-0 md:px-0"
+          className="fixed inset-0 z-[20000] flex items-stretch justify-center bg-noir/95 backdrop-blur-2xl px-0 md:px-0"
         >
           {/* Modal Container */}
           <motion.div
@@ -66,7 +66,7 @@ export default function AperitivoModal(props: AperitivoModalProps) {
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 200 }}
-            className="relative w-full h-screen bg-noir overflow-hidden flex flex-col md:flex-row shadow-2xl"
+            className="relative w-full h-full bg-noir overflow-hidden flex flex-col md:flex-row shadow-2xl"
           >
             {/* Close Button */}
             <button 
