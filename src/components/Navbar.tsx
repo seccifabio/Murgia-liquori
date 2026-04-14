@@ -9,6 +9,7 @@ import { ShoppingBag, X, Menu as BurgerIcon } from "lucide-react";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
+import { VISIT_MANIFEST } from "@/manifest/visit";
 
 const NAV_LINKS = ["La Storia", "La Collezione", "Dove Ci Trovi", "Contatti"];
 
@@ -21,12 +22,23 @@ export default function Navbar() {
   const [currentTop, setCurrentTop] = useState(0);
 
   const isPromoEligible = pathname === "/" || pathname?.includes("/shop/");
-  const isVisitEligible = pathname === "/dove-ci-trovi";
+  
+  // Visit Expiration Manifest
+  const visitDate = new Date(`${VISIT_MANIFEST.date}T00:00:00`);
+  const isVisitExpired = new Date().getTime() >= visitDate.getTime();
+  const isVisitEligible = pathname === "/dove-ci-trovi" && !isVisitExpired && VISIT_MANIFEST.active;
+
   const hasActiveBanner = (isPromoEligible && isBannerVisible) || isVisitEligible;
+
+  // Responsive Manifest: Sync with CSS --banner-height tokens
+  const getBannerHeight = () => {
+    if (typeof window === "undefined") return 52;
+    return window.innerWidth < 768 ? 82 : 52;
+  };
 
   useEffect(() => {
     if (hasActiveBanner) {
-      setCurrentTop(52);
+      setCurrentTop(getBannerHeight());
     } else {
       setCurrentTop(0);
     }
@@ -40,7 +52,7 @@ export default function Navbar() {
 
     // Dynamic Top Offset
     if (hasActiveBanner) {
-      setCurrentTop(Math.max(0, 52 - latest));
+      setCurrentTop(Math.max(0, getBannerHeight() - latest));
     } else {
       setCurrentTop(0);
     }

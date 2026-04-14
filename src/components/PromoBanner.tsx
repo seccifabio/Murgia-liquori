@@ -5,18 +5,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Copy, Check } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { usePathname } from "next/navigation";
+import { MARKETING_MANIFEST } from "@/manifest/marketing";
 
 export default function PromoBanner() {
   const [copied, setCopied] = useState(false);
-  const { setAppliedCode, isBannerVisible, setIsBannerVisible, isMenuOpen } = useCart();
+  const { setAppliedCode, isBannerVisible, setIsBannerVisible, isMenuOpen, isBagOpen, isVisitOpen } = useCart();
   const pathname = usePathname();
-  const promoCode = "MURGIA1882";
+  const promoCode = MARKETING_MANIFEST.promo.code;
 
   // Visibility Manifest: Only on Home and Product pages
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
 
   // Hide on restricted pages or when menu/takeovers are manifest
-  if (!isEligiblePage || isMenuOpen) return null;
+  if (!isEligiblePage || isMenuOpen || isBagOpen || isVisitOpen) return null;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(promoCode);
@@ -45,12 +46,12 @@ export default function PromoBanner() {
           <div className="flex items-center gap-4 text-black overflow-hidden whitespace-nowrap">
             {/* Mobile Manifest: Minimalist frequency */}
             <span className="font-heading text-xs tracking-[0.2em] uppercase font-bold md:hidden">
-              SCONTO 10% &mdash; 
+              SCONTO {MARKETING_MANIFEST.promo.discount * 100}% &mdash; 
             </span>
 
             {/* Desktop Manifest: Editorial depth */}
             <span className="font-heading text-sm tracking-[0.3em] uppercase font-bold hidden md:inline">
-              OFFERTA ESCLUSIVA DISPONIBILE &mdash; USA IL CODICE:
+              {MARKETING_MANIFEST.promo.description} &mdash; USA IL CODICE:
             </span>
 
             <div className="bg-black text-primary px-3 py-1 font-heading text-sm md:text-base tracking-[0.2em] font-black italic rounded-sm transition-transform duration-500 group-hover:scale-110 flex items-center gap-2">
@@ -59,7 +60,7 @@ export default function PromoBanner() {
             </div>
 
             <span className="font-heading text-[10px] md:text-sm tracking-[0.3em] uppercase font-bold hidden md:inline">
-              PER IL 10% DI SCONTO SULLA TUA COLLEZIONE
+              {MARKETING_MANIFEST.promo.fullDescription}
             </span>
           </div>
 
@@ -74,7 +75,7 @@ export default function PromoBanner() {
                   className="flex items-center gap-2"
                 >
                   <Check className="w-4 h-4" />
-                  <span className="font-heading text-[10px] uppercase tracking-widest font-bold">COPIATO!</span>
+                  <span className="font-heading text-[10px] uppercase tracking-widest font-bold">{MARKETING_MANIFEST.promo.successMsg}</span>
                 </motion.div>
               ) : (
                 <motion.div
@@ -85,7 +86,7 @@ export default function PromoBanner() {
                   className="flex items-center gap-2"
                 >
                   <Copy className="w-4 h-4 group-hover:scale-120 transition-transform" />
-                  <span className="font-heading text-[10px] uppercase tracking-widest font-bold hidden md:inline">CLICCA PER COPIARE</span>
+                  <span className="font-heading text-[10px] uppercase tracking-widest font-bold hidden md:inline">{MARKETING_MANIFEST.promo.cta}</span>
                 </motion.div>
               )}
             </AnimatePresence>

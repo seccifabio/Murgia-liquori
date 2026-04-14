@@ -20,10 +20,10 @@ export const metadata: Metadata = {
 
 import Navbar from "@/components/Navbar";
 import PromoBanner from "@/components/PromoBanner";
-import FactoryVisitBanner from "@/components/FactoryVisitBanner";
+import VisitBanner from "@/components/VisitBanner";
 import { CartProvider } from "@/context/CartContext";
 import BagDrawer from "@/components/BagDrawer";
-import VisitBookingDrawer from "@/components/VisitBookingDrawer";
+import VisitDrawer from "@/components/VisitDrawer";
 import CartToast from "@/components/CartToast";
 
 export default function RootLayout({
@@ -42,10 +42,10 @@ export default function RootLayout({
         
         <CartProvider>
           <PromoBanner />
-          <FactoryVisitBanner />
+          <VisitBanner />
           <Navbar />
           <BagDrawer />
-          <VisitBookingDrawer />
+          <VisitDrawer />
           <CartToast />
           {children}
         </CartProvider>

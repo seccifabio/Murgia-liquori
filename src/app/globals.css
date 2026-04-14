@@ -19,6 +19,12 @@
   --banner-height: 52px;
 }
 
+@media (max-width: 768px) {
+  :root {
+    --banner-height: 82px;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

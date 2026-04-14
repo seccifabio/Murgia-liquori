@@ -106,7 +106,7 @@ export default function AperitivoSection() {
   }, []);
 
   const { scrollYProgress } = useScroll({
-    target: mounted ? containerRef : undefined,
+    target: containerRef,
     offset: ["start start", "end end"]
   });
 
@@ -136,13 +136,14 @@ export default function AperitivoSection() {
     setIsModalOpen(true);
   };
 
-  if (!mounted) return <div className="h-[240vh] bg-noir" />;
+  if (!mounted) return <div ref={containerRef} className="h-[240vh] bg-noir" />;
 
   const currentItems = activeTab === 'cocktails' ? COCKTAIL_ITEMS : RECIPE_ITEMS;
 
   if (isMobile) {
     return (
       <section 
+        ref={containerRef}
         className={`relative bg-primary py-24 px-6 flex flex-col items-center ${isModalOpen ? 'z-[100000]' : 'z-[10]'}`}
       >
         <div className="text-center mb-12">

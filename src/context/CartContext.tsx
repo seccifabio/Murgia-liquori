@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { MARKETING_MANIFEST } from "@/manifest/marketing";
 
 interface CartItem {
   id: string;
@@ -30,8 +31,8 @@ interface CartContextType {
   discount: number;
   isBannerVisible: boolean;
   setIsBannerVisible: (visible: boolean) => void;
-  isVisitDrawerOpen: boolean;
-  setIsVisitDrawerOpen: (open: boolean) => void;
+  isVisitOpen: boolean;
+  setIsVisitOpen: (open: boolean) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -43,7 +44,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
   const [isBannerVisible, setIsBannerVisible] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isVisitDrawerOpen, setIsVisitDrawerOpen] = useState(false);
+  const [isVisitOpen, setIsVisitOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   // Persistence Ritual: Hydrate from localStorage
@@ -127,7 +128,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     return acc + priceNum * item.quantity;
   }, 0);
 
-  const discount = appliedCode === "MURGIA1882" ? total * 0.1 : 0;
+  const discount = appliedCode === MARKETING_MANIFEST.promo.code ? total * MARKETING_MANIFEST.promo.discount : 0;
 
   return (
     <CartContext.Provider
@@ -149,8 +150,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         discount,
         isBannerVisible,
         setIsBannerVisible,
-        isVisitDrawerOpen,
-        setIsVisitDrawerOpen,
+        isVisitOpen,
+        setIsVisitOpen,
       }}
     >
       {children}

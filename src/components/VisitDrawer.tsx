@@ -4,9 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Users, Mail, Phone, User, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
+import { VISIT_MANIFEST } from "@/manifest/visit";
 
-export default function VisitBookingDrawer() {
-  const { isVisitDrawerOpen, setIsVisitDrawerOpen } = useCart();
+export default function VisitDrawer() {
+  const { isVisitOpen, setIsVisitOpen } = useCart();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -17,12 +18,12 @@ export default function VisitBookingDrawer() {
     guests: "2",
     email: "",
     phone: "",
-    date: "2026-04-21"
+    date: VISIT_MANIFEST.date
   });
 
   // Scroll Lockdown Ritual
   useEffect(() => {
-    if (isVisitDrawerOpen) {
+    if (isVisitOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -30,7 +31,7 @@ export default function VisitBookingDrawer() {
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isVisitDrawerOpen]);
+  }, [isVisitOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +44,7 @@ export default function VisitBookingDrawer() {
       
       // Auto-liquidation after success confirmation
       setTimeout(() => {
-        setIsVisitDrawerOpen(false);
+        setIsVisitOpen(false);
         // Reset after animations finish
         setTimeout(() => setIsSuccess(false), 500);
       }, 3000);
@@ -52,14 +53,14 @@ export default function VisitBookingDrawer() {
 
   return (
     <AnimatePresence>
-      {isVisitDrawerOpen && (
+      {isVisitOpen && (
         <>
           {/* Backdrop: Alchemical Shadow */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setIsVisitDrawerOpen(false)}
+            onClick={() => setIsVisitOpen(false)}
             className="fixed inset-0 bg-noir/80 backdrop-blur-sm z-[10000]"
           />
 
@@ -75,10 +76,10 @@ export default function VisitBookingDrawer() {
             <div className="p-8 pt-20 border-b border-white/5 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Calendar className="w-5 h-5 text-primary" />
-                <h2 className="font-heading text-lg md:text-xl tracking-widest uppercase text-primary font-bold">Sabato 21 Aprile 2026</h2>
+                <h2 className="font-heading text-lg md:text-xl tracking-widest uppercase text-primary font-bold">{VISIT_MANIFEST.displayFullDate}</h2>
               </div>
               <button
-                onClick={() => setIsVisitDrawerOpen(false)}
+                onClick={() => setIsVisitOpen(false)}
                 className="p-2 hover:bg-white/5 rounded-full transition-colors group relative z-10"
               >
                 <X className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" />
@@ -194,9 +195,9 @@ export default function VisitBookingDrawer() {
                     <button 
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 disabled:opacity-70 disabled:cursor-wait mt-12"
+                      className="w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.2em] md:tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 disabled:opacity-70 disabled:cursor-wait mt-12"
                     >
-                      <span className="relative z-10 font-bold">
+                      <span className="relative z-10 font-bold px-4">
                         {isSubmitting ? "Invio in corso..." : "Pianifica Rituale"}
                       </span>
                       {!isSubmitting && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}

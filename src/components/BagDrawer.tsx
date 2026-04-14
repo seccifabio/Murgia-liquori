@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { createCheckoutSession } from "@/app/actions/stripe";
 import { Loader2 } from "lucide-react";
 import EmbeddedStripeCheckout from "./EmbeddedStripeCheckout";
+import { MARKETING_MANIFEST } from "@/manifest/marketing";
 
 
 export default function BagDrawer() {
@@ -252,7 +253,7 @@ export default function BagDrawer() {
                   
                   {discount > 0 && (
                     <div className="flex items-center justify-between text-primary/80 italic">
-                      <span className="font-heading text-[10px] tracking-widest uppercase">SCONTO ALCHIMIA (10%)</span>
+                      <span className="font-heading text-[10px] tracking-widest uppercase">SCONTO ALCHIMIA ({MARKETING_MANIFEST.promo.discount * 100}%)</span>
                       <span className="font-heading text-sm">- €{discount.toFixed(2)}</span>
                     </div>
                   )}
@@ -261,9 +262,9 @@ export default function BagDrawer() {
                 <button 
                   onClick={handleCheckout}
                   disabled={isLoading}
-                  className={`w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 ${isLoading ? "opacity-70 cursor-wait" : ""}`}
+                  className={`w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.2em] md:tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 ${isLoading ? "opacity-70 cursor-wait" : ""}`}
                 >
-                  <span className="relative z-10 font-bold">
+                  <span className="relative z-10 font-bold px-4">
                     {isLoading ? "Inizializzazione..." : `Procedi al Pagamento — €${(total - discount).toFixed(2)}`}
                   </span>
                   {!isLoading && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}
