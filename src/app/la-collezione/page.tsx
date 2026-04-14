@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import LiquidImage from "@/components/LiquidImage";
-import { useTranslation } from "@/hooks/useTranslation";
+import { useTranslation } from "@/context/LanguageContext";
 
 const products = [
   { name: "Murgia Bianco", price: "24€", img: "/images/products/bianco.png", href: "/shop/murgia-bianco" },

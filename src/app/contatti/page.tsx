@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
-import { useTranslation } from "@/hooks/useTranslation";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function ContattiPage() {
   const { t } = useTranslation();
