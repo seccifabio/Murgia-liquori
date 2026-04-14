@@ -17,7 +17,6 @@ export default function SbagliataRitual() {
       id: "la-sbagliata",
       name: t.products.sbagliata.name,
       price: "35€",
-      ingredients: ["5cl Villacidro Giallo", "15cl Acqua Tonica Premium", "Spicchio di Lime", "Scorza di Limone", "Ramoscello di Timo"],
       priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
       quantity: quantity,
       format: selectedFormat,
