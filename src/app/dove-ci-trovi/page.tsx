@@ -10,8 +10,7 @@ export const metadata: Metadata = {
 
 export default function DoveCiTroviPage() {
   return (
-    <main className="bg-primary min-h-screen">
-      <Navbar />
+    <main className="min-h-screen">
       <LocationsSection />
       <Footer />
     </main>

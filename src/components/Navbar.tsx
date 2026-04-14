@@ -20,15 +20,17 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [currentTop, setCurrentTop] = useState(0);
 
-  const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
+  const isPromoEligible = pathname === "/" || pathname?.includes("/shop/");
+  const isVisitEligible = pathname === "/dove-ci-trovi";
+  const hasActiveBanner = (isPromoEligible && isBannerVisible) || isVisitEligible;
 
   useEffect(() => {
-    if (isEligiblePage && isBannerVisible) {
+    if (hasActiveBanner) {
       setCurrentTop(52);
     } else {
       setCurrentTop(0);
     }
-  }, [isEligiblePage, isBannerVisible]);
+  }, [hasActiveBanner]);
 
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -37,7 +39,7 @@ export default function Navbar() {
     setIsVisible(latest < 100);
 
     // Dynamic Top Offset
-    if (isEligiblePage && isBannerVisible) {
+    if (hasActiveBanner) {
       setCurrentTop(Math.max(0, 52 - latest));
     } else {
       setCurrentTop(0);
