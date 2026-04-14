@@ -277,5 +277,33 @@ export const it = {
     social: "Social",
     sede: "Sede",
     backToTop: "Tornasù",
+  },
+  storia: {
+    hero: {
+      label: "L'Inizio del Rito",
+      title: "La Storia",
+      company: "Murgia."
+    },
+    phases: {
+      origins: {
+        year: "1882-1886",
+        title: "Le Origini",
+        subtitle: "IL CHIMICO & IL VAPORE",
+        description: "Gennaro Murgia, allievo di Antonio Pacinotti, fonda la distilleria a vapore a Villacidro. Sfruttando l'abbondanza di materie prime locali, crea le prime acquaviti e liquori che segneranno un'epoca."
+      },
+      giallo: {
+        year: "L'ORO BRILLANTE",
+        title: "Villacidro Giallo",
+        subtitle: "L'ALCHIMIA DELLO ZAFFERANO",
+        description: "Il prodotto simbolo nasce dalla sapienza erboristica del fondatore. L'uso dello zafferano puro non solo conferisce il colore oro brillante, ma definisce l'anima aromatica di Murgia nel mondo."
+      },
+      resilience: {
+        year: "1940-1950",
+        title: "La Resilienza",
+        subtitle: "IL FUOCO di TERESITA",
+        description: "Dopo le guerre mondiali, l'azienda rischia la chiusura. È la tenacia di Teresita Belingardi a salvare la produzione, mantenendo segrete le ricette e accendendo nuovamente gli alambicchi."
+      }
+    },
+    archive: "Murgia Archivio"
   }
 };

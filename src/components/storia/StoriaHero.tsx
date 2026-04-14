@@ -2,8 +2,10 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function StoriaHero() {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -72,16 +74,16 @@ export default function StoriaHero() {
 
         {/* Narrative Intro Overlay */}
         <motion.div 
-          initial={{ opacity: 0, y: isMobile ? 20 : 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={introTransition}
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={isMobile ? { duration: 0 } : introTransition}
           className="absolute bottom-20 left-12 md:left-24 z-20 max-w-xl"
         >
           <span className="text-primary font-heading text-xl tracking-[0.3em] uppercase mb-4 block">
-            L&apos;Inizio del Rito
+            {t.storia.hero.label}
           </span>
           <h1 className="text-white font-heading text-6xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-[0.8]">
-            La Storia <br/> <span className="opacity-40">Murgia.</span>
+            {t.storia.hero.title} <br/> <span className="opacity-40">{t.storia.hero.company}</span>
           </h1>
         </motion.div>
       </div>

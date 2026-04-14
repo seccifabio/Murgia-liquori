@@ -277,5 +277,33 @@ export const en = {
     social: "Ascend",
     sede: "Heart",
     backToTop: "Ascend",
+  },
+  storia: {
+    hero: {
+      label: "The Start of the Ritual",
+      title: "The Heritage",
+      company: "Murgia."
+    },
+    phases: {
+      origins: {
+        year: "1882-1886",
+        title: "Origins",
+        subtitle: "CHEMIST & STEAM",
+        description: "Gennaro Murgia, a student of Antonio Pacinotti, founded the steam distillery in Villacidro. Utilizing the abundance of local raw materials, he created the first brandies and liqueurs that would define an era."
+      },
+      giallo: {
+        year: "BRILLIANT GOLD",
+        title: "Villacidro Giallo",
+        subtitle: "SAFFRON ALCHEMY",
+        description: "The signature product originated from the founder's herbal wisdom. The use of pure saffron not only imparts the brilliant gold color but also defines Murgia's aromatic soul in the world."
+      },
+      resilience: {
+        year: "1940-1950",
+        title: "Resilience",
+        subtitle: "TERESITA'S FIRE",
+        description: "After the world wars, the company risked closure. It was the tenacity of Teresita Belingardi that saved production, keeping the recipes secret and reigniting the stills."
+      }
+    },
+    archive: "Murgia Archives"
   }
 };

@@ -63,9 +63,9 @@ export default function ShippingRitual() {
 
             {/* Cinematic Asset */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
               className="relative aspect-[4/5] rounded-xl overflow-hidden border border-white/10"
             >
               <img 
@@ -78,10 +78,10 @@ export default function ShippingRitual() {
 
             {/* Narrative Context */}
             <motion.div 
-              initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6 }}
+              transition={isMobile ? { duration: 0 } : { duration: 0.6 }}
               className="space-y-6"
             >
               <h3 className="font-heading text-6xl uppercase tracking-tighter leading-none text-white italic">
