@@ -259,7 +259,7 @@ export const en = {
   bag: {
     title: "Your Basket",
     empty: "Your collection is empty",
-    added: "ARTIFACT SECURED",
+    added: "PRODUCT ADDED",
     expanded: "Your collection expands",
     view: "VIEW BASKET",
     shop: "Discover the collection",
