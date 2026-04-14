@@ -1,37 +1,39 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-
-const PRODUCTS = [
-  {
-    id: 1,
-    name: "Villacidro Giallo",
-    type: "Liquore Storico",
-    price: "€28,00",
-    color: "#F4B400",
-  },
-  {
-    id: 2,
-    name: "Villacidro Bianco",
-    type: "Liquore d'Erbe",
-    price: "€26,00",
-    color: "#FFFFFF",
-  },
-  {
-    id: 3,
-    name: "Amaro Murgia",
-    type: "Digestivo",
-    price: "€32,00",
-    color: "#4A2A1A",
-  },
-];
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function ProductGrid() {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   
+  const PRODUCTS = useMemo(() => [
+    {
+      id: 1,
+      name: "Villacidro Giallo",
+      type: t.collection.types.historic,
+      price: "€28,00",
+      color: "#F4B400",
+    },
+    {
+      id: 2,
+      name: "Villacidro Bianco",
+      type: t.collection.types.herbal,
+      price: "€26,00",
+      color: "#FFFFFF",
+    },
+    {
+      id: 3,
+      name: "Amaro Murgia",
+      type: t.collection.types.digestive,
+      price: "€32,00",
+      color: "#4A2A1A",
+    },
+  ], [t]);
+
   return (
     <motion.section
       ref={containerRef}
@@ -48,38 +50,56 @@ export default function ProductGrid() {
           >
             <div>
               <span className="font-heading text-xs tracking-[0.4em] uppercase mb-4 block">
-                La Collezione
+                {t.collection.title}
               </span>
               <h2 className="font-heading text-6xl md:text-8xl uppercase leading-none">
-                L&apos;Oro di <br /> Villacidro
+                {t.collection.subtitle} <br /> {t.collection.subtitleAccent}
               </h2>
             </div>
             <p className="font-body text-sm uppercase tracking-widest max-w-xs opacity-70">
-              Un ventaglio di sfumature alchemiche, distillate con la stessa passione dal 1882.
+              {t.collection.description}
             </p>
           </motion.div>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <motion.div 
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.2,
+              }
+            }
+          }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-10%" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12"
+        >
           {PRODUCTS.map((product, index) => (
             <Link 
               key={product.id} 
-              href={index === 0 ? "/shop/villacidro-giallo" : "/shop"}
+              href={index === 0 ? "/shop/villacidro-giallo" : index === 1 ? "/shop/villacidro-bianco" : "/shop/amaro-murgia"}
               className="group cursor-pointer block"
             >
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ margin: "-20%", once: true }}
-                transition={{ 
-                  duration: 1.2, 
-                  delay: index * 0.15,
-                  ease: [0.215, 0.61, 0.355, 1] 
+                variants={{
+                  hidden: { opacity: 0, y: 50, scale: 0.95 },
+                  show: { 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1,
+                    transition: {
+                      duration: 1.2,
+                      ease: [0.16, 1, 0.3, 1]
+                    }
+                  }
                 }}
               >
                 <div className="aspect-[3/4] bg-noir/5 mb-8 relative overflow-hidden rounded-[1vw] group-hover:bg-noir/10 transition-all duration-700">
                   <img 
-                    src={index === 0 ? "/images/giallo.webp" : `https://images.unsplash.com/photo-1592318963503-61a7a008c266?auto=format&fit=crop&q=80&w=800`} 
+                    src={index === 0 ? "/images/giallo.webp" : index === 1 ? "/images/bianco-bottle.png" : "/images/sbagliata-bottle.png"} 
                     alt={product.name} 
                     className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-1000 p-8"
                   />
@@ -99,7 +119,7 @@ export default function ProductGrid() {
               </motion.div>
             </Link>
           ))}
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );

@@ -4,8 +4,10 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-mot
 import { useRef, useState, useEffect } from "react";
 import LiquidImage from "./LiquidImage";
 import Link from "next/link";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function NarrativeFlow() {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLElement>(null);
   const [isSealed, setIsSealed] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
@@ -43,9 +45,9 @@ export default function NarrativeFlow() {
   const phase2Y = useTransform(scrollYProgress, [0.35, 0.8], [50, -50]);
 
   const products = [
-    { name: "Murgia Bianco", price: "24€", img: "/images/products/bianco.png", href: "/shop/murgia-bianco" },
-    { name: "Murgia Giallo", price: "26€", img: "/images/giallo.webp", href: "/shop/villacidro-giallo" },
-    { name: "La Sbagliata", price: "15€", img: "/images/products/sbagliata.png", href: "/shop/la-sbagliata" },
+    { name: t.products.bianco.name, price: "24€", img: "/images/products/bianco.png", href: "/shop/murgia-bianco" },
+    { name: t.products.giallo.name, price: "26€", img: "/images/giallo.webp", href: "/shop/villacidro-giallo" },
+    { name: t.products.sbagliata.name, price: "15€", img: "/images/products/sbagliata.png", href: "/shop/la-sbagliata" },
   ];
 
   return (
@@ -56,26 +58,29 @@ export default function NarrativeFlow() {
       {/* 📱 MOBILE: Simple Vertical Manifest */}
       <div className="md:hidden flex flex-col gap-32 py-24 px-6">
         <div className="space-y-8">
-          <span className="text-primary font-heading text-xl tracking-widest block uppercase">Le Origini</span>
+          <span className="text-primary font-heading text-xl tracking-widest block uppercase">{t.origins.title}</span>
           <h2 className="text-white font-heading text-[2.5rem] leading-[1.2] md:leading-none uppercase">
-            L&apos;Arte della <br /> <span className="text-primary italic">Distillazione</span>
+            {t.origins.subtitle} <br /> <span className="text-primary italic">{t.origins.subtitleAccent}</span>
           </h2>
           <div className="aspect-[4/5] relative overflow-hidden rounded-[2vw] border border-white/10">
             <LiquidImage src="/images/products/bianco.png" alt="Murgia Heritage Still" />
           </div>
           <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
-            Dal 1882, trasformiamo i frutti della terra sarda in essenze immortali. 
+            {t.origins.description}
           </p>
         </div>
 
         <div className="space-y-8">
-          <span className="text-primary font-heading text-xl tracking-widest block uppercase underline decoration-primary underline-offset-8">Villacidro Murgia</span>
+          <span className="text-primary font-heading text-xl tracking-widest block uppercase underline decoration-primary underline-offset-8">{t.origins.heritage.title}</span>
           <h2 className="text-white font-heading text-[2.5rem] leading-[1.2] md:leading-none uppercase">
-            Il Colore <br /> della <span className="text-primary italic">Storia</span>
+            {t.origins.heritage.subtitle} <br /> <span className="text-primary italic">{t.origins.heritage.subtitleAccent}</span>
           </h2>
           <div className="aspect-[4/5] relative overflow-hidden rounded-[2vw] border border-white/10">
             <LiquidImage src="/images/giallo.webp" alt="Villacidro Giallo Murgia" />
           </div>
+          <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
+            {t.origins.heritage.description}
+          </p>
         </div>
 
         {/* Collection fallback for mobile */}
@@ -108,12 +113,12 @@ export default function NarrativeFlow() {
             >
               <div className="grid grid-cols-2 gap-12 items-center max-w-6xl w-full">
                 <div className="space-y-6">
-                  <span className="text-primary font-heading text-xl tracking-widest block uppercase">Le Origini</span>
+                  <span className="text-primary font-heading text-xl tracking-widest block uppercase">{t.origins.title}</span>
                   <h2 className="text-white font-heading text-8xl leading-none uppercase">
-                    L&apos;Arte della <br /> <span className="text-primary italic">Distillazione</span>
+                    {t.origins.subtitle} <br /> <span className="text-primary italic">{t.origins.subtitleAccent}</span>
                   </h2>
                   <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
-                    Dal 1882, trasformiamo i frutti della terra sarda in essenze immortali. 
+                    {t.origins.description}
                   </p>
                 </div>
                 <motion.div style={{ y: phase1Y }} className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10">
@@ -129,12 +134,12 @@ export default function NarrativeFlow() {
             >
               <div className="grid grid-cols-2 gap-12 items-center max-w-6xl w-full">
                 <div className="space-y-6">
-                  <span className="text-primary font-heading text-xl tracking-widest block uppercase underline decoration-primary underline-offset-8">Villacidro Murgia</span>
+                  <span className="text-primary font-heading text-xl tracking-widest block uppercase underline decoration-primary underline-offset-8">{t.origins.heritage.title}</span>
                   <h2 className="text-white font-heading text-8xl leading-none uppercase">
-                    Il Colore <br /> della <span className="text-primary italic">Storia</span>
+                    {t.origins.heritage.subtitle} <br /> <span className="text-primary italic">{t.origins.heritage.subtitleAccent}</span>
                   </h2>
                   <p className="text-white/60 font-body text-lg max-w-md leading-relaxed italic">
-                    Zafferano, Anice e Segreti di Famiglia.
+                    {t.origins.heritage.description}
                   </p>
                 </div>
                 <motion.div style={{ y: phase2Y }} className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10">
@@ -152,7 +157,7 @@ export default function NarrativeFlow() {
             className={`absolute inset-0 z-30 flex flex-col items-center justify-center pt-24 pb-20 bg-primary transition-opacity duration-700 ${isSealed ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
           >
             <header className="text-center mb-10 mt-10">
-              <span className="text-noir font-heading text-xl tracking-widest block uppercase">La Collezione Murgia</span>
+              <span className="text-noir font-heading text-xl tracking-widest block uppercase">{t.origins.products.title}</span>
             </header>
 
             <div className="grid grid-cols-3 gap-8 px-20 max-w-6xl w-full">
@@ -172,7 +177,7 @@ export default function NarrativeFlow() {
             </div>
             
             <Link href="/la-collezione" className="group relative mt-12 px-16 py-6 bg-noir text-primary font-heading uppercase text-sm tracking-[0.4em] transform hover:scale-105 duration-300">
-              Vedi i prodotti
+              {t.origins.products.cta}
             </Link>
           </motion.div>
 

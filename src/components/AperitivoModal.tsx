@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Droplets, Flame, Wind, Utensils } from "lucide-react";
 import { useEffect } from "react";
+import { useTranslation } from "@/context/LanguageContext";
 
 interface RitualItem {
   id: string;
@@ -24,6 +25,7 @@ interface AperitivoModalProps {
 }
 
 export default function AperitivoModal(props: AperitivoModalProps) {
+  const { t } = useTranslation();
   const {
     isOpen,
     onClose,
@@ -148,7 +150,7 @@ export default function AperitivoModal(props: AperitivoModalProps) {
                     <div>
                       <div className="flex items-center gap-3 mb-6">
                         <Droplets className="text-primary w-5 h-5" />
-                        <h4 className="text-white font-heading text-sm tracking-widest uppercase italic">Alchemy List</h4>
+                        <h4 className="text-white font-heading text-sm tracking-widest uppercase italic">{t.aperitivo.modal.ingredients}</h4>
                       </div>
                       <ul className="space-y-4">
                         {item.ingredients.map((ing, i) => (
@@ -163,7 +165,7 @@ export default function AperitivoModal(props: AperitivoModalProps) {
                     <div>
                       <div className="flex items-center gap-3 mb-6">
                         <Flame className="text-primary w-5 h-5" />
-                        <h4 className="text-white font-heading text-sm tracking-widest uppercase italic">The Ritual</h4>
+                        <h4 className="text-white font-heading text-sm tracking-widest uppercase italic">{t.aperitivo.modal.ritual}</h4>
                       </div>
                       <ol className="space-y-6">
                         {item.instructions.map((step, i) => (

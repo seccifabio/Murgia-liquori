@@ -6,13 +6,15 @@ import Logo from "./Logo";
 import { useRef, useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollY } = useScroll();
-  const { isBannerVisible } = useCart();
+  const { setIsBannerVisible, isBannerVisible } = useCart();
   const pathname = usePathname();
+  const { t, language } = useTranslation();
   const [currentTop, setCurrentTop] = useState(0);
 
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
@@ -95,9 +97,9 @@ export default function Hero() {
               initial={{ y: "100%" }}
               animate={showText ? { y: 0 } : { y: "100%" }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-              className="font-heading text-white text-5xl md:text-[8rem] lg:text-[12rem] leading-[0.8] tracking-tighter uppercase italic"
+              className={`font-heading text-white leading-[0.8] uppercase italic ${language === "en" ? "text-5xl md:text-[7rem] lg:text-[10rem] tracking-tight" : "text-5xl md:text-[8rem] lg:text-[12rem] tracking-tighter"}`}
             >
-              L&apos;Alchimia <br/> <span className="text-primary tracking-normal">del Rito.</span>
+              {t.hero.title} <br/> <span className="text-primary tracking-normal">{t.hero.subtitle}</span>
             </motion.h1>
           </div>
 
@@ -107,7 +109,7 @@ export default function Hero() {
             transition={{ duration: 1.5, delay: 0.8 }}
             className="text-white font-heading text-sm md:text-xl tracking-[0.4em] uppercase max-w-2xl px-4"
           >
-            Distillati d&apos;eccellenza dal 1882. La tradizione sarda incontra l&apos;avanguardia.
+            {t.hero.description}
           </motion.p>
         </div>
 
@@ -118,7 +120,7 @@ export default function Hero() {
           transition={{ duration: 1.5, delay: 1.2 }}
           className="absolute bottom-20 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
         >
-           <span className="text-white/40 text-[10px] uppercase tracking-[0.6em] font-heading">Scopri l&apos;essenza</span>
+           <span className="text-white/40 text-[10px] uppercase tracking-[0.6em] font-heading">{t.hero.scroll}</span>
            <motion.div
              animate={{ y: [0, 10, 0] }}
              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -132,13 +134,13 @@ export default function Hero() {
       <div className="absolute left-10 bottom-10 hidden md:flex flex-col gap-6 opacity-30">
         <div className="h-px w-20 bg-white" />
         <span className="text-white text-[10px] uppercase tracking-[0.4em] origin-left rotate-90 translate-x-1 -translate-y-20 font-heading">
-          Tradizione Gennaro Murgia
+          {t.hero.legacy_hud}
         </span>
       </div>
 
       <div className="absolute right-10 bottom-10 hidden md:flex flex-col items-end gap-6 opacity-30">
         <span className="text-white text-[10px] uppercase tracking-[0.4em] origin-right -rotate-90 -translate-x-1 -translate-y-20 font-heading">
-          Artigianato Sardo
+          {t.hero.craft_hud}
         </span>
         <div className="h-px w-20 bg-white" />
       </div>

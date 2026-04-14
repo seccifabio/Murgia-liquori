@@ -4,11 +4,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "@/context/LanguageContext";
 import { VISIT_MANIFEST } from "@/manifest/visit";
 
 export default function VisitBanner() {
   const { setIsVisitOpen, isMenuOpen, isBagOpen, isVisitOpen } = useCart();
   const pathname = usePathname();
+  const { language } = useTranslation();
+
+  const manifest = VISIT_MANIFEST[language];
 
   // Visibility Manifest: Only on "Dove Ci Trovi" page and when no taking-overs are active
   const isEligiblePage = pathname === "/dove-ci-trovi";
@@ -33,7 +37,7 @@ export default function VisitBanner() {
         <div className="flex flex-col md:flex-row items-center gap-2 md:gap-12 text-white">
           {/* Core Proposal */}
           <span className="font-heading text-[10px] md:text-sm lg:text-base tracking-[0.2em] uppercase font-bold text-center">
-            {VISIT_MANIFEST.title}: <span className="text-white/60 hidden md:inline">{VISIT_MANIFEST.subtitle}</span>
+            {manifest.title}: <span className="text-white/60 hidden md:inline">{manifest.subtitle}</span>
           </span>
 
           <div className="h-4 w-px bg-white/10 hidden md:block" />
@@ -41,14 +45,14 @@ export default function VisitBanner() {
           {/* Combined Manifest: Date + Price + CTA */}
           <div className="flex items-center gap-4 md:gap-8">
             <span className="font-heading text-xs md:text-sm tracking-[0.2em] uppercase text-primary font-bold">
-              {VISIT_MANIFEST.displayDate}
+              {manifest.displayDate}
             </span>
             
             <div className="h-4 w-px bg-white/10" />
 
             <div className="flex items-center gap-3">
-              <span className="font-heading text-[10px] md:text-xs tracking-[0.2em] uppercase text-white/40">Da &euro;{VISIT_MANIFEST.price}</span>
-              <span className="font-heading text-xs md:text-base uppercase tracking-[0.3em] font-bold group-hover:text-primary transition-colors">{VISIT_MANIFEST.cta}</span>
+              <span className="font-heading text-[10px] md:text-xs tracking-[0.2em] uppercase text-white/40">{language === "it" ? "Da" : "From"} &euro;{VISIT_MANIFEST.price}</span>
+              <span className="font-heading text-xs md:text-base uppercase tracking-[0.3em] font-bold group-hover:text-primary transition-colors">{manifest.cta}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-2 group-hover:text-primary transition-all" />
             </div>
           </div>

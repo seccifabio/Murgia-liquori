@@ -1,12 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-
-const INGREDIENTS = [
-  { name: "Licopodio", detail: "Spirito dei Boschi", desc: "Un'erba ancestrale che conferisce al Bianco la sua texture setosa e il suo profilo aromatico boschivo." },
-  { name: "Anice Stellato", detail: "Nota di Testa", desc: "La purezza dell'anice che definisce il carattere cristallino e rinfrescante di questo distillato." },
-  { name: "Erbe Aromatiche", detail: "Murgia Selection", desc: "Una sinfonia di botaniche sarde segrete, infuse per estrarre l'anima più delicata della terra." }
-];
+import { useTranslation } from "@/context/LanguageContext";
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -14,13 +9,22 @@ const itemVariants: Variants = {
 };
 
 export default function BiancoSpecs() {
+  const { t } = useTranslation();
+  
+  const specs = [
+    { label: t.products.common.gradazione, value: "40% Vol." },
+    { label: t.products.common.formato, value: "70cl / 50cl" },
+    { label: t.products.common.origine, value: "Villacidro, SU" },
+    { label: t.products.common.formula, value: t.products.common.secret }
+  ];
+
   return (
     <section className="bg-noir py-32 px-6 md:px-20 relative z-10">
       <div className="max-w-7xl mx-auto">
 
         {/* Ingredients Grid */}
         <div className="grid md:grid-cols-3 gap-12 md:gap-20 mb-32">
-          {INGREDIENTS.map((ing, i) => (
+          {t.products.bianco.ingredients.map((ing: any, i: number) => (
             <motion.div
               key={ing.name}
               initial="hidden"
@@ -48,12 +52,7 @@ export default function BiancoSpecs() {
           viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-20 border-t border-white/5"
         >
-          {[
-            { label: "Gradazione", value: "40% Vol." },
-            { label: "Formato", value: "50cl / 5cl" },
-            { label: "Origine", value: "Villacidro, SU" },
-            { label: "Formula", value: "Secret (1882)" }
-          ].map((spec) => (
+          {specs.map((spec) => (
             <div key={spec.label} className="space-y-2">
               <span className="text-white/40 font-heading text-[10px] tracking-widest uppercase">{spec.label}</span>
               <p className="text-white font-heading text-2xl md:text-3xl tracking-tighter uppercase">{spec.value}</p>

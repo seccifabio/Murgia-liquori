@@ -6,12 +6,17 @@ import { Copy, Check } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { usePathname } from "next/navigation";
 import { MARKETING_MANIFEST } from "@/manifest/marketing";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function PromoBanner() {
+  const { language } = useTranslation();
   const [copied, setCopied] = useState(false);
   const { setAppliedCode, isBannerVisible, setIsBannerVisible, isMenuOpen, isBagOpen, isVisitOpen } = useCart();
   const pathname = usePathname();
   const promoCode = MARKETING_MANIFEST.promo.code;
+  
+  // Resolve localized content from manifest
+  const localizedPromo = (MARKETING_MANIFEST.promo as any)[language] || MARKETING_MANIFEST.promo.it;
 
   // Visibility Manifest: Only on Home and Product pages
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
@@ -51,7 +56,7 @@ export default function PromoBanner() {
 
             {/* Desktop Manifest: Editorial depth */}
             <span className="font-heading text-sm tracking-[0.3em] uppercase font-bold hidden md:inline">
-              {MARKETING_MANIFEST.promo.description} &mdash; USA IL CODICE:
+              {localizedPromo.description} &mdash; {language === 'it' ? 'USA IL CODICE:' : 'USE CODE:'}
             </span>
 
             <div className="bg-black text-primary px-3 py-1 font-heading text-sm md:text-base tracking-[0.2em] font-black italic rounded-sm transition-transform duration-500 group-hover:scale-110 flex items-center gap-2">
@@ -60,7 +65,7 @@ export default function PromoBanner() {
             </div>
 
             <span className="font-heading text-[10px] md:text-sm tracking-[0.3em] uppercase font-bold hidden md:inline">
-              {MARKETING_MANIFEST.promo.fullDescription}
+              {localizedPromo.fullDescription}
             </span>
           </div>
 
@@ -75,7 +80,7 @@ export default function PromoBanner() {
                   className="flex items-center gap-2"
                 >
                   <Check className="w-4 h-4" />
-                  <span className="font-heading text-[10px] uppercase tracking-widest font-bold">{MARKETING_MANIFEST.promo.successMsg}</span>
+                  <span className="font-heading text-[10px] uppercase tracking-widest font-bold">{localizedPromo.successMsg}</span>
                 </motion.div>
               ) : (
                 <motion.div
@@ -86,7 +91,7 @@ export default function PromoBanner() {
                   className="flex items-center gap-2"
                 >
                   <Copy className="w-4 h-4 group-hover:scale-120 transition-transform" />
-                  <span className="font-heading text-[10px] uppercase tracking-widest font-bold hidden md:inline">{MARKETING_MANIFEST.promo.cta}</span>
+                  <span className="font-heading text-[10px] uppercase tracking-widest font-bold hidden md:inline">{localizedPromo.cta}</span>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -1,10 +1,6 @@
 /**
  * @file marketing.ts
  * @description The Marketing & Engagement Terminal for Murgia Liquori.
- * 
- * Instructions for Management:
- * - PROMO_CODE: The code users must copy to get a discount.
- * - DISCOUNT_PERCENTAGE: Value between 0 and 1 (e.g., 0.1 for 10%).
  */
 
 export const MARKETING_MANIFEST = {
@@ -12,10 +8,19 @@ export const MARKETING_MANIFEST = {
   promo: {
     code: "MURGIA1882",
     discount: 0.1, // 10%
-    description: "OFFERTA ESCLUSIVA DISPONIBILE",
-    fullDescription: "PER IL 10% DI SCONTO SULLA TUA COLLEZIONE",
-    cta: "CLICCA PER COPIARE",
-    successMsg: "COPIATO!"
+    
+    it: {
+      description: "OFFERTA ESCLUSIVA DISPONIBILE",
+      fullDescription: "PER IL 10% DI SCONTO SULLA TUA COLLEZIONE",
+      cta: "CLICCA PER COPIARE",
+      successMsg: "COPIATO!"
+    },
+    en: {
+      description: "AN EXCLUSIVE RITUAL AWAITS",
+      fullDescription: "CLAIM 10% OFF YOUR COLLECTION",
+      cta: "CLICK TO REVEAL",
+      successMsg: "VOUCHER SECURED!"
+    }
   },
 
   // Global thresholds

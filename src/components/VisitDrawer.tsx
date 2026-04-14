@@ -4,12 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Users, Mail, Phone, User, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
+import { useTranslation } from "@/context/LanguageContext";
 import { VISIT_MANIFEST } from "@/manifest/visit";
 
 export default function VisitDrawer() {
   const { isVisitOpen, setIsVisitOpen } = useCart();
+  const { t, language } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const manifest = VISIT_MANIFEST[language];
 
   // Form Manifest
   const [formData, setFormData] = useState({
@@ -76,7 +80,7 @@ export default function VisitDrawer() {
             <div className="p-8 pt-20 border-b border-white/5 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Calendar className="w-5 h-5 text-primary" />
-                <h2 className="font-heading text-lg md:text-xl tracking-widest uppercase text-primary font-bold">{VISIT_MANIFEST.displayFullDate}</h2>
+                <h2 className="font-heading text-lg md:text-xl tracking-widest uppercase text-primary font-bold">{manifest.displayFullDate}</h2>
               </div>
               <button
                 onClick={() => setIsVisitOpen(false)}
@@ -99,9 +103,9 @@ export default function VisitDrawer() {
                       <CheckCircle2 className="w-10 h-10 text-primary" />
                     </div>
                     <div className="space-y-4">
-                      <h3 className="font-heading text-3xl uppercase tracking-tighter">Richiesta Inviata</h3>
+                      <h3 className="font-heading text-3xl uppercase tracking-tighter">{t.visit.drawer.successTitle}</h3>
                       <p className="font-body text-xs text-white/40 uppercase tracking-[0.2em] leading-relaxed">
-                        L&apos;alchimia è in moto. <br /> Ti contatteremo a breve per confermare il tuo posto nel rituale.
+                        {t.visit.drawer.successText}
                       </p>
                     </div>
                   </motion.div>
@@ -115,95 +119,95 @@ export default function VisitDrawer() {
                   >
                     <div className="space-y-8">
                        {/* Name Ritual */}
-                       <div className="grid grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                             <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">Nome</label>
-                             <div className="relative">
-                                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-                                <input 
-                                  required
-                                  type="text" 
-                                  className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
-                                  placeholder="ES. MARIO"
-                                  value={formData.firstName}
-                                  onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                                />
-                             </div>
-                          </div>
-                          <div className="space-y-2">
-                             <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">Cognome</label>
-                             <input 
-                               required
-                               type="text" 
-                               className="w-full bg-white/5 border border-white/10 px-4 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
-                               placeholder="ES. ROSSI"
-                               value={formData.lastName}
-                               onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                             />
-                          </div>
-                       </div>
+                        <div className="grid grid-cols-2 gap-4">
+                           <div className="space-y-2">
+                              <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">{t.visit.drawer.form.firstName}</label>
+                              <div className="relative">
+                                 <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                                 <input 
+                                   required
+                                   type="text" 
+                                   className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
+                                   placeholder={t.visit.drawer.form.placeholderName}
+                                   value={formData.firstName}
+                                   onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                                 />
+                              </div>
+                           </div>
+                           <div className="space-y-2">
+                              <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">{t.visit.drawer.form.lastName}</label>
+                              <input 
+                                required
+                                type="text" 
+                                className="w-full bg-white/5 border border-white/10 px-4 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
+                                placeholder={t.visit.drawer.form.placeholderLastName}
+                                value={formData.lastName}
+                                onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                              />
+                           </div>
+                        </div>
 
-                       {/* Email Ritual */}
-                       <div className="space-y-2">
-                          <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">Email</label>
-                          <div className="relative">
-                             <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-                             <input 
-                               required
-                               type="email" 
-                               className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
-                               placeholder="ALCHIMISTA@MURGIA.IT"
-                               value={formData.email}
-                               onChange={(e) => setFormData({...formData, email: e.target.value})}
-                             />
-                          </div>
-                       </div>
+                        {/* Email Ritual */}
+                        <div className="space-y-2">
+                           <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">{t.visit.drawer.form.email}</label>
+                           <div className="relative">
+                              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                              <input 
+                                required
+                                type="email" 
+                                className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
+                                placeholder={t.visit.drawer.form.placeholderEmail}
+                                value={formData.email}
+                                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                              />
+                           </div>
+                        </div>
 
-                       {/* Phone Ritual (Optional) */}
-                       <div className="space-y-2">
-                          <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">Telefono (Opzionale)</label>
-                          <div className="relative">
-                             <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-                             <input 
-                               type="tel" 
-                               className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
-                               placeholder="+39 000 0000000"
-                               value={formData.phone}
-                               onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                             />
-                          </div>
-                       </div>
+                        {/* Phone Ritual (Optional) */}
+                        <div className="space-y-2">
+                           <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">{t.visit.drawer.form.phone}</label>
+                           <div className="relative">
+                              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                              <input 
+                                type="tel" 
+                                className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
+                                placeholder="+39 000 0000000"
+                                value={formData.phone}
+                                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                              />
+                           </div>
+                        </div>
 
-                       {/* Guests Ritual */}
-                       <div className="space-y-2">
-                          <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">Numero di Persone</label>
-                          <div className="relative">
-                             <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
-                             <select 
-                               className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors appearance-none cursor-pointer uppercase"
-                               value={formData.guests}
-                               onChange={(e) => setFormData({...formData, guests: e.target.value})}
-                             >
-                                {[1,2,3,4,5,6,10].map(n => (
-                                  <option key={n} value={n} className="bg-noir text-white">{n} {n === 1 ? 'PERSONA' : 'PERSONE'}</option>
-                                ))}
-                             </select>
-                          </div>
-                       </div>
-                    </div>
+                        {/* Guests Ritual */}
+                        <div className="space-y-2">
+                           <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">{t.visit.drawer.form.guests}</label>
+                           <div className="relative">
+                              <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                              <select 
+                                className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors appearance-none cursor-pointer uppercase"
+                                value={formData.guests}
+                                onChange={(e) => setFormData({...formData, guests: e.target.value})}
+                              >
+                                 {[1,2,3,4,5,6,10].map(n => (
+                                   <option key={n} value={n} className="bg-noir text-white">{n} {n === 1 ? t.visit.drawer.form.guestsLabel : t.visit.drawer.form.guestsLabelPlural}</option>
+                                 ))}
+                              </select>
+                           </div>
+                        </div>
+                     </div>
 
-                    <button 
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.2em] md:tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 disabled:opacity-70 disabled:cursor-wait mt-12"
-                    >
-                      <span className="relative z-10 font-bold px-4">
-                        {isSubmitting ? "Invio in corso..." : "Pianifica Rituale"}
-                      </span>
-                      {!isSubmitting && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}
-                      {isSubmitting && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
-                      <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                    </button>
+                     <button 
+                       type="submit"
+                       disabled={isSubmitting}
+                       className="w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.2em] md:tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 disabled:opacity-70 disabled:cursor-wait mt-12"
+                     >
+                       <span className="relative z-10 font-bold px-4">
+                         {isSubmitting ? t.common.sending : t.visit.drawer.form.submit}
+                       </span>
+                       {!isSubmitting && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}
+                       {isSubmitting && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
+                       <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                     </button>
                   </motion.form>
                 )}
               </AnimatePresence>
@@ -212,8 +216,7 @@ export default function VisitDrawer() {
             {/* Footer Manifest */}
             <div className="p-8 border-t border-white/5 bg-noir/50 backdrop-blur-xl">
                <p className="text-center text-white/60 font-heading text-[10px] tracking-[0.2em] uppercase italic leading-relaxed">
-                  Le visite si svolgono presso la distilleria di Villacidro. <br />
-                  Il prezzo include degustazione guidata e omaggio alchemico.
+                  {t.visit.drawer.footer}
                </p>
             </div>
           </motion.div>

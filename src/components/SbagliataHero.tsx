@@ -2,8 +2,10 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function SbagliataHero() {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -18,9 +20,8 @@ export default function SbagliataHero() {
   return (
     <section 
       ref={containerRef}
-      className="relative h-screen w-full overflow-hidden bg-noir"
+      className="relative h-screen w-full overflow-hidden bg-noir pt-20"
     >
-      {/* Cinematic Video Layer */}
       <motion.div 
         style={{ scale: videoScale, opacity: videoOpacity }}
         className="absolute inset-0 w-full h-full z-0"
@@ -32,33 +33,27 @@ export default function SbagliataHero() {
           playsInline 
           className="w-full h-full object-cover opacity-60"
         >
-          <source src="/videos/sbagliata.mp4" type="video/mp4" />
+          <source src="/videos/sbagliata_hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-noir/80 via-transparent to-noir" />
+        <div className="absolute inset-0 bg-gradient-to-b from-noir/90 via-transparent to-noir" />
       </motion.div>
 
-      {/* Narrative HUD */}
       <motion.div 
         style={{ y: textY, opacity: textOpacity }}
-        className="relative z-10 h-full flex flex-col items-center justify-start md:justify-center text-center px-6 pt-32 md:pt-0"
+        className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6"
       >
-        <motion.span 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="text-primary font-heading text-xs tracking-[0.6em] uppercase mb-4"
-        >
-          Edizione Limitata & Numerata
-        </motion.span>
-        
-        <h1 className="font-heading text-6xl md:text-[10rem] lg:text-[14rem] text-white uppercase tracking-tighter leading-[0.8] mb-6 drop-shadow-2xl overflow-hidden py-4">
+        <header className="mb-8">
+          <span className="font-heading text-xs tracking-[0.6em] text-primary uppercase mb-2 block">Collector&apos;s Edition</span>
+        </header>
+
+        <h1 className="font-heading text-6xl md:text-[8rem] lg:text-[12rem] text-white uppercase tracking-tighter leading-[0.85] mb-6 drop-shadow-2xl py-4 overflow-hidden">
           {"La".split("").map((char, i) => (
             <motion.span
               key={i}
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ delay: i * 0.05, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block mr-4"
+              className="inline-block"
             >
               {char}
             </motion.span>
@@ -78,19 +73,8 @@ export default function SbagliataHero() {
         </h1>
         
         <p className="font-heading text-lg md:text-2xl text-white/40 tracking-[0.4em] uppercase italic">
-          Omaggio all&apos;Imperfezione
+          {t.products.sbagliata.heroTagline}
         </p>
-
-        {/* Mobile Status Label */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 1 }}
-          className="md:hidden mt-8 border border-primary/20 p-3 backdrop-blur-sm"
-        >
-          <span className="text-primary font-heading text-[8px] tracking-[0.4em] block uppercase opacity-60 mb-1">Status</span>
-          <span className="text-white font-heading text-lg uppercase tracking-widest italic">200 Bottles Only</span>
-        </motion.div>
 
         <motion.div 
           animate={{ y: [0, 10, 0] }}
@@ -99,33 +83,6 @@ export default function SbagliataHero() {
         >
           <div className="w-px h-12 bg-gradient-to-b from-primary/60 to-transparent" />
         </motion.div>
-      </motion.div>
-
-      {/* Hero Product Bottle - Stationary Anchor */}
-      <motion.div
-        initial={{ y: 80, opacity: 0, x: 0 }}
-        animate={{ y: 0, opacity: 1, x: 0 }}
-        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 1 }}
-        className="absolute bottom-[5%] md:bottom-[-5%] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[5%] z-20 pointer-events-none"
-      >
-        <img 
-          src="/images/products/sbagliata.png" 
-          alt="La Sbagliata Villacidro Murgia" 
-          className="h-[40vh] md:h-[75vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.8)]"
-        />
-      </motion.div>
-
-      {/* Numbering Badge */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-20 left-10 md:left-20 z-20 hidden md:block"
-      >
-        <div className="border border-primary/30 p-4 backdrop-blur-md">
-          <span className="text-primary font-heading text-[10px] tracking-widest block uppercase opacity-60">Status</span>
-          <span className="text-white font-heading text-xl uppercase tracking-tighter italic">200 Bottles Only</span>
-        </div>
       </motion.div>
     </section>
   );

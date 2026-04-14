@@ -9,14 +9,21 @@ import { ShoppingBag, X, Menu as BurgerIcon } from "lucide-react";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
+import { useTranslation } from "@/context/LanguageContext";
 import { VISIT_MANIFEST } from "@/manifest/visit";
 
-const NAV_LINKS = ["La Storia", "La Collezione", "Dove Ci Trovi", "Contatti"];
+const NAV_LINKS = [
+  { id: "story", path: "/la-storia" },
+  { id: "collection", path: "/la-collezione" },
+  { id: "locations", path: "/dove-ci-trovi" },
+  { id: "contacts", path: "/contatti" },
+];
 
 export default function Navbar() {
   const { scrollY } = useScroll();
   const pathname = usePathname();
   const { setIsBagOpen, items, isBannerVisible, isMenuOpen, setIsMenuOpen } = useCart();
+  const { language, setLanguage, t } = useTranslation();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [currentTop, setCurrentTop] = useState(0);
@@ -105,7 +112,24 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-8 md:gap-10 pointer-events-auto relative">
+        <div className="flex items-center gap-6 md:gap-10 pointer-events-auto relative">
+          {/* Language Ritual Switcher */}
+          <div className={`hidden md:flex items-center gap-4 font-heading text-xs tracking-[0.2em] uppercase ${iconColor}`}>
+            <button 
+              onClick={() => setLanguage("it")}
+              className={`transition-all pb-1 border-b-2 ${language === "it" ? (activeTheme === "dark" ? "border-noir text-noir font-bold" : "border-primary text-primary font-bold") : "border-transparent opacity-40 hover:opacity-100"}`}
+            >
+              IT
+            </button>
+            <span className="opacity-10">|</span>
+            <button 
+              onClick={() => setLanguage("en")}
+              className={`transition-all pb-1 border-b-2 ${language === "en" ? (activeTheme === "dark" ? "border-noir text-noir font-bold" : "border-primary text-primary font-bold") : "border-transparent opacity-40 hover:opacity-100"}`}
+            >
+              EN
+            </button>
+          </div>
+
           <button 
             onClick={() => setIsBagOpen(true)}
             className={`relative transition-all duration-300 hover:scale-110 ${iconColor}`}
@@ -144,24 +168,45 @@ export default function Navbar() {
             <div className="space-y-4 md:space-y-6 pt-12">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
-                  key={link}
+                  key={link.id}
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1, transition: { delay: i * 0.1 } }}
                   className="block cursor-pointer"
                 >
-                  <Link href={link === "La Storia" ? "/la-storia" : link === "La Collezione" ? "/la-collezione" : `/${link.toLowerCase().replaceAll(" ", "-")}`} onClick={() => setIsMenuOpen(false)}>
+                  <Link href={link.path} onClick={() => setIsMenuOpen(false)}>
                     <div className="font-heading text-primary hover:text-white text-4xl md:text-6xl lg:text-7xl uppercase tracking-tighter leading-none transition-all duration-300 transform hover:translate-x-4">
-                      {link}
+                      {t.nav.links[link.id as keyof typeof t.nav.links]}
                     </div>
                   </Link>
                 </motion.div>
               ))}
+              
+              {/* Mobile Language Ritual Toggle */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="flex md:hidden items-center gap-6 pt-8 font-heading text-lg tracking-[0.2em] uppercase"
+              >
+                <button 
+                  onClick={() => setLanguage("it")}
+                  className={`transition-all ${language === "it" ? "text-primary" : "text-white/30"}`}
+                >
+                  Italiano
+                </button>
+                <button 
+                  onClick={() => setLanguage("en")}
+                  className={`transition-all ${language === "en" ? "text-primary" : "text-white/30"}`}
+                >
+                  English
+                </button>
+              </motion.div>
             </div>
 
             <div className="absolute bottom-12 left-12 md:left-24 flex gap-8 text-[10px] tracking-[0.3em] uppercase text-white/30 font-medium">
-              <a href="#" className="hover:text-primary transition-colors">Instagram</a>
-              <a href="#" className="hover:text-primary transition-colors">Facebook</a>
-              <a href="#" className="hover:text-primary transition-colors">Privacy</a>
+              <a href="#" className="hover:text-primary transition-colors">{t.nav.social.instagram}</a>
+              <a href="#" className="hover:text-primary transition-colors">{t.nav.social.facebook}</a>
+              <a href="#" className="hover:text-primary transition-colors">{t.nav.social.privacy}</a>
             </div>
           </motion.div>
         )}

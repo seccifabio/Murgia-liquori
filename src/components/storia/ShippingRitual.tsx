@@ -2,33 +2,35 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-
-const STAGES = [
-  {
-    id: "preparing",
-    title: "Laboratory Preparing",
-    description: "Ogni goccia viene distillata e perfezionata nel nostro laboratorio di Villacidro, seguendo i protocolli alchemici del 1882.",
-    img: "/images/storia/shipping_ritual_lab_preparing.png",
-    metric: "Alchimia Certificata"
-  },
-  {
-    id: "sealing",
-    title: "Hand-Applied Seal",
-    description: "L'autenticità viene sigillata manualmente. Un rito di certificazione che garantisce l'integrità di ogni singolo artefatto Murgia.",
-    img: "/images/storia/shipping_ritual_hand_seal.png",
-    metric: "Sigillo di Garanzia"
-  },
-  {
-    id: "dispatch",
-    title: "Archival Dispatch",
-    description: "L'ordine lascia il laboratorio in un vessel protettivo tech-noir, pronto per completare il suo viaggio verso la tua collezione.",
-    img: "/images/storia/shipping_ritual_dispatch.png",
-    metric: "Spedizione Tracciata"
-  }
-];
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function ShippingRitual() {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  const STAGES = [
+    {
+      id: "preparing",
+      title: t.shipping.preparing.title,
+      description: t.shipping.preparing.description,
+      img: "/images/storia/shipping_ritual_lab_preparing.png",
+      metric: t.shipping.preparing.metric
+    },
+    {
+      id: "sealing",
+      title: t.shipping.sealing.title,
+      description: t.shipping.sealing.description,
+      img: "/images/storia/shipping_ritual_hand_seal.png",
+      metric: t.shipping.sealing.metric
+    },
+    {
+      id: "dispatch",
+      title: t.shipping.dispatch.title,
+      description: t.shipping.dispatch.description,
+      img: "/images/storia/shipping_ritual_dispatch.png",
+      metric: t.shipping.dispatch.metric
+    }
+  ];
   
   const { scrollYProgress } = useScroll({
     target: containerRef,

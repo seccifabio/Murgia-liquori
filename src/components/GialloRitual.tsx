@@ -3,8 +3,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef } from "react";
 import { useCart } from "@/context/CartContext";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function GialloRitual() {
+  const { t } = useTranslation();
   const { addItem } = useCart();
   const [selectedFormat, setSelectedFormat] = useState("70cl");
   const [quantity, setQuantity] = useState(1);
@@ -13,7 +15,7 @@ export default function GialloRitual() {
   const handleAddToCart = () => {
     addItem({
       id: "villacidro-giallo",
-      name: "Villacidro Murgia Giallo",
+      name: t.products.giallo.name,
       price: "32€",
       priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
       quantity: quantity,
@@ -43,7 +45,7 @@ export default function GialloRitual() {
       
       {/* Background Graphic Element */}
       <div className="absolute top-0 right-0 opacity-5 pointer-events-none translate-x-1/4 -translate-y-1/4 scale-150">
-        <h2 className="font-heading text-[30rem] text-noir leading-none uppercase">RITO</h2>
+        <h2 className="font-heading text-[30rem] text-noir leading-none uppercase">{t.products.common.ritual}</h2>
       </div>
 
       <div className="max-w-6xl mx-auto flex flex-col items-center gap-20">
@@ -55,27 +57,25 @@ export default function GialloRitual() {
           viewport={{ once: true }}
           className="text-center space-y-10 relative z-10"
         >
-          <span className="text-noir font-heading text-xl tracking-[0.5em] uppercase underline decoration-noir underline-offset-8">Il Ritual</span>
+          <span className="text-noir font-heading text-xl tracking-[0.5em] uppercase underline decoration-noir underline-offset-8">{t.products.common.ritual}</span>
           
           <p className="text-noir font-body text-lg md:text-2xl max-w-4xl mx-auto leading-relaxed uppercase tracking-widest italic pt-8 border-t border-noir/10">
-            &quot;Si beveva l&apos;elisir de s&apos;omu, l&apos;oro di Villacidro.&quot; <br/>
-            Un gesto che attraversa i secoli, un rito collettivo che unisce generazioni. Servire preferibilmente a temperatura ambiente (16-20&deg;C) in calice a tulipano per liberare l&apos;anima dello zafferano.
+            {t.products.giallo.ritualDescription}
           </p>
         </motion.div>
 
-        {/* Manifestation Ritual - HIDDEN ON MOBILE */}
         <motion.div
           style={{ scale }}
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="absolute bottom-[-35px] right-0 z-20 pointer-events-none hidden md:block"
+          className="relative md:absolute md:bottom-[-35px] md:right-0 z-20 pointer-events-none mt-10 md:mt-0"
         >
           <img 
             src="/images/giallo_sovereign.png" 
             alt="Villacidro Giallo Murgia" 
-            className="h-[50vh] md:h-[60vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.6)]" 
+            className="h-[40vh] md:h-[60vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.6)] mx-auto" 
           />
         </motion.div>
 
@@ -90,7 +90,7 @@ export default function GialloRitual() {
           <div className="flex flex-col md:flex-row items-center gap-12">
             {/* Format Selection */}
             <div className="flex flex-col items-center gap-4">
-              <span className="font-heading text-[10px] text-noir/40 tracking-widest uppercase italic">Seleziona Formato</span>
+              <span className="font-heading text-[10px] text-noir/40 tracking-widest uppercase italic">{t.products.common.selectFormat}</span>
               <div className="flex gap-2">
                 {["50cl", "70cl"].map((size) => (
                   <button 
@@ -106,7 +106,7 @@ export default function GialloRitual() {
 
             {/* Quantity Selector */}
             <div className="flex flex-col items-center gap-4">
-              <span className="font-heading text-[10px] text-noir/40 tracking-widest uppercase italic">Quantit&agrave;</span>
+              <span className="font-heading text-[10px] text-noir/40 tracking-widest uppercase italic">{t.products.common.quantity}</span>
               <div className="flex items-center gap-6 border border-noir/10 px-6 py-3 bg-white/5">
                 <button 
                   onClick={decrement}
@@ -130,7 +130,7 @@ export default function GialloRitual() {
             onClick={handleAddToCart}
             className="group relative px-20 py-8 md:px-32 overflow-hidden bg-noir text-primary font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer border border-primary/20"
           >
-            <span className="relative z-10 transition-colors duration-500 group-hover:text-black font-bold">Aggiungi al carrello &mdash; &euro;{(32 * quantity).toFixed(2)}</span>
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-black font-bold">{t.products.common.addToCart} &mdash; &euro;{(32 * quantity).toFixed(2)}</span>
 
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           </button>

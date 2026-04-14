@@ -1,12 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-
-const INGREDIENTS = [
-  { name: "Sbaglio Fondamentale", detail: "Caos Creativo", desc: "Non un errore, ma una deviazione consapevole dalla norma che ha generato un profilo aromatico inedito." },
-  { name: "Note di Testa", detail: "Intensità Speziata", desc: "Un'esplosione di spezie calde che sfidano la freschezza dell'anice in un contrasto perfetto." },
-  { name: "Eredità Murgia", detail: "Alchimia Contemporanea", desc: "La base storica del Giallo reinterpretata per un'esperienza più audace e sperimentale." }
-];
+import { useTranslation } from "@/context/LanguageContext";
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -14,11 +9,22 @@ const itemVariants: Variants = {
 };
 
 export default function SbagliataSpecs() {
+  const { t } = useTranslation();
+  
+  const specs = [
+    { label: t.products.common.gradazione, value: "35% Vol." },
+    { label: t.products.common.formato, value: "50cl" },
+    { label: t.products.common.origine, value: "Villacidro, SU" },
+    { label: t.products.common.formula, value: t.products.common.secret }
+  ];
+
   return (
     <section className="bg-noir py-32 px-6 md:px-20 relative z-10">
       <div className="max-w-7xl mx-auto">
+
+        {/* Ingredients Grid */}
         <div className="grid md:grid-cols-3 gap-12 md:gap-20 mb-32">
-          {INGREDIENTS.map((ing, i) => (
+          {t.products.sbagliata.ingredients.map((ing: any, i: number) => (
             <motion.div
               key={ing.name}
               initial="hidden"
@@ -46,12 +52,7 @@ export default function SbagliataSpecs() {
           viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-20 border-t border-white/5"
         >
-          {[
-            { label: "Gradazione", value: "40% Vol." },
-            { label: "Formato", value: "20 cl" },
-            { label: "Edizione", value: "200 Unità" },
-            { label: "Liquid", value: "Original Giallo" }
-          ].map((spec) => (
+          {specs.map((spec) => (
             <div key={spec.label} className="space-y-2">
               <span className="text-white/40 font-heading text-[10px] tracking-widest uppercase">{spec.label}</span>
               <p className="text-white font-heading text-2xl md:text-3xl tracking-tighter uppercase">{spec.value}</p>

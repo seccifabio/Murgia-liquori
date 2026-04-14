@@ -5,13 +5,14 @@ import { X, Trash2, ShoppingBag, ArrowRight, Edit3, Check } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { createCheckoutSession } from "@/app/actions/stripe";
 import { Loader2 } from "lucide-react";
 import EmbeddedStripeCheckout from "./EmbeddedStripeCheckout";
 import { MARKETING_MANIFEST } from "@/manifest/marketing";
+import { useTranslation } from "@/context/LanguageContext";
 
 
 export default function BagDrawer() {
+  const { t } = useTranslation();
   const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total, appliedCode, setAppliedCode, discount } = useCart();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -71,7 +72,7 @@ export default function BagDrawer() {
             <div className="p-8 pt-20 border-b border-white/5 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <ShoppingBag className="w-5 h-5 text-primary" />
-                <h2 className="font-heading text-xl tracking-widest uppercase mb-0.5">La Tua Bag</h2>
+                <h2 className="font-heading text-xl tracking-widest uppercase mb-0.5">{t.bag.title}</h2>
               </div>
               <button
                 onClick={() => setIsBagOpen(false)}
@@ -90,13 +91,13 @@ export default function BagDrawer() {
                     <ShoppingBag className="w-8 h-8 text-white/30" />
                   </div>
                   <p className="font-heading text-sm tracking-[0.3em] uppercase text-white/40">
-                    La tua collezione è vuota
+                    {t.bag.empty}
                   </p>
                   <button
                     onClick={() => setIsBagOpen(false)}
                     className="text-primary font-heading text-xs tracking-widest uppercase border-b border-primary/20 pb-1 hover:border-primary transition-all"
                   >
-                    Scopri i prodotti
+                    {t.bag.shop}
                   </button>
                 </div>
               ) : (
@@ -128,7 +129,7 @@ export default function BagDrawer() {
                           <div className="space-y-4">
                             {/* Format Toggle */}
                             <div className="flex flex-col gap-2">
-                              <span className="text-[9px] text-white/50 uppercase tracking-[0.2em] font-bold">Formato</span>
+                              <span className="text-[9px] text-white/50 uppercase tracking-[0.2em] font-bold">{t.products.common.formato}</span>
                               <div className="flex gap-2">
                                 {["50cl", "70cl"].map((size) => (
                                   <button
@@ -148,7 +149,7 @@ export default function BagDrawer() {
 
                             {/* Quantity Action */}
                             <div className="flex flex-col gap-2">
-                              <span className="text-[9px] text-white/50 uppercase tracking-[0.2em] font-bold">Quantità</span>
+                              <span className="text-[9px] text-white/50 uppercase tracking-[0.2em] font-bold">{t.products.common.quantity}</span>
                               <div className="flex items-center gap-4 border border-white/10 w-fit px-2 py-1 bg-white/[0.02]">
                                 <button 
                                   onClick={() => item.quantity > 1 && updateItem(item.id, item.format, { quantity: item.quantity - 1 })}
@@ -170,7 +171,7 @@ export default function BagDrawer() {
 
                         <div className="mt-4 pt-4 border-t border-white/5 flex justify-between items-end">
                           <span className="text-primary font-heading text-lg">{item.price}</span>
-                          <span className="text-white/40 text-[9px] uppercase tracking-widest italic font-bold">Subtotale: &euro;{(parseFloat(item.price.replace("€", "")) * item.quantity).toFixed(2)}</span>
+                          <span className="text-white/40 text-[9px] uppercase tracking-widest italic font-bold">{t.bag.subtotal}: &euro;{(parseFloat(item.price.replace("€", "")) * item.quantity).toFixed(2)}</span>
                         </div>
                       </div>
                     </div>
@@ -182,7 +183,7 @@ export default function BagDrawer() {
                       className="group flex items-center gap-3 text-white/40 hover:text-red-500 transition-all font-heading text-[10px] tracking-[0.4em] uppercase"
                     >
                       <Trash2 className="w-4 h-4" />
-                      <span className="border-b border-transparent group-hover:border-red-500/50 pb-0.5 transition-all">Svuota Carrello</span>
+                      <span className="border-b border-transparent group-hover:border-red-500/50 pb-0.5 transition-all">{t.bag.clear}</span>
                     </button>
                   </div>
                 </>
@@ -195,14 +196,14 @@ export default function BagDrawer() {
                 {/* Promo Manifest Row */}
                 <div className="flex flex-col gap-4 py-4 border-b border-white/5">
                   <div className="flex items-center justify-between">
-                    <span className="text-white/40 font-heading text-[10px] tracking-[0.2em] uppercase">MANIFIESTO VOUCHER</span>
+                    <span className="text-white/40 font-heading text-[10px] tracking-[0.2em] uppercase">{t.bag.voucher}</span>
                     
                     {isEditingCode ? (
                       <div className="flex items-center gap-2 flex-1 ml-4">
                         <input
                           autoFocus
                           type="text"
-                          placeholder="Codice..."
+                          placeholder={t.bag.codePlaceholder}
                           value={promoInput}
                           onChange={(e) => setPromoInput(e.target.value)}
                           onKeyDown={(e) => e.key === 'Enter' && applyPromo()}
@@ -243,7 +244,7 @@ export default function BagDrawer() {
                             onClick={() => setIsEditingCode(true)}
                             className="text-white/30 hover:text-primary transition-colors font-heading text-[10px] tracking-widest uppercase border-b border-white/10 hover:border-primary pb-0.5"
                           >
-                            Aggiungi Codice
+                            {t.bag.addCode}
                           </button>
                         )}
                       </div>
@@ -253,7 +254,7 @@ export default function BagDrawer() {
                   
                   {discount > 0 && (
                     <div className="flex items-center justify-between text-primary/80 italic">
-                      <span className="font-heading text-[10px] tracking-widest uppercase">SCONTO ALCHIMIA ({MARKETING_MANIFEST.promo.discount * 100}%)</span>
+                      <span className="font-heading text-[10px] tracking-widest uppercase">{t.bag.discountLabel} ({MARKETING_MANIFEST.promo.discount * 100}%)</span>
                       <span className="font-heading text-sm">- €{discount.toFixed(2)}</span>
                     </div>
                   )}
@@ -265,17 +266,17 @@ export default function BagDrawer() {
                   className={`w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.2em] md:tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 ${isLoading ? "opacity-70 cursor-wait" : ""}`}
                 >
                   <span className="relative z-10 font-bold px-4">
-                    {isLoading ? "Inizializzazione..." : `Procedi al Pagamento — €${(total - discount).toFixed(2)}`}
+                    {isLoading ? t.bag.loading : `${t.bag.checkout} — €${(total - discount).toFixed(2)}`}
                   </span>
                   {!isLoading && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}
                   {isLoading && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
                   <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                 </button>
                 
-                <p className="mt-6 text-center text-white/40 font-heading text-[9px] tracking-[0.2em] uppercase italic leading-relaxed max-w-[300px] mx-auto">
-                  Tasse e spedizione calcolate al checkout. <br/>
-                  Spedizione gratuita in tutta Italia.
-                </p>
+                <div className="mt-6 text-center text-white/40 font-heading text-[9px] tracking-[0.2em] uppercase italic leading-relaxed max-w-[300px] mx-auto">
+                  <p>{t.bag.disclaimer}</p>
+                  <p>{t.bag.freeShipping}</p>
+                </div>
               </div>
             )}
             {/* Checkout Overlay: The Payment Ritual */}
@@ -291,6 +292,11 @@ export default function BagDrawer() {
                   <EmbeddedStripeCheckout 
                     items={items} 
                     onClose={() => setShowCheckout(false)} 
+                    onSuccess={() => {
+                      clearCart();
+                      setIsBagOpen(false);
+                      setShowCheckout(false);
+                    }}
                   />
                 </motion.div>
               )}

@@ -2,8 +2,10 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function BiancoHero() {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -18,9 +20,8 @@ export default function BiancoHero() {
   return (
     <section 
       ref={containerRef}
-      className="relative h-screen w-full overflow-hidden bg-noir"
+      className="relative h-screen w-full overflow-hidden bg-noir pt-20"
     >
-      {/* Cinematic Video Layer */}
       <motion.div 
         style={{ scale: videoScale, opacity: videoOpacity }}
         className="absolute inset-0 w-full h-full z-0"
@@ -30,19 +31,18 @@ export default function BiancoHero() {
           muted 
           loop 
           playsInline 
-          className="w-full h-full object-cover opacity-60"
+          className="w-full h-full object-cover opacity-50"
         >
-          <source src="/videos/bianco.mp4" type="video/mp4" />
+          <source src="/videos/bianco_hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-noir/80 via-transparent to-noir" />
+        <div className="absolute inset-0 bg-gradient-to-b from-noir via-transparent to-noir" />
       </motion.div>
 
-      {/* Narrative HUD */}
       <motion.div 
         style={{ y: textY, opacity: textOpacity }}
-        className="relative z-10 h-full flex flex-col items-center justify-start md:justify-center text-center px-6 pt-32 md:pt-0"
+        className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6"
       >
-        <h1 className="font-heading text-7xl md:text-[12rem] lg:text-[16rem] text-white uppercase tracking-tighter leading-[0.8] mb-6 drop-shadow-2xl overflow-hidden py-4">
+        <h1 className="font-heading text-6xl md:text-[10rem] lg:text-[14rem] text-white uppercase tracking-tighter leading-[0.85] mb-6 drop-shadow-2xl py-4 overflow-hidden">
           {"Villacidro".split("").map((char, i) => (
             <motion.span
               key={i}
@@ -68,8 +68,8 @@ export default function BiancoHero() {
           ))}
         </h1>
         
-        <p className="font-heading text-lg md:text-2xl text-white/60 tracking-[0.4em] uppercase italic">
-          Pura Eleganza Mediterranea
+        <p className="font-heading text-lg md:text-2xl text-white/40 tracking-[0.4em] uppercase italic">
+          {t.products.bianco.heroTagline}
         </p>
 
         <motion.div 
@@ -79,20 +79,6 @@ export default function BiancoHero() {
         >
           <div className="w-px h-12 bg-gradient-to-b from-white/60 to-transparent" />
         </motion.div>
-      </motion.div>
-
-      {/* Hero Product Bottle - Stationary Anchor */}
-      <motion.div
-        initial={{ y: 80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 1 }}
-        className="absolute bottom-[5%] md:bottom-[-10%] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[-5%] z-20 pointer-events-none"
-      >
-        <img 
-          src="/images/products/bianco.png" 
-          alt="Villacidro Bianco Murgia" 
-          className="h-[40vh] md:h-[75vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.8)]"
-        />
       </motion.div>
     </section>
   );

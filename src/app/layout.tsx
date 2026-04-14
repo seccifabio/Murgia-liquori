@@ -22,6 +22,7 @@ import Navbar from "@/components/Navbar";
 import PromoBanner from "@/components/PromoBanner";
 import VisitBanner from "@/components/VisitBanner";
 import { CartProvider } from "@/context/CartContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 import BagDrawer from "@/components/BagDrawer";
 import VisitDrawer from "@/components/VisitDrawer";
 import CartToast from "@/components/CartToast";
@@ -40,15 +41,17 @@ export default function RootLayout({
         {/* Cinematic Grain Texture Layer */}
         <div className="bg-texture fixed inset-0 z-50 mix-blend-overlay" />
         
-        <CartProvider>
-          <PromoBanner />
-          <VisitBanner />
-          <Navbar />
-          <BagDrawer />
-          <VisitDrawer />
-          <CartToast />
-          {children}
-        </CartProvider>
+        <LanguageProvider>
+          <CartProvider>
+            <PromoBanner />
+            <VisitBanner />
+            <Navbar />
+            <BagDrawer />
+            <VisitDrawer />
+            <CartToast />
+            {children}
+          </CartProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

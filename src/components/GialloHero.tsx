@@ -2,9 +2,10 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import Logo from "./Logo";
+import { useTranslation } from "@/context/LanguageContext";
 
 export default function GialloHero() {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -71,7 +72,7 @@ export default function GialloHero() {
         </h1>
         
         <p className="font-heading text-lg md:text-2xl text-white/40 tracking-[0.4em] uppercase italic">
-          L&apos;Oro Alchemico di Sardegna
+          {t.products.giallo.heroTagline}
         </p>
 
         <motion.div 
