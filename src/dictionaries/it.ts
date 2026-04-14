@@ -226,7 +226,7 @@ export const it = {
       ascend: "Ascendi"
     },
     giallo: {
-      name: "Villacidro Murgia Giallo",
+      name: "Villacidro Giallo",
       heroTagline: "L'Oro Alchemico di Sardegna",
       ritualDescription: "\"Si beveva l'elisir de s'omu, l'oro di Villacidro.\" Un gesto che attraversa i secoli, un rito collettivo che unisce generazioni. Servire preferibilmente a temperatura ambiente (16-20°C) in calice a tulipano per liberare l'anima dello zafferano.",
       ingredients: [
@@ -236,7 +236,7 @@ export const it = {
       ]
     },
     bianco: {
-      name: "Villacidro Murgia Bianco",
+      name: "Murgia Bianco",
       heroTagline: "L'Essenza Botanica di Sardegna",
       ritualDescription: "Un rituale di freschezza ancestrale. Il Bianco è l'anima candida della nostra distilleria, dove le erbe officinali si fondono in un'alchimia cristallina.",
       ingredients: [

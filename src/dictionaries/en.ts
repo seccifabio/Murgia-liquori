@@ -190,23 +190,23 @@ export const en = {
       ascend: "Ascend"
     },
     giallo: {
-      name: "Villacidro Murgia Giallo",
-      heroTagline: "The Alchemical Gold of Sardinia",
-      ritualDescription: "\"One drank the elisir de s'omu, the gold of Villacidro.\" A gesture that spans centuries, a collective ritual uniting generations. Serve ideally at room temperature (16-20°C) in a tulip glass to release the saffron soul.",
+      name: "Villacidro Giallo",
+      heroTagline: "The Alchemy of Saffron",
+      ritualDescription: "\"We would drink the elisir de s'omu, the gold of Villacidro.\" A gesture that spans centuries, a collective ritual that unites generations. Best served at room temperature (16-20°C) in a tulip glass to release the soul of the saffron.",
       ingredients: [
-        { name: "Saffron", detail: "Gold of San Gavino", desc: "The beating heart of the Giallo. Harvested at dawn to preserve the purest chromatic and aromatic essence." },
-        { name: "Star Anise", detail: "Alchemical Purity", desc: "The top note that refresces the palate, balancing the heat of secret spices." },
-        { name: "14 Secret Herbs", detail: "Gennaro Murgia Legacy", desc: "A botanical mosaic handed down since 1882, distilled in small batches for an unrepeatable soul." }
+        { name: "Saffron", detail: "Gold of San Gavino", desc: "The beating heart of Giallo. Harvested at dawn to preserve its purest color and aroma." },
+        { name: "Star Anise", detail: "Alchemical Purity", desc: "The top note that refresca the palate, balancing the warmth of the secret spices." },
+        { name: "14 Secret Herbs", detail: "Gennaro Murgia Original Recipe", desc: "A botanical mosaic handed down since 1882, distilled in small batches for a unique soul." }
       ]
     },
     bianco: {
-      name: "Villacidro Murgia Bianco",
+      name: "Murgia Bianco",
       heroTagline: "The Botanical Essence of Sardinia",
-      ritualDescription: "A ritual of ancestral freshness. The Bianco is the candid soul of our distillery, where medicinal herbs fuse into a crystalline alchemy.",
+      ritualDescription: "An ancestral ritual of freshness. Bianco is the pure soul of our distillery, where medicinal herbs blend into a crystalline alchemy.",
       ingredients: [
-        { name: "Mint", detail: "Sardinian Breath", desc: "Wild freshness that awakens the senses." },
+        { name: "Mint", detail: "Sardinian Breath", desc: "Wild freshness that opens the senses." },
         { name: "Orange", detail: "Alchemical Zest", desc: "Citrus notes for a brilliant finish." },
-        { name: "Eucalyptus", detail: "Medicinal Heart", desc: "The essence of Villacidro's forests." }
+        { name: "Eucalyptus", detail: "Medicinal Heart", desc: "The essence of the forests of Villacidro." }
       ]
     },
     sbagliata: {

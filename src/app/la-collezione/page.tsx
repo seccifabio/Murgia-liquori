@@ -7,9 +7,9 @@ import LiquidImage from "@/components/LiquidImage";
 import { useTranslation } from "@/context/LanguageContext";
 
 const products = [
-  { name: "Murgia Bianco", price: "24€", img: "/images/products/bianco.png", href: "/shop/murgia-bianco" },
-  { name: "Murgia Giallo", price: "26€", img: "/images/giallo.webp", href: "/shop/villacidro-giallo" },
-  { name: "Murgia Sbagliato", price: "15€", img: "/images/products/sbagliata.png", href: "/shop/la-sbagliata" },
+  { name: "Murgia Bianco", price: "24€", img: "/images/bianco_product.png", href: "/shop/murgia-bianco" },
+  { name: "Villacidro Giallo", price: "26€", img: "/images/giallo.webp", href: "/shop/villacidro-giallo" },
+  { name: "Murgia Sbagliato", price: "15€", img: "/images/sbagliata_product.png", href: "/shop/la-sbagliata" },
 ];
 
 export default function ProdottiPage() {
