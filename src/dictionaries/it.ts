@@ -246,9 +246,9 @@ export const it = {
       ]
     },
     sbagliata: {
-      name: "Murgia Amaro Sbagliato",
+      name: "Murgia Sbagliato",
       heroTagline: "Il Rituale Notturno",
-      ritualDescription: "Un'alchimia audace nata da un errore perfetto. L'amaro che sfida la tradizione con eleganza.",
+      ritualDescription: "Un'alchimia audace nata da un errore perfetto. Lo spirito che sfida la tradizione con eleganza.",
       ingredients: [
         { name: "Curaçao", detail: "Essenza Amara", desc: "La complessità dell'arancia amara." },
         { name: "Genziana", detail: "Radice Profonda", desc: "L'amaricante ancestrale che purifica il palato." },

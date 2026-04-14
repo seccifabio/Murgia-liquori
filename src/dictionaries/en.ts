@@ -210,9 +210,9 @@ export const en = {
       ]
     },
     sbagliata: {
-      name: "Murgia Amaro Sbagliato",
+      name: "Murgia Sbagliato",
       heroTagline: "The Nocturnal Ritual",
-      ritualDescription: "A bold alchemy born from a perfect error. The amaro that challenges tradition with elegance.",
+      ritualDescription: "A bold alchemy born from a perfect error. The spirit that challenges tradition with elegance.",
       ingredients: [
         { name: "Curaçao", detail: "Bitter Essence", desc: "The complexity of bitter orange." },
         { name: "Gentian", detail: "Deep Root", desc: "The ancestral bittering agent that purifies the palate." },

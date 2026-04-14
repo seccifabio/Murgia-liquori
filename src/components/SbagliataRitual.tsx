@@ -67,7 +67,7 @@ export default function SbagliataRitual() {
         >
           <img 
             src="/images/products/sbagliata.png" 
-            alt="Amaro Sbagliato Murgia" 
+            alt="Murgia Sbagliato" 
             className="h-[40vh] md:h-[60vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.6)] mx-auto" 
           />
         </motion.div>
