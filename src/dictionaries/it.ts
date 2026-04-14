@@ -259,6 +259,9 @@ export const it = {
   bag: {
     title: "La Tua Bag",
     empty: "La tua collezione è vuota",
+    added: "PRODOTTO AGGIUNTO",
+    expanded: "La tua collezione si espande",
+    view: "VEDI BAG",
     shop: "Scopri i prodotti",
     subtotal: "Subtotale",
     clear: "Svuota Carrello",

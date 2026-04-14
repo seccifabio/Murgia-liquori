@@ -4,8 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check, ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
+import { useTranslation } from "@/context/LanguageContext";
+
 export default function CartToast() {
   const { showToast, setIsBagOpen } = useCart();
+  const { t } = useTranslation();
 
   return (
     <AnimatePresence>
@@ -31,12 +34,12 @@ export default function CartToast() {
             </div>
 
             <div className="flex flex-col">
-              <span className="text-white font-heading text-sm tracking-[0.2em] uppercase">Prodotto Aggiunto</span>
-              <span className="text-white/40 font-heading text-[10px] tracking-[0.1em] uppercase mt-0.5">La tua collezione si espande</span>
+              <span className="text-white font-heading text-sm tracking-[0.2em] uppercase">{t.bag.added}</span>
+              <span className="text-white/40 font-heading text-[10px] tracking-[0.1em] uppercase mt-0.5">{t.bag.expanded}</span>
             </div>
 
             <div className="ml-4 border-l border-white/10 pl-6 flex items-center gap-2 group-hover:text-primary transition-colors">
-              <span className="font-heading text-xs tracking-widest uppercase">Vedi Bag</span>
+              <span className="font-heading text-xs tracking-widest uppercase">{t.bag.view}</span>
               <ShoppingBag className="w-4 h-4" />
             </div>
             
