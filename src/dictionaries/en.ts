@@ -230,7 +230,7 @@ export const en = {
       title: "Become a",
       titleAccent: "Murgia Partner",
       description: "Infuse your venue with the authenticity of Villacidro. Join our circle of distribution and unlock exclusive professional advantages.",
-      cta: "Request Intel",
+      cta: "APPLY",
       back: "Back to list",
       formTitle: "Join the Villacidro Murgia Network",
       successTitle: "Request Received",
