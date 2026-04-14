@@ -15,6 +15,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 interface EmbeddedStripeCheckoutProps {
   items: any[];
   onClose: () => void;
+  onSuccess?: () => void;
 }
 
 export default function EmbeddedStripeCheckout({ items, onClose }: EmbeddedStripeCheckoutProps) {
