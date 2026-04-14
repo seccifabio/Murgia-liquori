@@ -20,7 +20,7 @@ export default function SbagliataRitual() {
       priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
       quantity: quantity,
       format: selectedFormat,
-      img: "/images/sbagliata-bottle.png"
+      img: "/images/products/sbagliata.png"
     });
   };
 

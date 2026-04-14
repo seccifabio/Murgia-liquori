@@ -20,7 +20,7 @@ export default function BiancoRitual() {
       priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
       quantity: quantity,
       format: selectedFormat,
-      img: "/images/bianco-bottle.png"
+      img: "/images/products/bianco.png"
     });
   };
 
