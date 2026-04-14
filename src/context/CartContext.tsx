@@ -70,7 +70,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [items, appliedCode, mounted]);
 
-  const addItem = (newItem: CartItem) => {
+  const addItem = React.useCallback((newItem: CartItem) => {
     setItems((prev) => {
       const existing = prev.find((i) => i.id === newItem.id && i.format === newItem.format);
       if (existing) {
@@ -84,9 +84,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     // Manifest Toast notification instead of opening drawer
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000); // Self-liquidation after 3s
-  };
+  }, []);
 
-  const updateItem = (id: string, oldFormat: string, updates: Partial<CartItem>) => {
+  const updateItem = React.useCallback((id: string, oldFormat: string, updates: Partial<CartItem>) => {
     setItems((prev) => {
       // If we are updating format, we might need to merge with an existing item
       if (updates.format && updates.format !== oldFormat) {
@@ -107,13 +107,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         (i.id === id && i.format === oldFormat) ? { ...i, ...updates } : i
       );
     });
-  };
+  }, []);
 
-  const removeItem = (id: string, format: string) => {
+  const removeItem = React.useCallback((id: string, format: string) => {
     setItems((prev) => prev.filter((i) => !(i.id === id && i.format === format)));
-  };
+  }, []);
 
-  const clearCart = () => setItems([]);
+  const clearCart = React.useCallback(() => {
+    setItems([]);
+    setAppliedCode(null);
+  }, []);
+
 
   const total = items.reduce((acc, item) => {
     const priceNum = parseFloat(item.price.replace("€", "").replace(",", "."));

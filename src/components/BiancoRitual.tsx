@@ -14,13 +14,14 @@ export default function BiancoRitual() {
     addItem({
       id: "murgia-bianco",
       name: "Murgia Bianco",
-      price: "21€",
-      priceId: "price_bianco_123",
+      price: "24€",
+      priceId: "price_1TM24ZIuoh35e3roLsnvntfj",
       quantity: quantity,
       format: selectedFormat,
       img: "/images/products/bianco.png"
     });
   };
+
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -113,7 +114,8 @@ export default function BiancoRitual() {
             onClick={handleAddToCart}
             className="group relative px-20 py-8 md:px-32 overflow-hidden bg-noir text-primary font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer border border-primary/20"
           >
-            <span className="relative z-10 transition-colors duration-500 group-hover:text-black font-bold">Aggiungi al carrello &mdash; &euro;{(21 * quantity).toFixed(2)}</span>
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-black font-bold">Aggiungi al carrello &mdash; &euro;{(24 * quantity).toFixed(2)}</span>
+
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           </button>
         </motion.div>

@@ -13,41 +13,54 @@ export async function createCheckoutSession(items: any[]) {
     throw new Error("Il carrello è vuoto.");
   }
 
-  // Transform internal CartItems into Stripe Line Items
   const line_items = items.map((item) => {
-    // If we have a priceId from the Stripe Dashboard, we use it directly.
-    // Otherwise, we could manifest price data on the fly (if enabled by Stripe).
-    // For Murgia, we prioritize using Stripe Price IDs for financial authority.
+    if (!item.priceId) throw new Error(`Price ID mancante per: ${item.name}`);
     return {
       price: item.priceId,
       quantity: item.quantity,
     };
   });
 
+  console.log("Stripe Ritual: Initiating with items:", line_items);
+
   try {
     const session = await stripe.checkout.sessions.create({
+      ui_mode: 'embedded',
       line_items,
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/shop`,
+      return_url: `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
       shipping_address_collection: {
-        allowed_countries: ["IT"], // Restricting to Italy for the initial launch
+        allowed_countries: ["IT"],
       },
-      // Note: We can add metadata for tracking the specific "Format" (50cl/70cl) 
-      // if it's not already encoded in the Price ID.
       metadata: {
         order_type: "Murgia Heritage Purchase",
         items_summary: items.map(i => `${i.name} (${i.format})`).join(", "),
       },
     });
 
-    if (!session.url) {
-      throw new Error("Impossibile generare la sessione di pagamento.");
-    }
+    console.log("Stripe Ritual: Session Manifested:", session.id);
 
-    return { url: session.url };
+
+
+    return { clientSecret: session.client_secret };
   } catch (error: any) {
     console.error("Stripe Session Manifestation Failure:", error);
     throw new Error(`Errore Stripe: ${error.message}`);
   }
 }
+
+export async function getCheckoutSession(sessionId: string) {
+  if (!sessionId) throw new Error("ID Sessione mancante.");
+
+  try {
+    const session = await stripe.checkout.sessions.retrieve(sessionId, {
+      expand: ["line_items", "line_items.data.price.product"],
+    });
+
+    return JSON.parse(JSON.stringify(session)); // Plane object for client
+  } catch (error: any) {
+    console.error("Stripe Retrieval Failure:", error);
+    throw new Error(`Errore recupero sessione: ${error.message}`);
+  }
+}
+

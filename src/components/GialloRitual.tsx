@@ -14,13 +14,14 @@ export default function GialloRitual() {
     addItem({
       id: "villacidro-giallo",
       name: "Villacidro Murgia Giallo",
-      price: "28€", // This would ideally dynamically update based on format
-      priceId: "price_giallo_123",
+      price: "32€",
+      priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
       quantity: quantity,
       format: selectedFormat,
       img: "/images/giallo_sovereign.png"
     });
   };
+
 
   // Section-aware scroll orchestration
   const { scrollYProgress } = useScroll({
@@ -129,7 +130,8 @@ export default function GialloRitual() {
             onClick={handleAddToCart}
             className="group relative px-20 py-8 md:px-32 overflow-hidden bg-noir text-primary font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer border border-primary/20"
           >
-            <span className="relative z-10 transition-colors duration-500 group-hover:text-black font-bold">Aggiungi al carrello &mdash; &euro;{(28 * quantity).toFixed(2)}</span>
+            <span className="relative z-10 transition-colors duration-500 group-hover:text-black font-bold">Aggiungi al carrello &mdash; &euro;{(32 * quantity).toFixed(2)}</span>
+
             <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           </button>
         </motion.div>

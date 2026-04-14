@@ -7,6 +7,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createCheckoutSession } from "@/app/actions/stripe";
 import { Loader2 } from "lucide-react";
+import EmbeddedStripeCheckout from "./EmbeddedStripeCheckout";
+
 
 export default function BagDrawer() {
   const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total, appliedCode, setAppliedCode, discount } = useCart();
@@ -14,6 +16,8 @@ export default function BagDrawer() {
   const [isLoading, setIsLoading] = useState(false);
   const [isEditingCode, setIsEditingCode] = useState(false);
   const [promoInput, setPromoInput] = useState("");
+  const [showCheckout, setShowCheckout] = useState(false);
+
 
   const applyPromo = () => {
     if (promoInput) {
@@ -37,20 +41,9 @@ export default function BagDrawer() {
 
   const handleCheckout = async () => {
     if (isLoading || items.length === 0) return;
-    
-    setIsLoading(true);
-    try {
-      const { url } = await createCheckoutSession(items);
-      if (url) {
-        window.location.href = url;
-      }
-    } catch (error) {
-      console.error("Checkout Manifestation Error:", error);
-      // In a real scenario, we would trigger a localized error toast here.
-    } finally {
-      setIsLoading(false);
-    }
+    setShowCheckout(true);
   };
+
 
   return (
     <AnimatePresence>
@@ -74,18 +67,19 @@ export default function BagDrawer() {
             className="fixed right-0 top-0 h-full w-full md:w-[500px] bg-[#0A0A0A] border-l border-white/5 z-[10001] flex flex-col shadow-2xl"
           >
             {/* Header: Identity */}
-            <div className="p-8 border-b border-white/5 flex items-center justify-between">
+            <div className="p-8 pt-20 border-b border-white/5 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <ShoppingBag className="w-5 h-5 text-primary" />
-                <h2 className="font-heading text-xl tracking-widest uppercase">La Tua Bag</h2>
+                <h2 className="font-heading text-xl tracking-widest uppercase mb-0.5">La Tua Bag</h2>
               </div>
               <button
                 onClick={() => setIsBagOpen(false)}
-                className="p-2 hover:bg-white/5 rounded-full transition-colors group"
+                className="p-2 hover:bg-white/5 rounded-full transition-colors group relative z-10"
               >
                 <X className="w-6 h-6 text-white/60 group-hover:text-white transition-colors" />
               </button>
             </div>
+
 
             {/* List: Artifact Items */}
             <div className="flex-1 overflow-y-auto p-8 space-y-10 custom-scrollbar">
@@ -221,36 +215,39 @@ export default function BagDrawer() {
                         </button>
                       </div>
                     ) : (
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center justify-between flex-1 ml-6">
                         {appliedCode ? (
-                          <>
+                          <div className="flex items-center justify-between w-full">
                             <span className="text-primary font-heading text-sm tracking-widest">{appliedCode}</span>
-                            <button 
-                              onClick={() => {
-                                setPromoInput(appliedCode);
-                                setIsEditingCode(true);
-                              }}
-                              className="text-white/30 hover:text-white transition-colors p-1"
-                            >
-                              <Edit3 className="w-4 h-4" />
-                            </button>
-                            <button 
-                              onClick={() => setAppliedCode(null)}
-                              className="text-white/30 hover:text-red-500 transition-colors p-1"
-                            >
-                              <X className="w-4 h-4" />
-                            </button>
-                          </>
+                            <div className="flex items-center gap-2">
+                              <button 
+                                onClick={() => {
+                                  setPromoInput(appliedCode);
+                                  setIsEditingCode(true);
+                                }}
+                                className="text-white/30 hover:text-white transition-colors p-1.5 bg-white/5 rounded-sm"
+                              >
+                                <Edit3 className="w-3.5 h-3.5" />
+                              </button>
+                              <button 
+                                onClick={() => setAppliedCode(null)}
+                                className="text-white/30 hover:text-red-500 transition-colors p-1.5 bg-white/5 rounded-sm"
+                              >
+                                <X className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </div>
                         ) : (
                           <button 
                             onClick={() => setIsEditingCode(true)}
-                            className="text-white/30 hover:text-primary transition-colors font-heading text-[10px] tracking-widest uppercase border-b border-white/10 hover:border-primary"
+                            className="text-white/30 hover:text-primary transition-colors font-heading text-[10px] tracking-widest uppercase border-b border-white/10 hover:border-primary pb-0.5"
                           >
                             Aggiungi Codice
                           </button>
                         )}
                       </div>
                     )}
+
                   </div>
                   
                   {discount > 0 && (
@@ -280,7 +277,25 @@ export default function BagDrawer() {
                 </p>
               </div>
             )}
+            {/* Checkout Overlay: The Payment Ritual */}
+            <AnimatePresence>
+              {showCheckout && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  className="absolute inset-0 z-[10002] bg-primary flex flex-col overflow-y-auto custom-scrollbar"
+                >
+
+                  <EmbeddedStripeCheckout 
+                    items={items} 
+                    onClose={() => setShowCheckout(false)} 
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
+
         </>
       )}
     </AnimatePresence>
