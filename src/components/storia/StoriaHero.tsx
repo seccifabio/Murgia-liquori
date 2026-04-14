@@ -23,6 +23,10 @@ export default function StoriaHero() {
   const maskScale = useTransform(scrollYProgress, [0, 0.8], [1, isMobile ? 1.5 : 15]);
   const opacity = useTransform(scrollYProgress, [0.4, 0.8], [1, 0]);
 
+  const introTransition = isMobile 
+    ? { duration: 0.6, ease: "easeOut" } 
+    : { delay: 0.5, duration: 1 };
+
   return (
     <div ref={containerRef} className={`relative ${isMobile ? 'h-[120vh]' : 'h-[200vh]'} bg-noir`}>
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
@@ -38,11 +42,11 @@ export default function StoriaHero() {
         {/* 1882 Stencil Mask */}
         <motion.div 
           style={{ scale: maskScale, opacity }}
-          className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none"
+          className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none border-none outline-none"
         >
           {isMobile ? (
-            <div className="bg-[#F4B400] w-full h-full flex items-center justify-center">
-               <h2 className="font-heading text-[120px] font-black italic text-black leading-none">1882</h2>
+            <div className="bg-[#F4B400] w-full h-full flex items-center justify-center border-none">
+               <h2 className="font-heading text-[120px] font-black italic text-black leading-none border-none">1882</h2>
             </div>
           ) : (
             <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
@@ -68,9 +72,9 @@ export default function StoriaHero() {
 
         {/* Narrative Intro Overlay */}
         <motion.div 
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: isMobile ? 20 : 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1 }}
+          transition={introTransition}
           className="absolute bottom-20 left-12 md:left-24 z-20 max-w-xl"
         >
           <span className="text-primary font-heading text-xl tracking-[0.3em] uppercase mb-4 block">

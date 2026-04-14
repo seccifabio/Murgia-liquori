@@ -57,7 +57,7 @@ export default function ShippingRitual() {
             {/* Focal Point Indicator */}
             <div className="flex items-center gap-4">
               <span className="font-heading text-primary text-xl tracking-tighter">0{i + 1}</span>
-              <div className="h-px flex-1 bg-white/10" />
+              {!isMobile && <div className="h-px flex-1 bg-white/10" />}
               <span className="font-heading text-[10px] tracking-[0.4em] uppercase text-white/40 italic">{stage.metric}</span>
             </div>
 
@@ -77,10 +77,11 @@ export default function ShippingRitual() {
             </motion.div>
 
             {/* Narrative Context */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+            <motion.div 
+              initial={{ opacity: 0, y: isMobile ? 10 : 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6 }}
               className="space-y-6"
             >
               <h3 className="font-heading text-6xl uppercase tracking-tighter leading-none text-white italic">

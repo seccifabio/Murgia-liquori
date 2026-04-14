@@ -136,6 +136,8 @@ function StoriaPhase({
             <motion.span 
               initial={isMobile ? { opacity: 0, x: -20 } : {}}
               whileInView={isMobile ? { opacity: 1, x: 0 } : {}}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
               style={{ y: isMobile ? 0 : bodyY }} 
               className="text-primary font-heading text-xl tracking-[0.4em] uppercase block mb-6 border-l-2 border-primary pl-6"
             >
@@ -144,6 +146,8 @@ function StoriaPhase({
             <motion.h2 
               initial={isMobile ? { opacity: 0, y: 30 } : {}}
               whileInView={isMobile ? { opacity: 1, y: 0 } : {}}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               style={{ y: isMobile ? 0 : titleY }} 
               className="text-white font-heading text-6xl md:text-8xl lg:text-[10rem] uppercase tracking-tighter leading-[0.9] md:leading-[0.7] italic mt-8 mb-10"
             >

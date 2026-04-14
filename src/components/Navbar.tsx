@@ -26,7 +26,15 @@ export default function Navbar() {
   const { language, setLanguage, t } = useTranslation();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const [currentTop, setCurrentTop] = useState(0);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const isPromoEligible = pathname === "/" || pathname?.includes("/shop/");
   
@@ -117,14 +125,14 @@ export default function Navbar() {
           <div className={`hidden md:flex items-center gap-4 font-heading text-xs tracking-[0.2em] uppercase ${iconColor}`}>
             <button 
               onClick={() => setLanguage("it")}
-              className={`transition-all pb-1 border-b-2 ${language === "it" ? (activeTheme === "dark" ? "border-noir text-noir font-bold" : "border-primary text-primary font-bold") : "border-transparent opacity-40 hover:opacity-100"}`}
+              className={`transition-all pb-1 ${isMobile ? 'border-transparent' : 'border-b-2'} ${language === "it" ? (activeTheme === "dark" ? "border-noir text-noir font-bold" : "border-primary text-primary font-bold") : "border-transparent opacity-40 hover:opacity-100"}`}
             >
               IT
             </button>
             <span className="opacity-10">|</span>
             <button 
               onClick={() => setLanguage("en")}
-              className={`transition-all pb-1 border-b-2 ${language === "en" ? (activeTheme === "dark" ? "border-noir text-noir font-bold" : "border-primary text-primary font-bold") : "border-transparent opacity-40 hover:opacity-100"}`}
+              className={`transition-all pb-1 ${isMobile ? 'border-transparent' : 'border-b-2'} ${language === "en" ? (activeTheme === "dark" ? "border-noir text-noir font-bold" : "border-primary text-primary font-bold") : "border-transparent opacity-40 hover:opacity-100"}`}
             >
               EN
             </button>
