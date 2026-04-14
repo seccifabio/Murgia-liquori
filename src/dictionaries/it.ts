@@ -185,6 +185,7 @@ export const it = {
       titleAccent: "Partner Murgia",
       description: "Porta l'autenticità di Villacidro nel tuo locale. Unisciti alla nostra rete di distribuzione e scopri i vantaggi riservati ai professionisti della mixology.",
       cta: "Richiedi Informazioni",
+      back: "Torna alla lista",
       formTitle: "Diventa un Villacidro Murgia Partner",
       successTitle: "Richiesta Ricevuta",
       successText: "La tua richiesta è stata registrata nel nostro laboratorio. Presto un nostro specialista ti contatterà.",

@@ -231,6 +231,7 @@ export const en = {
       titleAccent: "Murgia Partner",
       description: "Infuse your venue with the authenticity of Villacidro. Join our circle of distribution and unlock exclusive professional advantages.",
       cta: "Request Intel",
+      back: "Back to list",
       formTitle: "Join the Villacidro Murgia Network",
       successTitle: "Request Received",
       successText: "Your transmission has been recorded. A specialist will manifest soon.",
