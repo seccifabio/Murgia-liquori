@@ -16,9 +16,9 @@ export const MARKETING_MANIFEST = {
       successMsg: "COPIATO!"
     },
     en: {
-      description: "AN EXCLUSIVE RITUAL AWAITS",
+      description: "AN EXCLUSIVE OFFER AWAITS",
       fullDescription: "CLAIM 10% OFF YOUR COLLECTION",
-      cta: "CLICK TO REVEAL",
+      cta: "CLICK TO COPY",
       successMsg: "VOUCHER SECURED!"
     }
   },
