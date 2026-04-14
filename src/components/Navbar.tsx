@@ -5,7 +5,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
-import { ShoppingBag, X, Menu as BurgerIcon } from "lucide-react";
+import { ShoppingBag, X, Menu as BurgerIcon, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
@@ -130,6 +130,20 @@ export default function Navbar() {
             </button>
           </div>
 
+          {/* Mobile Language Native Pulse */}
+          <div className={`flex md:hidden items-center relative gap-1 font-heading text-xs tracking-[0.2em] uppercase ${iconColor}`}>
+            <span className="font-bold">{language}</span>
+            <ChevronDown className="w-3 h-3 opacity-40" />
+            <select
+              value={language}
+              onChange={(e) => setLanguage(e.target.value as "it" | "en")}
+              className="absolute inset-0 opacity-0 cursor-pointer appearance-none bg-transparent w-full h-full"
+            >
+              <option value="it">Italiano</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+
           <button 
             onClick={() => setIsBagOpen(true)}
             className={`relative transition-all duration-300 hover:scale-110 ${iconColor}`}
@@ -181,26 +195,6 @@ export default function Navbar() {
                 </motion.div>
               ))}
               
-              {/* Mobile Language Ritual Toggle */}
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="flex md:hidden items-center gap-6 pt-8 font-heading text-lg tracking-[0.2em] uppercase"
-              >
-                <button 
-                  onClick={() => setLanguage("it")}
-                  className={`transition-all ${language === "it" ? "text-primary" : "text-white/30"}`}
-                >
-                  Italiano
-                </button>
-                <button 
-                  onClick={() => setLanguage("en")}
-                  className={`transition-all ${language === "en" ? "text-primary" : "text-white/30"}`}
-                >
-                  English
-                </button>
-              </motion.div>
             </div>
 
             <div className="absolute bottom-12 left-12 md:left-24 flex gap-8 text-[10px] tracking-[0.3em] uppercase text-white/30 font-medium">

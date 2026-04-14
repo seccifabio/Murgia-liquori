@@ -46,7 +46,6 @@ export default function EmbeddedStripeCheckout({ items, onClose }: EmbeddedStrip
           onClick={onClose}
           className="group flex items-center gap-2 text-black/60 hover:text-black transition-colors"
         >
-          <span className="font-heading text-xs tracking-widest uppercase mb-0.5">Torna alla Bag</span>
           <X className="w-6 h-6" />
         </button>
       </div>
