@@ -84,13 +84,6 @@ export default function Hero() {
         className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center px-6"
       >
         <div className="flex flex-col items-center max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Logo theme="light" className="w-32 h-auto md:w-48 mb-12 opacity-80" />
-          </motion.div>
 
           <div className="overflow-hidden mb-6">
             <motion.h1 
