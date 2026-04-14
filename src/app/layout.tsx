@@ -25,6 +25,7 @@ import { CartProvider } from "@/context/CartContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import BagDrawer from "@/components/BagDrawer";
 import VisitDrawer from "@/components/VisitDrawer";
+import PartnerDrawer from "@/components/PartnerDrawer";
 import CartToast from "@/components/CartToast";
 
 export default function RootLayout({
@@ -48,6 +49,7 @@ export default function RootLayout({
             <Navbar />
             <BagDrawer />
             <VisitDrawer />
+            <PartnerDrawer />
             <CartToast />
             {children}
           </CartProvider>

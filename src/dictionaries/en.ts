@@ -226,7 +226,7 @@ export const en = {
     selectCity: "Select Domain",
     viewMap: "View Map",
     partner: {
-      ritual: "Partnership Ritual",
+      ritual: "Become a Partner",
       title: "Become a",
       titleAccent: "Murgia Partner",
       description: "Infuse your venue with the authenticity of Villacidro. Join our circle of distribution and unlock exclusive professional advantages.",

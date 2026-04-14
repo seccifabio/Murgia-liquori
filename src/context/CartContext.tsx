@@ -33,6 +33,8 @@ interface CartContextType {
   setIsBannerVisible: (visible: boolean) => void;
   isVisitOpen: boolean;
   setIsVisitOpen: (open: boolean) => void;
+  isPartnerOpen: boolean;
+  setIsPartnerOpen: (open: boolean) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -45,6 +47,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isBannerVisible, setIsBannerVisible] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisitOpen, setIsVisitOpen] = useState(false);
+  const [isPartnerOpen, setIsPartnerOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   // Persistence Ritual: Hydrate from localStorage
@@ -152,6 +155,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setIsBannerVisible,
         isVisitOpen,
         setIsVisitOpen,
+        isPartnerOpen,
+        setIsPartnerOpen,
       }}
     >
       {children}

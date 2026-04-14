@@ -180,7 +180,7 @@ export const it = {
     selectCity: "Seleziona Città",
     viewMap: "Vedi Mappa",
     partner: {
-      ritual: "Partnership Ritual",
+      ritual: "Diventa Partner",
       title: "Diventa un",
       titleAccent: "Partner Murgia",
       description: "Porta l'autenticità di Villacidro nel tuo locale. Unisciti alla nostra rete di distribuzione e scopri i vantaggi riservati ai professionisti della mixology.",
