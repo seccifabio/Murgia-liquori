@@ -192,7 +192,7 @@ function SuccessContent() {
         </div>
 
         {/* Visual Artifact Manifestation */}
-        <div className="relative min-h-[500px] flex items-center justify-center bg-black/60 border border-white/5 overflow-hidden group">
+        <div className="relative min-h-[500px] flex items-center justify-center bg-black border border-white/5 overflow-hidden group">
            {/* Abstract Aura */}
            <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 blur-3xl pointer-events-none" />
            
