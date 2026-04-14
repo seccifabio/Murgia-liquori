@@ -120,7 +120,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-6 md:gap-10 pointer-events-auto relative">
+        <div className="flex items-center gap-4 md:gap-10 pointer-events-auto relative">
           {/* Language Ritual Switcher */}
           <div className={`hidden md:flex items-center gap-4 font-heading text-xs tracking-[0.2em] uppercase ${iconColor}`}>
             <button 
