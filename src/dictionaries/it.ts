@@ -305,5 +305,19 @@ export const it = {
       }
     },
     archive: "Murgia Archivio"
+  },
+  contacts: {
+    title: "Contatti",
+    subtitle: "Distillazione di",
+    subtitleAccent: "Relazioni",
+    description: "Contatta il nostro laboratorio per informazioni sui nostri archetipi, collaborazioni o visite.",
+    info: {
+      location: "Cuore del Rito",
+      address: "Piazza Municipio 25, Villacidro (SU)",
+      email: "Email Terminal",
+      phone: "Telefono Rito",
+      opening: "Orari Alchemici",
+      hours: "Lun-Sab: 09:00 - 19:30"
+    }
   }
 };

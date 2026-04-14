@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import LiquidImage from "@/components/LiquidImage";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const products = [
   { name: "Murgia Bianco", price: "24€", img: "/images/products/bianco.png", href: "/shop/murgia-bianco" },
@@ -12,6 +13,8 @@ const products = [
 ];
 
 export default function ProdottiPage() {
+  const { t } = useTranslation();
+  
   return (
     <main className="bg-primary min-h-screen">
       
@@ -23,7 +26,9 @@ export default function ProdottiPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <span className="text-noir font-heading text-xl tracking-widest block uppercase mb-6">La Collezione Murgia</span>
+            <span className="text-noir font-heading text-xl tracking-widest block uppercase mb-6">
+              {t.collection.title} Murgia
+            </span>
             <div className="w-px h-8 bg-gradient-to-b from-noir/40 to-transparent mx-auto" />
           </motion.div>
 

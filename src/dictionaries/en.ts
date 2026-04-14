@@ -176,7 +176,7 @@ export const en = {
   },
   products: {
     common: {
-      addToCart: "Manifest in Bag",
+      addToCart: "ADD to Basket",
       selectFormat: "Select Format",
       quantity: "Quantity",
       ritual: "The Ritual",
@@ -305,5 +305,19 @@ export const en = {
       }
     },
     archive: "Murgia Archives"
+  },
+  contacts: {
+    title: "Connect",
+    subtitle: "Distillation of",
+    subtitleAccent: "Relationships",
+    description: "Contact our laboratory for information on our archetypes, collaborations, or visits.",
+    info: {
+      location: "Heart of the Ritual",
+      address: "Piazza Municipio 25, Villacidro (SU)",
+      email: "Email Terminal",
+      phone: "Phone Ritual",
+      opening: "Alchemical Hours",
+      hours: "Mon-Sat: 09:00 - 19:30"
+    }
   }
 };
