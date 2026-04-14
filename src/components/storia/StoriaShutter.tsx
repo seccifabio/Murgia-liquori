@@ -111,7 +111,7 @@ function StoriaPhase({
                     transition={{ 
                       duration: 45, 
                       repeat: Infinity, 
-                      ease: "linear" 
+                      ease: "linear" as const
                     }}
                     src={phase.floatingImg} 
                     alt="Archival Monument" 
@@ -147,7 +147,7 @@ function StoriaPhase({
               initial={isMobile ? { opacity: 0, y: 30 } : {}}
               whileInView={isMobile ? { opacity: 1, y: 0 } : {}}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: "easeOut" as const }}
               style={{ y: isMobile ? 0 : titleY }} 
               className="text-white font-heading text-6xl md:text-8xl lg:text-[10rem] uppercase tracking-tighter leading-[0.9] md:leading-[0.7] italic mt-8 mb-10"
             >

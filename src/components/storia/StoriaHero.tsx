@@ -24,7 +24,7 @@ export default function StoriaHero() {
   const opacity = useTransform(scrollYProgress, [0.4, 0.8], [1, 0]);
 
   const introTransition = isMobile 
-    ? { duration: 0.6, ease: "easeOut" } 
+    ? { duration: 0.6, ease: "easeOut" as const } 
     : { delay: 0.5, duration: 1 };
 
   return (
