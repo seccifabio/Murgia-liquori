@@ -85,6 +85,11 @@ export default function NarrativeFlow() {
 
         {/* Collection fallback for mobile */}
         <div className="bg-primary -mx-6 px-6 py-20">
+          <div className="text-center mb-10">
+            <span className="text-noir font-heading text-lg tracking-widest block uppercase underline decoration-noir underline-offset-8">
+              {t.origins.products.title}
+            </span>
+          </div>
           <div className="grid grid-cols-1 gap-12 max-w-7xl w-full">
             {products.map((p) => (
               <Link key={p.name} href={p.href} className="group relative block">
