@@ -60,7 +60,7 @@ export const en = {
       description: "Saffron, Anise, and Family Secrets.",
     },
     products: {
-      title: "Nocturnal Archetypes",
+      title: "Murgia Collection",
       cta: "Explore Full Collection"
     }
   },

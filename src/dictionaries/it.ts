@@ -60,7 +60,7 @@ export const it = {
       description: "Zafferano, Anice e Segreti di Famiglia.",
     },
     products: {
-      title: "Archetipi della Notte",
+      title: "Collezione Murgia",
       cta: "Vedi tutta la Collezione"
     }
   },
