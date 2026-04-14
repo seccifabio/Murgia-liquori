@@ -30,8 +30,8 @@ export const en = {
     links: {
       story: "The Heritage",
       collection: "The Collection",
-      locations: "Destinations",
-      contacts: "Connect",
+      locations: "FIND US",
+      contacts: "CONTACT US",
     },
     social: {
       instagram: "Instagram",
