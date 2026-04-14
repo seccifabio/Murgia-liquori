@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export default function StoriaHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,12 +10,21 @@ export default function StoriaHero() {
     offset: ["start start", "end start"]
   });
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const textX = useTransform(scrollYProgress, [0, 1], [0, -2000]);
-  const maskScale = useTransform(scrollYProgress, [0, 0.8], [1, 15]);
-  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+  const maskScale = useTransform(scrollYProgress, [0, 0.8], [1, isMobile ? 1.5 : 15]);
+  const opacity = useTransform(scrollYProgress, [0.4, 0.8], [1, 0]);
 
   return (
-    <div ref={containerRef} className="relative h-[200vh] bg-noir">
+    <div ref={containerRef} className={`relative ${isMobile ? 'h-[120vh]' : 'h-[200vh]'} bg-noir`}>
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         {/* Archival Background Photo */}
         <div className="absolute inset-0 z-0">
@@ -31,24 +40,30 @@ export default function StoriaHero() {
           style={{ scale: maskScale, opacity }}
           className="relative z-10 w-full h-full flex items-center justify-center pointer-events-none"
         >
-          <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <mask id="storia-mask" maskUnits="userSpaceOnUse">
-                <rect width="1000" height="1000" fill="white" />
-                <text 
-                  x="500" 
-                  y="500" 
-                  textAnchor="middle" 
-                  dominantBaseline="middle" 
-                  className="font-heading text-[250px] font-black italic" 
-                  fill="black"
-                >
-                  1882
-                </text>
-              </mask>
-            </defs>
-            <rect width="1000" height="1000" fill="#F4B400" mask="url(#storia-mask)" />
-          </svg>
+          {isMobile ? (
+            <div className="bg-[#F4B400] w-full h-full flex items-center justify-center">
+               <h2 className="font-heading text-[120px] font-black italic text-black leading-none">1882</h2>
+            </div>
+          ) : (
+            <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <mask id="storia-mask" maskUnits="userSpaceOnUse">
+                  <rect width="1000" height="1000" fill="white" />
+                  <text 
+                    x="500" 
+                    y="500" 
+                    textAnchor="middle" 
+                    dominantBaseline="middle" 
+                    className="font-heading text-[250px] font-black italic" 
+                    fill="black"
+                  >
+                    1882
+                  </text>
+                </mask>
+              </defs>
+              <rect width="1000" height="1000" fill="#F4B400" mask="url(#storia-mask)" />
+            </svg>
+          )}
         </motion.div>
 
         {/* Narrative Intro Overlay */}

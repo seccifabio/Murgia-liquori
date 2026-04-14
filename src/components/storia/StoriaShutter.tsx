@@ -103,7 +103,7 @@ function StoriaPhase({
                 {/* Internal Mask Terminal */}
                 <div className="relative w-full h-full overflow-hidden bg-noir shadow-inner">
                   <motion.img 
-                    animate={{ 
+                    animate={isMobile ? {} : { 
                       x: ["-5%", "5%", "-5%"], 
                       y: ["-3%", "3%", "-3%"],
                       scale: [1, 1.05, 1],
@@ -133,17 +133,37 @@ function StoriaPhase({
           className="relative h-full p-8 md:p-20 lg:p-32 pt-24 md:pt-32 flex flex-col justify-center z-30 w-full md:w-1/2 bg-noir"
         >
           <div className="mb-8">
-            <motion.span style={{ y: isMobile ? 0 : bodyY }} className="text-primary font-heading text-xl tracking-[0.4em] uppercase block mb-6 border-l-2 border-primary pl-6">
+            <motion.span 
+              initial={isMobile ? { opacity: 0, x: -20 } : {}}
+              whileInView={isMobile ? { opacity: 1, x: 0 } : {}}
+              style={{ y: isMobile ? 0 : bodyY }} 
+              className="text-primary font-heading text-xl tracking-[0.4em] uppercase block mb-6 border-l-2 border-primary pl-6"
+            >
               {phase.year}
             </motion.span>
-            <motion.h2 style={{ y: isMobile ? 0 : titleY }} className="text-white font-heading text-6xl md:text-8xl lg:text-[10rem] uppercase tracking-tighter leading-[0.9] md:leading-[0.7] italic mt-8 mb-10">
+            <motion.h2 
+              initial={isMobile ? { opacity: 0, y: 30 } : {}}
+              whileInView={isMobile ? { opacity: 1, y: 0 } : {}}
+              style={{ y: isMobile ? 0 : titleY }} 
+              className="text-white font-heading text-6xl md:text-8xl lg:text-[10rem] uppercase tracking-tighter leading-[0.9] md:leading-[0.7] italic mt-8 mb-10"
+            >
               {phase.title}
             </motion.h2>
-            <motion.h3 style={{ y: isMobile ? 0 : bodyY }} className="text-white/40 font-heading text-2xl md:text-3xl uppercase tracking-widest">
+            <motion.h3 
+              initial={isMobile ? { opacity: 0 } : {}}
+              whileInView={isMobile ? { opacity: 1 } : {}}
+              style={{ y: isMobile ? 0 : bodyY }} 
+              className="text-white/40 font-heading text-2xl md:text-3xl uppercase tracking-widest"
+            >
               {phase.subtitle}
             </motion.h3>
           </div>
-          <motion.p style={{ y: isMobile ? 0 : bodyY }} className="text-white/70 font-body text-sm md:text-lg lg:text-xl leading-relaxed tracking-wide italic max-w-2xl mt-8">
+          <motion.p 
+            initial={isMobile ? { opacity: 0 } : {}}
+            whileInView={isMobile ? { opacity: 1 } : {}}
+            style={{ y: isMobile ? 0 : bodyY }} 
+            className="text-white/70 font-body text-sm md:text-lg lg:text-xl leading-relaxed tracking-wide italic max-w-2xl mt-8"
+          >
             {phase.description}
           </motion.p>
           <div className="mt-12 md:mt-20 flex items-center gap-12 opacity-20">

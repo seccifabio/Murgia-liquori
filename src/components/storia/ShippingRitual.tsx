@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useTranslation } from "@/context/LanguageContext";
 
 export default function ShippingRitual() {
@@ -32,6 +32,15 @@ export default function ShippingRitual() {
     }
   ];
   
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -39,6 +48,54 @@ export default function ShippingRitual() {
 
   // Kinetic Horizontal Traversal: Map vertical scroll to horizontal x translation
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66.66%"]);
+
+  if (isMobile) {
+    return (
+      <section ref={containerRef} className="relative bg-noir py-24 space-y-32 px-6">
+        {STAGES.map((stage, i) => (
+          <div key={stage.id} className="relative space-y-12">
+            {/* Focal Point Indicator */}
+            <div className="flex items-center gap-4">
+              <span className="font-heading text-primary text-xl tracking-tighter">0{i + 1}</span>
+              <div className="h-px flex-1 bg-white/10" />
+              <span className="font-heading text-[10px] tracking-[0.4em] uppercase text-white/40 italic">{stage.metric}</span>
+            </div>
+
+            {/* Cinematic Asset */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative aspect-[4/5] rounded-xl overflow-hidden border border-white/10"
+            >
+              <img 
+                src={stage.img} 
+                alt={stage.title} 
+                className="w-full h-full object-cover grayscale" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-noir via-transparent to-transparent" />
+            </motion.div>
+
+            {/* Narrative Context */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="space-y-6"
+            >
+              <h3 className="font-heading text-6xl uppercase tracking-tighter leading-none text-white italic">
+                {stage.title.split(' ')[0]} <br/> 
+                <span className="text-primary">{stage.title.split(' ')[1]}</span>
+              </h3>
+              <p className="font-body text-white/60 text-lg italic tracking-wide leading-relaxed border-l border-primary/30 pl-6">
+                {stage.description}
+              </p>
+            </motion.div>
+          </div>
+        ))}
+      </section>
+    );
+  }
 
   return (
     <section ref={containerRef} className="relative h-[300vh] bg-noir">
