@@ -32,7 +32,7 @@ const BIANCO_COCKTAILS = [
     img: "/images/aperitivo/zz.webp",
     description: "Villacidro Bianco, Acqua Tonica, rametto di Finocchio Selvatico. La purezza della Sardegna nel bicchiere.",
     height: 480,
-    ingredients: ["5cl Villacidro Murgia Bianco", "15cl Acqua Tonica Mediterranea", "Rametto di Finocchietto Selvatico", "Grani di Pepe Rosa"],
+    ingredients: ["5cl Murgia Bianco", "15cl Acqua Tonica Mediterranea", "Rametto di Finocchietto Selvatico", "Grani di Pepe Rosa"],
     instructions: ["In un bicchiere alto colmo di ghiaccio, versare il Villacidro Bianco.", "Aggiungere la tonica lentamente.", "Guarnire con finocchietto e pepe rosa."]
   }
 ];

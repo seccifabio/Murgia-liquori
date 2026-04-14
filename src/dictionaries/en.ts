@@ -210,7 +210,7 @@ export const en = {
       ]
     },
     sbagliata: {
-      name: "Murgia Sbagliato",
+      name: "La Sbagliata",
       heroTagline: "The Nocturnal Ritual",
       ritualDescription: "A bold alchemy born from a perfect error. The spirit that challenges tradition with elegance.",
       ingredients: [

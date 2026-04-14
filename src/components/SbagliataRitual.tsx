@@ -17,6 +17,7 @@ export default function SbagliataRitual() {
       id: "la-sbagliata",
       name: t.products.sbagliata.name,
       price: "35€",
+      ingredients: ["5cl Villacidro Giallo", "15cl Acqua Tonica Premium", "Spicchio di Lime", "Scorza di Limone", "Ramoscello di Timo"],
       priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
       quantity: quantity,
       format: selectedFormat,
@@ -67,7 +68,7 @@ export default function SbagliataRitual() {
         >
           <img 
             src="/images/sbagliata_product.png" 
-            alt="Murgia Sbagliato" 
+            alt="La Sbagliata" 
             className="h-[40vh] md:h-[60vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.6)] mx-auto" 
           />
         </motion.div>

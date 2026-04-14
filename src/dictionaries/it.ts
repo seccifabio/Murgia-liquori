@@ -246,7 +246,7 @@ export const it = {
       ]
     },
     sbagliata: {
-      name: "Murgia Sbagliato",
+      name: "La Sbagliata",
       heroTagline: "Il Rituale Notturno",
       ritualDescription: "Un'alchimia audace nata da un errore perfetto. Lo spirito che sfida la tradizione con eleganza.",
       ingredients: [

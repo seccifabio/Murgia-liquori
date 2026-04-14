@@ -67,7 +67,7 @@ export default function BiancoRitual() {
         >
           <img 
             src="/images/bianco_product.png" 
-            alt="Villacidro Bianco Murgia" 
+            alt="Murgia Bianco" 
             className="h-[40vh] md:h-[60vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.6)] mx-auto" 
           />
         </motion.div>

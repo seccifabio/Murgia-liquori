@@ -9,7 +9,7 @@ import { useTranslation } from "@/context/LanguageContext";
 const products = [
   { name: "Murgia Bianco", price: "24€", img: "/images/bianco_product.png", href: "/shop/murgia-bianco" },
   { name: "Villacidro Giallo", price: "26€", img: "/images/giallo.webp", href: "/shop/villacidro-giallo" },
-  { name: "Murgia Sbagliato", price: "15€", img: "/images/sbagliata_product.png", href: "/shop/la-sbagliata" },
+  { name: "La Sbagliata", price: "15€", img: "/images/sbagliata_product.png", href: "/shop/la-sbagliata" },
 ];
 
 export default function ProdottiPage() {

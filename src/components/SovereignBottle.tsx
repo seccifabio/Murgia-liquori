@@ -33,7 +33,7 @@ export default function SovereignBottle() {
       >
         <img 
           src="/images/giallo_sovereign.png" 
-          alt="Villacidro Giallo Murgia Sovereign Bottle" 
+          alt="Villacidro Giallo" 
           className="h-[45vh] md:h-[55vh] w-auto drop-shadow-2xl"
         />
       </motion.div>

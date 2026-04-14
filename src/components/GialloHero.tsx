@@ -93,7 +93,7 @@ export default function GialloHero() {
       >
         <img 
           src="/images/giallo_sovereign.png" 
-          alt="Villacidro Giallo Murgia" 
+          alt="Bottiglia di Villacidro Giallo" 
           className="h-[40vh] md:h-[60vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.6)]"
         />
       </motion.div>
