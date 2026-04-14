@@ -20,7 +20,7 @@ export default function SbagliataRitual() {
       priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
       quantity: quantity,
       format: selectedFormat,
-      img: "/images/products/sbagliata.png"
+      img: "/images/sbagliata_product.png"
     });
   };
 
@@ -66,7 +66,7 @@ export default function SbagliataRitual() {
           className="relative md:absolute md:bottom-[-35px] md:right-0 z-20 pointer-events-none mt-10 md:mt-0"
         >
           <img 
-            src="/images/products/sbagliata.png" 
+            src="/images/sbagliata_product.png" 
             alt="Murgia Sbagliato" 
             className="h-[40vh] md:h-[60vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.6)] mx-auto" 
           />

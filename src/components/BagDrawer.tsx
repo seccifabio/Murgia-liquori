@@ -105,11 +105,10 @@ export default function BagDrawer() {
                   {items.map((item) => (
                     <div key={`${item.id}-${item.format}`} className="flex gap-6 group relative">
                       <div className="relative w-28 h-36 bg-white/5 rounded-lg overflow-hidden border border-white/5 flex-shrink-0">
-                        <Image
+                        <img
                           src={item.img}
                           alt={item.name}
-                          fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                       </div>
                       

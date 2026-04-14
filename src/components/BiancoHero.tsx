@@ -1,12 +1,19 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useTranslation } from "@/context/LanguageContext";
 
 export default function BiancoHero() {
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(err => console.log("Video play blocked:", err));
+    }
+  }, []);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
@@ -20,20 +27,21 @@ export default function BiancoHero() {
   return (
     <section 
       ref={containerRef}
-      className="relative h-screen w-full overflow-hidden bg-noir pt-20"
+      className="relative h-screen w-full overflow-hidden bg-noir"
     >
       <motion.div 
         style={{ scale: videoScale, opacity: videoOpacity }}
         className="absolute inset-0 w-full h-full z-0"
       >
         <video 
+          ref={videoRef}
           autoPlay 
           muted 
           loop 
           playsInline 
           className="w-full h-full object-cover opacity-50"
         >
-          <source src="/videos/bianco_hero.mp4" type="video/mp4" />
+          <source src="/videos/bianco.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-noir via-transparent to-noir" />
       </motion.div>
