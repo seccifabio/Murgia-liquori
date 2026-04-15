@@ -18,7 +18,7 @@ export default function LaunchBanner() {
   const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
   const scaleValue = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1, 1.1]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const saturateValue = useTransform(scrollYProgress, [0.3, 0.6], [2.5, 1]);
+  const saturateValue = useTransform(scrollYProgress, [0.3, 0.6], [1.4, 1]);
   const filterValue = useTransform(saturateValue, (v) => `saturate(${v})`);
 
   return (
