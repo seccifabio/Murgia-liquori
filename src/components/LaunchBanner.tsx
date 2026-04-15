@@ -78,7 +78,7 @@ export default function LaunchBanner() {
           whileInView={{ y: 0, opacity: 1, rotate: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute right-0 bottom-[50px] w-[60vw] md:w-[40vw] h-full flex items-end justify-end z-10 translate-y-20 translate-x-10 pointer-events-none"
+          className="absolute left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-10 bottom-[50px] w-[80vw] md:w-[40vw] h-full flex items-end justify-center md:justify-end z-10 translate-y-20 pointer-events-none"
         >
           <motion.div 
             style={{ filter: filterValue }}
