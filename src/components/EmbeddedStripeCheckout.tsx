@@ -40,7 +40,7 @@ export default function EmbeddedStripeCheckout({ items, onClose }: EmbeddedStrip
     <div className="w-full h-full flex flex-col bg-[#F4B400]">
       {/* Header Ritual */}
       <div className="p-8 pt-20 border-b border-black/10 flex items-center justify-between sticky top-0 bg-[#F4B400] z-50">
-        <h3 className="font-heading text-2xl tracking-[0.2em] text-black uppercase">Check Out Ritual</h3>
+        <h3 className="font-heading text-2xl tracking-[0.2em] text-black uppercase">Checkout</h3>
 
         <button 
           onClick={onClose}
