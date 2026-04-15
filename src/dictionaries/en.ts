@@ -334,6 +334,7 @@ export const en = {
     vaultPlaceholder: "YOUR EMAIL...",
     vaultSubmit: "SEAL",
     vaultSuccess: "SEAL AFFIXED",
-    vaultSubscribe: "I wish to receive updates on Murgia events and new products."
+    vaultSubscribe: "I wish to receive updates on Murgia events and new products.",
+    comingSoon: "Coming Soon"
   }
 };

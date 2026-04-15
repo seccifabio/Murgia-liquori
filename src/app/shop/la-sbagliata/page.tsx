@@ -4,7 +4,7 @@ import SbagliataHero from "@/components/SbagliataHero";
 import SbagliataRitual from "@/components/SbagliataRitual";
 import SbagliataSpecs from "@/components/SbagliataSpecs";
 import SbagliataCocktails from "@/components/SbagliataCocktails";
-import GialloNextProducts from "@/components/GialloNextProducts";
+import ProductDiscovery from "@/components/ProductDiscovery";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 
@@ -29,7 +29,7 @@ export default function LaSbagliataPage() {
       <SbagliataCocktails />
 
       {/* Collection Discovery */}
-      <GialloNextProducts exclude="La Sbagliata" />
+      <ProductDiscovery exclude="La Sbagliata" />
 
       <Footer />
     </main>

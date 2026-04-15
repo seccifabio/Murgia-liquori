@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useTranslation } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
 
-export default function LaunchBanner() {
+export default function LaunchBanner({ variant = "hero" }: { variant?: "hero" | "discovery" }) {
   const { t } = useTranslation();
   const { setIsPreLaunchOpen } = useCart();
   
@@ -21,10 +21,12 @@ export default function LaunchBanner() {
   const saturateValue = useTransform(scrollYProgress, [0.3, 0.6], [1.4, 1]);
   const filterValue = useTransform(saturateValue, (v) => `saturate(${v})`);
 
+  const isDiscovery = variant === "discovery";
+
   return (
     <section 
       ref={containerRef}
-      className="relative w-full h-[90vh] md:h-[80vh] overflow-hidden bg-noir mt-20 border-t border-white/5"
+      className={`relative w-full overflow-hidden bg-noir ${isDiscovery ? 'h-[50vh]' : 'h-[90vh] md:h-[80vh] mt-20 border-t border-white/5'}`}
     >
       {/* Background: Heritage Manifest */}
       <motion.div 
@@ -48,17 +50,17 @@ export default function LaunchBanner() {
       </motion.div>
 
       {/* Content Layer: The New Artifact */}
-      <div className="relative z-10 w-full h-full max-w-7xl mx-auto px-6 py-12 md:py-0 flex flex-col md:flex-row items-center justify-between pointer-events-none">
+      <div className={`relative z-10 w-full h-full max-w-7xl mx-auto px-6 py-12 md:py-0 flex flex-col md:flex-row items-center ${isDiscovery ? 'justify-center' : 'justify-between'} md:justify-between pointer-events-none`}>
         <motion.div 
           style={{ opacity }}
-          className="flex-1 flex flex-col items-center md:items-start text-center md:text-left space-y-4 md:space-y-8"
+          className={`flex-1 flex flex-col items-center md:items-start ${isDiscovery ? 'justify-center' : 'justify-start'} text-center md:text-left ${isDiscovery ? 'space-y-2 md:space-y-4' : 'space-y-4 md:space-y-8'}`}
         >
-          <span className="text-primary font-heading text-lg md:text-2xl tracking-[0.5em] uppercase italic">
+          <span className={`text-primary font-heading tracking-[0.5em] uppercase italic ${isDiscovery ? 'text-sm md:text-lg' : 'text-lg md:text-2xl'}`}>
             {t.launchBanner.subtitle}
           </span>
-          <h2 className="text-white font-heading text-5xl md:text-9xl uppercase tracking-tighter leading-none" dangerouslySetInnerHTML={{ __html: t.launchBanner.title.replace(' ', '<br />') }} />
-          <p className="text-white/40 font-heading text-[10px] md:text-lg tracking-[0.2em] uppercase max-w-xs md:max-w-md">
-            {t.launchBanner.description}
+          <h2 className={`text-white font-heading uppercase tracking-tighter leading-none ${isDiscovery ? 'text-3xl md:text-6xl text-center md:text-left' : 'text-5xl md:text-9xl'}`} dangerouslySetInnerHTML={{ __html: isDiscovery ? t.launchBanner.title : t.launchBanner.title.replace(' ', '<br />') }} />
+          <p className="text-white/40 font-heading text-[10px] md:text-sm tracking-[0.2em] uppercase max-w-xs md:max-w-md">
+            {isDiscovery ? t.launchBanner.comingSoon : t.launchBanner.description}
           </p>
           
           <div className="pt-2 md:pt-4 pointer-events-auto">
@@ -78,7 +80,7 @@ export default function LaunchBanner() {
           whileInView={{ y: 0, opacity: 1, rotate: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-10 bottom-[50px] w-[80vw] md:w-[40vw] h-full flex items-end justify-center md:justify-end z-10 translate-y-20 pointer-events-none"
+          className={`absolute left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-10 bottom-[50px] w-[80vw] md:w-[40vw] h-full flex items-end justify-center md:justify-end z-10 translate-y-20 pointer-events-none ${isDiscovery ? 'hidden md:flex' : ''}`}
         >
           <motion.div 
             style={{ filter: filterValue }}

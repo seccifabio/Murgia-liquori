@@ -4,7 +4,7 @@ import BiancoHero from "@/components/BiancoHero";
 import BiancoRitual from "@/components/BiancoRitual";
 import BiancoSpecs from "@/components/BiancoSpecs";
 import BiancoCocktails from "@/components/BiancoCocktails";
-import GialloNextProducts from "@/components/GialloNextProducts";
+import ProductDiscovery from "@/components/ProductDiscovery";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 
@@ -29,7 +29,7 @@ export default function MurgiaBiancoPage() {
       <BiancoCocktails />
 
       {/* Collection Discovery */}
-      <GialloNextProducts exclude="Murgia Bianco" />
+      <ProductDiscovery exclude="Murgia Bianco" />
 
       <Footer />
     </main>

@@ -4,7 +4,7 @@ import GialloHero from "@/components/GialloHero";
 import GialloRitual from "@/components/GialloRitual";
 import GialloSpecs from "@/components/GialloSpecs";
 import GialloCocktails from "@/components/GialloCocktails";
-import GialloNextProducts from "@/components/GialloNextProducts";
+import ProductDiscovery from "@/components/ProductDiscovery";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 
@@ -30,7 +30,7 @@ export default function VillacidroGialloPage() {
       <GialloCocktails />
 
       {/* Terminal Phase: Collection Discovery */}
-      <GialloNextProducts exclude="Villacidro Giallo" />
+      <ProductDiscovery exclude="Villacidro Giallo" />
 
       <Footer />
     </main>

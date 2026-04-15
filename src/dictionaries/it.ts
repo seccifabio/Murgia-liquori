@@ -334,6 +334,7 @@ export const it = {
     vaultPlaceholder: "TUA EMAIL...",
     vaultSubmit: "SIGILLA",
     vaultSuccess: "SIGILLO APPOSTO",
-    vaultSubscribe: "Desidero ricevere aggiornamenti su eventi e nuovi prodotti Murgia."
+    vaultSubscribe: "Desidero ricevere aggiornamenti su eventi e nuovi prodotti Murgia.",
+    comingSoon: "In Arrivo"
   }
 };
