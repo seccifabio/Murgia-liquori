@@ -54,7 +54,7 @@ export default function AperitivoSection() {
   return (
     <section 
       ref={containerRef} 
-      className={`relative bg-primary py-32 px-6 md:px-12 min-h-screen ${isModalOpen ? 'z-[100000]' : 'z-[110]'}`}
+      className={`relative bg-primary py-20 md:py-24 px-6 md:px-12 ${isModalOpen ? 'z-[100000]' : 'z-[110]'}`}
     >
       <div className="max-w-[1600px] mx-auto flex flex-col items-center">
         {/* HEADER SECTION - Always visible, clean typography */}

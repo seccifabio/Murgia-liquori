@@ -1,3 +1,5 @@
+"use client";
+
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
@@ -15,7 +17,7 @@ export default function LaunchBanner({ variant = "hero" }: { variant?: "hero" | 
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [-100, 100]);
+  const y = useTransform(scrollYProgress, [0, 1], [-30, 30]);
   const scaleValue = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1, 1.1]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   const saturateValue = useTransform(scrollYProgress, [0.3, 0.6], [1.4, 1]);
@@ -31,7 +33,6 @@ export default function LaunchBanner({ variant = "hero" }: { variant?: "hero" | 
       {/* Background: Heritage Manifest */}
       <motion.div 
         style={{ 
-          y, 
           scale: scaleValue,
           maskImage: 'linear-gradient(to right, black, black 30%, transparent 90%)',
           WebkitMaskImage: 'linear-gradient(to right, black, black 30%, transparent 90%)'
@@ -52,7 +53,7 @@ export default function LaunchBanner({ variant = "hero" }: { variant?: "hero" | 
       {/* Content Layer: The New Artifact */}
       <div className={`relative z-10 w-full h-full max-w-7xl mx-auto px-6 py-12 md:py-0 flex flex-col md:flex-row items-center ${isDiscovery ? 'justify-center' : 'justify-between'} md:justify-between pointer-events-none`}>
         <motion.div 
-          style={{ opacity }}
+          style={{ opacity, y }}
           className={`flex-1 flex flex-col items-center md:items-start ${isDiscovery ? 'justify-center' : 'justify-start'} text-center md:text-left ${isDiscovery ? 'space-y-2 md:space-y-4' : 'space-y-4 md:space-y-8'}`}
         >
           <span className={`text-primary font-heading tracking-[0.5em] uppercase italic ${isDiscovery ? 'text-sm md:text-lg' : 'text-lg md:text-2xl'}`}>

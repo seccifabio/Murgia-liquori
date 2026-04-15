@@ -57,7 +57,7 @@ export default function NarrativeFlow() {
       className="relative bg-noir z-10"
     >
       {/* 📱 MOBILE: Simple Vertical Manifest */}
-      <div className="md:hidden flex flex-col gap-32 py-24 px-6">
+      <div className="md:hidden flex flex-col gap-32 pt-24 pb-0 px-6">
         <div className="space-y-8">
           <span className="text-primary font-heading text-xl tracking-widest block uppercase">{t.origins.title}</span>
           <h2 className="text-white font-heading text-[2.5rem] leading-[1.2] md:leading-none uppercase">
@@ -103,6 +103,14 @@ export default function NarrativeFlow() {
                 </div>
               </Link>
             ))}
+          </div>
+          
+          <div className="mt-12 flex justify-center">
+            <Link href="/la-collezione" className="murgia-btn-noir px-12 py-5 text-xs tracking-[0.3em] uppercase transform active:scale-95">
+              <span className="murgia-btn-text">{t.origins.products.cta}</span>
+              <ArrowRight className="murgia-btn-icon" />
+              <div className="murgia-btn-hover-wipe" />
+            </Link>
           </div>
         </div>
       </div>

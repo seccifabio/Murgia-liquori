@@ -56,6 +56,12 @@ export default function ProductDiscovery({ exclude }: { exclude?: string }) {
             >
               {/* Static High-Fidelity Preview Ritual */}
               <div className="w-full h-full relative p-12 flex items-center justify-center">
+                {/* Mobile Identity Manifest: Visible where hover is absent */}
+                <div className="md:hidden absolute top-12 left-0 w-full text-center z-20">
+                  <h4 className="text-white font-heading text-2xl uppercase tracking-tighter">{product.name}</h4>
+                  <span className="text-primary font-heading text-[10px] tracking-[0.3em] uppercase block mt-1">{t.products.common.discover}</span>
+                </div>
+
                 <img 
                   src={product.image} 
                   alt={product.name} 
