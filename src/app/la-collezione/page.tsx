@@ -2,7 +2,7 @@
 
 import Footer from "@/components/Footer";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import LiquidImage from "@/components/LiquidImage";
 import LaunchBanner from "@/components/LaunchBanner";
 import { useTranslation } from "@/context/LanguageContext";
@@ -16,7 +16,7 @@ const products = [
 export default function ProdottiPage() {
   const { t } = useTranslation();
 
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -27,7 +27,7 @@ export default function ProdottiPage() {
     }
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { y: 40, opacity: 0 },
     show: { 
       y: 0, 
