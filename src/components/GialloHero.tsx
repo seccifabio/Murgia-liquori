@@ -89,7 +89,7 @@ export default function GialloHero() {
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 1 }}
-        className="absolute bottom-[5%] md:bottom-[-2%] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[-2%] z-20 pointer-events-none"
+        className="absolute bottom-[5%] md:bottom-[-2%] left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-[-2%] z-20 pointer-events-none hidden md:block"
       >
         <img 
           src="/images/giallo_sovereign.png" 
