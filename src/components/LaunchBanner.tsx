@@ -74,20 +74,21 @@ export default function LaunchBanner() {
         </motion.div>
 
         <motion.div 
-          initial={{ y: 100, opacity: 0, rotate: 5 }}
+          initial={{ y: 200, opacity: 0, rotate: 10 }}
           whileInView={{ y: 0, opacity: 1, rotate: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-1 relative w-full h-[50vh] md:h-[70vh] flex items-center justify-center mt-6 md:mt-0"
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute right-0 bottom-0 w-[60vw] md:w-[40vw] h-full flex items-end justify-end z-10 translate-y-20 translate-x-10 pointer-events-none"
         >
           <motion.div 
             style={{ filter: filterValue }}
-            className="relative w-full h-full transition-all duration-700"
+            className="relative w-full h-full transition-all duration-700 pointer-events-auto"
           >
              <Image 
                src="/images/launch/liquore.png"
                alt="New Murgia Product"
                fill
-               className="object-contain"
+               className="object-contain object-right-bottom"
              />
           </motion.div>
         </motion.div>
