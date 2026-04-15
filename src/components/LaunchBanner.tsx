@@ -36,11 +36,13 @@ export default function LaunchBanner() {
         }}
         className="absolute inset-0 z-0"
       >
-        <Image 
-          src="/images/launch/heritage_bg.png"
-          alt="Murgia Heritage"
-          fill
-          className="object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-1000"
+        <video 
+          src="/images/launch/liquore.mp4"
+          className="w-full h-full object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-1000"
+          autoPlay
+          muted
+          loop
+          playsInline
         />
         <div className="absolute inset-0 bg-gradient-to-b from-noir via-transparent to-noir" />
       </motion.div>
