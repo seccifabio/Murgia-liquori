@@ -38,7 +38,7 @@ export default function LaunchBanner() {
       >
         <video 
           src="/images/launch/liquore.mp4"
-          className="w-full h-full object-cover opacity-80 grayscale hover:grayscale-0 transition-all duration-1000"
+          className="w-full h-full object-cover opacity-80 grayscale-100 saturate-0 transition-all duration-1000"
           autoPlay
           muted
           loop
