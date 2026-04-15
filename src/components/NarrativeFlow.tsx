@@ -162,8 +162,10 @@ export default function NarrativeFlow() {
             animate={{ opacity: isSealed ? 1 : 0 }}
             className={`absolute inset-0 z-30 flex flex-col items-center justify-center pt-24 pb-20 bg-primary transition-opacity duration-700 ${isSealed ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
           >
-            <header className="text-center mb-10 mt-10">
-              <span className="text-noir font-heading text-4xl tracking-[0.2em] block uppercase font-bold">{t.origins.products.title}</span>
+            <header className="text-center mb-16 mt-10">
+              <span className="text-noir font-heading text-xs md:text-sm tracking-[0.4em] uppercase underline decoration-noir/30 underline-offset-8 italic mb-4 block font-bold">
+                {t.origins.products.title}
+              </span>
             </header>
 
             <div className="grid grid-cols-3 gap-8 px-20 max-w-6xl w-full">
