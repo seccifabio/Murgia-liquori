@@ -38,13 +38,13 @@ export default function LaunchBanner() {
       >
         <video 
           src="/images/launch/liquore.mp4"
-          className="w-full h-full object-cover opacity-40 grayscale hover:grayscale-0 transition-all duration-1000"
+          className="w-full h-full object-cover opacity-80 grayscale hover:grayscale-0 transition-all duration-1000"
           autoPlay
           muted
           loop
           playsInline
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-noir via-transparent to-noir" />
+        <div className="absolute inset-0 bg-gradient-to-b from-noir via-transparent to-noir opacity-40" />
       </motion.div>
 
       {/* Content Layer: The New Artifact */}
