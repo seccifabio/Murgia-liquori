@@ -6,6 +6,7 @@ description: Lists all custom skills, personas, and MCP tools available in this 
 
 ## Available Creative Commands
 - **/motion [URL]**: Fetches and implements animations from ReactBits or Aceternity.
+- **/design-system**: Displays the Murgia Design System Manifest and alchemical tokens.
 - **/perfect """[prompt]"""**: Uses the CO-STAR framework to refine your ideas.
 - **/vibe-check**: Researches current design trends via Exa Search.
 
