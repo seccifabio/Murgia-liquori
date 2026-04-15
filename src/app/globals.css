@@ -33,6 +33,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Accessibility: Global Interactive Cursors */
+button, 
+a, 
+[role="button"],
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 /* Custom Utilities */
 .text-stroke {
   -webkit-text-stroke: 1px var(--primary);
@@ -71,4 +79,63 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: var(--primary);
   border-radius: 10px;
+}
+/* Murgia Design System: Button Tokens */
+.murgia-btn-primary, .murgia-btn-noir {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-transform: uppercase;
+  font-family: var(--font-heading);
+  transition: all 0.5s ease;
+}
+
+.murgia-btn-primary {
+  @apply bg-primary text-noir;
+}
+
+.murgia-btn-noir {
+  @apply bg-noir text-primary border border-primary/20;
+}
+
+.murgia-btn-hover-wipe {
+  position: absolute;
+  inset: 0;
+  background-color: white;
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+.murgia-btn-text {
+  position: relative;
+  z-index: 10;
+  font-weight: 700;
+  transition: color 0.5s ease;
+}
+
+.murgia-btn-icon {
+  position: relative;
+  z-index: 10;
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: all 0.5s ease;
+}
+
+/* Hover Interaction Manifest */
+.murgia-btn-primary:hover .murgia-btn-hover-wipe,
+.murgia-btn-noir:hover .murgia-btn-hover-wipe {
+  transform: translateY(0);
+}
+
+.murgia-btn-noir:hover .murgia-btn-text,
+.murgia-btn-noir:hover .murgia-btn-icon {
+  @apply text-noir;
+}
+
+.murgia-btn-primary:hover .murgia-btn-icon,
+.murgia-btn-noir:hover .murgia-btn-icon {
+  transform: translateX(0.5rem);
 }

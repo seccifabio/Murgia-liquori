@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Trash2, ShoppingBag, ArrowRight, Edit3, Check } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import EmbeddedStripeCheckout from "./EmbeddedStripeCheckout";
@@ -11,7 +12,7 @@ import { MARKETING_MANIFEST } from "@/manifest/marketing";
 import { useTranslation } from "@/context/LanguageContext";
 
 
-export default function BagDrawer() {
+export default function BasketDrawer() {
   const { t } = useTranslation();
   const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total, appliedCode, setAppliedCode, discount } = useCart();
 
@@ -60,7 +61,7 @@ export default function BagDrawer() {
             className="fixed inset-0 bg-noir/80 backdrop-blur-sm z-[10000]"
           />
 
-          {/* Drawer: The Bag Terminal */}
+          {/* Drawer: The Basket Terminal */}
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -93,12 +94,13 @@ export default function BagDrawer() {
                   <p className="font-heading text-sm tracking-[0.3em] uppercase text-white/40">
                     {t.bag.empty}
                   </p>
-                  <button
+                  <Link
+                    href="/la-collezione"
                     onClick={() => setIsBagOpen(false)}
-                    className="text-primary font-heading text-xs tracking-widest uppercase border-b border-primary/20 pb-1 hover:border-primary transition-all"
+                    className="text-primary font-heading text-xs tracking-widest uppercase border-b border-primary/20 pb-1 hover:border-primary transition-all cursor-pointer"
                   >
                     {t.bag.shop}
-                  </button>
+                  </Link>
                 </div>
               ) : (
                 <>
@@ -262,14 +264,14 @@ export default function BagDrawer() {
                 <button 
                   onClick={handleCheckout}
                   disabled={isLoading}
-                  className={`w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.2em] md:tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 ${isLoading ? "opacity-70 cursor-wait" : ""}`}
+                  className={`w-full murgia-btn-primary py-8 text-sm tracking-[0.2em] md:tracking-[0.4em] transform hover:scale-[1.02] active:scale-95 ${isLoading ? "opacity-70 cursor-wait" : ""}`}
                 >
-                  <span className="relative z-10 font-bold px-4">
+                  <span className="murgia-btn-text px-4">
                     {isLoading ? t.bag.loading : `${t.bag.checkout} — €${(total - discount).toFixed(2)}`}
                   </span>
-                  {!isLoading && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}
+                  {!isLoading && <ArrowRight className="murgia-btn-icon" />}
                   {isLoading && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
-                  <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                  <div className="murgia-btn-hover-wipe" />
                 </button>
                 
                 <div className="mt-6 text-center text-white/40 font-heading text-[9px] tracking-[0.2em] uppercase italic leading-relaxed max-w-[300px] mx-auto">

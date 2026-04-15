@@ -212,7 +212,7 @@ export const it = {
   },
   products: {
     common: {
-      addToCart: "Aggiungi al carrello",
+      addToCart: "Aggiungi al basket",
       selectFormat: "Seleziona Formato",
       quantity: "Quantità",
       ritual: "Il Rito",
@@ -223,7 +223,8 @@ export const it = {
       formula: "Formula",
       secret: "Segreta (1882)",
       discover: "Scopri la Collezione",
-      ascend: "Ascendi"
+      ascend: "Ascendi",
+      otherProducts: "Altri Prodotti"
     },
     giallo: {
       name: "Villacidro Giallo",
@@ -257,14 +258,14 @@ export const it = {
     }
   },
   bag: {
-    title: "La Tua Bag",
-    empty: "La tua collezione è vuota",
+    title: "Il Tuo Basket",
+    empty: "basket vuoto",
     added: "PRODOTTO AGGIUNTO",
     expanded: "La tua collezione si espande",
-    view: "VEDI BAG",
+    view: "VEDI BASKET",
     shop: "Scopri i prodotti",
     subtotal: "Subtotale",
-    clear: "Svuota Carrello",
+    clear: "Svuota Basket",
     voucher: "MANIFIESTO VOUCHER",
     codePlaceholder: "Codice...",
     addCode: "Aggiungi Codice",
@@ -322,5 +323,17 @@ export const it = {
       opening: "Orari Alchemici",
       hours: "Lun-Sab: 09:00 - 19:30"
     }
+  },
+  launchBanner: {
+    title: "Murgia Liquore",
+    subtitle: "L'Evoluzione del Rito",
+    description: "Un nuovo manufatto alchemico forgiato nelle fiamme della tradizione del 1882. Prossimamente nella collezione.",
+    cta: "Assicura il Pre-Lancio",
+    vaultTitle: "ASSICURA IL PRELANCIO",
+    vaultDescription: "Inserisci la tua email per essere uno dei primi a ricevere il nuovo Liquore Murgia.",
+    vaultPlaceholder: "TUA EMAIL...",
+    vaultSubmit: "SIGILLA",
+    vaultSuccess: "SIGILLO APPOSTO",
+    vaultSubscribe: "Desidero ricevere aggiornamenti su eventi e nuovi prodotti Murgia."
   }
 };

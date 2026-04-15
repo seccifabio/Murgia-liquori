@@ -23,9 +23,10 @@ import PromoBanner from "@/components/PromoBanner";
 import VisitBanner from "@/components/VisitBanner";
 import { CartProvider } from "@/context/CartContext";
 import { LanguageProvider } from "@/context/LanguageContext";
-import BagDrawer from "@/components/BagDrawer";
+import BasketDrawer from "@/components/BasketDrawer";
 import VisitDrawer from "@/components/VisitDrawer";
 import PartnerDrawer from "@/components/PartnerDrawer";
+import PreLaunchDrawer from "@/components/PreLaunchDrawer";
 import CartToast from "@/components/CartToast";
 
 export default function RootLayout({
@@ -47,9 +48,10 @@ export default function RootLayout({
             <PromoBanner />
             <VisitBanner />
             <Navbar />
-            <BagDrawer />
+            <BasketDrawer />
             <VisitDrawer />
             <PartnerDrawer />
+            <PreLaunchDrawer />
             <CartToast />
             {children}
           </CartProvider>

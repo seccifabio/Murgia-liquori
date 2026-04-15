@@ -37,13 +37,13 @@ export default function SbagliataRitual() {
   return (
     <section 
       ref={containerRef}
-      className="bg-primary py-40 px-6 md:px-20 relative z-20 overflow-hidden"
+      className="bg-primary py-24 md:py-40 px-6 md:px-20 relative z-20 overflow-hidden"
     >
       <div className="absolute top-0 right-0 opacity-5 pointer-events-none translate-x-1/4 -translate-y-1/4 scale-150">
         <h2 className="font-heading text-[30rem] text-noir leading-none uppercase">{t.products.common.ritual}</h2>
       </div>
 
-      <div className="max-w-6xl mx-auto flex flex-col items-center gap-20">
+      <div className="max-w-6xl mx-auto flex flex-col items-center gap-12 md:gap-20">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export default function SbagliataRitual() {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          className="relative md:absolute md:bottom-[-35px] md:right-0 z-20 pointer-events-none mt-10 md:mt-0"
+          className="relative md:absolute md:bottom-[-35px] md:right-0 z-20 pointer-events-none mt-6 md:mt-0"
         >
           <img 
             src="/images/sbagliata_product.png" 
@@ -76,7 +76,7 @@ export default function SbagliataRitual() {
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          className="w-full flex flex-col items-center gap-12"
+          className="w-full flex flex-col items-center gap-12 pt-10 md:pt-20"
         >
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex flex-col items-center gap-4">
@@ -116,10 +116,10 @@ export default function SbagliataRitual() {
 
           <button 
             onClick={handleAddToCart}
-            className="group relative px-20 py-8 md:px-32 overflow-hidden bg-noir text-primary font-heading uppercase text-sm tracking-[0.4em] transition-all transform hover:scale-105 active:scale-95 cursor-pointer"
+            className="murgia-btn-noir px-20 py-8 md:px-32 transform hover:scale-105 active:scale-95"
           >
-            <span className="relative z-10 transition-colors duration-500 group-hover:text-black font-bold">{t.products.common.addToCart} &mdash; &euro;{(35 * quantity).toFixed(2)}</span>
-            <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+            <span className="murgia-btn-text">{t.products.common.addToCart} &mdash; &euro;{(35 * quantity).toFixed(2)}</span>
+            <div className="murgia-btn-hover-wipe" />
           </button>
         </motion.div>
       </div>

@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import LiquidImage from "@/components/LiquidImage";
+import LaunchBanner from "@/components/LaunchBanner";
 import { useTranslation } from "@/context/LanguageContext";
 
 const products = [
@@ -14,22 +15,48 @@ const products = [
 
 export default function ProdottiPage() {
   const { t } = useTranslation();
-  
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const item = {
+    hidden: { y: 40, opacity: 0 },
+    show: { 
+      y: 0, 
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
   return (
     <main className="bg-primary min-h-screen">
       
-      <section className="relative pt-32 pb-32 px-6 md:px-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative pt-32 md:pt-48 pb-20 px-6 md:px-20 overflow-hidden">
+        <motion.div 
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="max-w-7xl mx-auto"
+        >
           {/* Symmetrical Header */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            variants={item}
+            className="text-center mb-8"
           >
-            <span className="text-noir font-heading text-xl tracking-widest block uppercase mb-6">
-              {t.collection.title} Murgia
-            </span>
-            <div className="w-px h-8 bg-gradient-to-b from-noir/40 to-transparent mx-auto" />
+            <h2 className="text-noir font-heading text-5xl md:text-8xl tracking-tight block uppercase mb-4 leading-none italic">
+              {t.collection.title}
+            </h2>
           </motion.div>
 
           {/* The Exact Homepage Grid Manifest */}
@@ -40,12 +67,8 @@ export default function ProdottiPage() {
                 href={p.href}
                 className="group relative block cursor-pointer"
               >
-                <motion.div
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.1, duration: 0.8 }}
-                >
-                  <div className="aspect-[4/5] max-h-[65vh] bg-noir rounded-[2vw] overflow-hidden transition-all duration-700 relative border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                <motion.div variants={item}>
+                  <div className="aspect-[4/5] max-h-[55vh] mx-auto bg-noir rounded-[2vw] overflow-hidden transition-all duration-700 relative border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                     <div className="w-full h-full rounded-[2vw] overflow-hidden">
                       <LiquidImage src={p.img} alt={p.name} />
                     </div>
@@ -63,8 +86,12 @@ export default function ProdottiPage() {
               </Link>
             ))}
           </div>
-        </div>
+        </motion.div>
+
       </section>
+
+      {/* Global Manifest: New Artifact Reveal */}
+      <LaunchBanner />
 
       <Footer />
     </main>

@@ -31,7 +31,14 @@ export default function GialloNextProducts({ exclude }: { exclude?: string }) {
   const filteredProducts = PRODUCTS.filter(p => p.displayName !== exclude).slice(0, 2);
 
   return (
-    <section className="bg-noir w-full py-20 flex flex-col md:flex-row relative z-[100] border-t border-white/10">
+    <section className="bg-noir w-full py-20 flex flex-col relative z-[100]">
+      <div className="max-w-7xl mx-auto px-6 mb-12 flex flex-col items-center">
+        <span className="text-primary font-heading text-xl tracking-[0.5em] uppercase italic mb-4">
+          {t.products.common.otherProducts}
+        </span>
+      </div>
+
+      <div className="flex flex-col md:flex-row w-full">
       {filteredProducts.map((product, i) => (
         <Link 
           key={product.displayName} 
@@ -53,6 +60,7 @@ export default function GialloNextProducts({ exclude }: { exclude?: string }) {
           </div>
         </Link>
       ))}
+      </div>
     </section>
   );
 }

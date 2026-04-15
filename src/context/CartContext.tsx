@@ -35,6 +35,8 @@ interface CartContextType {
   setIsVisitOpen: (open: boolean) => void;
   isPartnerOpen: boolean;
   setIsPartnerOpen: (open: boolean) => void;
+  isPreLaunchOpen: boolean;
+  setIsPreLaunchOpen: (open: boolean) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -48,6 +50,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisitOpen, setIsVisitOpen] = useState(false);
   const [isPartnerOpen, setIsPartnerOpen] = useState(false);
+  const [isPreLaunchOpen, setIsPreLaunchOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   // Persistence Ritual: Hydrate from localStorage
@@ -157,6 +160,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         setIsVisitOpen,
         isPartnerOpen,
         setIsPartnerOpen,
+        isPreLaunchOpen,
+        setIsPreLaunchOpen
       }}
     >
       {children}

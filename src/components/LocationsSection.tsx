@@ -163,9 +163,9 @@ export default function LocationsSection() {
                 href={loc.map} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="shrink-0 flex items-center gap-2 text-black font-heading text-[10px] tracking-[0.2em] uppercase hover:underline transition-all pointer-events-auto"
+                className="shrink-0 flex items-center gap-2 text-black font-heading text-sm tracking-[0.2em] uppercase hover:underline transition-all pointer-events-auto"
               >
-                {t.locations.viewMap} <ArrowUpRight className="w-3 h-3" />
+                {t.locations.viewMap} <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
           ))}

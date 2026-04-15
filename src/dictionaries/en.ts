@@ -187,7 +187,8 @@ export const en = {
       formula: "Formula",
       secret: "Secret (1882)",
       discover: "Discover Collection",
-      ascend: "Ascend"
+      ascend: "Ascend",
+      otherProducts: "Other Products"
     },
     giallo: {
       name: "Villacidro Giallo",
@@ -258,13 +259,13 @@ export const en = {
   },
   bag: {
     title: "Your Basket",
-    empty: "Your collection is empty",
+    empty: "Your basket is empty",
     added: "PRODUCT ADDED",
     expanded: "Your collection expands",
     view: "VIEW BASKET",
     shop: "Discover the collection",
     subtotal: "Subtotal",
-    clear: "Clear Cart",
+    clear: "Clear Basket",
     voucher: "VOUCHER MANIFESTO",
     codePlaceholder: "Code...",
     addCode: "Add Code",
@@ -322,5 +323,17 @@ export const en = {
       opening: "Alchemical Hours",
       hours: "Mon-Sat: 09:00 - 19:30"
     }
+  },
+  launchBanner: {
+    title: "Murgia Liquore",
+    subtitle: "Expanding the Legacy",
+    description: "A new alchemical artifact forged in the fires of 1882 heritage. Coming soon to the collection.",
+    cta: "Secure Pre-Launch",
+    vaultTitle: "SECURE PRE-LAUNCH",
+    vaultDescription: "Enter your email to be one of the first to receive the new Murgia Liquore.",
+    vaultPlaceholder: "YOUR EMAIL...",
+    vaultSubmit: "SEAL",
+    vaultSuccess: "SEAL AFFIXED",
+    vaultSubscribe: "I wish to receive updates on Murgia events and new products."
   }
 };

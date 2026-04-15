@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-mot
 import { useRef, useState, useEffect } from "react";
 import LiquidImage from "./LiquidImage";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "@/context/LanguageContext";
 
 export default function NarrativeFlow() {
@@ -139,7 +140,7 @@ export default function NarrativeFlow() {
             >
               <div className="grid grid-cols-2 gap-12 items-center max-w-6xl w-full">
                 <div className="space-y-6">
-                  <span className="text-primary font-heading text-xl tracking-widest block uppercase underline decoration-primary underline-offset-8">{t.origins.heritage.title}</span>
+                  <span className="text-primary font-heading text-xl tracking-widest block uppercase">{t.origins.heritage.title}</span>
                   <h2 className="text-white font-heading text-8xl leading-none uppercase">
                     {t.origins.heritage.subtitle} <br /> <span className="text-primary italic">{t.origins.heritage.subtitleAccent}</span>
                   </h2>
@@ -162,7 +163,7 @@ export default function NarrativeFlow() {
             className={`absolute inset-0 z-30 flex flex-col items-center justify-center pt-24 pb-20 bg-primary transition-opacity duration-700 ${isSealed ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
           >
             <header className="text-center mb-10 mt-10">
-              <span className="text-noir font-heading text-xl tracking-widest block uppercase">{t.origins.products.title}</span>
+              <span className="text-noir font-heading text-4xl tracking-[0.2em] block uppercase font-bold">{t.origins.products.title}</span>
             </header>
 
             <div className="grid grid-cols-3 gap-8 px-20 max-w-6xl w-full">
@@ -181,8 +182,10 @@ export default function NarrativeFlow() {
               ))}
             </div>
             
-            <Link href="/la-collezione" className="group relative mt-12 px-16 py-6 bg-noir text-primary font-heading uppercase text-sm tracking-[0.4em] transform hover:scale-105 duration-300">
-              {t.origins.products.cta}
+            <Link href="/la-collezione" className="murgia-btn-noir mt-12 px-16 py-6 text-sm tracking-[0.4em] transform hover:scale-105">
+              <span className="murgia-btn-text">{t.origins.products.cta}</span>
+              <ArrowRight className="murgia-btn-icon" />
+              <div className="murgia-btn-hover-wipe" />
             </Link>
           </motion.div>
 

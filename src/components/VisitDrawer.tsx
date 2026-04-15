@@ -199,14 +199,14 @@ export default function VisitDrawer() {
                      <button 
                        type="submit"
                        disabled={isSubmitting}
-                       className="w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.2em] md:tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 disabled:opacity-70 disabled:cursor-wait mt-12"
+                       className="w-full murgia-btn-primary py-8 text-sm tracking-[0.2em] md:tracking-[0.4em] transform hover:scale-[1.02] active:scale-95 disabled:opacity-70 mt-12"
                      >
-                       <span className="relative z-10 font-bold px-4">
+                       <span className="murgia-btn-text px-4">
                          {isSubmitting ? t.common.sending : t.visit.drawer.form.submit}
                        </span>
-                       {!isSubmitting && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}
+                       {!isSubmitting && <ArrowRight className="murgia-btn-icon" />}
                        {isSubmitting && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
-                       <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                       <div className="murgia-btn-hover-wipe" />
                      </button>
                   </motion.form>
                 )}
