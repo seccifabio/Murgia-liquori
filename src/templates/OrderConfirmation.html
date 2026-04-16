@@ -85,7 +85,7 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #090909;">
       <tr>
         <td align="center" background="https://murgia-liquori.vercel.app/images/storia/storia_origins_1882_1775937746086.png" style="background-image: url('https://murgia-liquori.vercel.app/images/storia/storia_origins_1882_1775937746086.png'); background-size: cover; background-position: center;">
-          <!-- Archival Gray Overlay (Forcing B&W feel without affecting bottle) -->
+          <!-- Archival Gray Overlay -->
           <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: rgba(4,4,4,0.88);">
             <tr>
               <td align="center">
@@ -94,11 +94,11 @@
                   <tr>
                     <td align="center" style="padding: 120px 0 80px 0;" class="padded">
                       <h2 style="color:#FFFFFF; font-size:54px; font-weight:300; letter-spacing:-0.05em; margin:0; line-height:1.1; text-transform:uppercase;">
-                        L'Arte della <br/> <span style="font-style:italic; opacity:0.75;">Distillazione</span> <br/> è in viaggio.
+                        {{HERO_TITLE}}
                       </h2>
                       <div style="height:1px; width:40px; background-color:#F4B400; margin:50px 0;"></div>
                       <p style="color:rgba(255,255,255,0.7); font-size:18px; line-height:1.6; margin:0; font-style:italic; letter-spacing: 0.02em;">
-                        Un pezzo della nostra storia sta per unirsi alla tua collezione.
+                        {{HERO_SUBTITLE}}
                       </p>
                     </td>
                   </tr>
@@ -123,7 +123,7 @@
             <tr>
               <td style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
                 <span style="color:rgba(255,255,255,0.4); font-size:10px; letter-spacing:0.5em; text-transform:uppercase;">
-                  Riferimento Ordine
+                  {{ORDER_REF_LABEL}}
                 </span>
               </td>
               <td align="right" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
@@ -148,7 +148,7 @@
 
             <tr>
               <td style="padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.1);">
-                <span style="color:#FFFFFF; font-size:20px; font-weight:400; text-transform:uppercase; letter-spacing:0.1em;">Totale Manifestato</span>
+                <span style="color:#FFFFFF; font-size:20px; font-weight:400; text-transform:uppercase; letter-spacing:0.1em;">{{TOTAL_AMOUNT_LABEL}}</span>
               </td>
               <td align="right" style="padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.1);">
                 <span style="color:#F4B400; font-size:28px; font-weight:300;">{{TOTAL_AMOUNT}}</span>
@@ -161,7 +161,7 @@
       <tr>
         <td style="padding: 0 0 100px 0;" class="padded">
           <span style="color:rgba(255,255,255,0.4); font-size:10px; letter-spacing:0.5em; text-transform:uppercase; display:block; margin-bottom:20px;">
-            Destinazione dell'Artefatto
+            {{SHIPPING_DEST_LABEL}}
           </span>
           <p style="color:#FFFFFF; font-size:16px; line-height:1.7; margin:0;">
             <strong style="display:block; margin-bottom:8px; font-size: 18px; letter-spacing: 0.05em;">{{CUSTOMER_NAME}}</strong>
@@ -179,13 +179,13 @@
             <tr>
               <td align="center" style="padding: 100px 0;" class="padded">
                 <h3 style="color:#FFFFFF; font-size:36px; font-weight:300; margin:0; text-transform:uppercase; letter-spacing:-0.03em;">
-                  Non Solo <br/> <span style="font-style:italic; opacity:0.7;">Liquore</span>
+                  {{CROSS_TITLE}}
                 </h3>
                 <p style="color:rgba(255,255,255,0.5); font-size:15px; line-height:1.7; margin:30px 0 50px 0; max-width: 450px;">
-                  Scopri la nostra selezione di panettoni artigianali, dolci tipici e creazioni sartoriali forgiate nel cuore di Villacidro.
+                  {{CROSS_TEXT}}
                 </p>
                 <a href="https://murgia-liquori.vercel.app/#aperitivo" class="murgia-btn-ritual" style="display:inline-block; background-color:#F4B400; padding:22px 60px; color:#040404; text-decoration:none; font-size:12px; letter-spacing:0.35em; text-transform:uppercase; font-weight:900; border-radius:0;">
-                  Esplora gli Archivi
+                  {{CROSS_CTA}}
                 </a>
               </td>
             </tr>
@@ -199,12 +199,12 @@
       <tr>
         <td align="center" style="padding: 120px 0 150px 0;" class="padded">
           <p style="color:rgba(255,255,255,0.3); font-size:13px; margin:0 0 25px 0; letter-spacing: 0.02em;">
-            Hai bisogno di un supporto alchemico? <br/>
-            Contattaci a <a href="mailto:info@murgialiquori.com" style="color:#F4B400; text-decoration:none;">info@murgialiquori.com</a>
+            {{SUPPORT_TEXT}} <br/>
+            {{CONTACT_TEXT}} <a href="mailto:info@murgialiquori.com" style="color:#F4B400; text-decoration:none;">info@murgialiquori.com</a>
           </p>
           <div style="height:1px; width:50px; background-color:rgba(255,255,255,0.1); margin:45px 0;"></div>
           <p style="color:rgba(255,255,255,0.2); font-size:10px; letter-spacing:0.25em; text-transform:uppercase;">
-            Murgia Liquori &copy; 2026 — Villacidro, Sardegna
+            {{FOOTER_NOTE}}
           </p>
         </td>
       </tr>

@@ -26,6 +26,38 @@ export const MARKETING_MANIFEST = {
   // Global thresholds
   shipping: {
     freeThreshold: 80, // Free shipping if total > 80€
+  },
+
+  // Transactional Email Manifest (Multilingual)
+  email: {
+    it: {
+      subject: "Conferma Ordine - Murgia Liquori",
+      heroTitle: "L'Arte della <br/> <span style=\"font-style:italic; opacity:0.75;\">Distillazione</span> <br/> è in viaggio.",
+      heroSubtitle: "Un pezzo della nostra storia sta per unirsi alla tua collezione.",
+      orderRef: "Riferimento Ordine",
+      orderTotal: "Totale Manifestato",
+      shippingDest: "Destinazione dell'Artefatto",
+      crossTitle: "Non Solo <br/> <span style=\"font-style:italic; opacity:0.75;\">Liquore</span>",
+      crossText: "Scopri la nostra selezione di panettoni artigianali, dolci tipici e creazioni sartoriali forgiate nel cuore di Villacidro.",
+      crossCta: "Esplora gli Archivi",
+      supportText: "Hai bisogno di un supporto alchemico?",
+      contactText: "Contattaci a",
+      footerNote: "Murgia Liquori &copy; 2026 — Villacidro, Sardegna"
+    },
+    en: {
+      subject: "Order Confirmation - Murgia Liquori",
+      heroTitle: "The Art of <br/> <span style=\"font-style:italic; opacity:0.75;\">Distillation</span> <br/> is on its way.",
+      heroSubtitle: "A piece of our history is about to join your collection.",
+      orderRef: "Order Reference",
+      orderTotal: "Total Manifested",
+      shippingDest: "Artifact Destination",
+      crossTitle: "Beyond <br/> <span style=\"font-style:italic; opacity:0.75;\">Liquor</span>",
+      crossText: "Discover our selection of artisanal panettone, typical sweets, and bespoke creations forged in the heart of Villacidro.",
+      crossCta: "Explore the Archives",
+      supportText: "Need Alchemical Support?",
+      contactText: "Contact us at",
+      footerNote: "Murgia Liquori &copy; 2026 — Villacidro, Sardinia"
+    }
   }
 };
 

@@ -4,6 +4,7 @@ import Stripe from "stripe";
 import { Resend } from "resend";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { MARKETING_MANIFEST } from "@/manifest/marketing";
 
 // ALCHEMICAL LAZY INITIALIZATION
 // This prevents build-time failures when keys are absent
@@ -61,12 +62,16 @@ export async function POST(req: Request) {
 
         const productTotal = (session.amount_total! / 100).toFixed(2) + "€";
         
+        // LANGUAGE AUDIT
+        const locale = (session.locale || "it").split("-")[0] as "it" | "en";
+        const t = (MARKETING_MANIFEST as any).email[locale] || MARKETING_MANIFEST.email.it;
+
         // CUSTOMER DATA
-        const customerName = session.shipping_details?.name || session.customer_details?.name || "Gentile Alchimista";
+        const customerName = session.shipping_details?.name || session.customer_details?.name || (locale === "it" ? "Gentile Alchimista" : "Dear Alchemist");
         const addr = session.shipping_details?.address;
         const shippingAddress = addr 
           ? `${addr.line1}${addr.line2 ? `, ${addr.line2}` : ''}, ${addr.postal_code} ${addr.city} (${addr.country})`
-          : "Ritiro presso l'Atelier";
+          : (locale === "it" ? "Ritiro presso l'Atelier" : "Collection at the Atelier");
 
         const startTag = "<!-- ITEM REPEATABLE -->";
         const endTag = "<!-- END ITEM REPEATABLE -->";
@@ -74,7 +79,19 @@ export async function POST(req: Request) {
         
         htmlContent = htmlContent.replace(regex, itemsHtml);
         
+        // NARRATIVE TRANSFORMATION
         htmlContent = htmlContent
+          .replace("{{HERO_TITLE}}", t.heroTitle)
+          .replace("{{HERO_SUBTITLE}}", t.heroSubtitle)
+          .replace("{{ORDER_REF_LABEL}}", t.orderRef)
+          .replace("{{TOTAL_AMOUNT_LABEL}}", t.orderTotal)
+          .replace("{{SHIPPING_DEST_LABEL}}", t.shippingDest)
+          .replace("{{CROSS_TITLE}}", t.crossTitle)
+          .replace("{{CROSS_TEXT}}", t.crossText)
+          .replace("{{CROSS_CTA}}", t.crossCta)
+          .replace("{{SUPPORT_TEXT}}", t.supportText)
+          .replace("{{CONTACT_TEXT}}", t.contactText)
+          .replace("{{FOOTER_NOTE}}", t.footerNote)
           .replace("{{ORDER_ID}}", session.id.slice(-8).toUpperCase())
           .replace("{{TOTAL_AMOUNT}}", productTotal)
           .replace("{{CUSTOMER_NAME}}", customerName)
@@ -84,7 +101,7 @@ export async function POST(req: Request) {
         await resend.emails.send({
           from: "Murgia Liquori <onboarding@resend.dev>",
           to: customerEmail,
-          subject: `Conferma Ordine - Murgia Liquori #${session.id.slice(-8).toUpperCase()}`,
+          subject: `${t.subject} #${session.id.slice(-8).toUpperCase()}`,
           html: htmlContent,
         });
 
