@@ -19,6 +19,8 @@ interface EmbeddedStripeCheckoutProps {
 }
 
 export default function EmbeddedStripeCheckout({ items, onClose }: EmbeddedStripeCheckoutProps) {
+  const { appliedCode } = useCart();
+  
   // This function calls our API route to create a session for the entire cart
   const fetchClientSecret = useCallback(() => {
     return fetch("/api/checkout", {
@@ -26,11 +28,11 @@ export default function EmbeddedStripeCheckout({ items, onClose }: EmbeddedStrip
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ items }),
+      body: JSON.stringify({ items, appliedCode }),
     })
       .then((res) => res.json())
       .then((data) => data.clientSecret);
-  }, [items]);
+  }, [items, appliedCode]);
 
 
   const options = { fetchClientSecret };

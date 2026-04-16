@@ -29,6 +29,8 @@ interface CartContextType {
   appliedCode: string | null;
   setAppliedCode: (code: string | null) => void;
   discount: number;
+  shipping: number;
+  finalTotal: number;
   isBannerVisible: boolean;
   setIsBannerVisible: (visible: boolean) => void;
   isVisitOpen: boolean;
@@ -135,6 +137,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, 0);
 
   const discount = appliedCode === MARKETING_MANIFEST.promo.code ? total * MARKETING_MANIFEST.promo.discount : 0;
+  
+  // Alchemy: Shipping threshold (Free over 80€)
+  const shipping = items.length > 0 && total < 80 ? 10 : 0;
+  const finalTotal = total - discount + shipping;
 
   return (
     <CartContext.Provider
@@ -154,6 +160,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         appliedCode,
         setAppliedCode,
         discount,
+        shipping,
+        finalTotal,
         isBannerVisible,
         setIsBannerVisible,
         isVisitOpen,

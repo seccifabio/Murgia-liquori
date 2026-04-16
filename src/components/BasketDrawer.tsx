@@ -259,6 +259,11 @@ export default function BasketDrawer() {
                       <span className="font-heading text-sm">- €{discount.toFixed(2)}</span>
                     </div>
                   )}
+
+                  <div className="flex items-center justify-between text-white/40">
+                    <span className="font-heading text-[10px] tracking-widest uppercase">Trasporto</span>
+                    <span className="font-heading text-sm">{shipping > 0 ? `€${shipping.toFixed(2)}` : "GRATUITO"}</span>
+                  </div>
                 </div>
 
                 <button 
@@ -267,7 +272,7 @@ export default function BasketDrawer() {
                   className={`w-full murgia-btn-primary py-8 text-sm tracking-[0.2em] md:tracking-[0.4em] transform hover:scale-[1.02] active:scale-95 ${isLoading ? "opacity-70 cursor-wait" : ""}`}
                 >
                   <span className="murgia-btn-text px-4">
-                    {isLoading ? t.bag.loading : `${t.bag.checkout} — €${(total - discount).toFixed(2)}`}
+                    {isLoading ? t.bag.loading : `${t.bag.checkout} — €${finalTotal.toFixed(2)}`}
                   </span>
                   {!isLoading && <ArrowRight className="murgia-btn-icon" />}
                   {isLoading && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}

@@ -10,7 +10,7 @@ const stripe = new Stripe(apiKey, {
   apiVersion: "2023-10-16" as any, // Standard stable version
 });
 
-export async function createCheckoutSession(items: any[]) {
+export async function createCheckoutSession(items: any[], appliedCode?: string | null) {
   if (!items || items.length === 0) {
     throw new Error("Il carrello è vuoto.");
   }
@@ -23,10 +23,10 @@ export async function createCheckoutSession(items: any[]) {
     };
   });
 
-  console.log("Stripe Ritual: Initiating with items:", line_items);
+  console.log("Stripe Ritual: Initiating with items:", line_items, "Applied Code:", appliedCode);
 
   try {
-    // Calculate Alchemical Threshold for Shipping
+    // Calculate Alchemical Threshold for Shipping (Free over 80€)
     const subtotalCents = items.reduce((acc, item) => {
       const priceNum = parseFloat(item.price.replace("€", "").replace(",", "."));
       return acc + (priceNum * 100 * item.quantity);
@@ -38,7 +38,7 @@ export async function createCheckoutSession(items: any[]) {
       ui_mode: 'embedded' as any,
       line_items,
       mode: "payment",
-      allow_promotion_codes: true,
+      allow_promotion_codes: true, // Allows user to enter codes manually in terminal
       shipping_address_collection: {
         allowed_countries: ["IT", "GB", "FR", "DE", "ES", "CH", "US"],
       },
@@ -68,6 +68,7 @@ export async function createCheckoutSession(items: any[]) {
       metadata: {
         order_type: "Murgia Heritage Purchase",
         items_summary: items.map(i => `${i.name} (${i.format})`).join(", "),
+        applied_promo: appliedCode || "none",
       },
     });
 
