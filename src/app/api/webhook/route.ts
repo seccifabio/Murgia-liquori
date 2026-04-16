@@ -55,7 +55,7 @@ export async function POST(req: Request) {
               <span style="color:rgba(255,255,255,0.4); font-size:12px;">Qty: ${item.quantity}</span>
             </td>
             <td align="right" style="padding-top: 30px;">
-              <span style="color:#FFFFFF; font-size:16px;">${(item.amount_total / 100).toFixed(2)}€</span>
+              <span style="color:#FFFFFF; font-size:16px;">${(item.amount_subtotal / 100).toFixed(2)}€</span>
             </td>
           </tr>
         `).join('') + (

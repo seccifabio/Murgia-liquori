@@ -111,7 +111,7 @@ function SuccessContent() {
                         </p>
                       </div>
                       <p className="font-heading text-white/80 text-lg">
-                        €{(item.amount_total / 100).toFixed(2)}
+                        €{(item.amount_subtotal / 100).toFixed(2)}
                       </p>
                     </div>
                   ))}
