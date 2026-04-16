@@ -13,7 +13,7 @@ export default function BiancoSpecs() {
   
   const specs = [
     { label: t.products.common.gradazione, value: "40% Vol." },
-    { label: t.products.common.formato, value: "70cl / 50cl" },
+    { label: t.products.common.formato, value: "5cl" },
     { label: t.products.common.origine, value: "Villacidro, SU" },
     { label: t.products.common.formula, value: t.products.common.secret }
   ];

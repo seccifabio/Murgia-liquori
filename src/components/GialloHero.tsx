@@ -45,8 +45,8 @@ export default function GialloHero() {
         style={{ y: textY, opacity: textOpacity }}
         className="relative z-10 h-full flex flex-col items-center justify-start md:justify-center text-center px-6 pt-32 md:pt-0"
       >
-        <h1 className="font-heading text-7xl md:text-[12rem] lg:text-[16rem] text-white uppercase tracking-tighter leading-[0.8] mb-6 drop-shadow-2xl overflow-hidden py-4">
-          {"Murgia".split("").map((char, i) => (
+        <h1 className="font-heading text-7xl md:text-[12rem] lg:text-[14rem] text-white uppercase tracking-tighter leading-[0.8] mb-6 drop-shadow-2xl overflow-hidden py-4">
+          {"Villacidro".split("").map((char, i) => (
             <motion.span
               key={i}
               initial={{ y: "100%" }}

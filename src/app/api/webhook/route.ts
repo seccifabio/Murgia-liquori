@@ -97,7 +97,7 @@ export async function POST(req: Request) {
         // MANIFEST: We build the address string with high-fidelity formatting
         const shippingAddress = addr && addr.line1
           ? `${addr.line1}${addr.line2 ? `, ${addr.line2}` : ""}, ${addr.postal_code || ""} ${addr.city || ""} (${addr.country || ""})`
-          : (locale === "it" ? "Ritiro presso l'Atelier" : "Collection at the Atelier");
+          : (locale === "it" ? "Ritiro presso il Laboratorio (Villacidro)" : "Collection at the Laboratory (Villacidro)");
 
         const startTag = "<!-- ITEM REPEATABLE -->";
         const endTag = "<!-- END ITEM REPEATABLE -->";

@@ -104,7 +104,7 @@ export const it = {
     },
     items: {
       spritz: {
-        name: "MURGIA SPRITZ",
+        name: "VILLACIDRO SPRITZ",
         tagline: "GOLDEN HOUR RITUAL",
         description: "Murgia Giallo, Prosecco, Soda, Arancia. Il classico della Sardegna.",
         ingredients: ["5cl Murgia Liquori Giallo", "10cl San Pellegrino Cocktail", "Succo di Arancia fresca", "Goccia di Miele sardo", "Seltz/Soda"],
@@ -118,7 +118,7 @@ export const it = {
         instructions: ["Pestare lo zenzero nel fondo dello shaker.", "Aggiungere i restanti ingredienti.", "Effettuare una 'Dry Shake' senza ghiaccio.", "Aggiungere ghiaccio e shakerare vigorosamente.", "Filtrare in una coppa fredda."]
       },
       tonic: {
-        name: "GIALLO TONIC",
+        name: "VILLACIDRO TONIC",
         tagline: "PURE REFRESH",
         description: "Murgia Giallo, Tonica Premium, Scorza di Limone. Freschezza pura.",
         ingredients: ["5cl Murgia Liquori Giallo", "15cl Acqua Tonica Premium", "Spicchio di Lime", "Scorza di Limone", "Ramoscello di Timo"],
@@ -141,21 +141,21 @@ export const it = {
     },
     recipes: {
       tiramisu: {
-        name: "TIRAMISÙ AL MURGIA",
+        name: "TIRAMISÙ AL VILLACIDRO",
         tagline: "DESSERT RITUAL",
         description: "L'alchimia del caffè incontra l'oro di Murgia in una crema vellutata.",
         ingredients: ["500g Mascarpone", "5 Uova Fresche", "5 Cucchiai di Zucchero", "1 Busta Dolceneve o Panna Montata", "1 Bicchiere di Murgia Giallo", "Savoiardi e Caffè amaro"],
         instructions: ["Montare gli albumi a neve ferma con un pizzico di sale.", "Lavorare i tuorli con lo zucchero e il composto Dolceneve.", "Unire delicatamente il Murgia Giallo alla crema di tuorli.", "Incorporare gli albumi dal basso verso l'alto con gesti lenti.", "Bagnare i savoiardi nel caffè e alternarli alla crema dorata.", "Spolverare con cacao amaro e lasciar riposare in frigo."]
       },
       pere: {
-        name: "CREMA DI PERE AL MURGIA",
+        name: "CREMA DI PERE AL VILLACIDRO",
         tagline: "FRUIT ALCHEMY",
         description: "Pere Kaiser cotte a bassa temperatura, sfumate con l'essenza dello zafferano.",
         ingredients: ["600g Pere mature", "50g Zucchero integrale di canna", "70g Succo di Limone", "50g Vino Bianco Secco", "50g Murgia Liquori Giallo", "4 Stimmi di Zafferano Murgia"],
         instructions: ["Tagliare le pere a tocchetti e cuocerle con vino e zucchero (10 min).", "Sfumare con il Murgia Giallo e il limone, proseguendo la cottura.", "Raffreddare e unire lo zafferano precedentemente sciolto.", "Frullare il tutto fino a ottenere un'alchimia setosa.", "Servire in coppette decorate con scaglie di cioccolato."]
       },
       arance: {
-        name: "ARANCE E MURGIA",
+        name: "ARANCE E VILLACIDRO",
         tagline: "CITRUS RITUAL",
         description: "Arance sarde a fette immerse nel puro Murgia Giallo. Semplicità ancestrale.",
         ingredients: ["4 Arance Sarde (Tarocco o Sanguigne)", "10cl Murgia Liquori Giallo", "Succo d'arancia fresca appena spremuta"],
@@ -227,7 +227,7 @@ export const it = {
       otherProducts: "Altri Prodotti"
     },
     giallo: {
-      name: "Murgia Giallo",
+      name: "Villacidro Giallo",
       heroTagline: "L'Oro Alchemico di Sardegna",
       ritualDescription: "\"Si beveva l'elisir de s'omu, l'oro di Murgia.\" Un gesto che attraversa i secoli, un rito collettivo che unisce generazioni. Servire preferibilmente a temperatura ambiente (16-20°C) in calice a tulipano per liberare l'anima dello zafferano.",
       ingredients: [
@@ -237,7 +237,7 @@ export const it = {
       ]
     },
     bianco: {
-      name: "Murgia Bianco",
+      name: "Villacidro Bianco",
       heroTagline: "L'Essenza Botanica di Sardegna",
       ritualDescription: "Un rituale di freschezza ancestrale. Il Bianco è l'anima candida della nostra distilleria, dove le erbe officinali si fondono in un'alchimia cristallina.",
       ingredients: [
@@ -297,7 +297,7 @@ export const it = {
       },
       giallo: {
         year: "L'ORO BRILLANTE",
-        title: "Murgia Giallo",
+        title: "Villacidro Giallo",
         subtitle: "L'ALCHIMIA DELLO ZAFFERANO",
         description: "Il prodotto simbolo nasce dalla sapienza erboristica del fondatore. L'uso dello zafferano puro non solo conferisce il colore oro brillante, ma definisce l'anima aromatica di Murgia nel mondo."
       },

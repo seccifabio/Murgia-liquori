@@ -7,19 +7,18 @@ import { useTranslation } from "@/context/LanguageContext";
 import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
 interface SbagliataRitualProps {
-  livePrice?: number;
-  liveName?: string;
+  liveProducts?: any;
 }
 
-export default function SbagliataRitual({ livePrice, liveName }: SbagliataRitualProps) {
+export default function SbagliataRitual({ liveProducts }: SbagliataRitualProps) {
   const { t } = useTranslation();
   const { addItem } = useCart();
-  const [selectedFormat, setSelectedFormat] = useState("50cl");
+  const [selectedFormat, setSelectedFormat] = useState("20cl");
   const [quantity, setQuantity] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const displayPrice = livePrice || PRODUCTS_MANIFEST.sbagliata.price;
-  const displayName = liveName || t.products.sbagliata.name;
+  const displayPrice = liveProducts?.[PRODUCTS_MANIFEST.sbagliata.priceId]?.price || PRODUCTS_MANIFEST.sbagliata.price;
+  const displayName = t.products.sbagliata.name;
 
   const handleAddToCart = () => {
     addItem({
@@ -91,7 +90,7 @@ export default function SbagliataRitual({ livePrice, liveName }: SbagliataRitual
             <div className="flex flex-col items-center gap-4">
               <span className="font-heading text-[10px] text-noir/40 tracking-widest uppercase italic">{t.products.common.selectFormat}</span>
               <div className="flex gap-2">
-                {["50cl"].map((size) => (
+                {["20cl"].map((size) => (
                   <button 
                     key={size} 
                     onClick={() => setSelectedFormat(size)}

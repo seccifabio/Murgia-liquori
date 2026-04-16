@@ -22,8 +22,7 @@ export default async function MurgiaBiancoPage() {
 
       {/* Cinematic Phase 3: The White Immersion Ritual */}
       <BiancoRitual 
-        livePrice={liveBianco?.price} 
-        liveName={liveBianco?.name} 
+        liveProducts={liveProducts} 
       />
 
       {/* Cinematic Phase 4: Modern Mixology (Signature Serves) */}

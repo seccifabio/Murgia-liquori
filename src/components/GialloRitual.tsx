@@ -7,26 +7,30 @@ import { useTranslation } from "@/context/LanguageContext";
 import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
 interface GialloRitualProps {
-  livePrice?: number;
-  liveName?: string;
+  liveProducts?: any;
 }
 
-export default function GialloRitual({ livePrice, liveName }: GialloRitualProps) {
+export default function GialloRitual({ liveProducts }: GialloRitualProps) {
   const { t } = useTranslation();
   const { addItem } = useCart();
-  const [selectedFormat, setSelectedFormat] = useState("70cl");
+  const [selectedFormat, setSelectedFormat] = useState("50cl"); // Start with 50cl as per user request
   const [quantity, setQuantity] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const displayPrice = livePrice || PRODUCTS_MANIFEST.giallo.price;
-  const displayName = liveName || t.products.giallo.name;
+  // Derive active variant from manifest
+  const activeVariant = PRODUCTS_MANIFEST.giallo.variants.find(v => v.format === selectedFormat) 
+    || PRODUCTS_MANIFEST.giallo.variants[1]; // Fallback to 50cl
+
+  // Alchemical Valuation: Use live price from Stripe record if available, else manifest default
+  const displayPrice = liveProducts?.[activeVariant.priceId]?.price || activeVariant.price;
+  const displayName = t.products.giallo.name;
 
   const handleAddToCart = () => {
     addItem({
       id: PRODUCTS_MANIFEST.giallo.id,
-      name: displayName,
+      name: `${displayName} (${selectedFormat})`,
       price: `${displayPrice}€`,
-      priceId: PRODUCTS_MANIFEST.giallo.priceId,
+      priceId: activeVariant.priceId,
       quantity: quantity,
       format: selectedFormat,
       img: "/images/giallo_sovereign.png"
@@ -101,7 +105,7 @@ export default function GialloRitual({ livePrice, liveName }: GialloRitualProps)
             <div className="flex flex-col items-center gap-4">
               <span className="font-heading text-[10px] text-noir/40 tracking-widest uppercase italic">{t.products.common.selectFormat}</span>
               <div className="flex gap-2">
-                {["50cl", "70cl"].map((size) => (
+                {["5cl", "50cl", "70cl"].map((size) => (
                   <button 
                     key={size} 
                     onClick={() => setSelectedFormat(size)}

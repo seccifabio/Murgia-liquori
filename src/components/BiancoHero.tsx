@@ -51,7 +51,7 @@ export default function BiancoHero() {
         className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6"
       >
         <h1 className="font-heading text-6xl md:text-[10rem] lg:text-[14rem] text-white uppercase tracking-tighter leading-[0.85] mb-6 drop-shadow-2xl py-4 overflow-hidden">
-          {"Murgia".split("").map((char, i) => (
+          {"Villacidro".split("").map((char, i) => (
             <motion.span
               key={i}
               initial={{ y: "100%" }}

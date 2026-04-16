@@ -22,8 +22,7 @@ export default async function MurgiaGialloPage() {
 
       {/* Cinematic Phase 3: The Yellow Immersion Ritual */}
       <GialloRitual 
-        livePrice={liveGiallo?.price} 
-        liveName={liveGiallo?.name} 
+        liveProducts={liveProducts} 
       />
 
       {/* Cinematic Phase 4: Modern Mixology (Signature Serves) */}

@@ -32,7 +32,7 @@ export const MARKETING_MANIFEST = {
   // Transactional Email Manifest (Multilingual)
   email: {
     it: {
-      subject: "Conferma Ordine - Murgia Liquori",
+      subject: "Conferma Ordine - Villacidro Liquori",
       heroTitle: "L'Arte della <br/> <span style=\"font-style:italic; opacity:0.75;\">Distillazione</span> <br/> è in viaggio.",
       heroSubtitle: "Un pezzo della nostra storia sta per unirsi alla tua collezione.",
       orderRef: "Riferimento Ordine",
@@ -43,10 +43,10 @@ export const MARKETING_MANIFEST = {
       crossCta: "Esplora gli Archivi",
       supportText: "Hai bisogno di un supporto alchemico?",
       contactText: "Contattaci a",
-      footerNote: "Murgia Liquori &copy; 2026 — Villacidro, Sardegna"
+      footerNote: "Villacidro Liquori &copy; 2026 — Villacidro, Sardegna"
     },
     en: {
-      subject: "Order Confirmation - Murgia Liquori",
+      subject: "Order Confirmation - Villacidro Liquori",
       heroTitle: "The Art of <br/> <span style=\"font-style:italic; opacity:0.75;\">Distillation</span> <br/> is on its way.",
       heroSubtitle: "A piece of our history is about to join your collection.",
       orderRef: "Order Reference",
@@ -57,7 +57,7 @@ export const MARKETING_MANIFEST = {
       crossCta: "Explore the Archives",
       supportText: "Need Alchemical Support?",
       contactText: "Contact us at",
-      footerNote: "Murgia Liquori &copy; 2026 — Villacidro, Sardinia"
+      footerNote: "Villacidro Liquori &copy; 2026 — Villacidro, Sardinia"
     }
   }
 };

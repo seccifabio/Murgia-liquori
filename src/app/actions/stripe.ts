@@ -93,7 +93,7 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
       line_items,
       mode: "payment",
       shipping_address_collection: {
-        allowed_countries: ["IT", "DE", "FR", "ES", "GB", "CH", "US"],
+        allowed_countries: ["IT"],
       },
       shipping_options: shippingAmount === 0 ? [
         {

@@ -17,10 +17,19 @@ export const getLiveProducts = unstable_cache(
     console.log("Stripe Ritual: Synchronizing with Source of Truth...");
     
     try {
-      const productIds = Object.values(PRODUCTS_MANIFEST).map(p => p.priceId);
+      const productIds: string[] = [];
+      Object.values(PRODUCTS_MANIFEST).forEach(p => {
+        if ("variants" in p && Array.isArray(p.variants)) {
+          p.variants.forEach(v => productIds.push(v.priceId));
+        } else {
+          productIds.push(p.priceId);
+        }
+      });
       
       const prices = await Promise.all(
-        productIds.map(id => stripe.prices.retrieve(id, { expand: ["product"] }))
+        productIds
+          .filter(id => !id.startsWith("PASTE_")) // Filter out placeholders to avoid Stripe errors
+          .map(id => stripe.prices.retrieve(id, { expand: ["product"] }))
       );
 
       const liveData: Record<string, { name: string; price: number; description: string }> = {};

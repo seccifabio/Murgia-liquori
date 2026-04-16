@@ -13,8 +13,8 @@ import Image from "next/image";
 
 // Asset Manifest for Transparent Artifacts
 const productImages: Record<string, string> = {
-  "Murgia Giallo": "/images/giallo_sovereign.png",
-  "Murgia Bianco": "/images/products/bianco.png",
+  "Villacidro Giallo": "/images/giallo_sovereign.png",
+  "Villacidro Bianco": "/images/products/bianco.png",
   "La Sbagliata": "/images/products/sbagliata.png",
 };
 
@@ -165,7 +165,7 @@ function SuccessContent() {
                 </div>
 
                 {/* Shipping Manifest */}
-                {session?.shipping_details && (
+                {session?.shipping_details?.address?.line1 ? (
                   <div className="space-y-4 pt-6 border-t border-white/5">
                     <div className="space-y-1">
                       <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Destinazione Rituale</p>
@@ -181,6 +181,15 @@ function SuccessContent() {
                         </p>
                         <p>{session.shipping_details.address.country}</p>
                       </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-4 pt-6 border-t border-white/5">
+                    <div className="space-y-1">
+                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Destinazione Rituale</p>
+                      <p className="font-body text-xs text-white/50 tracking-[0.2em] uppercase">
+                        Ritiro presso il Laboratorio (Villacidro)
+                      </p>
                     </div>
                   </div>
                 )}

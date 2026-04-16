@@ -104,7 +104,7 @@ export const en = {
     },
     items: {
       spritz: {
-        name: "MURGIA SPRITZ",
+        name: "VILLACIDRO SPRITZ",
         tagline: "GOLDEN HOUR RITUAL",
         description: "Murgia Giallo, Prosecco, Soda, Orange. The Sardinian classic.",
         ingredients: ["5cl Murgia Liquori Giallo", "10cl San Pellegrino Cocktail", "Fresh Orange Juice", "A touch of Sardinian Honey", "Seltz/Soda"],
@@ -118,7 +118,7 @@ export const en = {
         instructions: ["Muddle ginger at the base of the shaker.", "Add the remaining liquid assets.", "Execute a 'Dry Shake' without ice.", "Add ice and shake with intent.", "Strain into a chilled coupe."]
       },
       tonic: {
-        name: "GIALLO TONIC",
+        name: "VILLACIDRO TONIC",
         tagline: "PURE REFRESH",
         description: "Murgia Giallo, Premium Tonic, Lemon Zest. Pure clarity.",
         ingredients: ["5cl Murgia Liquori Giallo", "15cl Premium Tonic Water", "Lime wedge", "Lemon Zest", "Sprig of Thyme"],
@@ -191,7 +191,7 @@ export const en = {
       otherProducts: "Other Products"
     },
     giallo: {
-      name: "Murgia Giallo",
+      name: "Villacidro Giallo",
       heroTagline: "The Alchemy of Saffron",
       ritualDescription: "\"We would drink the elisir de s'omu, the gold of Murgia Liquori.\" A gesture that spans centuries, a collective ritual that unites generations. Best served at room temperature (16-20°C) in a tulip glass to release the soul of the saffron.",
       ingredients: [
@@ -201,7 +201,7 @@ export const en = {
       ]
     },
     bianco: {
-      name: "Murgia Bianco",
+      name: "Villacidro Bianco",
       heroTagline: "The Botanical Essence of Sardinia",
       ritualDescription: "An ancestral ritual of freshness. Bianco is the pure soul of our distillery, where medicinal herbs blend into a crystalline alchemy.",
       ingredients: [
@@ -297,7 +297,7 @@ export const en = {
       },
       giallo: {
         year: "BRILLIANT GOLD",
-        title: "Murgia Giallo",
+        title: "Villacidro Giallo",
         subtitle: "SAFFRON ALCHEMY",
         description: "The signature product originated from the founder's herbal wisdom. The use of pure saffron not only imparts the brilliant gold color but also defines Murgia's aromatic soul in the world."
       },

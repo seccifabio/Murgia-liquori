@@ -7,19 +7,18 @@ import { useTranslation } from "@/context/LanguageContext";
 import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
 interface BiancoRitualProps {
-  livePrice?: number;
-  liveName?: string;
+  liveProducts?: any;
 }
 
-export default function BiancoRitual({ livePrice, liveName }: BiancoRitualProps) {
+export default function BiancoRitual({ liveProducts }: BiancoRitualProps) {
   const { t } = useTranslation();
   const { addItem } = useCart();
-  const [selectedFormat, setSelectedFormat] = useState("70cl");
+  const [selectedFormat, setSelectedFormat] = useState("5cl");
   const [quantity, setQuantity] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const displayPrice = livePrice || PRODUCTS_MANIFEST.bianco.price;
-  const displayName = liveName || t.products.bianco.name;
+  const displayPrice = liveProducts?.[PRODUCTS_MANIFEST.bianco.priceId]?.price || PRODUCTS_MANIFEST.bianco.price;
+  const displayName = t.products.bianco.name;
 
   const handleAddToCart = () => {
     addItem({
@@ -29,7 +28,7 @@ export default function BiancoRitual({ livePrice, liveName }: BiancoRitualProps)
       priceId: PRODUCTS_MANIFEST.bianco.priceId,
       quantity: quantity,
       format: selectedFormat,
-      img: "/images/products/bianco.png"
+      img: "/images/bianco_product.png"
     });
   };
 
@@ -91,7 +90,7 @@ export default function BiancoRitual({ livePrice, liveName }: BiancoRitualProps)
             <div className="flex flex-col items-center gap-4">
               <span className="font-heading text-[10px] text-noir/40 tracking-widest uppercase italic">{t.products.common.selectFormat}</span>
               <div className="flex gap-2">
-                {["50cl", "70cl"].map((size) => (
+                {["5cl"].map((size) => (
                   <button 
                     key={size} 
                     onClick={() => setSelectedFormat(size)}

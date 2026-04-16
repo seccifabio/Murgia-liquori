@@ -22,8 +22,7 @@ export default async function LaSbagliataPage() {
 
       {/* Cinematic Phase 3: The Limited Ritual */}
       <SbagliataRitual 
-        livePrice={liveSbagliata?.price} 
-        liveName={liveSbagliata?.name} 
+        liveProducts={liveProducts} 
       />
 
       {/* Cinematic Phase 4: Modern Mixology (Collector Ed.) */}

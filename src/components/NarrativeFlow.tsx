@@ -58,21 +58,21 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
 
   const products = [
     { 
-      name: getLiveName(PRODUCTS_MANIFEST.bianco.priceId, t.products.bianco.name), 
-      price: getLivePrice(PRODUCTS_MANIFEST.bianco.priceId, "35€"), 
-      img: "/images/products/bianco.png", 
+      name: `${getLiveName(PRODUCTS_MANIFEST.bianco.priceId, t.products.bianco.name)} (5cl)`, 
+      price: getLivePrice(PRODUCTS_MANIFEST.bianco.priceId, "5€"), 
+      img: "/images/bianco_product.png", 
       href: "/shop/murgia-bianco" 
     },
     { 
-      name: getLiveName(PRODUCTS_MANIFEST.giallo.priceId, t.products.giallo.name), 
-      price: getLivePrice(PRODUCTS_MANIFEST.giallo.priceId, "35€"), 
+      name: `${getLiveName(PRODUCTS_MANIFEST.giallo.priceId, t.products.giallo.name)} (70cl)`, 
+      price: getLivePrice(PRODUCTS_MANIFEST.giallo.priceId, "26€"), 
       img: "/images/giallo.webp", 
       href: "/shop/murgia-giallo" 
     },
     { 
-      name: getLiveName(PRODUCTS_MANIFEST.sbagliata.priceId, t.products.sbagliata.name), 
-      price: getLivePrice(PRODUCTS_MANIFEST.sbagliata.priceId, "35€"), 
-      img: "/images/products/sbagliata.png", 
+      name: `${getLiveName(PRODUCTS_MANIFEST.sbagliata.priceId, t.products.sbagliata.name)} (20cl)`, 
+      price: getLivePrice(PRODUCTS_MANIFEST.sbagliata.priceId, "15€"), 
+      img: "/images/sbagliata_product.png", 
       href: "/shop/la-sbagliata" 
     },
   ];
