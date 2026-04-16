@@ -10,7 +10,7 @@ const SBAGLIATA_COCKTAILS = [
     name: "THE ERROR SPRITZ",
     tagline: "UNEXPECTED TWIST",
     img: "/images/aperitivo/Apericidr.webp",
-    description: "Villacidro Giallo (Sbagliata Edition), Prosecco, Soda, Arancia. Perfetto per celebrare l'unicità.",
+    description: "Murgia Giallo (Sbagliata Edition), Prosecco, Soda, Arancia. Perfetto per celebrare l'unicità.",
     height: 480,
     ingredients: ["5cl La Sbagliata Murgia", "10cl Prosecco DOCG", "Soda", "Zest di Limone", "Olio essenziale allo zafferano"],
     instructions: ["Mescolare delicatamente gli ingredienti nel bicchiere.", "Aggiungere una goccia di olio essenziale.", "Servire con una scorza di limone."]
@@ -20,7 +20,7 @@ const SBAGLIATA_COCKTAILS = [
     name: "NEGRONI SBAGLIATO (MURGIA)",
     tagline: "CLASSIC RE-ERROR",
     img: "/images/aperitivo/Chicco.webp",
-    description: "Vermouth Rosso, Campari, Villacidro Giallo (Sbagliata), Prosecco. Un omaggio doppio alla bellezza dell'errore.",
+    description: "Vermouth Rosso, Campari, Murgia Giallo (Sbagliata), Prosecco. Un omaggio doppio alla bellezza dell'errore.",
     height: 350,
     ingredients: ["3cl La Sbagliata Murgia", "3cl Vermouth Rosso", "3cl Bitter Campari", "Top di Prosecco"],
     instructions: ["Costruire il drink direttamente in un bicchiere basso con ghiaccio.", "Mescolare e guarnire con una fetta d'arancia."]
@@ -30,7 +30,7 @@ const SBAGLIATA_COCKTAILS = [
     name: "ZAFFERANO SOUR",
     tagline: "SMOOTH & SPICY",
     img: "/images/aperitivo/Hot.webp",
-    description: "La Sbagliata, Limone, Zucchero, Albume, Spezie Sarde. Per un palato che cerca l'anima del Villacidro.",
+    description: "La Sbagliata Murgia, Limone, Zucchero, Albume, Spezie Sarde. Per un palato che cerca l'anima del Murgia.",
     height: 420,
     ingredients: ["6cl La Sbagliata Murgia", "3cl Succo di Limone", "1.5cl Sciroppo di Zucchero", "Zenzero Fresco", "Albume"],
     instructions: ["Pestare lo zenzero.", "Aggiungere gli altri ingredienti e shakerare.", "Filtrare in doppiocing."]

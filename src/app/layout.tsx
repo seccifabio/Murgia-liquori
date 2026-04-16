@@ -15,7 +15,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: "Murgia Liquori | 1882 Heritage Spirits",
-  description: "Experience the golden legacy of Villacidro Murgia. Artisanal Sardinian spirits crafted since 1882.",
+  description: "Experience the golden legacy of Murgia Liquori. Artisanal Sardinian spirits crafted since 1882.",
 };
 
 import Navbar from "@/components/Navbar";

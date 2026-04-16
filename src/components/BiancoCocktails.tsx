@@ -7,22 +7,22 @@ import AperitivoModal from "./AperitivoModal";
 const BIANCO_COCKTAILS = [
   {
     id: "bianco-1",
-    name: "VILLACIDRO SPRITZ",
+    name: "MURGIA SPRITZ",
     tagline: "REFRESHING RITUAL",
     img: "/images/aperitivo/Apericidr.webp",
-    description: "Villacidro Bianco, Prosecco, spruzzata di Soda, Arancia. Una danza di bollicine e finocchio selvatico.",
+    description: "Murgia Bianco, Prosecco, spruzzata di Soda, Arancia. Una danza di bollicine e finocchio selvatico.",
     height: 400,
-    ingredients: ["5cl Villacidro Murgia Bianco", "10cl Prosecco Extra Dry", "Soda Water", "Scorza d'Arancia", "Finocchietto Selvatico"],
-    instructions: ["Riempire un calice di ghiaccio.", "Versare il Villacidro Bianco e il Prosecco.", "Aggiungere la soda.", "Guarnire con arancia e finocchietto."]
+    ingredients: ["5cl Murgia Liquori Bianco", "10cl Prosecco Extra Dry", "Soda Water", "Scorza d'Arancia", "Finocchietto Selvatico"],
+    instructions: ["Riempire un calice di ghiaccio.", "Versare il Murgia Bianco e il Prosecco.", "Aggiungere la soda.", "Guarnire con arancia e finocchietto."]
   },
   {
     id: "bianco-2",
     name: "BIANCO SOUR",
     tagline: "CREAMY & BOLD",
     img: "/images/aperitivo/Limone.webp",
-    description: "Villacidro Bianco, Limone fresco, Zucchero, Albume. Vellutata intensità per un finale indimenticabile.",
+    description: "Murgia Bianco, Limone fresco, Zucchero, Albume. Vellutata intensità per un finale indimenticabile.",
     height: 320,
-    ingredients: ["6cl Villacidro Murgia Bianco", "3cl Succo di Limone fresco", "2cl Sciroppo di Zucchero", "Albume d'uovo", "Bacche di Ginepro"],
+    ingredients: ["6cl Murgia Liquori Bianco", "3cl Succo di Limone fresco", "2cl Sciroppo di Zucchero", "Albume d'uovo", "Bacche di Ginepro"],
     instructions: ["Shakerare gli ingredienti senza ghiaccio (dry shake).", "Aggiungere ghiaccio e shakerare di nuovo.", "Filtrare in una coppa fredda.", "Decorare con bacche di ginepro."]
   },
   {
@@ -30,10 +30,10 @@ const BIANCO_COCKTAILS = [
     name: "WILD TONIC",
     tagline: "BOTANICAL ESSENCE",
     img: "/images/aperitivo/zz.webp",
-    description: "Villacidro Bianco, Acqua Tonica, rametto di Finocchio Selvatico. La purezza della Sardegna nel bicchiere.",
+    description: "Murgia Bianco, Acqua Tonica, rametto di Finocchio Selvatico. La purezza della Sardegna nel bicchiere.",
     height: 480,
     ingredients: ["5cl Murgia Bianco", "15cl Acqua Tonica Mediterranea", "Rametto di Finocchietto Selvatico", "Grani di Pepe Rosa"],
-    instructions: ["In un bicchiere alto colmo di ghiaccio, versare il Villacidro Bianco.", "Aggiungere la tonica lentamente.", "Guarnire con finocchietto e pepe rosa."]
+    instructions: ["In un bicchiere alto colmo di ghiaccio, versare il Murgia Bianco.", "Aggiungere la tonica lentamente.", "Guarnire con finocchietto e pepe rosa."]
   }
 ];
 

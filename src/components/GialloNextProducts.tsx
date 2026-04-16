@@ -17,8 +17,8 @@ export default function GialloNextProducts({ exclude }: { exclude?: string }) {
     {
       name: t.products.giallo.name,
       image: "/images/giallo_sovereign.png",
-      href: "/shop/villacidro-giallo",
-      displayName: "Villacidro Giallo"
+      href: "/shop/murgia-giallo",
+      displayName: "Murgia Giallo"
     },
     {
       name: t.products.sbagliata.name,

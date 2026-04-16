@@ -24,6 +24,7 @@ export default function SovereignBottle() {
         pointerEvents: "none",
         y: yDrift
       }}
+      id="murgia-giallo"
       className="hidden md:flex flex-col items-center justify-center"
     >
       {/* Continuous Oscillating Floating Ritual */}
@@ -33,7 +34,7 @@ export default function SovereignBottle() {
       >
         <img 
           src="/images/giallo_sovereign.png" 
-          alt="Villacidro Giallo" 
+          alt="Murgia Giallo" 
           className="h-[45vh] md:h-[55vh] w-auto drop-shadow-2xl"
         />
       </motion.div>

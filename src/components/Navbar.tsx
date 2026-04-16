@@ -80,7 +80,7 @@ export default function Navbar() {
       if (pathname === "/") {
         entersYellow = vh * 5.7; 
         leavesYellow = vh * 14.2; 
-      } else if (pathname?.includes("/shop/villacidro-giallo")) {
+      } else if (pathname?.includes("/shop/murgia-giallo")) {
         entersYellow = vh * 2.0;
         leavesYellow = vh * 3.0;
       } else {

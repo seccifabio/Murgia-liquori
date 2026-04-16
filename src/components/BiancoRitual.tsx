@@ -14,7 +14,7 @@ export default function BiancoRitual() {
 
   const handleAddToCart = () => {
     addItem({
-      id: "villacidro-bianco",
+      id: "murgia-bianco",
       name: t.products.bianco.name,
       price: "30€",
       priceId: "price_1TM24YIuoh35e3roTRK2zGbp",

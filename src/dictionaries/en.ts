@@ -13,7 +13,7 @@ export const en = {
     preparing: {
       title: "Laboratory Preparing",
       metric: "Certified Alchemy",
-      description: "Every drop is distilled and perfected in our Villacidro laboratory, following the alchemical protocols of 1882."
+      description: "Every drop is distilled and perfected in our Murgia Liquori laboratory, following the alchemical protocols of 1882."
     },
     sealing: {
       title: "Hand-Applied Seal",
@@ -86,7 +86,7 @@ export const en = {
         placeholderEmail: "ALCHEMIST@MURGIA.IT",
         submit: "Secure Ritual",
       },
-      footer: "Visits are conducted at the Villacidro distillery. Price includes a guided tasting and an alchemical gift."
+      footer: "Visits are conducted at the Murgia Liquori distillery. Price includes a guided tasting and an alchemical gift."
     }
   },
   aperitivo: {
@@ -106,23 +106,23 @@ export const en = {
       spritz: {
         name: "MURGIA SPRITZ",
         tagline: "GOLDEN HOUR RITUAL",
-        description: "Villacidro Giallo, Prosecco, Soda, Orange. The Sardinian classic.",
-        ingredients: ["5cl Villacidro Murgia Giallo", "10cl San Pellegrino Cocktail", "Fresh Orange Juice", "A touch of Sardinian Honey", "Seltz/Soda"],
-        instructions: ["Chill a large wine glass thoroughly.", "Pour Villacidro Giallo over crystal ice.", "Add the aperitivo and soda.", "Stir gently to integrate.", "Garnish with fresh orange zest."]
+        description: "Murgia Giallo, Prosecco, Soda, Orange. The Sardinian classic.",
+        ingredients: ["5cl Murgia Liquori Giallo", "10cl San Pellegrino Cocktail", "Fresh Orange Juice", "A touch of Sardinian Honey", "Seltz/Soda"],
+        instructions: ["Chill a large wine glass thoroughly.", "Pour Murgia Giallo over crystal ice.", "Add the aperitivo and soda.", "Stir gently to integrate.", "Garnish with fresh orange zest."]
       },
       sour: {
         name: "ZAFFERANO SOUR",
         tagline: "BOLD & SMOOTH",
-        description: "Giallo Murgia, Lemon, Sugar, Egg White. A velvet intensity.",
-        ingredients: ["6cl Villacidro Murgia Giallo", "3cl Fresh Lime Juice", "1.5cl Simple Syrup", "Fresh Ginger slices", "Egg White/Aquafaba"],
+        description: "Murgia Giallo, Lemon, Sugar, Egg White. A velvet intensity.",
+        ingredients: ["6cl Murgia Liquori Giallo", "3cl Fresh Lime Juice", "1.5cl Simple Syrup", "Fresh Ginger slices", "Egg White/Aquafaba"],
         instructions: ["Muddle ginger at the base of the shaker.", "Add the remaining liquid assets.", "Execute a 'Dry Shake' without ice.", "Add ice and shake with intent.", "Strain into a chilled coupe."]
       },
       tonic: {
         name: "GIALLO TONIC",
         tagline: "PURE REFRESH",
-        description: "Giallo Murgia, Premium Tonic, Lemon Zest. Pure clarity.",
-        ingredients: ["5cl Villacidro Murgia Giallo", "15cl Premium Tonic Water", "Lime wedge", "Lemon Zest", "Sprig of Thyme"],
-        instructions: ["Fill a Highball glass with crystal clear ice.", "Pour the Villacidro Giallo soul.", "Top with tonic, pouring gently.", "Squeeze the lime slightly into the mix.", "Garnish and manifest."]
+        description: "Murgia Giallo, Premium Tonic, Lemon Zest. Pure clarity.",
+        ingredients: ["5cl Murgia Liquori Giallo", "15cl Premium Tonic Water", "Lime wedge", "Lemon Zest", "Sprig of Thyme"],
+        instructions: ["Fill a Highball glass with crystal clear ice.", "Pour the Murgia Giallo soul.", "Top with tonic, pouring gently.", "Squeeze the lime slightly into the mix.", "Garnish and manifest."]
       },
       mediterraneo: {
         name: "MEDITERRANEO",
@@ -134,8 +134,8 @@ export const en = {
       blackgold: {
         name: "BLACK GOLD",
         tagline: "INTENSE AFTERDARK",
-        description: "Giallo Murgia, Espresso, Coffee Liqueur. The alchemy of the night.",
-        ingredients: ["4cl Villacidro Murgia Giallo", "3cl Ristretto Espresso", "2cl Coffee Liqueur", "Coffee beans for garnish"],
+        description: "Murgia Giallo, Espresso, Coffee Liqueur. The alchemy of the night.",
+        ingredients: ["4cl Murgia Liquori Giallo", "3cl Ristretto Espresso", "2cl Coffee Liqueur", "Coffee beans for garnish"],
         instructions: ["Shake all elements vigorously with plenty of ice.", "Double strain into a chilled Martini glass.", "Garnish with three coffee beans in a triangle formation."]
       }
     },
@@ -143,30 +143,30 @@ export const en = {
       tiramisu: {
         name: "TIRAMISÙ REDUX",
         tagline: "DESSERT RITUAL",
-        description: "Coffee alchemy meets the gold of Villacidro in a velvet cream.",
-        ingredients: ["500g Mascarpone", "5 Fresh Eggs", "5 Spoons of Sugar", "Whipped Cream", "1 Glass of Villacidro Giallo", "Ladyfingers and Bitter Coffee"],
-        instructions: ["Whip egg whites until stiff peaks form.", "Whisk yolks with sugar until creamy.", "Gently fold Villacidro Giallo into the yolk cream.", "Incorporate egg whites with slow, vertical motions.", "Dip ladyfingers in coffee and layer with the golden cream.", "Dust with bitter cocoa and let chill in the archives."]
+        description: "Coffee alchemy meets the gold of Murgia Liquori in a velvet cream.",
+        ingredients: ["500g Mascarpone", "5 Fresh Eggs", "5 Spoons of Sugar", "Whipped Cream", "1 Glass of Murgia Giallo", "Ladyfingers and Bitter Coffee"],
+        instructions: ["Whip egg whites until stiff peaks form.", "Whisk yolks with sugar until creamy.", "Gently fold Murgia Giallo into the yolk cream.", "Incorporate egg whites with slow, vertical motions.", "Dip ladyfingers in coffee and layer with the golden cream.", "Dust with bitter cocoa and let chill in the archives."]
       },
       pere: {
         name: "PEAR & SAFFRON ESSENCE",
         tagline: "FRUIT ALCHEMY",
         description: "Kaiser pears cooked at low temperature, infused with saffron essence.",
-        ingredients: ["600g Ripe Pears", "50g Brown Sugar", "70g Lemon Juice", "50g Dry White Wine", "50g Villacidro Murgia Giallo", "4 Murgia Saffron threads"],
-        instructions: ["Dice pears and cook with wine and sugar (10 min).", "Deglaze with Villacidro Giallo and lemon juice.", "Allow to cool and add dissolved saffron.", "Blend until a silky alchemy is achieved.", "Serve in bowls with dark chocolate shards."]
+        ingredients: ["600g Ripe Pears", "50g Brown Sugar", "70g Lemon Juice", "50g Dry White Wine", "50g Murgia Liquori Giallo", "4 Murgia Saffron threads"],
+        instructions: ["Dice pears and cook with wine and sugar (10 min).", "Deglaze with Murgia Giallo and lemon juice.", "Allow to cool and add dissolved saffron.", "Blend until a silky alchemy is achieved.", "Serve in bowls with dark chocolate shards."]
       },
       arance: {
         name: "CITRUS ALCHEMY",
         tagline: "CITRUS RITUAL",
-        description: "Sardinian oranges sliced and submerged in pure Villacidro Giallo.",
-        ingredients: ["4 Sardinian Oranges", "10cl Villacidro Murgia Giallo", "Freshly squeezed orange juice"],
-        instructions: ["Peel oranges and slice into 1cm discs.", "Arrange in a ceramic or glass vessel.", "Drench with Villacidro Giallo and fresh juice.", "Let macerate in the archives for at least 2 hours.", "Serve chilled as a regenerative finale."]
+        description: "Sardinian oranges sliced and submerged in pure Murgia Giallo.",
+        ingredients: ["4 Sardinian Oranges", "10cl Murgia Liquori Giallo", "Freshly squeezed orange juice"],
+        instructions: ["Peel oranges and slice into 1cm discs.", "Arrange in a ceramic or glass vessel.", "Drench with Murgia Giallo and fresh juice.", "Let macerate in the archives for at least 2 hours.", "Serve chilled as a regenerative finale."]
       }
     }
   },
   collection: {
     title: "The Collection",
     subtitle: "The Gold of",
-    subtitleAccent: "Villacidro",
+    subtitleAccent: "Murgia Liquori",
     description: "A spectrum of alchemical shades, distilled with the same fire since 1882.",
     types: {
       historic: "Historic Liqueur",
@@ -191,9 +191,9 @@ export const en = {
       otherProducts: "Other Products"
     },
     giallo: {
-      name: "Villacidro Giallo",
+      name: "Murgia Giallo",
       heroTagline: "The Alchemy of Saffron",
-      ritualDescription: "\"We would drink the elisir de s'omu, the gold of Villacidro.\" A gesture that spans centuries, a collective ritual that unites generations. Best served at room temperature (16-20°C) in a tulip glass to release the soul of the saffron.",
+      ritualDescription: "\"We would drink the elisir de s'omu, the gold of Murgia Liquori.\" A gesture that spans centuries, a collective ritual that unites generations. Best served at room temperature (16-20°C) in a tulip glass to release the soul of the saffron.",
       ingredients: [
         { name: "Saffron", detail: "Gold of San Gavino", desc: "The beating heart of Giallo. Harvested at dawn to preserve its purest color and aroma." },
         { name: "Star Anise", detail: "Alchemical Purity", desc: "The top note that refresca the palate, balancing the warmth of the secret spices." },
@@ -207,7 +207,7 @@ export const en = {
       ingredients: [
         { name: "Mint", detail: "Sardinian Breath", desc: "Wild freshness that opens the senses." },
         { name: "Orange", detail: "Alchemical Zest", desc: "Citrus notes for a brilliant finish." },
-        { name: "Eucalyptus", detail: "Medicinal Heart", desc: "The essence of the forests of Villacidro." }
+        { name: "Eucalyptus", detail: "Medicinal Heart", desc: "The essence of the forests of Murgia Liquori." }
       ]
     },
     sbagliata: {
@@ -230,10 +230,10 @@ export const en = {
       ritual: "Become a Partner",
       title: "Become a",
       titleAccent: "Murgia Partner",
-      description: "Infuse your venue with the authenticity of Villacidro. Join our circle of distribution and unlock exclusive professional advantages.",
+      description: "Infuse your venue with the authenticity of Murgia Liquori. Join our circle of distribution and unlock exclusive professional advantages.",
       cta: "APPLY",
       back: "Back to list",
-      formTitle: "Join the Villacidro Murgia Network",
+      formTitle: "Join the Murgia Liquori Network",
       successTitle: "Request Received",
       successText: "Your transmission has been recorded. A specialist will manifest soon.",
       fields: {
@@ -293,7 +293,7 @@ export const en = {
         year: "1882-1886",
         title: "Origins",
         subtitle: "CHEMIST & STEAM",
-        description: "Gennaro Murgia, a student of Antonio Pacinotti, founded the steam distillery in Villacidro. Utilizing the abundance of local raw materials, he created the first brandies and liqueurs that would define an era."
+        description: "Gennaro Murgia, a student of Antonio Pacinotti, founded the steam distillery in Murgia Liquori. Utilizing the abundance of local raw materials, he created the first brandies and liqueurs that would define an era."
       },
       giallo: {
         year: "BRILLIANT GOLD",

@@ -27,7 +27,7 @@ export default function Logo({ className = "", variant = "small", theme = "light
           <div className="absolute -bottom-[2vw] left-1/2 -translate-x-1/2 w-full flex items-center justify-between px-2">
             <span className={`h-[1px] ${isDark ? "bg-noir/20" : "bg-primary/40"} flex-1`} />
             <span className={`font-heading text-[1.5vw] tracking-[0.8em] ${subColor} px-4 whitespace-nowrap`}>
-              VILLACIDRO
+              LIQUORI
             </span>
             <span className={`h-[1px] ${isDark ? "bg-noir/20" : "bg-primary/40"} flex-1`} />
           </div>
@@ -42,7 +42,7 @@ export default function Logo({ className = "", variant = "small", theme = "light
         MURGIA
       </span>
       <span className={`font-heading text-[12px] tracking-[0.44em] ${subColor} mt-[-4px]`}>
-        VILLACIDRO
+        LIQUORI
       </span>
     </div>
   );

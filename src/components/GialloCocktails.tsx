@@ -10,29 +10,29 @@ const GIALLO_COCKTAILS = [
     name: "MURGIA SPRITZ",
     tagline: "GOLDEN HOUR RITUAL",
     img: "/images/aperitivo/Apericidr.webp",
-    description: "Villacidro Giallo, Prosecco Extra Dry, Soda, Arancia. Il classico reinventato con il calore dello zafferano.",
+    description: "Murgia Giallo, Prosecco Extra Dry, Soda, Arancia. Il classico reinventato con il calore dello zafferano.",
     height: 420,
-    ingredients: ["5cl Villacidro Giallo", "10cl San Pellegrino Cocktail", "Succo di Arancia fresca", "Goccia di Miele sardo", "Seltz/Soda"],
-    instructions: ["Raffreddare un calice ampiamente.", "Versare il Villacidro Giallo sul ghiaccio.", "Aggiungere l'aperitivo e la soda.", "Mescolare delicatamente.", "Guarnire con scorza d'arancia."]
+    ingredients: ["5cl Murgia Giallo", "10cl San Pellegrino Cocktail", "Succo di Arancia fresca", "Goccia di Miele sardo", "Seltz/Soda"],
+    instructions: ["Raffreddare un calice ampiamente.", "Versare il Murgia Giallo sul ghiaccio.", "Aggiungere l'aperitivo e la soda.", "Mescolare delicatamente.", "Guarnire con scorza d'arancia."]
   },
   {
     id: "prod-2",
     name: "GIALLO TONIC",
     tagline: "PURE & BITTER",
     img: "/images/aperitivo/Limone.webp",
-    description: "Villacidro Giallo, Acqua Tonica Premium, Scorza di Limone Sardo. Essenza vibrante per un finale pulito.",
+    description: "Murgia Giallo, Acqua Tonica Premium, Scorza di Limone Sardo. Essenza vibrante per un finale pulito.",
     height: 350,
-    ingredients: ["5cl Villacidro Giallo", "15cl Acqua Tonica Premium", "Spicchio di Lime", "Scorza di Limone", "Ramoscello di Timo"],
-    instructions: ["Riempire un bicchiere Highball di ghiaccio cristallino.", "Versare il Villacidro Giallo.", "Colmare con la tonica versandola delicatamente.", "Spremere leggermente il lime nel drink.", "Guarnire e servire."]
+    ingredients: ["5cl Murgia Giallo", "15cl Acqua Tonica Premium", "Spicchio di Lime", "Scorza di Limone", "Ramoscello di Timo"],
+    instructions: ["Riempire un bicchiere Highball di ghiaccio cristallino.", "Versare il Murgia Giallo.", "Colmare con la tonica versandola delicatamente.", "Spremere leggermente il lime nel drink.", "Guarnire e servire."]
   },
   {
     id: "prod-3",
     name: "MEDITERRANEO",
     tagline: "HERBAL & COMPLEX",
     img: "/images/aperitivo/zz.webp",
-    description: "Villacidro Giallo, Gin Murgia, Vermouth Bianco, Menta. Un viaggio alchemico tra le erbe della Sardegna.",
+    description: "Murgia Giallo, Gin Murgia, Vermouth Bianco, Menta. Un viaggio alchemico tra le erbe della Sardegna.",
     height: 480,
-    ingredients: ["4cl Villacidro Giallo", "3cl Dry Gin Sardo", "2cl Vermouth Bianco", "Foglie di Menta fresca", "Cetriolo per guarnizione"],
+    ingredients: ["4cl Murgia Giallo", "3cl Dry Gin Sardo", "2cl Vermouth Bianco", "Foglie di Menta fresca", "Cetriolo per guarnizione"],
     instructions: ["Gently clap the mint leaves to release oils.", "Aggiungere tutti gli ingredienti in un Mixing Glass.", "Miscelare con ghiaccio per ottenere la giusta diluizione.", "Filtrare in una coppa cocktail fredda.", "Aggiungere la menta e il cetriolo."]
   }
 ];

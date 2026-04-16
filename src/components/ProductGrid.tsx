@@ -13,14 +13,14 @@ export default function ProductGrid() {
   const PRODUCTS = useMemo(() => [
     {
       id: 1,
-      name: "Villacidro Giallo",
+      name: "Murgia Giallo",
       type: t.collection.types.historic,
       price: "€28,00",
       color: "#F4B400",
     },
     {
       id: 2,
-      name: "Villacidro Bianco",
+      name: "Murgia Bianco",
       type: t.collection.types.herbal,
       price: "€26,00",
       color: "#FFFFFF",
@@ -80,7 +80,7 @@ export default function ProductGrid() {
           {PRODUCTS.map((product, index) => (
             <Link 
               key={product.id} 
-              href={index === 0 ? "/shop/villacidro-giallo" : index === 1 ? "/shop/villacidro-bianco" : "/shop/amaro-murgia"}
+              href={index === 0 ? "/shop/murgia-giallo" : index === 1 ? "/shop/murgia-bianco" : "/shop/amaro-murgia"}
               className="group cursor-pointer block"
             >
               <motion.div

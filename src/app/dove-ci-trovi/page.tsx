@@ -4,8 +4,8 @@ import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Dove Ci Trovi | Villacidro Murgia",
-  description: "Scopri la mappa dei partner e dei punti vendita Villacidro Murgia in tutta la Sardegna e oltre. Porta l'alchimia nel tuo locale.",
+  title: "Dove Ci Trovi | Murgia Liquori",
+  description: "Scopri la mappa dei partner e dei punti vendita Murgia Liquori in tutta la Sardegna e oltre. Porta l'alchimia nel tuo locale.",
 };
 
 export default function DoveCiTroviPage() {

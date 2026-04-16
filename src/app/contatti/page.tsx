@@ -69,7 +69,7 @@ export default function ContattiPage() {
                   <span className="text-white/30 font-heading text-[10px] tracking-[0.3em] uppercase block mb-4">
                     {t.contacts.info.email}
                   </span>
-                  <a href="mailto:info@villacidromurgia.com" className="text-white hover:text-primary transition-colors font-body text-xl uppercase tracking-widest block">info@villacidromurgia.com</a>
+                  <a href="mailto:info@murgialiquori.com" className="text-white hover:text-primary transition-colors font-body text-xl uppercase tracking-widest block">info@murgialiquori.com</a>
                 </div>
               </div>
             </div>

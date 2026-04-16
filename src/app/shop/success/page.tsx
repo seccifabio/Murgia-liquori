@@ -13,7 +13,7 @@ import Image from "next/image";
 
 // Asset Manifest for Transparent Artifacts
 const productImages: Record<string, string> = {
-  "Villacidro Giallo": "/images/giallo_sovereign.png",
+  "Murgia Giallo": "/images/giallo_sovereign.png",
   "Murgia Bianco": "/images/products/bianco.png",
   "La Sbagliata": "/images/products/sbagliata.png",
 };

@@ -55,7 +55,7 @@ export default function Footer() {
           <div className="flex-1 space-y-6">
             <h4 className="font-heading text-xs tracking-widest text-primary uppercase">{t.footer.contacts}</h4>
             <div className="space-y-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
-              <p>Email: murglialiquori@gmail.com</p>
+              <p>Email: info@murgialiquori.com</p>
               <p>Tel: +39 070 931 52 09</p>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function Footer() {
         <motion.div variants={itemVariants} className="w-full flex flex-col items-center gap-8 mb-12">
            <div className="flex flex-col items-center gap-2 text-center">
               <p className="text-[10px] tracking-[0.5em] text-white/40 uppercase">
-                P.IVA: 00065810921 — © 2024 Murgia Liquori
+                P.IVA: 00065810921 — © 2026 Murgia Liquori
               </p>
               <p className="text-[10px] tracking-[0.4em] text-white/30 uppercase">
                 Gennaro Murgia eredi Alessandro Pietro Murgia S.a.s

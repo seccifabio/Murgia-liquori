@@ -14,7 +14,7 @@ export default function GialloRitual() {
 
   const handleAddToCart = () => {
     addItem({
-      id: "villacidro-giallo",
+      id: "murgia-giallo",
       name: t.products.giallo.name,
       price: "32€",
       priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
@@ -74,7 +74,7 @@ export default function GialloRitual() {
         >
           <img 
             src="/images/giallo_sovereign.png" 
-            alt="Villacidro Giallo" 
+            alt="Murgia Giallo" 
             className="h-[40vh] md:h-[60vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.6)] mx-auto" 
           />
         </motion.div>

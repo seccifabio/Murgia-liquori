@@ -19,7 +19,7 @@ export async function sendPartnerRequest(formData: any) {
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px;">
           <h2 style="color: #F4B400; text-transform: uppercase; border-bottom: 2px solid #F4B400; padding-bottom: 10px;">
-            Richiesta Partnership Villacidro Murgia
+            Richiesta Partnership Murgia Liquori
           </h2>
           <p style="margin-top: 20px;"><strong>Partner:</strong> ${name}</p>
           <p><strong>Città:</strong> ${city}</p>
