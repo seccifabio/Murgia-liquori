@@ -3,11 +3,8 @@
 import React, { useCallback } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { X } from "lucide-react";
-import {
-  EmbeddedCheckoutProvider,
-
-  EmbeddedCheckout,
-} from "@stripe/react-stripe-js";
+import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
+import { useCart } from "@/context/CartContext";
 
 // Initialize Stripe with your Public Key
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
