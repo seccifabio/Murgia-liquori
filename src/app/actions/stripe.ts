@@ -40,9 +40,29 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
 
     const shippingAmount = (subtotalCents - discountCents) >= 8000 ? 0 : 1000;
 
+    // Search for the Promotion Code ID in Stripe to pre-apply it
+    let discounts: any[] = [];
+    if (appliedCode) {
+      try {
+        const promoCodes = await stripe.promotionCodes.list({
+          code: appliedCode,
+          active: true,
+          limit: 1,
+        });
+        
+        if (promoCodes.data.length > 0) {
+          discounts = [{ promotion_code: promoCodes.data[0].id }];
+          console.log("Stripe Ritual: Pre-applying Promo ID:", promoCodes.data[0].id);
+        }
+      } catch (err) {
+        console.warn("Stripe Ritual: Could not pre-apply promo code automatically.", err);
+      }
+    }
+
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded' as any,
       line_items,
+      discounts, // Pre-apply the promotion code
       mode: "payment",
       allow_promotion_codes: true, // Allows user to enter codes manually in terminal
       shipping_address_collection: {

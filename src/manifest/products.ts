@@ -9,7 +9,7 @@ export const PRODUCTS_MANIFEST = {
     id: "villacidro-giallo",
     productId: "prod_UKhT1VSJtkQ1rJ",
     priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
-    price: 45,
+    price: 42,
   },
   bianco: {
     id: "murgia-bianco",
@@ -21,7 +21,7 @@ export const PRODUCTS_MANIFEST = {
     id: "la-sbagliata",
     productId: "prod_UKhTea4wkJGqIq",
     priceId: "price_1TM24ZIuoh35e3rouLctnxoM",
-    price: 35,
+    price: 36,
   }
 };
 
