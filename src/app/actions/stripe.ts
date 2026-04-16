@@ -26,14 +26,45 @@ export async function createCheckoutSession(items: any[]) {
   console.log("Stripe Ritual: Initiating with items:", line_items);
 
   try {
+    // Calculate Alchemical Threshold for Shipping
+    const subtotalCents = items.reduce((acc, item) => {
+      const priceNum = parseFloat(item.price.replace("€", "").replace(",", "."));
+      return acc + (priceNum * 100 * item.quantity);
+    }, 0);
+
+    const shippingAmount = subtotalCents >= 8000 ? 0 : 1000;
+
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded' as any,
       line_items,
       mode: "payment",
-      return_url: `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
+      allow_promotion_codes: true,
       shipping_address_collection: {
-        allowed_countries: ["IT"],
+        allowed_countries: ["IT", "GB", "FR", "DE", "ES", "CH", "US"],
       },
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: {
+              amount: shippingAmount,
+              currency: 'eur',
+            },
+            display_name: shippingAmount === 0 ? 'Trasporto Heritage (Gratuito)' : 'Trasporto Standard',
+            delivery_estimate: {
+              minimum: {
+                unit: 'business_day',
+                value: 3,
+              },
+              maximum: {
+                unit: 'business_day',
+                value: 5,
+              },
+            },
+          },
+        },
+      ],
+      return_url: `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
       metadata: {
         order_type: "Murgia Heritage Purchase",
         items_summary: items.map(i => `${i.name} (${i.format})`).join(", "),
