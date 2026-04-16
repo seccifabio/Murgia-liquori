@@ -34,7 +34,7 @@ export async function POST(req: Request) {
 
   // RITUAL: Handle Successful Payment
   if (event.type === "checkout.session.completed") {
-    const session = event.data.object as Stripe.Checkout.Session;
+    const session = event.data.object as any;
     
     // JOURNEY MAPPING: Retrieve line items
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
