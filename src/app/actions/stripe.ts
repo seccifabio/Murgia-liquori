@@ -12,7 +12,7 @@ const stripe = new Stripe(apiKey, {
   apiVersion: "2023-10-16" as any, // Standard stable version
 });
 
-export async function createCheckoutSession(items: any[], appliedCode?: string | null) {
+export async function createCheckoutSession(items: any[], appliedCode?: string | null, locale: string = "it") {
   if (!items || items.length === 0) {
     throw new Error("Il carrello è vuoto.");
   }
@@ -119,6 +119,7 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
         items_summary: items.map(i => `${i.name} (${i.format})`).join(", "),
         applied_promo: appliedCode || "none",
       },
+      locale: locale as any,
     };
 
     // 🪙 RITUAL: Exclusivity Rule for Discounts vs. Promotion Search
@@ -142,6 +143,7 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
         ...sessionConfig,
         discounts: undefined,
         allow_promotion_codes: true,
+        locale: locale as any,
       };
 
       const fallbackSession = await stripe.checkout.sessions.create(fallbackConfig as any);

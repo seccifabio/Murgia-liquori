@@ -13,7 +13,7 @@ import { useTranslation } from "@/context/LanguageContext";
 
 
 export default function BasketDrawer() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total, appliedCode, setAppliedCode, discount, shipping, finalTotal } = useCart();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -305,6 +305,7 @@ export default function BasketDrawer() {
                   <EmbeddedStripeCheckout 
                     items={items} 
                     appliedCode={appliedCode}
+                    locale={language}
                     onClose={() => setShowCheckout(false)} 
                     onSuccess={() => {
                       clearCart();

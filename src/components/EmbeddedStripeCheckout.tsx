@@ -12,11 +12,12 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 interface EmbeddedStripeCheckoutProps {
   items: any[];
   appliedCode: string | null;
+  locale: string;
   onClose: () => void;
   onSuccess?: () => void;
 }
 
-export default function EmbeddedStripeCheckout({ items, appliedCode, onClose }: EmbeddedStripeCheckoutProps) {
+export default function EmbeddedStripeCheckout({ items, appliedCode, locale, onClose }: EmbeddedStripeCheckoutProps) {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
 
   // This function calls our API route to create a session for the entire cart
@@ -26,7 +27,7 @@ export default function EmbeddedStripeCheckout({ items, appliedCode, onClose }: 
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ items, appliedCode }),
+      body: JSON.stringify({ items, appliedCode, locale }),
     })
       .then((res) => res.json())
       .then((data) => data.clientSecret)
