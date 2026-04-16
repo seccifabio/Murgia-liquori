@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef } from "react";
 import { useCart } from "@/context/CartContext";
 import { useTranslation } from "@/context/LanguageContext";
+import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
 export default function BiancoRitual() {
   const { t } = useTranslation();
@@ -14,13 +15,13 @@ export default function BiancoRitual() {
 
   const handleAddToCart = () => {
     addItem({
-      id: "murgia-bianco",
+      id: PRODUCTS_MANIFEST.bianco.id,
       name: t.products.bianco.name,
-      price: "30€",
-      priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
+      price: `${PRODUCTS_MANIFEST.bianco.price}€`,
+      priceId: PRODUCTS_MANIFEST.bianco.priceId,
       quantity: quantity,
       format: selectedFormat,
-      img: "/images/bianco_product.png"
+      img: "/images/products/bianco.png"
     });
   };
 

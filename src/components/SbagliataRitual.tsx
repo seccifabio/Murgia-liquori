@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef } from "react";
 import { useCart } from "@/context/CartContext";
 import { useTranslation } from "@/context/LanguageContext";
+import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
 export default function SbagliataRitual() {
   const { t } = useTranslation();
@@ -14,10 +15,10 @@ export default function SbagliataRitual() {
 
   const handleAddToCart = () => {
     addItem({
-      id: "la-sbagliata",
+      id: PRODUCTS_MANIFEST.sbagliata.id,
       name: t.products.sbagliata.name,
-      price: "35€",
-      priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
+      price: `${PRODUCTS_MANIFEST.sbagliata.price}€`,
+      priceId: PRODUCTS_MANIFEST.sbagliata.priceId,
       quantity: quantity,
       format: selectedFormat,
       img: "/images/sbagliata_product.png"

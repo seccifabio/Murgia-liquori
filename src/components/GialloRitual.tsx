@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef } from "react";
 import { useCart } from "@/context/CartContext";
 import { useTranslation } from "@/context/LanguageContext";
+import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
 export default function GialloRitual() {
   const { t } = useTranslation();
@@ -14,10 +15,10 @@ export default function GialloRitual() {
 
   const handleAddToCart = () => {
     addItem({
-      id: "murgia-giallo",
+      id: PRODUCTS_MANIFEST.giallo.id,
       name: t.products.giallo.name,
-      price: "32€",
-      priceId: "price_1TM24YIuoh35e3roTRK2zGbp",
+      price: `${PRODUCTS_MANIFEST.giallo.price}€`,
+      priceId: PRODUCTS_MANIFEST.giallo.priceId,
       quantity: quantity,
       format: selectedFormat,
       img: "/images/giallo_sovereign.png"
