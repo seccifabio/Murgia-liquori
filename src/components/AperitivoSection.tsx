@@ -53,6 +53,7 @@ export default function AperitivoSection() {
 
   return (
     <section 
+      id="aperitivo"
       ref={containerRef} 
       className={`relative bg-primary py-20 md:py-24 px-6 md:px-12 ${isModalOpen ? 'z-[100000]' : 'z-[110]'}`}
     >
