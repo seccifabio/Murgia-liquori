@@ -12,7 +12,9 @@ export async function GET() {
       .replace("{{ORDER_ID}}", "TEST-ALCH-2026")
       .replace("{{PRODUCT_NAME}}", "Murgia Giallo")
       .replace("{{PRODUCT_PRICE}}", "42.00€")
-      .replace("{{TOTAL_AMOUNT}}", "42.00€");
+      .replace("{{TOTAL_AMOUNT}}", "42.00€")
+      .replace("{{CUSTOMER_NAME}}", "Fabio Secci")
+      .replace("{{SHIPPING_ADDRESS}}", "Via Roma 123, 09039 Villacidro (IT)");
 
     return new NextResponse(htmlContent, {
       headers: {

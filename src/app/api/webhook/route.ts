@@ -61,6 +61,13 @@ export async function POST(req: Request) {
 
         const productTotal = (session.amount_total! / 100).toFixed(2) + "€";
         
+        // CUSTOMER DATA
+        const customerName = session.shipping_details?.name || session.customer_details?.name || "Gentile Alchimista";
+        const addr = session.shipping_details?.address;
+        const shippingAddress = addr 
+          ? `${addr.line1}${addr.line2 ? `, ${addr.line2}` : ''}, ${addr.postal_code} ${addr.city} (${addr.country})`
+          : "Ritiro presso l'Atelier";
+
         const startTag = "<!-- ITEM REPEATABLE -->";
         const endTag = "<!-- END ITEM REPEATABLE -->";
         const regex = new RegExp(`${startTag}[\\s\\S]*${endTag}`, "g");
@@ -69,7 +76,9 @@ export async function POST(req: Request) {
         
         htmlContent = htmlContent
           .replace("{{ORDER_ID}}", session.id.slice(-8).toUpperCase())
-          .replace("{{TOTAL_AMOUNT}}", productTotal);
+          .replace("{{TOTAL_AMOUNT}}", productTotal)
+          .replace("{{CUSTOMER_NAME}}", customerName)
+          .replace("{{SHIPPING_ADDRESS}}", shippingAddress);
 
         // DISPATCH RITUAL
         await resend.emails.send({
