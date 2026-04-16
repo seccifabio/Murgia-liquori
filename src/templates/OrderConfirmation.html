@@ -27,7 +27,7 @@
     }
     
     /* ALCHEMICAL TOKENS */
-    .murgia-gold { color: #D4AF37; }
+    .murgia-gold { color: #F4B400; }
     .murgia-bg { background-color: #0A0A0A; }
     
     /* MOBILE OPTIMIZATIONS */
@@ -38,19 +38,19 @@
       .full-width-cell { padding-left: 20px !important; padding-right: 20px !important; }
     }
 
-    /* DESKTOP HOVER RITUAL */
+    /* DESKTOP INTERACTION MANIFEST */
     @media screen and (min-width: 601px) {
       .hover-scale:hover {
         transform: scale(1.05) !important;
       }
-      .hover-btn {
-        transition: all 0.4s ease !important;
+      .murgia-btn-ritual {
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
       }
-      .hover-btn:hover {
+      .murgia-btn-ritual:hover {
         background-color: #FFFFFF !important;
-        color: #000000 !important;
-        transform: translateY(-2px) !important;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.4) !important;
+        color: #040404 !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.5) !important;
       }
     }
   </style>
@@ -61,40 +61,40 @@
     <!-- LOGO HEADER RITUAL (CENTERED) -->
     <table width="600" border="0" cellpadding="0" cellspacing="0" class="container">
       <tr>
-        <td align="center" style="padding: 50px 0;">
-          <h1 style="color:#D4AF37; font-family:'Helvetica Neue', Arial; font-size:42px; font-weight:normal; letter-spacing:0.1em; margin:0; text-transform:uppercase; line-height:0.8;">
+        <td align="center" style="padding: 60px 0;">
+          <h1 style="color:#F4B400; font-family:'Helvetica Neue', Arial; font-size:42px; font-weight:normal; letter-spacing:0.1em; margin:0; text-transform:uppercase; line-height:0.8;">
             MURGIA
           </h1>
-          <p style="color:#D4AF37; font-family:'Helvetica Neue', Arial; font-size:10px; letter-spacing:0.6em; text-transform:uppercase; margin:5px 0 0 0; opacity:0.8;">
+          <p style="color:#F4B400; font-family:'Helvetica Neue', Arial; font-size:10px; letter-spacing:0.6em; text-transform:uppercase; margin:5px 0 0 0; opacity:0.8;">
             LIQUORI
           </p>
         </td>
       </tr>
     </table>
 
-    <!-- MAIN HERO RITUAL (EDGE-TO-EDGE WITH HERITAGE BG) -->
-    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #111111; background-image: url('https://murgia-liquori.vercel.app/images/storia/storia_origins_1882_1775937746086.png'); background-size: cover; background-position: center;">
+    <!-- MAIN HERO RITUAL (EDGE-TO-EDGE WITH B&W HERITAGE) -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #090909; background-image: url('https://murgia-liquori.vercel.app/images/storia/storia_origins_1882_1775937746086.png'); background-size: cover; background-position: center; filter: grayscale(1) contrast(1.2);">
       <tr>
-        <td align="center" style="background-color: rgba(17,17,17,0.85);">
+        <td align="center" style="background-color: rgba(4,4,4,0.85); backdrop-blur: 2px;">
           <!-- Content Manifest -->
           <table width="600" border="0" cellpadding="0" cellspacing="0" class="container">
             <tr>
-              <td align="center" style="padding: 100px 0 60px 0;" class="padded">
-                <span style="color:#D4AF37; font-size:12px; letter-spacing:0.4em; text-transform:uppercase; display:block; margin-bottom:25px; font-weight:bold;">
+              <td align="center" style="padding: 120px 0 80px 0;" class="padded">
+                <span style="color:#F4B400; font-size:12px; letter-spacing:0.4em; text-transform:uppercase; display:block; margin-bottom:30px; font-weight:bold;">
                   L'Arte della Distillazione è in viaggio.
                 </span>
-                <h2 style="color:#FFFFFF; font-size:48px; font-weight:300; letter-spacing:-0.04em; margin:0; line-height:1.1; text-transform:uppercase;">
-                  Sotto il Sigillo <br/> <span style="font-style:italic;">del 1882.</span>
+                <h2 style="color:#FFFFFF; font-size:54px; font-weight:300; letter-spacing:-0.05em; margin:0; line-height:1.0; text-transform:uppercase;">
+                  Sotto il Sigillo <br/> <span style="font-style:italic; opacity:0.6;">del 1882.</span>
                 </h2>
-                <div style="height:1px; width:40px; background-color:#D4AF37; margin:40px 0;"></div>
-                <p style="color:rgba(255,255,255,0.7); font-size:16px; line-height:1.6; margin:0; font-style:italic;">
+                <div style="height:1px; width:40px; background-color:#F4B400; margin:50px 0;"></div>
+                <p style="color:rgba(255,255,255,0.7); font-size:18px; line-height:1.6; margin:0; font-style:italic; letter-spacing: 0.02em;">
                   Un pezzo della nostra storia sta per unirsi alla tua collezione.
                 </p>
               </td>
             </tr>
             <tr>
-              <td align="center" style="padding-bottom: 80px;">
-                <img src="https://murgia-liquori.vercel.app/images/giallo_sovereign.png" alt="Murgia Giallo" width="300" style="display:block; width:300px;" class="product-img hover-scale" />
+              <td align="center" style="padding-bottom: 100px;">
+                <img src="https://murgia-liquori.vercel.app/images/giallo_sovereign.png" alt="Murgia Giallo" width="320" style="display:block; width:320px;" class="product-img hover-scale" />
               </td>
             </tr>
           </table>
@@ -105,15 +105,15 @@
     <!-- ORDER DETAILS MANIFESTO (CENTERED) -->
     <table width="600" border="0" cellpadding="0" cellspacing="0" class="container">
       <tr>
-        <td style="padding: 80px 0;" class="padded">
+        <td style="padding: 100px 0;" class="padded">
           <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;">
+              <td style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
                 <span style="color:rgba(255,255,255,0.4); font-size:10px; letter-spacing:0.5em; text-transform:uppercase;">
                   Riferimento Ordine
                 </span>
               </td>
-              <td align="right" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;">
+              <td align="right" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
                 <span style="color:#FFFFFF; font-size:14px; letter-spacing:0.1em; font-family: monospace;">
                   #{{ORDER_ID}}
                 </span>
@@ -122,23 +122,23 @@
             
             <!-- ITEM REPEATABLE -->
             <tr>
-              <td style="padding-top: 30px;">
-                <span style="color:#FFFFFF; font-size:16px; font-weight:500; text-transform:uppercase;">{{PRODUCT_NAME}}</span>
+              <td style="padding-top: 40px;">
+                <span style="color:#FFFFFF; font-size:18px; font-weight:500; text-transform:uppercase; letter-spacing: 0.05em;">{{PRODUCT_NAME}}</span>
                 <br/>
-                <span style="color:rgba(255,255,255,0.4); font-size:12px;">70cl — Edizione Archivi</span>
+                <span style="color:rgba(255,255,255,0.4); font-size:13px; font-style: italic;">70cl — Edizione Archivi</span>
               </td>
-              <td align="right" style="padding-top: 30px;">
-                <span style="color:#FFFFFF; font-size:16px;">{{PRODUCT_PRICE}}</span>
+              <td align="right" style="padding-top: 40px;">
+                <span style="color:#FFFFFF; font-size:18px; font-weight: 300;">{{PRODUCT_PRICE}}</span>
               </td>
             </tr>
             <!-- END ITEM REPEATABLE -->
 
             <tr>
-              <td style="padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
-                <span style="color:#FFFFFF; font-size:18px; font-weight:400; text-transform:uppercase; letter-spacing:0.1em;">Totale</span>
+              <td style="padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <span style="color:#FFFFFF; font-size:20px; font-weight:400; text-transform:uppercase; letter-spacing:0.1em;">Totale Manifestato</span>
               </td>
-              <td align="right" style="padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.1);">
-                <span style="color:#D4AF37; font-size:24px; font-weight:300;">{{TOTAL_AMOUNT}}</span>
+              <td align="right" style="padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <span style="color:#F4B400; font-size:28px; font-weight:300;">{{TOTAL_AMOUNT}}</span>
               </td>
             </tr>
           </table>
@@ -146,12 +146,12 @@
       </tr>
       <!-- SHIPPING MANIFEST NARRATIVE -->
       <tr>
-        <td style="padding: 0 0 80px 0;" class="padded">
-          <span style="color:rgba(255,255,255,0.4); font-size:10px; letter-spacing:0.5em; text-transform:uppercase; display:block; margin-bottom:15px;">
+        <td style="padding: 0 0 100px 0;" class="padded">
+          <span style="color:rgba(255,255,255,0.4); font-size:10px; letter-spacing:0.5em; text-transform:uppercase; display:block; margin-bottom:20px;">
             Destinazione dell'Artefatto
           </span>
-          <p style="color:#FFFFFF; font-size:14px; line-height:1.6; margin:0;">
-            <strong style="display:block; margin-bottom:5px;">{{CUSTOMER_NAME}}</strong>
+          <p style="color:#FFFFFF; font-size:16px; line-height:1.7; margin:0;">
+            <strong style="display:block; margin-bottom:8px; font-size: 18px; letter-spacing: 0.05em;">{{CUSTOMER_NAME}}</strong>
             {{SHIPPING_ADDRESS}}
           </p>
         </td>
@@ -159,22 +159,22 @@
     </table>
 
     <!-- CROSS-SELL: NON SOLO LIQUORE (EDGE-TO-EDGE) -->
-    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #1A1A1A;">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #121212;">
       <tr>
         <td align="center">
           <table width="600" border="0" cellpadding="0" cellspacing="0" class="container">
             <tr>
-              <td align="center" style="padding: 80px 0;" class="padded">
-                <span style="color:#D4AF37; font-size:10px; letter-spacing:0.5em; text-transform:uppercase; display:block; margin-bottom:15px;">
+              <td align="center" style="padding: 100px 0;" class="padded">
+                <span style="color:#F4B400; font-size:10px; letter-spacing:0.5em; text-transform:uppercase; display:block; margin-bottom:20px;">
                   Non Solo Liquore
                 </span>
-                <h3 style="color:#FFFFFF; font-size:32px; font-weight:300; margin:0; text-transform:uppercase; letter-spacing:-0.02em;">
+                <h3 style="color:#FFFFFF; font-size:36px; font-weight:300; margin:0; text-transform:uppercase; letter-spacing:-0.03em;">
                   Il Gusto dell'Oltre
                 </h3>
-                <p style="color:rgba(255,255,255,0.5); font-size:14px; line-height:1.6; margin:25px 0 40px 0;">
+                <p style="color:rgba(255,255,255,0.5); font-size:15px; line-height:1.7; margin:30px 0 50px 0; max-width: 450px;">
                   Scopri la nostra selezione di panettoni artigianali, dolci tipici e creazioni sartoriali forgiate nel cuore di Villacidro.
                 </p>
-                <a href="https://murgia-liquori.vercel.app/#aperitivo" class="hover-btn" style="display:inline-block; background-color:#D4AF37; padding:20px 50px; color:#000000; text-decoration:none; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; font-weight:900; border-radius:0;">
+                <a href="https://murgia-liquori.vercel.app/#aperitivo" class="murgia-btn-ritual" style="display:inline-block; background-color:#F4B400; padding:22px 60px; color:#040404; text-decoration:none; font-size:12px; letter-spacing:0.35em; text-transform:uppercase; font-weight:900; border-radius:0;">
                   Esplora gli Archivi
                 </a>
               </td>
@@ -187,13 +187,13 @@
     <!-- FOOTER RITUAL (CENTERED) -->
     <table width="600" border="0" cellpadding="0" cellspacing="0" class="container">
       <tr>
-        <td align="center" style="padding: 100px 0 120px 0;" class="padded">
-          <p style="color:rgba(255,255,255,0.3); font-size:12px; margin:0 0 20px 0;">
+        <td align="center" style="padding: 120px 0 150px 0;" class="padded">
+          <p style="color:rgba(255,255,255,0.3); font-size:13px; margin:0 0 25px 0; letter-spacing: 0.02em;">
             Hai bisogno di un supporto alchemico? <br/>
-            Contattaci a <a href="mailto:info@murgialiquori.com" style="color:#D4AF37; text-decoration:none;">info@murgialiquori.com</a>
+            Contattaci a <a href="mailto:info@murgialiquori.com" style="color:#F4B400; text-decoration:none;">info@murgialiquori.com</a>
           </p>
-          <div style="height:1px; width:40px; background-color:rgba(255,255,255,0.1); margin:40px 0;"></div>
-          <p style="color:rgba(255,255,255,0.2); font-size:10px; letter-spacing:0.2em; text-transform:uppercase;">
+          <div style="height:1px; width:50px; background-color:rgba(255,255,255,0.1); margin:45px 0;"></div>
+          <p style="color:rgba(255,255,255,0.2); font-size:10px; letter-spacing:0.25em; text-transform:uppercase;">
             Murgia Liquori &copy; 2026 — Villacidro, Sardegna
           </p>
         </td>
