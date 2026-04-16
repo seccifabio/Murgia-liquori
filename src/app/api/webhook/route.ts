@@ -73,7 +73,7 @@ export async function POST(req: Request) {
 
         // DISPATCH RITUAL
         await resend.emails.send({
-          from: "Murgia Liquori <ordini@murgialiquori.com>",
+          from: "Murgia Liquori <onboarding@resend.dev>",
           to: customerEmail,
           subject: `Conferma Ordine - Murgia Liquori #${session.id.slice(-8).toUpperCase()}`,
           html: htmlContent,
