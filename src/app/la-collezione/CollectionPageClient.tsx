@@ -22,19 +22,19 @@ export default function CollectionPageClient({ liveProducts }: { liveProducts: a
 
   const products = [
     { 
-      name: `${getLiveName(PRODUCTS_MANIFEST.bianco.priceId, "Villacidro Bianco")} (5cl)`, 
+      name: getLiveName(PRODUCTS_MANIFEST.bianco.priceId, "Villacidro Bianco"), 
       price: getLivePrice(PRODUCTS_MANIFEST.bianco.priceId, "5€"), 
       img: "/images/bianco_product.png", 
       href: "/shop/murgia-bianco" 
     },
     { 
-      name: `${getLiveName(PRODUCTS_MANIFEST.giallo.priceId, "Villacidro Giallo")} (70cl)`, 
+      name: getLiveName(PRODUCTS_MANIFEST.giallo.priceId, "Villacidro Giallo"), 
       price: getLivePrice(PRODUCTS_MANIFEST.giallo.priceId, "26€"), 
       img: "/images/giallo.webp", 
       href: "/shop/murgia-giallo" 
     },
     { 
-      name: `${getLiveName(PRODUCTS_MANIFEST.sbagliata.priceId, "La Sbagliata")} (20cl)`, 
+      name: getLiveName(PRODUCTS_MANIFEST.sbagliata.priceId, "La Sbagliata"), 
       price: getLivePrice(PRODUCTS_MANIFEST.sbagliata.priceId, "15€"), 
       img: "/images/sbagliata_product.png", 
       href: "/shop/la-sbagliata" 

@@ -58,19 +58,19 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
 
   const products = [
     { 
-      name: `${getLiveName(PRODUCTS_MANIFEST.bianco.priceId, t.products.bianco.name)} (5cl)`, 
+      name: getLiveName(PRODUCTS_MANIFEST.bianco.priceId, "Villacidro Bianco"), 
       price: getLivePrice(PRODUCTS_MANIFEST.bianco.priceId, "5€"), 
       img: "/images/bianco_product.png", 
       href: "/shop/murgia-bianco" 
     },
     { 
-      name: `${getLiveName(PRODUCTS_MANIFEST.giallo.priceId, t.products.giallo.name)} (70cl)`, 
+      name: getLiveName(PRODUCTS_MANIFEST.giallo.priceId, "Murgia Giallo"), 
       price: getLivePrice(PRODUCTS_MANIFEST.giallo.priceId, "26€"), 
       img: "/images/giallo.webp", 
       href: "/shop/murgia-giallo" 
     },
     { 
-      name: `${getLiveName(PRODUCTS_MANIFEST.sbagliata.priceId, t.products.sbagliata.name)} (20cl)`, 
+      name: getLiveName(PRODUCTS_MANIFEST.sbagliata.priceId, "La Sbagliata"), 
       price: getLivePrice(PRODUCTS_MANIFEST.sbagliata.priceId, "15€"), 
       img: "/images/sbagliata_product.png", 
       href: "/shop/la-sbagliata" 
