@@ -49,6 +49,33 @@ If you need to change a specific UI element, use these keywords to help AG find 
 
 ---
 
+## The Transactional Ritual (Email)
+
+Murgia uses a high-fidelity, noir-brutalist email system for order confirmations. 
+
+### ⚙️ Template & Variable Manifest
+The primary artifact is located at `src/templates/OrderConfirmation.html`.
+
+| Variable | Purpose |
+| :--- | :--- |
+| `{{ORDER_ID}}` | Unique reference for the transaction. |
+| `{{CUSTOMER_NAME}}` | Final recipient's identity. |
+| `{{SHIPPING_ADDRESS}}` | Destination metadata. |
+| `{{PRODUCT_NAME}}` | The alchemical product purchased. |
+| `{{PRODUCT_PRICE}}` | Unit value of the artifact. |
+| `{{TOTAL_AMOUNT}}` | Final manifest of the entire order. |
+
+### 🛠️ Common Email Rituals (Prompt Examples)
+- **Content Change**: "AG, change the 'Non Solo Liquore' section in the email to focus on our new Gift Boxes."
+- **Contact Update**: "AG, update the email footer contact to ordini@murgialiquori.com."
+- **Visual Recall**: "AG, invert the email header colors back to a white background."
+
+### 🔍 Verification Ritual
+To audit the email's visual state without making a purchase, always use the preview terminal:
+`https://murgia-liquori.vercel.app/api/preview-email`
+
+---
+
 ## Common Rituals (Prompt Examples)
 
 ### 1. Updating the Next Visit
