@@ -64,9 +64,13 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
         
         if (promoCodes.data.length > 0) {
           const matchedPromo = promoCodes.data[0];
-          // ALCHEMY: Using the underlying Coupon ID is often more authoritative for pre-application
-          discounts = [{ coupon: matchedPromo.coupon.id }];
-          console.log("Stripe Ritual: Targeted Coupon ID Manifested via Promo Code:", matchedPromo.coupon.id);
+          // ALCHEMY: Accessing the coupon ID safely to satisfy the Type Architect
+          const couponId = typeof matchedPromo.coupon === 'string' 
+            ? matchedPromo.coupon 
+            : (matchedPromo.coupon as any).id;
+            
+          discounts = [{ coupon: couponId }];
+          console.log("Stripe Ritual: Targeted Coupon ID Manifested via Promo Code:", couponId);
         } else {
           // RITUAL 2: Fallback Discovery via Coupon Treasury
           try {
