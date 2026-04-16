@@ -6,7 +6,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-02-24-preview",
+  apiVersion: "2026-03-25.dahlia" as any,
 });
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
