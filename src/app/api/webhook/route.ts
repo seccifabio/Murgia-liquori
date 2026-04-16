@@ -5,16 +5,23 @@ import { Resend } from "resend";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-03-25.dahlia" as any,
-});
+// ALCHEMICAL LAZY INITIALIZATION
+// This prevents build-time failures when keys are absent
+const getClients = () => {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+    apiVersion: "2026-03-25.dahlia" as any,
+  });
+  const resend = new Resend(process.env.RESEND_API_KEY!);
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+  return { stripe, resend, webhookSecret };
+};
 
 export async function POST(req: Request) {
   const body = await req.text();
   const signature = (await headers()).get("stripe-signature") as string;
+
+  const { stripe, resend, webhookSecret } = getClients();
 
   let event: Stripe.Event;
 
@@ -54,8 +61,6 @@ export async function POST(req: Request) {
 
         const productTotal = (session.amount_total! / 100).toFixed(2) + "€";
         
-        // Replace the entire item repeatable block with our generated HTML
-        // Note: I'm slightly adjusting the replacement logic to be cleaner
         const startTag = "<!-- ITEM REPEATABLE -->";
         const endTag = "<!-- END ITEM REPEATABLE -->";
         const regex = new RegExp(`${startTag}[\\s\\S]*${endTag}`, "g");
