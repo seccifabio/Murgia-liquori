@@ -297,7 +297,7 @@ export const en = {
       },
       giallo: {
         year: "BRILLIANT GOLD",
-        title: "Villacidro Giallo",
+        title: "Murgia Giallo",
         subtitle: "SAFFRON ALCHEMY",
         description: "The signature product originated from the founder's herbal wisdom. The use of pure saffron not only imparts the brilliant gold color but also defines Murgia's aromatic soul in the world."
       },

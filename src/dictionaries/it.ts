@@ -297,7 +297,7 @@ export const it = {
       },
       giallo: {
         year: "L'ORO BRILLANTE",
-        title: "Villacidro Giallo",
+        title: "Murgia Giallo",
         subtitle: "L'ALCHIMIA DELLO ZAFFERANO",
         description: "Il prodotto simbolo nasce dalla sapienza erboristica del fondatore. L'uso dello zafferano puro non solo conferisce il colore oro brillante, ma definisce l'anima aromatica di Murgia nel mondo."
       },

@@ -8,7 +8,7 @@ import ProductDiscovery from "@/components/ProductDiscovery";
 import Footer from "@/components/Footer";
 import { useEffect } from "react";
 
-export default function VillacidroGialloPage() {
+export default function MurgiaGialloPage() {
   // Reset scroll on entry to ensure the cinematic ritual starts from Tier 0
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,7 +30,7 @@ export default function VillacidroGialloPage() {
       <GialloCocktails />
 
       {/* Terminal Phase: Collection Discovery */}
-      <ProductDiscovery exclude="Villacidro Giallo" />
+      <ProductDiscovery exclude="Murgia Giallo" />
 
       <Footer />
     </main>
