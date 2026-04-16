@@ -87,11 +87,16 @@ export async function POST(req: Request) {
         const locale = (session.locale || "it").split("-")[0] as "it" | "en";
         const t = (MARKETING_MANIFEST as any).email[locale] || MARKETING_MANIFEST.email.it;
 
-        // CUSTOMER DATA
-        const customerName = session.shipping_details?.name || session.customer_details?.name || (locale === "it" ? "Gentile Alchimista" : "Dear Alchemist");
-        const addr = session.shipping_details?.address;
-        const shippingAddress = addr 
-          ? `${addr.line1}${addr.line2 ? `, ${addr.line2}` : ''}, ${addr.postal_code} ${addr.city} (${addr.country})`
+        // CUSTOMER DATA RITUAL: Searching through all layers of the session for the address
+        const shippingDetails = session.shipping_details;
+        const customerDetails = session.customer_details;
+        const addr = shippingDetails?.address || customerDetails?.address;
+        
+        const customerName = shippingDetails?.name || customerDetails?.name || (locale === "it" ? "Gentile Alchimista" : "Dear Alchemist");
+        
+        // MANIFEST: We build the address string with high-fidelity formatting
+        const shippingAddress = addr && addr.line1
+          ? `${addr.line1}${addr.line2 ? `, ${addr.line2}` : ""}, ${addr.postal_code || ""} ${addr.city || ""} (${addr.country || ""})`
           : (locale === "it" ? "Ritiro presso l'Atelier" : "Collection at the Atelier");
 
         const startTag = "<!-- ITEM REPEATABLE -->";
