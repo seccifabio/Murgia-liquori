@@ -23,6 +23,7 @@
     }
     img {
       border: 0;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
     /* ALCHEMICAL TOKENS */
@@ -36,6 +37,22 @@
       .product-img { width: 100% !important; height: auto !important; }
       .full-width-cell { padding-left: 20px !important; padding-right: 20px !important; }
     }
+
+    /* DESKTOP HOVER RITUAL */
+    @media screen and (min-width: 601px) {
+      .hover-scale:hover {
+        transform: scale(1.05) !important;
+      }
+      .hover-btn {
+        transition: all 0.4s ease !important;
+      }
+      .hover-btn:hover {
+        background-color: #FFFFFF !important;
+        color: #000000 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.4) !important;
+      }
+    }
   </style>
 </head>
 <body style="margin:0; padding:0; background-color:#0A0A0A;">
@@ -44,7 +61,7 @@
     <!-- LOGO HEADER RITUAL (CENTERED) -->
     <table width="600" border="0" cellpadding="0" cellspacing="0" class="container">
       <tr>
-        <td align="center" style="padding: 40px 0;">
+        <td align="center" style="padding: 50px 0;">
           <h1 style="color:#D4AF37; font-family:'Helvetica Neue', Arial; font-size:42px; font-weight:normal; letter-spacing:0.1em; margin:0; text-transform:uppercase; line-height:0.8;">
             MURGIA
           </h1>
@@ -55,28 +72,29 @@
       </tr>
     </table>
 
-    <!-- MAIN HERO RITUAL (EDGE-TO-EDGE) -->
-    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #111111;">
+    <!-- MAIN HERO RITUAL (EDGE-TO-EDGE WITH HERITAGE BG) -->
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #111111; background-image: url('https://murgia-liquori.vercel.app/images/storia/storia_origins_1882_1775937746086.png'); background-size: cover; background-position: center;">
       <tr>
-        <td align="center">
+        <td align="center" style="background-color: rgba(17,17,17,0.85);">
+          <!-- Content Manifest -->
           <table width="600" border="0" cellpadding="0" cellspacing="0" class="container">
             <tr>
-              <td align="center" style="padding: 80px 0;" class="padded">
-                <span style="color:#D4AF37; font-size:12px; letter-spacing:0.4em; text-transform:uppercase; display:block; margin-bottom:20px;">
-                  Sotto il Sigillo del 1882
+              <td align="center" style="padding: 100px 0 60px 0;" class="padded">
+                <span style="color:#D4AF37; font-size:12px; letter-spacing:0.4em; text-transform:uppercase; display:block; margin-bottom:25px; font-weight:bold;">
+                  L'Arte della Distillazione è in viaggio.
                 </span>
-                <h2 style="color:#FFFFFF; font-size:42px; font-weight:300; letter-spacing:-0.04em; margin:0; line-height:1.1; text-transform:uppercase;">
-                  L'Arte della Distillazione <br/> <span style="font-style:italic;">è in viaggio.</span>
+                <h2 style="color:#FFFFFF; font-size:48px; font-weight:300; letter-spacing:-0.04em; margin:0; line-height:1.1; text-transform:uppercase;">
+                  Sotto il Sigillo <br/> <span style="font-style:italic;">del 1882.</span>
                 </h2>
-                <p style="color:rgba(255,255,255,0.6); font-size:16px; line-height:1.6; margin:30px 0 0 0; font-style:italic;">
-                  Il tuo ordine è stato registrato nei nostri archivi. <br/>
+                <div style="height:1px; width:40px; background-color:#D4AF37; margin:40px 0;"></div>
+                <p style="color:rgba(255,255,255,0.7); font-size:16px; line-height:1.6; margin:0; font-style:italic;">
                   Un pezzo della nostra storia sta per unirsi alla tua collezione.
                 </p>
               </td>
             </tr>
             <tr>
-              <td align="center" style="padding-bottom: 60px;">
-                <img src="https://murgia-liquori.vercel.app/images/giallo_sovereign.png" alt="Murgia Giallo" width="280" style="display:block; width:280px;" class="product-img" />
+              <td align="center" style="padding-bottom: 80px;">
+                <img src="https://murgia-liquori.vercel.app/images/giallo_sovereign.png" alt="Murgia Giallo" width="300" style="display:block; width:300px;" class="product-img hover-scale" />
               </td>
             </tr>
           </table>
@@ -87,7 +105,7 @@
     <!-- ORDER DETAILS MANIFESTO (CENTERED) -->
     <table width="600" border="0" cellpadding="0" cellspacing="0" class="container">
       <tr>
-        <td style="padding: 60px 0;" class="padded">
+        <td style="padding: 80px 0;" class="padded">
           <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
               <td style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;">
@@ -128,7 +146,7 @@
       </tr>
       <!-- SHIPPING MANIFEST NARRATIVE -->
       <tr>
-        <td style="padding: 0 0 60px 0;" class="padded">
+        <td style="padding: 0 0 80px 0;" class="padded">
           <span style="color:rgba(255,255,255,0.4); font-size:10px; letter-spacing:0.5em; text-transform:uppercase; display:block; margin-bottom:15px;">
             Destinazione dell'Artefatto
           </span>
@@ -146,17 +164,17 @@
         <td align="center">
           <table width="600" border="0" cellpadding="0" cellspacing="0" class="container">
             <tr>
-              <td align="center" style="padding: 60px 0;" class="padded">
+              <td align="center" style="padding: 80px 0;" class="padded">
                 <span style="color:#D4AF37; font-size:10px; letter-spacing:0.5em; text-transform:uppercase; display:block; margin-bottom:15px;">
-                  Esplora l'Oltre
-                </span>
-                <h3 style="color:#FFFFFF; font-size:28px; font-weight:300; margin:0; text-transform:uppercase; letter-spacing:-0.02em;">
                   Non Solo Liquore
+                </span>
+                <h3 style="color:#FFFFFF; font-size:32px; font-weight:300; margin:0; text-transform:uppercase; letter-spacing:-0.02em;">
+                  Il Gusto dell'Oltre
                 </h3>
-                <p style="color:rgba(255,255,255,0.5); font-size:14px; line-height:1.6; margin:20px 0 30px 0;">
+                <p style="color:rgba(255,255,255,0.5); font-size:14px; line-height:1.6; margin:25px 0 40px 0;">
                   Scopri la nostra selezione di panettoni artigianali, dolci tipici e creazioni sartoriali forgiate nel cuore di Villacidro.
                 </p>
-                <a href="https://murgia-liquori.vercel.app/#aperitivo" style="display:inline-block; background-color:#D4AF37; padding:18px 45px; color:#000000; text-decoration:none; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; font-weight:900; border-radius:0;">
+                <a href="https://murgia-liquori.vercel.app/#aperitivo" class="hover-btn" style="display:inline-block; background-color:#D4AF37; padding:20px 50px; color:#000000; text-decoration:none; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; font-weight:900; border-radius:0;">
                   Esplora gli Archivi
                 </a>
               </td>
@@ -169,7 +187,7 @@
     <!-- FOOTER RITUAL (CENTERED) -->
     <table width="600" border="0" cellpadding="0" cellspacing="0" class="container">
       <tr>
-        <td align="center" style="padding: 80px 0 100px 0;" class="padded">
+        <td align="center" style="padding: 100px 0 120px 0;" class="padded">
           <p style="color:rgba(255,255,255,0.3); font-size:12px; margin:0 0 20px 0;">
             Hai bisogno di un supporto alchemico? <br/>
             Contattaci a <a href="mailto:info@murgialiquori.com" style="color:#D4AF37; text-decoration:none;">info@murgialiquori.com</a>
