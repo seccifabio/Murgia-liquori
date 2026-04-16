@@ -6,18 +6,26 @@ import { useCart } from "@/context/CartContext";
 import { useTranslation } from "@/context/LanguageContext";
 import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
-export default function GialloRitual() {
+interface GialloRitualProps {
+  livePrice?: number;
+  liveName?: string;
+}
+
+export default function GialloRitual({ livePrice, liveName }: GialloRitualProps) {
   const { t } = useTranslation();
   const { addItem } = useCart();
   const [selectedFormat, setSelectedFormat] = useState("70cl");
   const [quantity, setQuantity] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const displayPrice = livePrice || PRODUCTS_MANIFEST.giallo.price;
+  const displayName = liveName || t.products.giallo.name;
+
   const handleAddToCart = () => {
     addItem({
       id: PRODUCTS_MANIFEST.giallo.id,
-      name: t.products.giallo.name,
-      price: `${PRODUCTS_MANIFEST.giallo.price}€`,
+      name: displayName,
+      price: `${displayPrice}€`,
       priceId: PRODUCTS_MANIFEST.giallo.priceId,
       quantity: quantity,
       format: selectedFormat,
@@ -131,7 +139,7 @@ export default function GialloRitual() {
             onClick={handleAddToCart}
             className="murgia-btn-noir px-20 py-8 md:px-32 transform hover:scale-105 active:scale-95"
           >
-            <span className="murgia-btn-text">{t.products.common.addToCart} &mdash; &euro;{(32 * quantity).toFixed(2)}</span>
+            <span className="murgia-btn-text">{t.products.common.addToCart} &mdash; &euro;{(displayPrice * quantity).toFixed(2)}</span>
 
             <div className="murgia-btn-hover-wipe" />
           </button>

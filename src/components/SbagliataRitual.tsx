@@ -6,18 +6,26 @@ import { useCart } from "@/context/CartContext";
 import { useTranslation } from "@/context/LanguageContext";
 import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
-export default function SbagliataRitual() {
+interface SbagliataRitualProps {
+  livePrice?: number;
+  liveName?: string;
+}
+
+export default function SbagliataRitual({ livePrice, liveName }: SbagliataRitualProps) {
   const { t } = useTranslation();
   const { addItem } = useCart();
   const [selectedFormat, setSelectedFormat] = useState("50cl");
   const [quantity, setQuantity] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const displayPrice = livePrice || PRODUCTS_MANIFEST.sbagliata.price;
+  const displayName = liveName || t.products.sbagliata.name;
+
   const handleAddToCart = () => {
     addItem({
       id: PRODUCTS_MANIFEST.sbagliata.id,
-      name: t.products.sbagliata.name,
-      price: `${PRODUCTS_MANIFEST.sbagliata.price}€`,
+      name: displayName,
+      price: `${displayPrice}€`,
       priceId: PRODUCTS_MANIFEST.sbagliata.priceId,
       quantity: quantity,
       format: selectedFormat,
@@ -119,7 +127,7 @@ export default function SbagliataRitual() {
             onClick={handleAddToCart}
             className="murgia-btn-noir px-20 py-8 md:px-32 transform hover:scale-105 active:scale-95"
           >
-            <span className="murgia-btn-text">{t.products.common.addToCart} &mdash; &euro;{(35 * quantity).toFixed(2)}</span>
+            <span className="murgia-btn-text">{t.products.common.addToCart} &mdash; &euro;{(displayPrice * quantity).toFixed(2)}</span>
             <div className="murgia-btn-hover-wipe" />
           </button>
         </motion.div>

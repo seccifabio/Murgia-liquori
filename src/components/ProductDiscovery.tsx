@@ -4,25 +4,36 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTranslation } from "@/context/LanguageContext";
 import LaunchBanner from "./LaunchBanner";
+import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
-export default function ProductDiscovery({ exclude }: { exclude?: string }) {
+export default function ProductDiscovery({ 
+  exclude, 
+  liveProducts 
+}: { 
+  exclude?: string;
+  liveProducts?: any;
+}) {
   const { t } = useTranslation();
+
+  const getLiveName = (priceId: string, fallback: string) => {
+    return liveProducts?.[priceId]?.name || fallback;
+  };
 
   const PRODUCTS = [
     {
-      name: t.products.bianco.name,
+      name: getLiveName(PRODUCTS_MANIFEST.bianco.priceId, t.products.bianco.name),
       image: "/images/products/bianco.png",
       href: "/shop/murgia-bianco",
       displayName: "Murgia Bianco"
     },
     {
-      name: t.products.giallo.name,
+      name: getLiveName(PRODUCTS_MANIFEST.giallo.priceId, t.products.giallo.name),
       image: "/images/giallo_sovereign.png",
       href: "/shop/murgia-giallo",
       displayName: "Murgia Giallo"
     },
     {
-      name: t.products.sbagliata.name,
+      name: getLiveName(PRODUCTS_MANIFEST.sbagliata.priceId, t.products.sbagliata.name),
       image: "/images/products/sbagliata.png",
       href: "/shop/la-sbagliata",
       displayName: "La Sbagliata"

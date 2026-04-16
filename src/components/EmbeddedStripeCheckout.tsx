@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { X } from "lucide-react";
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from "@stripe/react-stripe-js";
@@ -11,13 +11,14 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 
 interface EmbeddedStripeCheckoutProps {
   items: any[];
+  appliedCode: string | null;
   onClose: () => void;
   onSuccess?: () => void;
 }
 
-export default function EmbeddedStripeCheckout({ items, onClose }: EmbeddedStripeCheckoutProps) {
-  const { appliedCode } = useCart();
-  
+export default function EmbeddedStripeCheckout({ items, appliedCode, onClose }: EmbeddedStripeCheckoutProps) {
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
+
   // This function calls our API route to create a session for the entire cart
   const fetchClientSecret = useCallback(() => {
     return fetch("/api/checkout", {
@@ -28,7 +29,11 @@ export default function EmbeddedStripeCheckout({ items, onClose }: EmbeddedStrip
       body: JSON.stringify({ items, appliedCode }),
     })
       .then((res) => res.json())
-      .then((data) => data.clientSecret);
+      .then((data) => data.clientSecret)
+      .catch(err => {
+        console.error("Stripe Manifestation Error:", err);
+        throw err;
+      });
   }, [items, appliedCode]);
 
 

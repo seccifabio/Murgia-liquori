@@ -7,11 +7,21 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "@/context/LanguageContext";
 
-export default function NarrativeFlow() {
+import { PRODUCTS_MANIFEST } from "@/manifest/products";
+
+export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) {
   const { t } = useTranslation();
   const containerRef = useRef<HTMLElement>(null);
   const [isSealed, setIsSealed] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
+
+  const getLivePrice = (priceId: string, fallback: string) => {
+    return liveProducts?.[priceId]?.price || fallback;
+  };
+
+  const getLiveName = (priceId: string, fallback: string) => {
+    return liveProducts?.[priceId]?.name || fallback;
+  };
 
   useEffect(() => {
     setHasMounted(true);
@@ -46,9 +56,24 @@ export default function NarrativeFlow() {
   const phase2Y = useTransform(scrollYProgress, [0.35, 0.8], [50, -50]);
 
   const products = [
-    { name: t.products.bianco.name, price: "24€", img: "/images/products/bianco.png", href: "/shop/murgia-bianco" },
-    { name: t.products.giallo.name, price: "26€", img: "/images/giallo.webp", href: "/shop/murgia-giallo" },
-    { name: t.products.sbagliata.name, price: "15€", img: "/images/products/sbagliata.png", href: "/shop/la-sbagliata" },
+    { 
+      name: getLiveName(PRODUCTS_MANIFEST.bianco.priceId, t.products.bianco.name), 
+      price: getLivePrice(PRODUCTS_MANIFEST.bianco.priceId, "35€"), 
+      img: "/images/products/bianco.png", 
+      href: "/shop/murgia-bianco" 
+    },
+    { 
+      name: getLiveName(PRODUCTS_MANIFEST.giallo.priceId, t.products.giallo.name), 
+      price: getLivePrice(PRODUCTS_MANIFEST.giallo.priceId, "35€"), 
+      img: "/images/giallo.webp", 
+      href: "/shop/murgia-giallo" 
+    },
+    { 
+      name: getLiveName(PRODUCTS_MANIFEST.sbagliata.priceId, t.products.sbagliata.name), 
+      price: getLivePrice(PRODUCTS_MANIFEST.sbagliata.priceId, "35€"), 
+      img: "/images/products/sbagliata.png", 
+      href: "/shop/la-sbagliata" 
+    },
   ];
 
   return (

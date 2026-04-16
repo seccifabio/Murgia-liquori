@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Trash2, ShoppingBag, ArrowRight, Edit3, Check } from "lucide-react";
+import { X, Trash2, ShoppingBag, ArrowRight, Edit3, Check, MousePointer2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,8 +23,10 @@ export default function BasketDrawer() {
 
 
   const applyPromo = () => {
-    if (promoInput) {
-      setAppliedCode(promoInput.toUpperCase());
+    if (promoInput.trim()) {
+      const formattedCode = promoInput.trim().toUpperCase();
+      setAppliedCode(formattedCode);
+      setPromoInput("");
     }
     setIsEditingCode(false);
     setPromoInput("");
@@ -196,8 +198,13 @@ export default function BasketDrawer() {
               <div className="p-8 border-t border-white/5 bg-noir/50 backdrop-blur-xl space-y-6">
                 {/* Promo Manifest Row */}
                 <div className="flex flex-col gap-4 py-4 border-b border-white/5">
+                  <div className="flex items-center justify-between text-white/40">
+                    <span className="font-heading text-sm tracking-widest uppercase">{t.bag.subtotal}</span>
+                    <span className="font-heading text-base">€{total.toFixed(2)}</span>
+                  </div>
+
                   <div className="flex items-center justify-between">
-                    <span className="text-white/40 font-heading text-[10px] tracking-[0.2em] uppercase">{t.bag.voucher}</span>
+                    <span className="text-white/40 font-heading text-sm tracking-[0.2em] uppercase">{t.bag.voucher}</span>
                     
                     {isEditingCode ? (
                       <div className="flex items-center gap-2 flex-1 ml-4">
@@ -221,7 +228,7 @@ export default function BasketDrawer() {
                       <div className="flex items-center justify-between flex-1 ml-6">
                         {appliedCode ? (
                           <div className="flex items-center justify-between w-full">
-                            <span className="text-primary font-heading text-sm tracking-widest">{appliedCode}</span>
+                            <span className="text-primary font-heading text-base tracking-widest">{appliedCode}</span>
                             <div className="flex items-center gap-2">
                               <button 
                                 onClick={() => {
@@ -243,7 +250,7 @@ export default function BasketDrawer() {
                         ) : (
                           <button 
                             onClick={() => setIsEditingCode(true)}
-                            className="text-white/30 hover:text-primary transition-colors font-heading text-[10px] tracking-widest uppercase border-b border-white/10 hover:border-primary pb-0.5"
+                            className="text-white/30 hover:text-primary transition-colors font-heading text-sm tracking-widest uppercase border-b border-white/10 hover:border-primary pb-0.5"
                           >
                             {t.bag.addCode}
                           </button>
@@ -255,14 +262,14 @@ export default function BasketDrawer() {
                   
                   {discount > 0 && (
                     <div className="flex items-center justify-between text-primary/80 italic">
-                      <span className="font-heading text-[10px] tracking-widest uppercase">{t.bag.discountLabel} ({MARKETING_MANIFEST.promo.discount * 100}%)</span>
-                      <span className="font-heading text-sm">- €{discount.toFixed(2)}</span>
+                      <span className="font-heading text-sm tracking-widest uppercase">{t.bag.discountLabel} ({MARKETING_MANIFEST.promo.discount * 100}%)</span>
+                      <span className="font-heading text-base">- €{discount.toFixed(2)}</span>
                     </div>
                   )}
 
                   <div className="flex items-center justify-between text-white/40">
-                    <span className="font-heading text-[10px] tracking-widest uppercase">Trasporto</span>
-                    <span className="font-heading text-sm">{shipping > 0 ? `€${shipping.toFixed(2)}` : "GRATUITO"}</span>
+                    <span className="font-heading text-sm tracking-widest uppercase">Trasporto</span>
+                    <span className="font-heading text-base">{shipping > 0 ? `€${shipping.toFixed(2)}` : "GRATUITO"}</span>
                   </div>
                 </div>
 
@@ -297,6 +304,7 @@ export default function BasketDrawer() {
 
                   <EmbeddedStripeCheckout 
                     items={items} 
+                    appliedCode={appliedCode}
                     onClose={() => setShowCheckout(false)} 
                     onSuccess={() => {
                       clearCart();

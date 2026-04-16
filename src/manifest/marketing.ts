@@ -26,6 +26,7 @@ export const MARKETING_MANIFEST = {
   // Global thresholds
   shipping: {
     freeThreshold: 80, // Free shipping if total > 80€
+    standardRate: 12,  // Standard shipping rate (synchronized with Stripe)
   },
 
   // Transactional Email Manifest (Multilingual)
