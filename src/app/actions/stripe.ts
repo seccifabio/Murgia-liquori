@@ -25,12 +25,12 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
     );
 
     // RITUAL: Fetch the authoritative Shipping Rate price from the Stripe Registry
-    const shippingRate = await stripe.shippingRates.retrieve('shr_1TMqYNIuoh35e3rojDnMfvtb');
-    const standardShippingCents = shippingRate.fixed_amount?.amount || 1200; // Authoritative default (12€)
+    const shippingRate: any = await stripe.shippingRates.retrieve('shr_1TMqYNIuoh35e3rojDnMfvtb');
+    const standardShippingCents = (shippingRate as any).fixed_amount?.amount || 1200; // Authoritative default (12€)
 
     let subtotalCents = 0;
     items.forEach((item, index) => {
-      const stripePrice = priceObjects[index];
+      const stripePrice: any = priceObjects[index];
       subtotalCents += (stripePrice.unit_amount || 0) * item.quantity;
     });
 
@@ -60,9 +60,9 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
           code: formattedCode,
           active: true,
           limit: 1,
-        });
+        }) as any;
         
-        if (promoCodes.data.length > 0) {
+        if (promoCodes.data && promoCodes.data.length > 0) {
           const matchedPromo = promoCodes.data[0];
           // ALCHEMY: Accessing the coupon ID safely to satisfy the Type Architect
           const couponId = typeof matchedPromo.coupon === 'string' 
