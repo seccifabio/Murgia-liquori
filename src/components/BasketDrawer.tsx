@@ -14,7 +14,7 @@ import { useTranslation } from "@/context/LanguageContext";
 
 export default function BasketDrawer() {
   const { t } = useTranslation();
-  const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total, appliedCode, setAppliedCode, discount } = useCart();
+  const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total, appliedCode, setAppliedCode, discount, shipping, finalTotal } = useCart();
 
   const [isLoading, setIsLoading] = useState(false);
   const [isEditingCode, setIsEditingCode] = useState(false);
