@@ -3,6 +3,8 @@
 import Stripe from "stripe";
 import { redirect } from "next/navigation";
 
+import { MARKETING_MANIFEST } from "@/manifest/marketing";
+
 const apiKey = process.env.STRIPE_SECRET_KEY || "sk_test_placeholder_for_build";
 
 // Initialize Stripe with the Secret Key from environment
@@ -26,13 +28,17 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
   console.log("Stripe Ritual: Initiating with items:", line_items, "Applied Code:", appliedCode);
 
   try {
-    // Calculate Alchemical Threshold for Shipping (Free over 80€)
+    // Calculate Alchemical Threshold for Shipping (Free over 80€ after discount)
     const subtotalCents = items.reduce((acc, item) => {
       const priceNum = parseFloat(item.price.replace("€", "").replace(",", "."));
       return acc + (priceNum * 100 * item.quantity);
     }, 0);
 
-    const shippingAmount = subtotalCents >= 8000 ? 0 : 1000;
+    const discountCents = appliedCode === MARKETING_MANIFEST.promo.code 
+      ? Math.round(subtotalCents * MARKETING_MANIFEST.promo.discount)
+      : 0;
+
+    const shippingAmount = (subtotalCents - discountCents) >= 8000 ? 0 : 1000;
 
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded' as any,

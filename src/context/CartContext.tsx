@@ -138,8 +138,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const discount = appliedCode === MARKETING_MANIFEST.promo.code ? total * MARKETING_MANIFEST.promo.discount : 0;
   
-  // Alchemy: Shipping threshold (Free over 80€)
-  const shipping = items.length > 0 && total < 80 ? 10 : 0;
+  // Alchemy: Shipping threshold (Free over 80€ after discount)
+  const shipping = items.length > 0 && (total - discount) < 80 ? 10 : 0;
   const finalTotal = total - discount + shipping;
 
   return (
