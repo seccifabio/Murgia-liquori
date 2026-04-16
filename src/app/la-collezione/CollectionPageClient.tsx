@@ -12,7 +12,8 @@ export default function CollectionPageClient({ liveProducts }: { liveProducts: a
   const { t } = useTranslation();
 
   const getLivePrice = (priceId: string, fallback: string) => {
-    return liveProducts?.[priceId]?.price || fallback;
+    const live = liveProducts?.[priceId]?.price;
+    return live ? `${live}€` : fallback;
   };
 
   const getLiveName = (priceId: string, fallback: string) => {
