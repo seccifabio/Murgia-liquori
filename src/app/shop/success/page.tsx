@@ -115,10 +115,28 @@ function SuccessContent() {
                       </p>
                     </div>
                   ))}
+
+                  {/* Alchemical Details: Shipping & Discount */}
+                  {session.total_details && (
+                    <div className="pt-4 space-y-3 border-t border-white/5">
+                      {session.total_details.amount_shipping > 0 && (
+                        <div className="flex justify-between items-center opacity-60">
+                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">Trasporto</p>
+                          <p className="font-heading text-sm">€{(session.total_details.amount_shipping / 100).toFixed(2)}</p>
+                        </div>
+                      )}
+                      {session.total_details.amount_discount > 0 && (
+                        <div className="flex justify-between items-center text-primary">
+                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">Sconto Heritage</p>
+                          <p className="font-heading text-sm">-€{(session.total_details.amount_discount / 100).toFixed(2)}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 <div className="pt-8 border-t border-white/10 flex justify-between items-center">
-                  <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Totale Transazione</p>
+                  <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Totale Manifestato</p>
                   <p className="font-heading text-4xl text-primary">
                     €{(session.amount_total / 100).toFixed(2)}
                   </p>
@@ -153,8 +171,10 @@ function SuccessContent() {
                       <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Destinazione Rituale</p>
                       <div className="font-body text-[10px] md:text-xs text-white/50 space-y-1 tracking-[0.2em] leading-relaxed uppercase">
                         <p className="text-white/80 font-heading tracking-widest">{session.shipping_details.name}</p>
-                        <p>{session.shipping_details.address.line1}</p>
-                        {session.shipping_details.address.line2 && <p>{session.shipping_details.address.line2}</p>}
+                        <p>
+                          {session.shipping_details.address.line1}
+                          {session.shipping_details.address.line2 ? `, ${session.shipping_details.address.line2}` : ''}
+                        </p>
                         <p>
                           {session.shipping_details.address.postal_code} {session.shipping_details.address.city} 
                           {session.shipping_details.address.state ? ` (${session.shipping_details.address.state})` : ""}
