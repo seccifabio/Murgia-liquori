@@ -276,7 +276,7 @@ export const en = {
     discountLabel: "ALCHEMY DISCOUNT",
   },
   footer: {
-    brandText: "The Art of Distillation in Sardinia",
+    brandText: "Secrets for over 140 years.",
     contacts: "Support",
     social: "Ascend",
     sede: "Heart",
@@ -325,8 +325,8 @@ export const en = {
     }
   },
   launchBanner: {
-    title: "Murgia Liquore",
-    subtitle: "Expanding the Legacy",
+    title: "AMARO MURGIA",
+    subtitle: "The Ritual Returns.",
     description: "A new alchemical artifact forged in the fires of 1882 heritage. Coming soon to the collection.",
     cta: "Secure Pre-Launch",
     vaultTitle: "SECURE PRE-LAUNCH",

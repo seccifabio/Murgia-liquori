@@ -86,7 +86,7 @@ export default function ShippingRitual() {
             >
               <h3 className="font-heading text-6xl uppercase tracking-tighter leading-none text-white italic">
                 {stage.title.split(' ')[0]} <br/> 
-                <span className="text-primary">{stage.title.split(' ')[1]}</span>
+                <span className="text-primary">{stage.title.split(' ').slice(1).join(' ')}</span>
               </h3>
               <p className="font-body text-white/60 text-lg italic tracking-wide leading-relaxed border-l border-primary/30 pl-6">
                 {stage.description}
@@ -138,7 +138,7 @@ export default function ShippingRitual() {
                   
                   <h3 className="font-heading text-6xl md:text-8xl lg:text-9xl uppercase tracking-tighter leading-[0.85] text-white italic">
                     {stage.title.split(' ')[0]} <br/> 
-                    <span className="text-primary">{stage.title.split(' ')[1]}</span>
+                    <span className="text-primary">{stage.title.split(' ').slice(1).join(' ')}</span>
                   </h3>
                   
                   <p className="font-body text-white/60 text-lg md:text-2xl italic tracking-wide leading-relaxed max-w-xl border-l border-white/10 pl-8">
@@ -162,12 +162,12 @@ export default function ShippingRitual() {
                 </motion.div>
               </div>
 
-              {/* Fractional Navigation Gauge */}
-              <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-4">
+              {/* Fractional Navigation Gauge: Moved to Top for Visibility */}
+              <div className="absolute top-12 left-1/2 -translate-x-1/2 flex items-center gap-4 z-[60]">
                 {STAGES.map((_, idx) => (
                   <div 
                     key={idx}
-                    className={`h-1 transition-all duration-500 ${i === idx ? "w-12 bg-primary" : "w-4 bg-white"}`}
+                    className={`h-1 transition-all duration-500 shadow-sm ${i === idx ? "w-12 bg-primary" : "w-4 bg-white/30"}`}
                   />
                 ))}
               </div>

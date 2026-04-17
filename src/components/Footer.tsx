@@ -41,11 +41,20 @@ export default function Footer() {
         className="max-w-7xl mx-auto flex flex-col items-center"
       >
         {/* BRAND CROWN: Centered Identity */}
-        <motion.div variants={itemVariants} className="text-center mb-16">
-          <h2 className="font-heading text-8xl md:text-[14rem] text-primary tracking-tighter leading-none mb-6">
+        <motion.div variants={itemVariants} className="text-center mb-16 px-4 w-full flex flex-col items-center">
+          <h2 className="font-heading text-8xl md:text-[14rem] text-primary tracking-tighter leading-[0.8] uppercase">
             MURGIA
           </h2>
-          <p className="font-heading text-xl md:text-3xl tracking-[0.3em] uppercase italic text-white/60">
+          
+          <div className="flex items-center justify-center w-full max-w-lg md:max-w-2xl gap-4 md:gap-8 mb-12">
+            <div className="h-px bg-white/10 flex-1" />
+            <span className="font-heading text-lg md:text-4xl tracking-[0.6em] text-white/80 uppercase whitespace-nowrap pl-[0.6em]">
+              Liquori
+            </span>
+            <div className="h-px bg-white/10 flex-1" />
+          </div>
+
+          <p className="font-heading text-lg md:text-2xl tracking-[0.3em] uppercase italic text-white/40">
             {t.footer.brandText}
           </p>
         </motion.div>

@@ -11,19 +11,19 @@ export const it = {
   },
   shipping: {
     preparing: {
-      title: "Laboratory Preparing",
-      metric: "Alchimia Certificata",
-      description: "Ogni goccia viene distillata e perfezionata nel nostro laboratorio di Villacidro, seguendo i protocolli alchemici del 1882."
+      title: "Preparazione in laboratorio",
+      metric: "LABORATORIO",
+      description: "Ogni goccia viene miscelata e perfezionata esattamente dove è sempre stato fatto, a Villacidro, seguendo le ricette che ci accompagnano dall'inizio."
     },
     sealing: {
-      title: "Hand-Applied Seal",
-      metric: "Sigillo di Garanzia",
-      description: "L'autenticità viene sigillata manualmente. Un rito di certificazione che garantisce l'integrità di ogni singolo artefatto Murgia."
+      title: "Contrassegno statale",
+      metric: "APPLICATO A MANO",
+      description: "L'esclusiva specialità viene sigillata manualmente.\nUn rito che effettuiamo lenti, in mezzo a pensieri e chiacchere, e che sigilla ogni bottiglia. Applicato a mano come ci ha insegnato a fare chi lo ha fatto prima di noi."
     },
     dispatch: {
-      title: "Archival Dispatch",
-      metric: "Spedizione Tracciata",
-      description: "L'ordine lascia il laboratorio in un vessel protettivo tech-noir, pronto per completare il suo viaggio verso la tua collezione."
+      title: "VIAGGIO SICURO",
+      metric: "SPEDIZIONE",
+      description: "Gli ordini lasciano il nostro laboratorio in una confezione studiata per la spedizione, pronti per completare il viaggio verso la tua collezione."
     }
   },
   nav: {
@@ -40,9 +40,9 @@ export const it = {
     }
   },
   hero: {
-    title: "L'Alchimia",
-    subtitle: "del Rito.",
-    description: "Distillati d'eccellenza dal 1882. La tradizione sarda incontra l'avanguardia.",
+    title: "Liquori da",
+    subtitle: "oltre 140 anni.",
+    description: "Dal 1882 custodiamo il segreto delle più esclusive specialità liquoristiche di Villacidro. Una storia testarda e orgogliosa che infondiamo in ogni prodotto.",
     scroll: "Scopri l'essenza",
     legacy_hud: "Tradizione Gennaro Murgia",
     craft_hud: "Artigianato Sardo",
@@ -50,14 +50,14 @@ export const it = {
   },
   origins: {
     title: "Le Origini",
-    subtitle: "L'Arte della",
-    subtitleAccent: "Distillazione",
-    description: "Dal 1882, trasformiamo i frutti della terra sarda in essenze immortali.",
+    subtitle: "L'arte dei",
+    subtitleAccent: "liquoristi.",
+    description: "Dal 1882 misceliamo aromi e profumi in liquori speciali.",
     heritage: {
       title: "Murgia Liquori",
-      subtitle: "Il Colore",
-      subtitleAccent: "della Storia",
-      description: "Zafferano, Anice e Segreti di Famiglia.",
+      subtitle: "I colori",
+      subtitleAccent: "della storia",
+      description: "Zafferano, Anice, Aloe e segreti di famiglia.",
     },
     products: {
       title: "Collezione Murgia",
@@ -183,7 +183,7 @@ export const it = {
       ritual: "Diventa Partner",
       title: "Diventa un",
       titleAccent: "Partner Murgia",
-      description: "Porta l'autenticità di Murgia nel tuo locale. Unisciti alla nostra rete di distribuzione e scopri i vantaggi riservati ai professionisti della mixology.",
+      description: "Porta le esclusive specialità di Murgia Liquori nel tuo locale. Unisciti alla nostra rete di distribuzione e scopri anche i vantaggi riservati ai professionisti della mixology.",
       cta: "Richiedi Informazioni",
       back: "Torna alla lista",
       formTitle: "Diventa un Murgia Liquori Partner",
@@ -228,32 +228,32 @@ export const it = {
     },
     giallo: {
       name: "Villacidro Giallo",
-      heroTagline: "L'Oro Alchemico di Sardegna",
+      heroTagline: "L'oro Giallo di Sardegna",
       ritualDescription: "\"Si beveva l'elisir de s'omu, l'oro di Murgia.\" Un gesto che attraversa i secoli, un rito collettivo che unisce generazioni. Servire preferibilmente a temperatura ambiente (16-20°C) in calice a tulipano per liberare l'anima dello zafferano.",
       ingredients: [
-        { name: "Zafferano", detail: "Oro di San Gavino", desc: "Il cuore pulsante del Giallo. Raccolto all'alba per preservare l'essenza cromatica e aromatica più pura." },
+        { name: "Zafferano", detail: "Oro di San Gavino", desc: "Il cuore pulsante del giallo. Delicato ed essenziale. L'essenza cromatica ed aromatica più pura." },
         { name: "Anice Stellato", detail: "Purezza Alchemica", desc: "La nota di testa che rinfresca il palato, bilanciando il calore delle spezie segrete." },
-        { name: "14 Erbe Segrete", detail: "Ricetta Gennaro Murgia", desc: "Un mosaico botanico tramandato dal 1882, distillato in piccoli lotti per un'anima irripetibile." }
+        { name: "14 ingredienti", detail: "Ricetta Gennaro Murgia", desc: "Un mosaico botanico tramandato da Gennaro Murgia ad oggi. Miscelato in piccoli lotti per un'anima irripetibile." }
       ]
     },
     bianco: {
       name: "Villacidro Bianco",
-      heroTagline: "L'Essenza Botanica di Sardegna",
-      ritualDescription: "Un rituale di freschezza ancestrale. Il Bianco è l'anima candida della nostra distilleria, dove le erbe officinali si fondono in un'alchimia cristallina.",
+      heroTagline: "Secco e fresco.",
+      ritualDescription: "Un rituale di freschezza ancestrale. Il bianco è l'anima candida e delicata del nostro Liquorificio, dove le erbe si fondono in un gusto cristallino.",
       ingredients: [
-        { name: "Menta", detail: "Respiro Sardo", desc: "Freschezza selvatica che apre i sensi." },
-        { name: "Arancio", detail: "Scorza Alchemica", desc: "Note agrumate per un finale brillante." },
-        { name: "Eucalipto", detail: "Cuore Officinale", desc: "L'essenza delle foreste di Murgia." }
+        { name: "Anice", detail: "Respiro Sardo", desc: "La freschezza balsamica che apre i sensi." },
+        { name: "12 BOTANICHE", detail: "un altro segreto", desc: "Miscelate per creare i contrasti." },
+        { name: "SECCO", detail: "Poco Zucchero", desc: "Cuore secco e fresco, un contrasto che solo assaggiando si può apprezzare." }
       ]
     },
     sbagliata: {
       name: "La Sbagliata",
-      heroTagline: "Il Rituale Notturno",
-      ritualDescription: "Un'alchimia audace nata da un errore perfetto. Lo spirito che sfida la tradizione con eleganza.",
+      heroTagline: "L'errore da collezione.",
+      ritualDescription: "Un errore che ci ha fatto sussultare e cambiare prospettiva.\n200 soli esemplari, il classico sapore del Villacidro Giallo.",
       ingredients: [
-        { name: "Curaçao", detail: "Essenza Amara", desc: "La complessità dell'arancia amara." },
-        { name: "Genziana", detail: "Radice Profonda", desc: "L'amaricante ancestrale che purifica il palato." },
-        { name: "Zafferano", detail: "Tocco Murgia", desc: "L'oro che firma ogni nostra creazione." }
+        { name: "VILLACIDRO GIALLO", detail: "Edizione Limitata", desc: "Una versione limitata di 200 bottiglie." },
+        { name: "200 SOLE BOTTIGLIE", detail: "un errore", desc: "Da un errore nella stampa dell'etichetta abbiamo creato un esemplare da collezione." },
+        { name: "GOMMALACCA", detail: "Lo stemma", desc: "Sigillata con la gommalacca per essere sicuri che la teniate al sicuro" }
       ]
     }
   },
@@ -276,7 +276,7 @@ export const it = {
     discountLabel: "SCONTO ALCHIMIA",
   },
   footer: {
-    brandText: "L'Arte della Distillazione in Sardegna",
+    brandText: "Segreti da oltre 140 anni.",
     contacts: "Contatti",
     social: "Social",
     sede: "Sede",
@@ -284,7 +284,7 @@ export const it = {
   },
   storia: {
     hero: {
-      label: "L'Inizio del Rito",
+      label: "Visione Contemporanea",
       title: "La Storia",
       company: "Murgia."
     },
@@ -298,12 +298,12 @@ export const it = {
       giallo: {
         year: "L'ORO BRILLANTE",
         title: "Villacidro Giallo",
-        subtitle: "L'ALCHIMIA DELLO ZAFFERANO",
+        subtitle: "La ricchezza dello Zafferano.",
         description: "Il prodotto simbolo nasce dalla sapienza erboristica del fondatore. L'uso dello zafferano puro non solo conferisce il colore oro brillante, ma definisce l'anima aromatica di Murgia nel mondo."
       },
       resilience: {
-        year: "1940-1950",
-        title: "La Resilienza",
+        year: "1935-1970",
+        title: "LA RESISTENZA",
         subtitle: "IL FUOCO di TERESITA",
         description: "Dopo le guerre mondiali, l'azienda rischia la chiusura. È la tenacia di Teresita Belingardi a salvare la produzione, mantenendo segrete le ricette e accendendo nuovamente gli alambicchi."
       }
@@ -325,8 +325,8 @@ export const it = {
     }
   },
   launchBanner: {
-    title: "Murgia Liquore",
-    subtitle: "L'Evoluzione del Rito",
+    title: "AMARO MURGIA",
+    subtitle: "Il ritorno del rito.",
     description: "Un nuovo manufatto alchemico forgiato nelle fiamme della tradizione del 1882. Prossimamente nella collezione.",
     cta: "Assicura il Pre-Lancio",
     vaultTitle: "ASSICURA IL PRELANCIO",

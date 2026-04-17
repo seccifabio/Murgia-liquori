@@ -54,8 +54,8 @@ export default function StoriaPage() {
           <div className="space-y-8">
             <span className="text-white font-heading text-xl md:text-2xl uppercase tracking-[0.4em] block">Quinta Generazione</span>
             <p className="text-white/70 font-body text-xl md:text-3xl max-w-4xl mx-auto leading-relaxed border-t border-white/10 pt-12 italic tracking-wide">
-              Alessandro e Francesca Murgia rilanciano l&apos;azienda di famiglia con una visione contemporanea. Oggi la produzione continua fedele alle antiche ricette del 1882, portando sul mercato l&apos;eccellenza dell&apos;alchimia sarda contemporanea.
-            </p>
+            Alessandro e Francesca Murgia rilanciano l&apos;azienda di famiglia con una visione contemporanea. Oggi la produzione continua fedele alle antiche ricette, tenendo sul mercato i liquori che la tradizione non ha dimenticato.
+          </p>
           </div>
         </motion.div>
 

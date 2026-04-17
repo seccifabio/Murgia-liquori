@@ -68,11 +68,9 @@ export default function StoriaVideo() {
               transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-4xl"
             >
-              <span className="text-primary font-heading text-xl md:text-2xl uppercase tracking-[0.6em] block mb-12 border-b border-primary/20 pb-8 inline-block">
-                Visione Alchemica
-              </span>
-              <h2 className="text-white font-heading text-6xl md:text-[10rem] uppercase tracking-tighter italic leading-[0.8]">
-                Vivere <br/> <span className="text-primary">l&apos;Essenza.</span>
+
+              <h2 className="text-white font-heading text-6xl md:text-9xl uppercase tracking-tighter leading-none italic mb-8">
+                Visione <br/> <span className="text-primary">Contemporanea.</span>
               </h2>
               
               {/* Play Ritual Button */}
