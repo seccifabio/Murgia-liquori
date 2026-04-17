@@ -28,14 +28,14 @@ export default function ContattiPage() {
                     <input 
                       type="text" 
                       placeholder={t.visit.drawer.form.firstName.toUpperCase()} 
-                      className="w-full bg-transparent border-b border-noir/20 py-4 font-body text-xl text-noir placeholder:text-noir/20 focus:border-noir focus:outline-none transition-colors uppercase tracking-widest"
+                      className="w-full bg-transparent border-b border-noir/30 py-4 font-body text-xl text-noir placeholder:text-noir/50 focus:border-noir focus:outline-none transition-colors uppercase tracking-widest"
                     />
                   </div>
                   <div className="relative group">
                     <input 
                       type="email" 
                       placeholder="EMAIL" 
-                      className="w-full bg-transparent border-b border-noir/20 py-4 font-body text-xl text-noir placeholder:text-noir/20 focus:border-noir focus:outline-none transition-colors uppercase tracking-widest"
+                      className="w-full bg-transparent border-b border-noir/30 py-4 font-body text-xl text-noir placeholder:text-noir/50 focus:border-noir focus:outline-none transition-colors uppercase tracking-widest"
                     />
                   </div>
                 </div>
@@ -44,7 +44,7 @@ export default function ContattiPage() {
                   <textarea 
                     rows={4}
                     placeholder={t.locations.partner.fields.message.toUpperCase()} 
-                    className="w-full bg-transparent border-b border-noir/20 py-4 font-body text-xl text-noir placeholder:text-noir/20 focus:border-noir focus:outline-none transition-colors uppercase tracking-widest resize-none"
+                    className="w-full bg-transparent border-b border-noir/30 py-4 font-body text-xl text-noir placeholder:text-noir/50 focus:border-noir focus:outline-none transition-colors uppercase tracking-widest resize-none"
                   />
                 </div>
 

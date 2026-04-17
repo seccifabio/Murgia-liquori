@@ -53,7 +53,7 @@ export default function Footer() {
         {/* UTILITY GRID: Centered Info */}
         <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-20 text-center md:text-left mb-24 items-center md:items-start justify-center w-full max-w-4xl">
           <div className="flex-1 space-y-6">
-            <h4 className="font-heading text-xs tracking-widest text-primary uppercase">{t.footer.contacts}</h4>
+            <h4 className="font-heading text-sm tracking-widest text-primary uppercase">{t.footer.contacts}</h4>
             <div className="space-y-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
               <p>Email: info@murgialiquori.com</p>
               <p>Tel: +39 070 931 52 09</p>
@@ -61,7 +61,7 @@ export default function Footer() {
           </div>
 
           <div className="flex-1 space-y-6">
-            <h4 className="font-heading text-xs tracking-widest text-primary uppercase">{t.footer.social}</h4>
+            <h4 className="font-heading text-sm tracking-widest text-primary uppercase">{t.footer.social}</h4>
             <div className="flex flex-col gap-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
               <a href="#" className="hover:text-primary transition-colors">Instagram</a>
               <a href="#" className="hover:text-primary transition-colors">Facebook</a>
@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
           
           <div className="flex-1 space-y-6">
-            <h4 className="font-heading text-xs tracking-widest text-primary uppercase">{t.footer.sede}</h4>
+            <h4 className="font-heading text-sm tracking-widest text-primary uppercase">{t.footer.sede}</h4>
             <div className="space-y-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
               <p>Via Nazionale 213</p>
               <p>09039 Villacidro (SU)</p>

@@ -99,8 +99,9 @@ export default function Navbar() {
   const isStoriaPage = pathname?.includes("/la-storia");
   const isCollezionePage = pathname?.includes("/la-collezione");
   const isDoveCiTroviPage = pathname?.includes("/dove-ci-trovi");
-  const activeTheme = (isDarkTheme || isStoriaPage || isCollezionePage || isDoveCiTroviPage) ? "dark" : "light";
-  const iconColor = (isDarkTheme || isStoriaPage || isCollezionePage || isDoveCiTroviPage) ? "text-noir" : "text-white";
+  const isContattiPage = pathname?.includes("/contatti");
+  const activeTheme = (isDarkTheme || isStoriaPage || isCollezionePage || isDoveCiTroviPage || isContattiPage) ? "dark" : "light";
+  const iconColor = (isDarkTheme || isStoriaPage || isCollezionePage || isDoveCiTroviPage || isContattiPage) ? "text-noir" : "text-white";
   
   return (
     <>
