@@ -48,7 +48,7 @@ export default function SbagliataHero() {
 
       <motion.div 
         style={{ y: textY, opacity: textOpacity }}
-        className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6"
+        className="relative z-10 h-full flex flex-col items-center justify-start md:justify-center text-center px-6 pt-32 md:pt-0"
       >
         <header className="mb-8">
           <span className="font-heading text-xs tracking-[0.6em] text-primary uppercase mb-2 block">Collector&apos;s Edition</span>

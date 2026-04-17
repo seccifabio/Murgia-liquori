@@ -10,7 +10,7 @@ export default function ContattiPage() {
   return (
     <main className="bg-noir min-h-screen">
 
-      <section className="relative w-full min-h-screen flex flex-col items-center justify-center pt-60 pb-20 px-6">
+      <section className="relative w-full min-h-screen flex flex-col items-center pt-32 md:pt-48 pb-20 px-6">
         {/* Interaction Sanctuary: Monolithic Terminal */}
         <div className="relative w-full max-w-4xl flex flex-col">
           <motion.div

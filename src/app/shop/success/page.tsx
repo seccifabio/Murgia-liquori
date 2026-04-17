@@ -294,7 +294,7 @@ export default function SuccessPage() {
     <main className="bg-noir min-h-screen selection:bg-primary selection:text-noir overflow-hidden">
       <Navbar />
       
-      <section className="relative pt-40 pb-32 px-6 flex flex-col items-center justify-center min-h-screen">
+      <section className="relative pt-32 md:pt-48 pb-32 px-6 flex flex-col items-center justify-center min-h-screen">
         {/* Cinematic Grain Texture */}
         <div className="absolute inset-0 bg-texture opacity-[0.03] pointer-events-none" />
         

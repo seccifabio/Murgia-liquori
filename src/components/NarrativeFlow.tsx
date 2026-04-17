@@ -83,7 +83,7 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
       className="relative bg-noir z-10"
     >
       {/* 📱 MOBILE: Simple Vertical Manifest */}
-      <div className="md:hidden flex flex-col gap-32 pt-24 pb-0 px-6">
+      <div className="md:hidden flex flex-col gap-32 pt-32 pb-0 px-6">
         <div className="space-y-8">
           <span className="text-primary font-heading text-xl tracking-widest block uppercase">{t.origins.title}</span>
           <h2 className="text-white font-heading text-[2.5rem] leading-[1.2] md:leading-none uppercase">

@@ -84,7 +84,7 @@ export default function LocationsSection() {
   return (
     <section 
       id="locations-directory"
-      className="relative z-[2000] bg-primary pt-10 md:pt-16 pb-40 px-6 min-h-screen text-noir isolation-auto"
+      className="relative z-[2000] bg-primary pt-32 md:pt-48 pb-40 px-6 min-h-screen text-noir isolation-auto"
     >
       <motion.div 
         variants={containerVariants}
