@@ -42,7 +42,7 @@ export const it = {
   hero: {
     title: "Liquori da",
     subtitle: "oltre 140 anni.",
-    description: "Dal 1882 custodiamo il segreto delle più esclusive specialità liquoristiche di Villacidro. Una storia testarda e orgogliosa che infondiamo in ogni prodotto.",
+    description: "Dal 1882 custodiamo il segreto delle specialità liquoristiche di Villacidro, una storia orgogliosa che vive in ogni prodotto.",
     scroll: "Scopri l'essenza",
     legacy_hud: "Tradizione Gennaro Murgia",
     craft_hud: "Artigianato Sardo",
@@ -229,11 +229,11 @@ export const it = {
     giallo: {
       name: "Villacidro Giallo",
       heroTagline: "L'oro Giallo di Sardegna",
-      ritualDescription: "\"Si beveva l'elisir de s'omu, l'oro di Murgia.\" Un gesto che attraversa i secoli, un rito collettivo che unisce generazioni. Servire preferibilmente a temperatura ambiente (16-20°C) in calice a tulipano per liberare l'anima dello zafferano.",
+      ritualDescription: "Si beveva l’“elisir de s’omu”, l’oro di Murgia: un rito che unisce generazioni.\nServire a 16–20°C in calice a tulipano per esaltarne l’anima allo zafferano.",
       ingredients: [
-        { name: "Zafferano", detail: "Oro di San Gavino", desc: "Il cuore pulsante del giallo. Delicato ed essenziale. L'essenza cromatica ed aromatica più pura." },
-        { name: "Anice Stellato", detail: "Purezza Alchemica", desc: "La nota di testa che rinfresca il palato, bilanciando il calore delle spezie segrete." },
-        { name: "14 ingredienti", detail: "Ricetta Gennaro Murgia", desc: "Un mosaico botanico tramandato da Gennaro Murgia ad oggi. Miscelato in piccoli lotti per un'anima irripetibile." }
+        { name: "Zafferano", detail: "Oro di San Gavino", desc: "Il cuore del giallo: delicato, essenziale, puro." },
+        { name: "Anice Stellato", detail: "Purezza Alchemica", desc: "La nota fresca che bilancia le spezie segrete." },
+        { name: "14 ingredienti", detail: "Ricetta Gennaro Murgia", desc: "Un mosaico botanico tramandato da Gennaro Murgia, miscelato in piccoli lotti per un’anima unica." }
       ]
     },
     bianco: {
