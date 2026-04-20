@@ -197,7 +197,7 @@ export default function Navbar() {
                   className="block cursor-pointer"
                 >
                   <Link href={link.path} onClick={() => setIsMenuOpen(false)}>
-                    <div className="font-heading text-primary hover:text-white text-[40px] md:text-6xl lg:text-7xl uppercase tracking-tighter leading-none transition-all duration-300 transform hover:translate-x-4">
+                    <div className="font-heading text-primary hover:text-white text-[44px] md:text-6xl lg:text-7xl uppercase tracking-tighter leading-none transition-all duration-300 transform hover:translate-x-4">
                       {t.nav.links[link.id as keyof typeof t.nav.links]}
                     </div>
                   </Link>
