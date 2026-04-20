@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useTranslation } from "@/context/LanguageContext";
 
@@ -33,6 +33,7 @@ export default function ShippingRitual() {
   ];
   
   const [isMobile, setIsMobile] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -46,8 +47,17 @@ export default function ShippingRitual() {
     offset: ["start start", "end end"]
   });
 
+  // Track active index for the sticky progress indicator
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const idx = Math.min(Math.floor(latest * 3), 2);
+    if (idx !== activeIdx) setActiveIdx(idx);
+  });
+
   // Kinetic Horizontal Traversal: Map vertical scroll to horizontal x translation
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66.66%"]);
+  
+  // Fade out indicator when section ends
+  const indicatorOpacity = useTransform(scrollYProgress, [0, 0.05, 0.95, 1], [0, 1, 1, 0]);
 
   if (isMobile) {
     return (
@@ -102,8 +112,18 @@ export default function ShippingRitual() {
     <section ref={containerRef} className="relative h-[300vh] bg-noir">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         
-        {/* Header Ritual - Label Liquidated */}
-        <div className="absolute top-12 left-1/2 -translate-x-1/2 z-50 text-center" />
+        {/* Fractional Navigation Gauge: Sticky & Fade-out */}
+        <motion.div 
+          style={{ opacity: indicatorOpacity }}
+          className="absolute top-24 left-1/2 -translate-x-1/2 flex items-center gap-4 z-[100]"
+        >
+          {STAGES.map((_, idx) => (
+            <div 
+              key={idx}
+              className={`h-1 transition-all duration-500 shadow-sm ${activeIdx === idx ? "w-12 bg-primary" : "w-4 bg-white/30"}`}
+            />
+          ))}
+        </motion.div>
 
         {/* Horizontal Manifestation Vessel */}
         <motion.div style={{ x }} className="flex h-full w-[300vw]">
@@ -161,16 +181,6 @@ export default function ShippingRitual() {
                   <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
                 </motion.div>
               </div>
-
-              {/* Fractional Navigation Gauge: Moved to Top for Visibility */}
-              <div className="absolute top-12 left-1/2 -translate-x-1/2 flex items-center gap-4 z-[60]">
-                {STAGES.map((_, idx) => (
-                  <div 
-                    key={idx}
-                    className={`h-1 transition-all duration-500 shadow-sm ${i === idx ? "w-12 bg-primary" : "w-4 bg-white/30"}`}
-                  />
-                ))}
-              </div>
             </div>
           ))}
         </motion.div>
@@ -178,3 +188,4 @@ export default function ShippingRitual() {
     </section>
   );
 }
+

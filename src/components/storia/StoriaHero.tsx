@@ -30,7 +30,7 @@ export default function StoriaHero() {
     : { delay: 0.5, duration: 1 };
 
   return (
-    <div ref={containerRef} className={`relative ${isMobile ? 'h-[120vh]' : 'h-[200vh]'} bg-noir`}>
+    <div ref={containerRef} className={`relative ${isMobile ? 'h-[120vh]' : 'h-[200vh]'} bg-noir z-10`}>
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         {/* Archival Background Photo */}
         <div className="absolute inset-0 z-0">
