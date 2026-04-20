@@ -77,7 +77,7 @@ export default function StoriaHero() {
           initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           transition={isMobile ? { duration: 0 } : introTransition}
-          className="absolute bottom-20 left-12 md:left-24 z-20 max-w-xl"
+          className="absolute bottom-40 md:bottom-24 left-12 md:left-24 z-20 max-w-xl"
         >
           <span className="text-primary font-heading text-xl tracking-[0.3em] uppercase mb-4 block">
             {t.storia.hero.label}
