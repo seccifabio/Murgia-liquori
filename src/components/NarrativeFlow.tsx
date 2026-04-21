@@ -51,12 +51,12 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
     }
   }, [isSealed, hasMounted]);
 
-    // Phase visibility and position maps
-  const phase1Opacity = useTransform(scrollYProgress, [0.15, 0.25], [1, 0]);
-  const phase1YDisp = useTransform(scrollYProgress, [0.15, 0.25], [0, -40]);
+    // Phase visibility and scrolling position maps for Slide-Push effect
+  const p1SlideY = useTransform(scrollYProgress, [0.15, 0.3], ["0%", "-100%"]);
+  const p1Opacity = useTransform(scrollYProgress, [0.15, 0.25], [1, 0]);
   
-  const phase2Opacity = useTransform(scrollYProgress, [0.15, 0.25, 0.75, 0.85], [0, 1, 1, 0]);
-  const phase2YDisp = useTransform(scrollYProgress, [0.15, 0.25, 0.75, 0.85], [40, 0, 0, -40]);
+  const p2SlideY = useTransform(scrollYProgress, [0.15, 0.3], ["100%", "0%"]);
+  const p2Opacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1]);
 
   const products = [
     { 
@@ -150,11 +150,11 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
           <div className="flex-1 relative z-10 flex items-center justify-center">
             <div className="grid grid-cols-2 gap-24 items-center max-w-6xl w-full relative">
               
-              {/* SHARED TEXT CONTENT AREA */}
-              <div className="relative h-[400px]">
+              {/* SHARED TEXT CONTENT AREA (MASKED) */}
+              <div className="relative h-[500px] overflow-hidden">
                 {/* Phase 1 Text (Origins) */}
                 <motion.div
-                  style={{ opacity: phase1Opacity, y: phase1YDisp }}
+                  style={{ y: p1SlideY, opacity: p1Opacity }}
                   className="absolute inset-0 flex flex-col justify-center space-y-6"
                 >
                   <span className="text-primary font-heading text-xl tracking-widest block uppercase">{t.origins.title}</span>
@@ -168,8 +168,8 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
 
                 {/* Phase 2 Text (Heritage) */}
                 <motion.div
-                  style={{ opacity: phase2Opacity, y: phase2YDisp }}
-                  className="absolute inset-0 flex flex-col justify-center space-y-6 pointer-events-none"
+                  style={{ y: p2SlideY, opacity: p2Opacity }}
+                  className="absolute inset-0 flex flex-col justify-center space-y-6"
                 >
                   <span className="text-primary font-heading text-xl tracking-widest block uppercase">{t.origins.heritage.title}</span>
                   <h2 className="text-white font-heading text-8xl leading-none uppercase">
@@ -186,7 +186,7 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
                 <div className="absolute inset-0 overflow-hidden rounded-[2vw] border border-white/10 bg-noir">
                   {/* Image 1 (Origins) */}
                   <motion.div 
-                    style={{ opacity: phase1Opacity }}
+                    style={{ y: p1SlideY }}
                     className="absolute inset-0"
                   >
                     <LiquidImage src="/images/products/VillacidroMurgia02.png" alt="Murgia Origins" />
@@ -194,7 +194,7 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
 
                   {/* Image 2 (Heritage) */}
                   <motion.div 
-                    style={{ opacity: phase2Opacity }}
+                    style={{ y: p2SlideY }}
                     className="absolute inset-0"
                   >
                     <LiquidImage src="/images/giallo.webp" alt="Murgia Legacy" />
