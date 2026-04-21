@@ -51,10 +51,12 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
     }
   }, [isSealed, hasMounted]);
 
-  const section1Clip = useTransform(scrollYProgress, [0.15, 0.25], ["inset(0% 0 0% 0)", "inset(0% 0 100% 0)"]);
-  const section2Clip = useTransform(scrollYProgress, [0.15, 0.25, 0.75, 0.85], ["inset(100% 0 0 0)", "inset(0% 0 0 0)", "inset(0% 0 0 0)", "inset(100% 0 0 0)"]);
-  const phase1Y = useTransform(scrollYProgress, [0, 0.35], [50, -50]);
-  const phase2Y = useTransform(scrollYProgress, [0.35, 0.8], [50, -50]);
+    // Phase visibility and position maps
+  const phase1Opacity = useTransform(scrollYProgress, [0.15, 0.25], [1, 0]);
+  const phase1YDisp = useTransform(scrollYProgress, [0.15, 0.25], [0, -40]);
+  
+  const phase2Opacity = useTransform(scrollYProgress, [0.15, 0.25, 0.75, 0.85], [0, 1, 1, 0]);
+  const phase2YDisp = useTransform(scrollYProgress, [0.15, 0.25, 0.75, 0.85], [40, 0, 0, -40]);
 
   const products = [
     { 
@@ -141,18 +143,20 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
         </div>
       </div>
 
-      {/* 🖥️ DESKTOP: Original Cinematic Architecture */}
+      {/* 🖥️ DESKTOP: Unified Cinematic Flow */}
       <div className="hidden md:block min-h-[400vh]">
         <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col pt-32 pb-20 px-20">
           
-          <div className="flex-1 relative z-10">
-            {/* Phase 1 */}
-            <motion.div
-              style={{ clipPath: section1Clip }}
-              className="absolute inset-0 flex flex-col items-center justify-center bg-noir"
-            >
-              <div className="grid grid-cols-2 gap-12 items-center max-w-6xl w-full">
-                <div className="space-y-6">
+          <div className="flex-1 relative z-10 flex items-center justify-center">
+            <div className="grid grid-cols-2 gap-24 items-center max-w-6xl w-full relative">
+              
+              {/* SHARED TEXT CONTENT AREA */}
+              <div className="relative h-[400px]">
+                {/* Phase 1 Text (Origins) */}
+                <motion.div
+                  style={{ opacity: phase1Opacity, y: phase1YDisp }}
+                  className="absolute inset-0 flex flex-col justify-center space-y-6"
+                >
                   <span className="text-primary font-heading text-xl tracking-widest block uppercase">{t.origins.title}</span>
                   <h2 className="text-white font-heading text-8xl leading-none uppercase">
                     {t.origins.subtitle} <br /> <span className="text-primary italic">{t.origins.subtitleAccent}</span>
@@ -160,20 +164,13 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
                   <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
                     {t.origins.description}
                   </p>
-                </div>
-                <motion.div style={{ y: phase1Y }} className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10">
-                  <LiquidImage src="/images/products/VillacidroMurgia02.png" alt="Murgia Heritage Still" />
                 </motion.div>
-              </div>
-            </motion.div>
 
-            {/* Phase 2 */}
-            <motion.div
-              style={{ clipPath: section2Clip }}
-              className="absolute inset-0 flex flex-col items-center justify-center bg-noir"
-            >
-              <div className="grid grid-cols-2 gap-12 items-center max-w-6xl w-full">
-                <div className="space-y-6">
+                {/* Phase 2 Text (Heritage) */}
+                <motion.div
+                  style={{ opacity: phase2Opacity, y: phase2YDisp }}
+                  className="absolute inset-0 flex flex-col justify-center space-y-6 pointer-events-none"
+                >
                   <span className="text-primary font-heading text-xl tracking-widest block uppercase">{t.origins.heritage.title}</span>
                   <h2 className="text-white font-heading text-8xl leading-none uppercase">
                     {t.origins.heritage.subtitle} <br /> <span className="text-primary italic">{t.origins.heritage.subtitleAccent}</span>
@@ -181,12 +178,31 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
                   <p className="text-white/60 font-body text-lg max-w-md leading-relaxed italic">
                     {t.origins.heritage.description}
                   </p>
-                </div>
-                <motion.div style={{ y: phase2Y }} className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10">
-                  <LiquidImage src="/images/giallo.webp" alt="Murgia Giallo" />
                 </motion.div>
               </div>
-            </motion.div>
+
+              {/* SHARED IMAGE MASK (The Rounded Frame) */}
+              <div className="relative aspect-[4/5] max-h-[65vh] w-full">
+                <div className="absolute inset-0 overflow-hidden rounded-[2vw] border border-white/10 bg-noir">
+                  {/* Image 1 (Origins) */}
+                  <motion.div 
+                    style={{ opacity: phase1Opacity }}
+                    className="absolute inset-0"
+                  >
+                    <LiquidImage src="/images/products/VillacidroMurgia02.png" alt="Murgia Origins" />
+                  </motion.div>
+
+                  {/* Image 2 (Heritage) */}
+                  <motion.div 
+                    style={{ opacity: phase2Opacity }}
+                    className="absolute inset-0"
+                  >
+                    <LiquidImage src="/images/giallo.webp" alt="Murgia Legacy" />
+                  </motion.div>
+                </div>
+              </div>
+
+            </div>
           </div>
 
           <motion.div initial={false} animate={{ height: isSealed ? "51%" : "0%" }} className="absolute top-0 left-0 w-full bg-primary z-20" />
