@@ -90,7 +90,7 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
             {t.origins.subtitle} <br /> <span className="text-primary italic">{t.origins.subtitleAccent}</span>
           </h2>
           <div className="aspect-[4/5] relative overflow-hidden rounded-[2vw] border border-white/10">
-            <LiquidImage src="/images/products/bianco.png" alt="Murgia Heritage Still" />
+            <LiquidImage src="/images/products/VillacidroMurgia02.png" alt="Murgia Heritage Still" />
           </div>
           <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
             {t.origins.description}
@@ -162,7 +162,7 @@ export default function NarrativeFlow({ liveProducts }: { liveProducts?: any }) 
                   </p>
                 </div>
                 <motion.div style={{ y: phase1Y }} className="aspect-[4/5] max-h-[60vh] relative overflow-hidden rounded-[2vw] border border-white/10">
-                  <LiquidImage src="/images/products/bianco.png" alt="Murgia Heritage Still" />
+                  <LiquidImage src="/images/products/VillacidroMurgia02.png" alt="Murgia Heritage Still" />
                 </motion.div>
               </div>
             </motion.div>
