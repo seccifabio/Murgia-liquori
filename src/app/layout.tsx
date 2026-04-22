@@ -14,7 +14,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://murgialiquori.it"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://murgialiquori.it"),
   title: {
     default: "Murgia Liquori | 1882 Heritage Spirits",
     template: "%s | Murgia Liquori",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Murgia Liquori | 1882 Heritage Spirits",
     description: "Artisanal Sardinian spirits crafted since 1882. Discover the golden legacy.",
-    url: "https://murgialiquori.it",
+    url: process.env.NEXT_PUBLIC_BASE_URL || "https://murgialiquori.it",
     siteName: "Murgia Liquori",
     images: [
       {
