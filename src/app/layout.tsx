@@ -14,8 +14,37 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Murgia Liquori | 1882 Heritage Spirits",
+  metadataBase: new URL("https://murgialiquori.it"),
+  title: {
+    default: "Murgia Liquori | 1882 Heritage Spirits",
+    template: "%s | Murgia Liquori",
+  },
   description: "Experience the golden legacy of Murgia Liquori. Artisanal Sardinian spirits crafted since 1882.",
+  openGraph: {
+    title: "Murgia Liquori | 1882 Heritage Spirits",
+    description: "Artisanal Sardinian spirits crafted since 1882. Discover the golden legacy.",
+    url: "https://murgialiquori.it",
+    siteName: "Murgia Liquori",
+    images: [
+      {
+        url: "/images/lasbagliata.webp",
+        width: 1200,
+        height: 630,
+        alt: "Murgia Liquori - Heritage Spirits",
+      },
+    ],
+    locale: "it_IT",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Murgia Liquori | 1882 Heritage Spirits",
+    description: "Artisanal Sardinian spirits crafted since 1882.",
+    images: ["/images/lasbagliata.webp"],
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 import Navbar from "@/components/Navbar";

@@ -6,6 +6,17 @@ import ProductDiscovery from "@/components/ProductDiscovery";
 import Footer from "@/components/Footer";
 import { getLiveProducts } from "@/lib/stripe-sync";
 import { PRODUCTS_MANIFEST } from "@/manifest/products";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Murgia Giallo | Il Liquore Zafferano",
+  description: "Scopri Murgia Giallo: l'alchimia perfetta tra erbe officinali e zafferano. Il capolavoro dorato di Villacidro.",
+  openGraph: {
+    title: "Murgia Giallo | Murgia Liquori",
+    description: "L'oro liquido della Sardegna.",
+    images: ["/images/giallo_product.png"],
+  },
+};
 
 export default async function MurgiaGialloPage() {
   const liveProducts = await getLiveProducts();

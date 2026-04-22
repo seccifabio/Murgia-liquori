@@ -6,6 +6,17 @@ import ProductDiscovery from "@/components/ProductDiscovery";
 import Footer from "@/components/Footer";
 import { getLiveProducts } from "@/lib/stripe-sync";
 import { PRODUCTS_MANIFEST } from "@/manifest/products";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Murgia Bianco | L'Essenza della Sardegna",
+  description: "Scopri Murgia Bianco: un liquore di erbe selvatiche sarde. Freschezza e intensità in ogni sorso.",
+  openGraph: {
+    title: "Murgia Bianco | Murgia Liquori",
+    description: "Il gusto autentico della macchia mediterranea.",
+    images: ["/images/bianco_product.png"],
+  },
+};
 
 export default async function MurgiaBiancoPage() {
   const liveProducts = await getLiveProducts();
