@@ -5,12 +5,12 @@ import { redirect } from "next/navigation";
 
 import { MARKETING_MANIFEST } from "@/manifest/marketing";
 
-const apiKey = process.env.STRIPE_SECRET_KEY || "sk_test_placeholder_for_build";
-
-// Initialize Stripe with the Secret Key from environment
-const stripe = new Stripe(apiKey, {
-  apiVersion: "2023-10-16" as any, // Standard stable version
-});
+const getStripe = () => {
+  const apiKey = process.env.STRIPE_SECRET_KEY || "sk_test_placeholder_for_build";
+  return new Stripe(apiKey, {
+    apiVersion: "2023-10-16" as any,
+  });
+};
 
 export async function createCheckoutSession(items: any[], appliedCode?: string | null, locale: string = "it") {
   if (!items || items.length === 0) {
@@ -18,6 +18,7 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
   }
 
   try {
+    const stripe = getStripe();
     // RITUAL: Fetch authoritative prices from Stripe to calculate threshold
     // Do not trust the string provided by the client
     const priceObjects = await Promise.all(
@@ -161,6 +162,7 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
 export async function getCheckoutSession(sessionId: string) {
   if (!sessionId) throw new Error("ID Sessione mancante.");
 
+  const stripe = getStripe();
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId, {
       expand: ["line_items", "line_items.data.price.product"],

@@ -4,16 +4,15 @@ import Stripe from "stripe";
 import { PRODUCTS_MANIFEST } from "@/manifest/products";
 import { unstable_cache } from "next/cache";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2023-10-16" as any,
-});
-
 /**
  * The Alchemical Sync Ritual
  * Fetches definitive names and pricing from Stripe.
  */
 export const getLiveProducts = unstable_cache(
   async () => {
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder_for_build", {
+      apiVersion: "2023-10-16" as any,
+    });
     console.log("Stripe Ritual: Synchronizing with Source of Truth...");
     
     try {

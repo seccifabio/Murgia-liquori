@@ -2,9 +2,8 @@
 
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function sendPartnerRequest(formData: any) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const { name, city, shopType, phone, email, message } = formData;
 
   if (!email || !name) {
