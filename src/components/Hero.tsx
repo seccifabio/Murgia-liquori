@@ -14,31 +14,22 @@ export default function Hero() {
   const { scrollY } = useScroll();
   const { setIsBannerVisible, isBannerVisible } = useCart();
   const pathname = usePathname();
-  const { t, language } = useTranslation();
-  const [currentTop, setCurrentTop] = useState(0);
-
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
 
-  useEffect(() => {
-    // Initial top offset setup
-    if (isEligiblePage && isBannerVisible) {
-      setCurrentTop(52);
-    }
+  // Cinematic Performance: We use Motion Values for the top/height logic 
+  // to avoid React re-renders on every scroll tick.
+  const dynamicTop = useTransform(scrollY, [0, 52], [isBannerVisible && isEligiblePage ? 52 : 0, 0]);
+  const dynamicHeight = useTransform(scrollY, [0, 52], [
+    isBannerVisible && isEligiblePage ? "calc(100dvh - 52px)" : "100dvh", 
+    "100dvh"
+  ]);
 
+  useEffect(() => {
     // Force video playback (critical for production/mobile)
     if (videoRef.current) {
       videoRef.current.play().catch(err => console.log("Video play blocked:", err));
     }
-  }, [isEligiblePage, isBannerVisible]);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (isEligiblePage && isBannerVisible) {
-      const offset = Math.max(0, 52 - latest);
-      setCurrentTop(offset);
-    } else {
-      setCurrentTop(0);
-    }
-  });
+  }, []);
 
   // State to trigger the smooth shutter reveal
   const [showText, setShowText] = useState(false);
@@ -54,13 +45,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section 
+    <motion.section 
       ref={containerRef}
       style={{ 
-        top: currentTop,
-        height: (isEligiblePage && isBannerVisible) ? `calc(100dvh - ${currentTop}px)` : '100dvh'
+        top: dynamicTop,
+        height: dynamicHeight
       }}
-      className="fixed left-0 w-full overflow-hidden bg-noir flex items-center justify-center z-0 transition-[height] duration-300"
+      className="fixed left-0 w-full overflow-hidden bg-noir flex items-center justify-center z-0"
     >
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0">
