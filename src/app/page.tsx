@@ -18,7 +18,7 @@ export default function Home() {
   const liveProducts = undefined; // Ritual for potential future Stripe integration
 
   return (
-    <main className="relative flex min-h-screen flex-col bg-noir cursor-none">
+    <main className="relative flex min-h-screen flex-col bg-noir">
       <Hero />
 
       {/* Content that scrolls over the fixed Hero */}
