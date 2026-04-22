@@ -14,6 +14,7 @@ export default function Hero() {
   const { scrollY } = useScroll();
   const { setIsBannerVisible, isBannerVisible } = useCart();
   const pathname = usePathname();
+  const { t, language } = useTranslation();
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
 
   // Cinematic Performance: We use Motion Values for the top/height logic 
@@ -128,6 +129,6 @@ export default function Hero() {
         </span>
         <div className="h-px w-20 bg-white" />
       </div>
-    </section>
+    </motion.section>
   );
 }
