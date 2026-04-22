@@ -4,13 +4,12 @@ import AperitivoSection from "@/components/AperitivoSection";
 import LocationsSection from "@/components/LocationsSection";
 import Footer from "@/components/Footer";
 import LaunchBanner from "@/components/LaunchBanner";
-import { getLiveProducts } from "@/lib/stripe-sync";
 
-export default async function Home() {
-  const liveProducts = await getLiveProducts();
+export default function Home() {
+  const liveProducts = undefined; // Ritual for potential future Stripe integration
 
   return (
-    <main className="relative flex min-h-screen flex-col bg-noir">
+    <main className="relative flex min-h-screen flex-col bg-noir cursor-none">
       <Hero />
 
       {/* Content that scrolls over the fixed Hero */}

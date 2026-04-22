@@ -19,6 +19,8 @@ const NAV_LINKS = [
   { id: "contacts", path: "/contatti" },
 ];
 
+import NavDrawer from "./NavDrawer";
+
 export default function Navbar() {
   const { scrollY } = useScroll();
   const pathname = usePathname();
@@ -122,7 +124,6 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4 md:gap-10 pointer-events-auto relative">
-          {/* Language Ritual Switcher */}
           <div className={`hidden md:flex items-center gap-4 font-heading text-xs tracking-[0.2em] uppercase ${iconColor}`}>
             <button 
               onClick={() => setLanguage("it")}
@@ -139,7 +140,6 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Language Native Pulse */}
           <div className={`flex md:hidden items-center relative gap-1 font-heading text-xs tracking-[0.2em] uppercase ${iconColor}`}>
             <span className="font-bold">{language}</span>
             <ChevronDown className="w-3 h-3 opacity-40" />
@@ -173,47 +173,12 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      <AnimatePresence mode="wait">
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[10001] bg-noir flex flex-col justify-center items-start px-12 md:px-24"
-          >
-            <button 
-              onClick={() => setIsMenuOpen(false)}
-              className="absolute top-10 right-10 text-white/50 hover:text-white transition-colors"
-            >
-              <X className="w-10 h-10" />
-            </button>
-
-            <div className="space-y-4 md:space-y-6 pt-12">
-              {NAV_LINKS.map((link, i) => (
-                <motion.div
-                  key={link.id}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1, transition: { delay: i * 0.1 } }}
-                  className="block cursor-pointer"
-                >
-                  <Link href={link.path} onClick={() => setIsMenuOpen(false)}>
-                    <div className="font-heading text-primary hover:text-white text-[44px] md:text-6xl lg:text-7xl uppercase tracking-tighter leading-none transition-all duration-300 transform hover:translate-x-4">
-                      {t.nav.links[link.id as keyof typeof t.nav.links]}
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-              
-            </div>
-
-            <div className="absolute bottom-12 left-12 md:left-24 flex gap-8 text-[10px] tracking-[0.3em] uppercase text-white/30 font-medium">
-              <a href="#" className="hover:text-primary transition-colors">{t.nav.social.instagram}</a>
-              <a href="#" className="hover:text-primary transition-colors">{t.nav.social.facebook}</a>
-              <a href="#" className="hover:text-primary transition-colors">{t.nav.social.privacy}</a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <NavDrawer 
+        isOpen={isMenuOpen} 
+        onClose={() => setIsMenuOpen(false)} 
+        links={NAV_LINKS} 
+        translations={t} 
+      />
     </>
   );
 }

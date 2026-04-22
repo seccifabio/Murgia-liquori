@@ -12,25 +12,28 @@ import { MARKETING_MANIFEST } from "@/manifest/marketing";
 import { useTranslation } from "@/context/LanguageContext";
 
 
+import BasketItem from "./BasketItem";
+import BasketPromo from "./BasketPromo";
+
 export default function BasketDrawer() {
   const { t, language } = useTranslation();
-  const { isBagOpen, setIsBagOpen, items, updateItem, removeItem, clearCart, total, appliedCode, setAppliedCode, discount, shipping, finalTotal } = useCart();
+  const { 
+    isBagOpen, 
+    setIsBagOpen, 
+    items, 
+    updateItem, 
+    removeItem, 
+    clearCart, 
+    total, 
+    appliedCode, 
+    setAppliedCode, 
+    discount, 
+    shipping, 
+    finalTotal 
+  } = useCart();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isEditingCode, setIsEditingCode] = useState(false);
-  const [promoInput, setPromoInput] = useState("");
   const [showCheckout, setShowCheckout] = useState(false);
-
-
-  const applyPromo = () => {
-    if (promoInput.trim()) {
-      const formattedCode = promoInput.trim().toUpperCase();
-      setAppliedCode(formattedCode);
-      setPromoInput("");
-    }
-    setIsEditingCode(false);
-    setPromoInput("");
-  };
 
   // Scroll Lockdown Ritual
   useEffect(() => {
@@ -48,7 +51,6 @@ export default function BasketDrawer() {
     if (isLoading || items.length === 0) return;
     setShowCheckout(true);
   };
-
 
   return (
     <AnimatePresence>
@@ -107,77 +109,13 @@ export default function BasketDrawer() {
               ) : (
                 <>
                   {items.map((item) => (
-                    <div key={`${item.id}-${item.format}`} className="flex gap-6 group relative">
-                      <div className="relative w-28 h-36 bg-white/5 rounded-lg overflow-hidden border border-white/5 flex-shrink-0">
-                        <img
-                          src={item.img}
-                          alt={item.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        />
-                      </div>
-                      
-                      <div className="flex-1 flex flex-col justify-between py-1">
-                        <div className="space-y-4">
-                          <div className="flex justify-between items-start">
-                            <h4 className="font-heading text-xl uppercase tracking-tight leading-tight max-w-[200px]">{item.name}</h4>
-                            <button
-                              onClick={() => removeItem(item.id, item.format)}
-                              className="text-white/40 hover:text-red-500 transition-colors p-1"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </div>
-
-                          {/* Interactive Configurator */}
-                          <div className="space-y-4">
-                            {/* Format Toggle */}
-                            <div className="flex flex-col gap-2">
-                              <span className="text-[9px] text-white/50 uppercase tracking-[0.2em] font-bold">{t.products.common.formato}</span>
-                              <div className="flex gap-2">
-                                {["50cl", "70cl"].map((size) => (
-                                  <button
-                                    key={size}
-                                    onClick={() => updateItem(item.id, item.format, { format: size })}
-                                    className={`px-3 py-1 text-[10px] font-heading uppercase tracking-widest border transition-all ${
-                                      item.format === size 
-                                        ? "bg-primary text-black border-primary font-bold" 
-                                        : "bg-transparent text-white/60 border-white/10 hover:border-white/20"
-                                    }`}
-                                  >
-                                    {size}
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-
-                            {/* Quantity Action */}
-                            <div className="flex flex-col gap-2">
-                              <span className="text-[9px] text-white/50 uppercase tracking-[0.2em] font-bold">{t.products.common.quantity}</span>
-                              <div className="flex items-center gap-4 border border-white/10 w-fit px-2 py-1 bg-white/[0.02]">
-                                <button 
-                                  onClick={() => item.quantity > 1 && updateItem(item.id, item.format, { quantity: item.quantity - 1 })}
-                                  className="text-white/60 hover:text-white transition-colors w-6 h-6 flex items-center justify-center font-heading"
-                                >
-                                  -
-                                </button>
-                                <span className="font-heading text-lg min-w-[20px] text-center">{item.quantity}</span>
-                                <button 
-                                  onClick={() => updateItem(item.id, item.format, { quantity: item.quantity + 1 })}
-                                  className="text-white/60 hover:text-white transition-colors w-6 h-6 flex items-center justify-center font-heading"
-                                >
-                                  +
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="mt-4 pt-4 border-t border-white/5 flex justify-between items-end">
-                          <span className="text-primary font-heading text-lg">{item.price}</span>
-                          <span className="text-white/40 text-[9px] uppercase tracking-widest italic font-bold">{t.bag.subtotal}: &euro;{(parseFloat(item.price.replace("€", "")) * item.quantity).toFixed(2)}</span>
-                        </div>
-                      </div>
-                    </div>
+                    <BasketItem 
+                      key={`${item.id}-${item.format}`} 
+                      item={item} 
+                      t={t} 
+                      updateItem={updateItem} 
+                      removeItem={removeItem} 
+                    />
                   ))}
 
                   <div className="pt-10 flex justify-center">
@@ -196,82 +134,14 @@ export default function BasketDrawer() {
             {/* Footer: Collective Total & Conversion */}
             {items.length > 0 && (
               <div className="p-8 border-t border-white/5 bg-noir/50 backdrop-blur-xl space-y-6">
-                {/* Promo Manifest Row */}
-                <div className="flex flex-col gap-4 py-4 border-b border-white/5">
-                  <div className="flex items-center justify-between text-white/40">
-                    <span className="font-heading text-sm tracking-widest uppercase">{t.bag.subtotal}</span>
-                    <span className="font-heading text-base">€{total.toFixed(2)}</span>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/40 font-heading text-sm tracking-[0.2em] uppercase">{t.bag.voucher}</span>
-                    
-                    {isEditingCode ? (
-                      <div className="flex items-center gap-2 flex-1 ml-4">
-                        <input
-                          autoFocus
-                          type="text"
-                          placeholder={t.bag.codePlaceholder}
-                          value={promoInput}
-                          onChange={(e) => setPromoInput(e.target.value)}
-                          onKeyDown={(e) => e.key === 'Enter' && applyPromo()}
-                          className="flex-1 bg-white/5 border border-white/10 rounded-sm px-3 py-1 text-sm font-heading tracking-widest text-primary focus:outline-none focus:border-primary/50 uppercase"
-                        />
-                        <button 
-                          onClick={applyPromo}
-                          className="text-primary hover:text-white transition-colors p-1"
-                        >
-                          <Check className="w-5 h-5" />
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="flex items-center justify-between flex-1 ml-6">
-                        {appliedCode ? (
-                          <div className="flex items-center justify-between w-full">
-                            <span className="text-primary font-heading text-base tracking-widest">{appliedCode}</span>
-                            <div className="flex items-center gap-2">
-                              <button 
-                                onClick={() => {
-                                  setPromoInput(appliedCode);
-                                  setIsEditingCode(true);
-                                }}
-                                className="text-white/30 hover:text-white transition-colors p-1.5 bg-white/5 rounded-sm"
-                              >
-                                <Edit3 className="w-3.5 h-3.5" />
-                              </button>
-                              <button 
-                                onClick={() => setAppliedCode(null)}
-                                className="text-white/30 hover:text-red-500 transition-colors p-1.5 bg-white/5 rounded-sm"
-                              >
-                                <X className="w-3.5 h-3.5" />
-                              </button>
-                            </div>
-                          </div>
-                        ) : (
-                          <button 
-                            onClick={() => setIsEditingCode(true)}
-                            className="text-white/30 hover:text-primary transition-colors font-heading text-sm tracking-widest uppercase border-b border-white/10 hover:border-primary pb-0.5"
-                          >
-                            {t.bag.addCode}
-                          </button>
-                        )}
-                      </div>
-                    )}
-
-                  </div>
-                  
-                  {discount > 0 && (
-                    <div className="flex items-center justify-between text-primary/80 italic">
-                      <span className="font-heading text-sm tracking-widest uppercase">{t.bag.discountLabel} ({MARKETING_MANIFEST.promo.discount * 100}%)</span>
-                      <span className="font-heading text-base">- €{discount.toFixed(2)}</span>
-                    </div>
-                  )}
-
-                  <div className="flex items-center justify-between text-white/40">
-                    <span className="font-heading text-sm tracking-widest uppercase">Trasporto</span>
-                    <span className="font-heading text-base">{shipping > 0 ? `€${shipping.toFixed(2)}` : "GRATUITO"}</span>
-                  </div>
-                </div>
+                <BasketPromo 
+                  t={t} 
+                  total={total} 
+                  appliedCode={appliedCode} 
+                  setAppliedCode={setAppliedCode} 
+                  discount={discount} 
+                  shipping={shipping} 
+                />
 
                 <button 
                   onClick={handleCheckout}
@@ -292,6 +162,7 @@ export default function BasketDrawer() {
                 </div>
               </div>
             )}
+
             {/* Checkout Overlay: The Payment Ritual */}
             <AnimatePresence>
               {showCheckout && (
@@ -301,7 +172,6 @@ export default function BasketDrawer() {
                   exit={{ opacity: 0, y: 20 }}
                   className="absolute inset-0 z-[10002] bg-primary flex flex-col overflow-y-auto custom-scrollbar"
                 >
-
                   <EmbeddedStripeCheckout 
                     items={items} 
                     appliedCode={appliedCode}
@@ -317,7 +187,6 @@ export default function BasketDrawer() {
               )}
             </AnimatePresence>
           </motion.div>
-
         </>
       )}
     </AnimatePresence>

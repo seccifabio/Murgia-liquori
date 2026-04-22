@@ -5,18 +5,18 @@
 
 @theme {
   --color-primary: #F4B400;
-  --color-noir: #040404;
+  --color-noir: #000000;
   --color-noir-light: #0D0D0D;
   --color-noir-text: #888888;
   
   --font-heading: var(--font-bebas-neue);
-  --font-body: var(--font-montserrat);
+  --font-body: "Poppins", sans-serif;
   
   --radius-none: 0px;
 }
 
 :root {
-  --background: #040404;
+  --background: #000000;
   --foreground: #ffffff;
   --primary: #F4B400;
   --banner-height: 52px;
