@@ -336,5 +336,17 @@ export const it = {
     vaultSuccess: "SIGILLO APPOSTO",
     vaultSubscribe: "Desidero ricevere aggiornamenti su eventi e nuovi prodotti Murgia.",
     comingSoon: "In Arrivo"
+  },
+  ageVerification: {
+    title: "IL SEGRETO DI VILLACIDRO",
+    subtitle: "Hai l'eta per scoprire il segreto di vilalcidro?",
+    description: "Per entrare nel nostro laboratorio devi aver compiuto 18 anni. La tua conferma ci autorizza a mostrarti contenuti riservati.",
+    yes: "Sì, ho maturato il diritto",
+    no: "Non ancora",
+    denied: {
+      title: "UN RITO CHE RICHIEDE TEMPO",
+      message: "Il segreto di Villacidro è un'essenza che sa aspettare. Continua a esplorare il mondo, torna a trovarci quando avrai visto più soli.",
+      cta: "Scopri la nostra storia"
+    }
   }
 };

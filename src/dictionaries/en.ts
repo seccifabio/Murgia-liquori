@@ -336,5 +336,17 @@ export const en = {
     vaultSuccess: "SEAL AFFIXED",
     vaultSubscribe: "I wish to receive updates on Murgia events and new products.",
     comingSoon: "Coming Soon"
+  },
+  ageVerification: {
+    title: "THE SECRET OF VILLACIDRO",
+    subtitle: "ARE YOU OF AGE TO DISCOVER THE ALCHEMY?",
+    description: "To enter our digital laboratory, you must be at least 18 years old. Your confirmation authorizes us to show you reserved content.",
+    yes: "Yes, I am of age",
+    no: "Not yet",
+    denied: {
+      title: "A RITUAL THAT REQUIRES TIME",
+      message: "The secret of Villacidro is an essence that knows how to wait. Keep exploring the world, come back when you've seen more suns.",
+      cta: "Discover our history"
+    }
   }
 };

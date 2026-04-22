@@ -61,6 +61,7 @@ import VisitDrawer from "@/components/VisitDrawer";
 import PartnerDrawer from "@/components/PartnerDrawer";
 import PreLaunchDrawer from "@/components/PreLaunchDrawer";
 import CartToast from "@/components/CartToast";
+import AgeVerification from "@/components/AgeVerification";
 
 export default function RootLayout({
   children,
@@ -86,6 +87,7 @@ export default function RootLayout({
             <PartnerDrawer />
             <PreLaunchDrawer />
             <CartToast />
+            <AgeVerification />
             {children}
           </CartProvider>
         </LanguageProvider>
