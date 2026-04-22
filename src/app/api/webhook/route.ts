@@ -105,8 +105,11 @@ export async function POST(req: Request) {
         
         htmlContent = htmlContent.replace(regex, itemsHtml);
         
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://murgialiquori.it";
+
         // NARRATIVE TRANSFORMATION
         htmlContent = htmlContent
+          .replace(/{{BASE_URL}}/g, baseUrl)
           .replace("{{HERO_TITLE}}", t.heroTitle)
           .replace("{{HERO_SUBTITLE}}", t.heroSubtitle)
           .replace("{{ORDER_REF_LABEL}}", t.orderRef)

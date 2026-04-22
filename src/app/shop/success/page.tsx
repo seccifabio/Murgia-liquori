@@ -10,6 +10,8 @@ import Footer from "@/components/Footer";
 import { useSearchParams } from "next/navigation";
 import { getCheckoutSession } from "@/app/actions/stripe";
 import Image from "next/image";
+import { useTranslation } from "@/context/LanguageContext";
+import { MARKETING_MANIFEST } from "@/manifest/marketing";
 
 // Asset Manifest for Transparent Artifacts
 const productImages: Record<string, string> = {
@@ -48,6 +50,9 @@ function SuccessContent() {
   }, [sessionId, clearCart, items.length]);
 
 
+  const { language } = useTranslation();
+  const localizedMarketing = (MARKETING_MANIFEST.email as any)[language] || MARKETING_MANIFEST.email.it;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -75,10 +80,10 @@ function SuccessContent() {
 
         <div className="space-y-4">
           <h1 className="font-heading text-6xl md:text-8xl uppercase tracking-tighter leading-none">
-            Grazie per <br /> <span className="text-primary italic">Il Tuo Ordine</span>
+            {language === 'it' ? 'Grazie per' : 'Thank you for'} <br /> <span className="text-primary italic">{language === 'it' ? 'Il Tuo Ordine' : 'Your Order'}</span>
           </h1>
           <p className="font-body text-white/40 text-[10px] md:text-xs uppercase tracking-[0.4em]">
-            Identificativo Rituale: #{sessionId?.slice(-8).toUpperCase() || "RITUAL-XXXX"}
+            {language === 'it' ? 'Identificativo Rituale' : 'Ritual Identity'}: #{sessionId?.slice(-8).toUpperCase() || "RITUAL-XXXX"}
           </p>
         </div>
       </div>
@@ -89,13 +94,13 @@ function SuccessContent() {
           <div className="space-y-10">
             <div className="flex items-center gap-3 border-b border-white/10 pb-6">
               <Package className="w-5 h-5 text-primary" />
-              <h3 className="font-heading text-xl tracking-widest uppercase">Riepilogo Alchimia</h3>
+              <h3 className="font-heading text-xl tracking-widest uppercase">{language === 'it' ? 'Riepilogo Alchimia' : 'Alchemy Summary'}</h3>
             </div>
 
             {loading ? (
               <div className="flex flex-col items-center justify-center py-12 space-y-4">
                 <Loader2 className="w-8 h-8 text-primary animate-spin" />
-                <p className="font-heading text-[10px] tracking-widest uppercase text-white/40">Recupero dati rituale...</p>
+                <p className="font-heading text-[10px] tracking-widest uppercase text-white/40">{language === 'it' ? 'Recupero dati rituale...' : 'Retrieving ritual data...'}</p>
               </div>
             ) : session ? (
               <div className="space-y-8">
@@ -107,7 +112,7 @@ function SuccessContent() {
                           {item.description}
                         </p>
                         <p className="font-body text-[10px] text-white/30 uppercase tracking-[0.2em]">
-                          Quantità: {item.quantity}
+                          {language === 'it' ? 'Quantità' : 'Quantity'}: {item.quantity}
                         </p>
                       </div>
                       <p className="font-heading text-white/80 text-lg">
@@ -121,13 +126,13 @@ function SuccessContent() {
                     <div className="pt-4 space-y-3 border-t border-white/5">
                       {session.total_details.amount_shipping > 0 && (
                         <div className="flex justify-between items-center opacity-60">
-                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">Trasporto</p>
+                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">{language === 'it' ? 'Trasporto' : 'Shipping'}</p>
                           <p className="font-heading text-sm">€{(session.total_details.amount_shipping / 100).toFixed(2)}</p>
                         </div>
                       )}
                       {session.total_details.amount_discount > 0 && (
                         <div className="flex justify-between items-center text-primary">
-                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">Sconto Heritage</p>
+                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">{language === 'it' ? 'Sconto Heritage' : 'Heritage Discount'}</p>
                           <p className="font-heading text-sm">-€{(session.total_details.amount_discount / 100).toFixed(2)}</p>
                         </div>
                       )}
@@ -136,14 +141,14 @@ function SuccessContent() {
                 </div>
 
                 <div className="pt-8 border-t border-white/10 flex justify-between items-center">
-                  <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Totale Manifestato</p>
+                  <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Totale Manifestato' : 'Total Manifested'}</p>
                   <p className="font-heading text-4xl text-primary">
                     €{(session.amount_total / 100).toFixed(2)}
                   </p>
                 </div>
               </div>
             ) : (
-              <p className="text-white/40 italic">Dettagli rituale non disponibili.</p>
+              <p className="text-white/40 italic">{language === 'it' ? 'Dettagli rituale non disponibili.' : 'Ritual details unavailable.'}</p>
             )}
 
             {/* Customer Identity Manifest */}
@@ -151,13 +156,13 @@ function SuccessContent() {
               <div className="space-y-6 pt-10 border-t border-white/10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div className="space-y-1">
-                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Cliente</p>
+                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Cliente' : 'Customer'}</p>
                     <p className="font-heading text-xl text-white/90 tracking-wide uppercase">
                       {session.customer_details.name}
                     </p>
                   </div>
                   <div className="space-y-1">
-                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Identificativo Digitale</p>
+                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Identificativo Digitale' : 'Digital ID'}</p>
                     <p className="font-body text-xs text-white/50 tracking-widest break-all">
                       {session.customer_details.email}
                     </p>
@@ -168,7 +173,7 @@ function SuccessContent() {
                 {session?.shipping_details?.address?.line1 ? (
                   <div className="space-y-4 pt-6 border-t border-white/5">
                     <div className="space-y-1">
-                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Destinazione Rituale</p>
+                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Destinazione Rituale' : 'Ritual Destination'}</p>
                       <div className="font-body text-[10px] md:text-xs text-white/50 space-y-1 tracking-[0.2em] leading-relaxed uppercase">
                         <p className="text-white/80 font-heading tracking-widest">{session.shipping_details.name}</p>
                         <p>
@@ -186,9 +191,9 @@ function SuccessContent() {
                 ) : (
                   <div className="space-y-4 pt-6 border-t border-white/5">
                     <div className="space-y-1">
-                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Destinazione Rituale</p>
+                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Destinazione Rituale' : 'Ritual Destination'}</p>
                       <p className="font-body text-xs text-white/50 tracking-[0.2em] uppercase">
-                        Ritiro presso il Laboratorio (Villacidro)
+                        {language === 'it' ? 'Ritiro presso il Laboratorio (Villacidro)' : 'Collection at the Laboratory (Villacidro)'}
                       </p>
                     </div>
                   </div>
@@ -202,12 +207,12 @@ function SuccessContent() {
             <div className="bg-primary/5 border border-primary/20 p-8 space-y-6 relative overflow-hidden group">
               <div className="flex items-center gap-2 text-primary">
                 <Tag className="w-4 h-4" />
-                <span className="font-heading text-[10px] tracking-[0.3em] uppercase">Voucher Prossima Scelta</span>
+                <span className="font-heading text-[10px] tracking-[0.3em] uppercase">{language === 'it' ? 'Voucher Prossima Scelta' : 'Next Choice Voucher'}</span>
               </div>
               <div className="flex justify-between items-center">
                 <div className="space-y-1">
                   <p className="font-heading text-3xl tracking-[0.2em] text-white uppercase">HERITAGE10</p>
-                  <p className="text-[10px] text-white/30 uppercase tracking-[0.2em]">Usa questo sigillo per il tuo prossimo ordine</p>
+                  <p className="text-[10px] text-white/30 uppercase tracking-[0.2em]">{language === 'it' ? 'Usa questo sigillo per il tuo prossimo ordine' : 'Use this seal for your next order'}</p>
                 </div>
                 <div className="bg-primary text-black px-3 py-1 font-heading text-sm tracking-widest">
                   -10%
@@ -278,10 +283,10 @@ function SuccessContent() {
 
       <div className="pt-16 flex justify-center">
         <Link 
-          href="/"
+          href="/#aperitivo"
           className="group flex items-center gap-6 bg-primary text-black font-heading uppercase text-sm tracking-[0.5em] px-16 py-8 transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_40px_rgba(244,180,0,0.2)]"
         >
-          <span>Torna al Manifesto</span>
+          <span>{localizedMarketing.crossCta}</span>
           <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
         </Link>
       </div>

@@ -40,7 +40,7 @@ export const MARKETING_MANIFEST = {
       shippingDest: "Destinazione",
       crossTitle: "Non Solo <br/> <span style=\"font-style:italic; opacity:0.75;\">Liquore</span>",
       crossText: "Scopri la nostra selezione di panettoni artigianali, dolci tipici e creazioni sartoriali forgiate nel cuore di Villacidro.",
-      crossCta: "Esplora gli Archivi",
+      crossCta: "Scopri Cocktail e Ricette",
       supportText: "Hai bisogno di un supporto alchemico?",
       contactText: "Contattaci a",
       footerNote: "Villacidro Liquori &copy; 2026 — Villacidro, Sardegna"
@@ -54,7 +54,7 @@ export const MARKETING_MANIFEST = {
       shippingDest: "Destination",
       crossTitle: "Beyond <br/> <span style=\"font-style:italic; opacity:0.75;\">Liquor</span>",
       crossText: "Discover our selection of artisanal panettone, typical sweets, and bespoke creations forged in the heart of Villacidro.",
-      crossCta: "Explore the Archives",
+      crossCta: "Discover Cocktails & Recipes",
       supportText: "Need Alchemical Support?",
       contactText: "Contact us at",
       footerNote: "Villacidro Liquori &copy; 2026 — Villacidro, Sardinia"
