@@ -118,9 +118,8 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={showText ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1.5, delay: 1.2 }}
-          className="absolute bottom-20 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
+          className="absolute bottom-24 md:bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
         >
-           <span className="text-white/40 text-[10px] uppercase tracking-[0.6em] font-heading">{t.hero.scroll}</span>
            <motion.div
              animate={{ y: [0, 10, 0] }}
              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

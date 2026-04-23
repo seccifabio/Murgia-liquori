@@ -47,7 +47,7 @@ export const it = {
     legacy_hud: "Tradizione Gennaro Murgia",
     craft_hud: "Artigianato Sardo",
     heritage: "The Heritage",
-    cta: "Acquista la Collezione"
+    cta: "Scopri la Collezione"
   },
   origins: {
     title: "Le Origini",

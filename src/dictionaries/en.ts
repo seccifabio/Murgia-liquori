@@ -47,7 +47,7 @@ export const en = {
     legacy_hud: "Heritage Gennaro Murgia",
     craft_hud: "Sardinian Alchemy",
     heritage: "The Heritage",
-    cta: "Shop the Collection"
+    cta: "Discover the Collection"
   },
   origins: {
     title: "Origins",
