@@ -339,8 +339,8 @@ export const it = {
   },
   ageVerification: {
     title: "IL SEGRETO DI VILLACIDRO",
-    subtitle: "Hai l'eta per scoprire il segreto di vilalcidro?",
-    description: "Per entrare nel nostro laboratorio devi aver compiuto 18 anni. La tua conferma ci autorizza a mostrarti contenuti riservati.",
+    subtitle: "Custodiamo una storia dal 1882. Puoi farne parte?",
+    description: "Per scoprire l'arte del Villacidro Liquori è necessario aver compiuto 18 anni. Conferma di avere almeno 18 anni per esplorare i nostri contenuti.",
     yes: "Sì, ho maturato il diritto",
     no: "Non ancora",
     denied: {

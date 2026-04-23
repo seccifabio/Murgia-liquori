@@ -339,8 +339,8 @@ export const en = {
   },
   ageVerification: {
     title: "THE SECRET OF VILLACIDRO",
-    subtitle: "ARE YOU OF AGE TO DISCOVER THE ALCHEMY?",
-    description: "To enter our digital laboratory, you must be at least 18 years old. Your confirmation authorizes us to show you reserved content.",
+    subtitle: "Guarding a story since 1882. Can you be part of it?",
+    description: "To discover the art of Villacidro Liquori, you must be at least 18 years old. Confirm your age to explore our content.",
     yes: "Yes, I am of age",
     no: "Not yet",
     denied: {
