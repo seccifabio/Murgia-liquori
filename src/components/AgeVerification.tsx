@@ -41,6 +41,7 @@ const AgeVerification = () => {
         AGE_VERIFICATION_KEY,
         JSON.stringify({ timestamp: new Date().getTime() })
       );
+      window.dispatchEvent(new Event("murgia-age-verified"));
       setIsVisible(false);
     }, 800); // Match animation duration
   };

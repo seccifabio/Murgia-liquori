@@ -36,7 +36,7 @@ export const en = {
     social: {
       instagram: "Instagram",
       facebook: "Facebook",
-      privacy: "Legal",
+      privacy: "Privacy & Terms",
     }
   },
   hero: {
@@ -364,5 +364,12 @@ export const en = {
       sdi: "SDI Code / PEC Email",
     },
     proceed: "Proceed to Payment",
+  },
+  cookie: {
+    title: "Privacy Respect",
+    description: "We use cookies to optimize your journey and analyze the site. Some are necessary, others optional.",
+    acceptAll: "Accept All",
+    reject: "Necessary Only",
+    policy: "Learn more",
   }
 };

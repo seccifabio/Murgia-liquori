@@ -53,7 +53,9 @@ export default function NavDrawer({ isOpen, onClose, links, translations }: NavD
           <div className="absolute bottom-12 left-12 md:left-24 flex gap-8 text-[10px] tracking-[0.3em] uppercase text-white/30 font-medium">
             <a href="#" className="hover:text-primary transition-colors">{translations.nav.social.instagram}</a>
             <a href="#" className="hover:text-primary transition-colors">{translations.nav.social.facebook}</a>
-            <a href="#" className="hover:text-primary transition-colors">{translations.nav.social.privacy}</a>
+            <Link href="/legal/cookie-policy" onClick={onClose} className="hover:text-primary transition-colors">
+              {translations.nav.social.privacy}
+            </Link>
           </div>
         </motion.div>
       )}
