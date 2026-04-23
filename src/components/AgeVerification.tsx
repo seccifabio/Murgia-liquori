@@ -34,6 +34,17 @@ const AgeVerification = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    if (isVisible || isDenied) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isVisible, isDenied]);
+
   const handleVerify = () => {
     setIsExiting(true);
     setTimeout(() => {
@@ -81,6 +92,9 @@ const AgeVerification = () => {
           >
             {/* Subtle Grain Texture */}
             <div className="bg-texture absolute inset-0 opacity-[0.05] pointer-events-none" />
+
+            {/* Screen Reader Only H1 for SEO/A11y */}
+            <h1 className="sr-only">Murgia Liquori - Age Verification</h1>
 
             {/* Large Brand Logo Takeover */}
             <div className="mb-12 md:mb-20">

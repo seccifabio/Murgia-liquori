@@ -36,7 +36,7 @@ export const it = {
     social: {
       instagram: "Instagram",
       facebook: "Facebook",
-      privacy: "Privacy e Termini",
+      privacy: "Note Legali & Privacy",
     }
   },
   hero: {
@@ -46,7 +46,8 @@ export const it = {
     scroll: "Scopri l'essenza",
     legacy_hud: "Tradizione Gennaro Murgia",
     craft_hud: "Artigianato Sardo",
-    heritage: "The Heritage"
+    heritage: "The Heritage",
+    cta: "Acquista la Collezione"
   },
   origins: {
     title: "Le Origini",
@@ -281,6 +282,10 @@ export const it = {
     social: "Social",
     sede: "Sede",
     backToTop: "Tornasù",
+    privacy: "Privacy Policy",
+    terms: "Termini di Servizio",
+    cookies: "Cookie Policy",
+    legal: "Note Legali & Privacy",
   },
   storia: {
     hero: {

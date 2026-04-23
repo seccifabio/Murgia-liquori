@@ -98,6 +98,12 @@ export default function Footer() {
            </div>
            
            <div className="w-full h-px bg-white/5" />
+           
+           <div className="flex flex-wrap items-center gap-6 md:gap-8 font-heading text-[10px] tracking-[0.2em] uppercase text-white/40">
+              <Link href="/legal/cookie-policy" className="hover:text-primary transition-colors">
+                {t.footer.legal}
+              </Link>
+            </div>
         </motion.div>
 
         {/* BACK TO TOP: Centered Bridge */}

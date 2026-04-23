@@ -36,7 +36,7 @@ export const en = {
     social: {
       instagram: "Instagram",
       facebook: "Facebook",
-      privacy: "Privacy & Terms",
+      privacy: "Legal & Privacy",
     }
   },
   hero: {
@@ -46,7 +46,8 @@ export const en = {
     scroll: "Discover the essence",
     legacy_hud: "Heritage Gennaro Murgia",
     craft_hud: "Sardinian Alchemy",
-    heritage: "The Heritage"
+    heritage: "The Heritage",
+    cta: "Shop the Collection"
   },
   origins: {
     title: "Origins",
@@ -281,6 +282,10 @@ export const en = {
     social: "Ascend",
     sede: "Heart",
     backToTop: "Ascend",
+    privacy: "Privacy Policy",
+    terms: "Terms of Service",
+    cookies: "Cookie Policy",
+    legal: "Legal & Privacy",
   },
   storia: {
     hero: {

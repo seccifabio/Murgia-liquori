@@ -59,8 +59,8 @@ export default function LocationsSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2
+        staggerChildren: 0.05,
+        delayChildren: 0
       }
     }
   };
@@ -71,8 +71,8 @@ export default function LocationsSection() {
       y: 0, 
       opacity: 1, 
       transition: { 
-        duration: 0.8, 
-        ease: [1, 0, 0, 1] 
+        duration: 0.6, 
+        ease: [0.22, 1, 0.36, 1] 
       } 
     }
   };
@@ -90,7 +90,7 @@ export default function LocationsSection() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }}
         className="max-w-4xl mx-auto"
       >
         

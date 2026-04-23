@@ -2,8 +2,8 @@
 
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import Logo from "./Logo";
 import { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "@/context/LanguageContext";
@@ -96,6 +96,21 @@ export default function Hero() {
           >
             {t.hero.description}
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={showText ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="mt-12"
+          >
+            <Link 
+              href="/la-collezione"
+              className="murgia-btn-primary px-12 py-5 text-sm md:text-base tracking-[0.4em]"
+            >
+              <span className="murgia-btn-text">{t.hero.cta}</span>
+              <div className="murgia-btn-hover-wipe" />
+            </Link>
+          </motion.div>
         </div>
 
         {/* Scroll Ritual Indicator */}

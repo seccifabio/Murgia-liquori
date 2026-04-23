@@ -65,7 +65,7 @@ export default function CollectionPageClient({ liveProducts }: { liveProducts: a
   };
 
   return (
-    <main className="bg-primary min-h-screen">
+    <main className="bg-noir min-h-screen">
       <section className="relative pt-32 md:pt-48 pb-20 px-6 md:px-20 overflow-hidden">
         <motion.div 
           variants={container}
@@ -73,11 +73,11 @@ export default function CollectionPageClient({ liveProducts }: { liveProducts: a
           animate="show"
           className="max-w-7xl mx-auto"
         >
-          <motion.div
+           <motion.div
             variants={item}
-            className="text-center mb-8"
+            className="text-center mb-16"
           >
-            <h2 className="text-noir font-heading text-5xl md:text-8xl tracking-tight block uppercase mb-4 leading-none italic">
+            <h2 className="text-primary font-heading text-5xl md:text-8xl tracking-tight block uppercase mb-4 leading-none italic">
               {t.collection.title}
             </h2>
           </motion.div>

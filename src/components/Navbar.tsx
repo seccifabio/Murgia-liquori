@@ -99,11 +99,10 @@ export default function Navbar() {
   });
 
   const isStoriaPage = pathname?.includes("/la-storia");
-  const isCollezionePage = pathname?.includes("/la-collezione");
   const isDoveCiTroviPage = pathname?.includes("/dove-ci-trovi");
   const isContattiPage = pathname?.includes("/contatti");
-  const activeTheme = (isDarkTheme || isStoriaPage || isCollezionePage || isDoveCiTroviPage || isContattiPage) ? "dark" : "light";
-  const iconColor = (isDarkTheme || isStoriaPage || isCollezionePage || isDoveCiTroviPage || isContattiPage) ? "text-noir" : "text-white";
+  const activeTheme = (isDarkTheme || isStoriaPage || isDoveCiTroviPage || isContattiPage) ? "dark" : "light";
+  const iconColor = (isDarkTheme || isStoriaPage || isDoveCiTroviPage || isContattiPage) ? "text-noir" : "text-white";
   
   return (
     <>
