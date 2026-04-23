@@ -348,5 +348,21 @@ export const it = {
       message: "Il segreto di Villacidro è un'essenza che sa aspettare. Continua a esplorare il mondo, torna a trovarci quando avrai visto più soli.",
       cta: "Scopri la nostra storia"
     }
+  },
+  checkout: {
+    delivery: {
+      title: "Modalità di Consegna",
+      shipping: "Spedizione Standard",
+      pickup: "Ritiro in negozio (Villacidro)",
+      pickupInfo: "Piazza Municipio 25, Villacidro (SU) | Lun-Sab: 09:00 - 19:30",
+    },
+    invoice: {
+      title: "Dati di Fatturazione",
+      checkbox: "Richiedo fattura",
+      companyName: "Ragione Sociale",
+      vat: "Partita IVA / Codice Fiscale",
+      sdi: "Codice SDI / PEC",
+    },
+    proceed: "Procedi al Pagamento",
   }
 };

@@ -104,9 +104,9 @@ export default function BasketPromo({
         </div>
       )}
 
-      <div className="flex items-center justify-between text-white/40">
-        <span className="font-heading text-sm tracking-widest uppercase">Trasporto</span>
-        <span className="font-heading text-base">{shipping > 0 ? `€${shipping.toFixed(2)}` : "GRATUITO"}</span>
+      <div className="flex items-center justify-between text-white pt-2">
+        <span className="font-heading text-base tracking-widest uppercase">Trasporto</span>
+        <span className="font-heading text-[10px] tracking-[0.2em] uppercase text-white/60">CALCULATED AT CHECKOUT</span>
       </div>
     </div>
   );

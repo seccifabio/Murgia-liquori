@@ -348,5 +348,21 @@ export const en = {
       message: "The secret of Villacidro is an essence that knows how to wait. Keep exploring the world, come back when you've seen more suns.",
       cta: "Discover our history"
     }
+  },
+  checkout: {
+    delivery: {
+      title: "Delivery Method",
+      shipping: "Standard Shipping",
+      pickup: "Pick up in Store (Villacidro)",
+      pickupInfo: "Piazza Municipio 25, Villacidro (SU) | Mon-Sat: 09:00 - 19:30",
+    },
+    invoice: {
+      title: "Invoicing Details",
+      checkbox: "Request an invoice",
+      companyName: "Company Name",
+      vat: "VAT / Tax ID",
+      sdi: "SDI Code / PEC Email",
+    },
+    proceed: "Proceed to Payment",
   }
 };

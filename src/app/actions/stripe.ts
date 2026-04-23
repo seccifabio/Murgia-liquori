@@ -12,7 +12,13 @@ const getStripe = () => {
   });
 };
 
-export async function createCheckoutSession(items: any[], appliedCode?: string | null, locale: string = "it") {
+export async function createCheckoutSession(
+  items: any[], 
+  appliedCode?: string | null, 
+  locale: string = "it", 
+  deliveryMethod: "shipping" | "pickup" = "shipping",
+  invoiceInfo?: { companyName: string; vat: string; sdi: string } | null
+) {
   if (!items || items.length === 0) {
     throw new Error("Il carrello è vuoto.");
   }
@@ -20,14 +26,13 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
   try {
     const stripe = getStripe();
     // RITUAL: Fetch authoritative prices from Stripe to calculate threshold
-    // Do not trust the string provided by the client
     const priceObjects = await Promise.all(
       items.map(item => stripe.prices.retrieve(item.priceId))
     );
 
     // RITUAL: Fetch the authoritative Shipping Rate price from the Stripe Registry
     const shippingRate: any = await stripe.shippingRates.retrieve('shr_1TMqYNIuoh35e3rojDnMfvtb');
-    const standardShippingCents = (shippingRate as any).fixed_amount?.amount || 1200; // Authoritative default (12€)
+    const standardShippingCents = (shippingRate as any).fixed_amount?.amount || 1200; 
 
     let subtotalCents = 0;
     items.forEach((item, index) => {
@@ -39,24 +44,20 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
       ? Math.round(subtotalCents * MARKETING_MANIFEST.promo.discount)
       : 0;
 
-    // Evaluate Heritage Shipping Threshold (Free > 80€)
-    const shippingAmount = (subtotalCents - discountCents) >= 8000 ? 0 : standardShippingCents;
+    // Evaluate Heritage Shipping Threshold (Free > 80€) - Only if NOT pickup
+    const isPickup = deliveryMethod === "pickup";
+    const shippingAmount = isPickup ? 0 : ((subtotalCents - discountCents) >= 8000 ? 0 : standardShippingCents);
 
     const line_items = items.map((item) => ({
       price: item.priceId,
       quantity: item.quantity,
     }));
 
-    console.log("Stripe Ritual: Calculating threshold with Subtotal:", subtotalCents / 100, "Discount:", discountCents / 100);
-
     // Search for the Promotion Code ID or Coupon ID in Stripe to pre-apply it
     let discounts: any[] = [];
     if (appliedCode) {
       const formattedCode = appliedCode.trim();
       try {
-        console.log("Stripe Ritual: Target Discovery for Code:", formattedCode);
-        
-        // RITUAL 1: Direct Discovery via Native Stripe Code Filter
         const promoCodes = await stripe.promotionCodes.list({
           code: formattedCode,
           active: true,
@@ -65,23 +66,19 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
         
         if (promoCodes.data && promoCodes.data.length > 0) {
           const matchedPromo = promoCodes.data[0];
-          // ALCHEMY: Accessing the coupon ID safely to satisfy the Type Architect
           const couponId = typeof matchedPromo.coupon === 'string' 
             ? matchedPromo.coupon 
             : (matchedPromo.coupon as any).id;
             
           discounts = [{ coupon: couponId }];
-          console.log("Stripe Ritual: Targeted Coupon ID Manifested via Promo Code:", couponId);
         } else {
-          // RITUAL 2: Fallback Discovery via Coupon Treasury
           try {
             const coupon = await stripe.coupons.retrieve(formattedCode);
             if (coupon.valid) {
               discounts = [{ coupon: coupon.id }];
-              console.log("Stripe Ritual: Targeted Coupon ID Manifested via ID Search:", coupon.id);
             }
           } catch (couponErr) {
-            console.warn(`Stripe Ritual: Voucher "${formattedCode}" remains elusive in the registry.`);
+            console.warn(`Stripe Ritual: Voucher "${formattedCode}" remains elusive.`);
           }
         }
       } catch (err) {
@@ -93,10 +90,25 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
       ui_mode: 'embedded' as any,
       line_items,
       mode: "payment",
-      shipping_address_collection: {
+      shipping_address_collection: isPickup ? undefined : {
         allowed_countries: ["IT"],
       },
-      shipping_options: shippingAmount === 0 ? [
+      shipping_options: isPickup ? [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: {
+              amount: 0,
+              currency: 'eur',
+            },
+            display_name: 'Ritiro in Distilleria (Villacidro)',
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: 1 },
+              maximum: { unit: 'business_day', value: 2 },
+            },
+          },
+        },
+      ] : (shippingAmount === 0 ? [
         {
           shipping_rate_data: {
             type: 'fixed_amount',
@@ -113,17 +125,21 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
         },
       ] : [
         { shipping_rate: 'shr_1TMqYNIuoh35e3rojDnMfvtb' }
-      ],
+      ]),
       return_url: `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
       metadata: {
         order_type: "Murgia Heritage Purchase",
+        delivery_method: deliveryMethod,
         items_summary: items.map(i => `${i.name} (${i.format})`).join(", "),
         applied_promo: appliedCode || "none",
+        invoice_requested: !!invoiceInfo ? "YES" : "NO",
+        invoice_company: invoiceInfo?.companyName || "n/a",
+        invoice_vat: invoiceInfo?.vat || "n/a",
+        invoice_sdi_pec: invoiceInfo?.sdi || "n/a",
       },
       locale: locale as any,
     };
 
-    // 🪙 RITUAL: Exclusivity Rule for Discounts vs. Promotion Search
     if (discounts.length > 0) {
       sessionConfig.discounts = discounts;
     } else {
@@ -132,26 +148,15 @@ export async function createCheckoutSession(items: any[], appliedCode?: string |
 
     try {
       const session = await stripe.checkout.sessions.create(sessionConfig);
-      console.log("Stripe Ritual: Session Manifested Successfully:", session.id);
       return { 
         clientSecret: session.client_secret,
-        diagnosis: discounts.length > 0 ? `SUCCESS: Voucher "${appliedCode}" Manifested in Treasury.` : "NORMAL: Interactive search allowed."
+        diagnosis: discounts.length > 0 ? `SUCCESS: Voucher "${appliedCode}" Manifested.` : "NORMAL: Interactive search allowed."
       };
     } catch (err) {
       console.warn("Stripe Ritual: Primary manifestation failed. Falling back.");
-      
-      const fallbackConfig = {
-        ...sessionConfig,
-        discounts: undefined,
-        allow_promotion_codes: true,
-        locale: locale as any,
-      };
-
+      const fallbackConfig = { ...sessionConfig, discounts: undefined, allow_promotion_codes: true, locale: locale as any };
       const fallbackSession = await stripe.checkout.sessions.create(fallbackConfig as any);
-      return { 
-        clientSecret: fallbackSession.client_secret,
-        diagnosis: `FALLBACK: Primary ritual failed. Reason: ${err instanceof Error ? err.message : "Unknown"}`
-      };
+      return { clientSecret: fallbackSession.client_secret, diagnosis: `FALLBACK: Ritual failed.` };
     }
   } catch (error: any) {
     console.error("Stripe Session Manifestation Failure:", error);

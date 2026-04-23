@@ -3,13 +3,13 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
-    const { items, appliedCode, locale } = await req.json();
+    const { items, appliedCode, locale, deliveryMethod, invoiceInfo } = await req.json();
     
     if (!items || items.length === 0) {
       return NextResponse.json({ error: 'Cart is empty' }, { status: 400 });
     }
 
-    const { clientSecret, diagnosis } = await createCheckoutSession(items, appliedCode, locale);
+    const { clientSecret, diagnosis } = await createCheckoutSession(items, appliedCode, locale, deliveryMethod, invoiceInfo);
 
     return NextResponse.json({ clientSecret, receivedCode: appliedCode, diagnosis });
   } catch (err: any) {

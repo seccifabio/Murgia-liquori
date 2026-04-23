@@ -140,7 +140,7 @@ export default function BasketDrawer() {
                   appliedCode={appliedCode} 
                   setAppliedCode={setAppliedCode} 
                   discount={discount} 
-                  shipping={shipping} 
+                  shipping={0} 
                 />
 
                 <button 
@@ -149,17 +149,13 @@ export default function BasketDrawer() {
                   className={`w-full murgia-btn-primary py-8 text-sm tracking-[0.2em] md:tracking-[0.4em] transform hover:scale-[1.02] active:scale-95 ${isLoading ? "opacity-70 cursor-wait" : ""}`}
                 >
                   <span className="murgia-btn-text px-4">
-                    {isLoading ? t.bag.loading : `${t.bag.checkout} — €${finalTotal.toFixed(2)}`}
+                    {isLoading ? t.bag.loading : `${t.bag.checkout} — €${(total - discount).toFixed(2)}`}
                   </span>
                   {!isLoading && <ArrowRight className="murgia-btn-icon" />}
                   {isLoading && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
                   <div className="murgia-btn-hover-wipe" />
                 </button>
                 
-                <div className="mt-6 text-center text-white/40 font-heading text-[9px] tracking-[0.2em] uppercase italic leading-relaxed max-w-[300px] mx-auto">
-                  <p>{t.bag.disclaimer}</p>
-                  <p>{t.bag.freeShipping}</p>
-                </div>
               </div>
             )}
 
