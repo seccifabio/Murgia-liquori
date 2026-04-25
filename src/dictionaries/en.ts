@@ -322,11 +322,11 @@ export const en = {
     description: "Contact our laboratory for information on our archetypes, collaborations, or visits.",
     info: {
       location: "Heart of the Ritual",
-      address: "Piazza Municipio 25, Villacidro (SU)",
+      address: "Via Parrocchia 29, 09039 Villacidro (SU)",
       email: "Email Terminal",
       phone: "Phone Ritual",
       opening: "Alchemical Hours",
-      hours: "Mon-Sat: 09:00 - 19:30"
+      hours: "Mon-Sat: 09:00 - 13:00"
     }
   },
   launchBanner: {
@@ -359,7 +359,7 @@ export const en = {
       title: "Delivery Method",
       shipping: "Standard Shipping",
       pickup: "Pick up in Store (Villacidro)",
-      pickupInfo: "Piazza Municipio 25, Villacidro (SU) | Mon-Sat: 09:00 - 19:30",
+      pickupInfo: "Via Parrocchia 29, 09039 Villacidro (SU) | Mon-Sat: 09:00 - 13:00",
     },
     invoice: {
       title: "Invoicing Details",

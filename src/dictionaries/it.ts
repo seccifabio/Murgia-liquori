@@ -322,11 +322,11 @@ export const it = {
     description: "Contatta il nostro laboratorio per informazioni sui nostri archetipi, collaborazioni o visite.",
     info: {
       location: "Cuore del Rito",
-      address: "Piazza Municipio 25, Villacidro (SU)",
+      address: "Via Parrocchia 29, 09039 Villacidro (SU)",
       email: "Email Terminal",
       phone: "Telefono Rito",
       opening: "Orari Alchemici",
-      hours: "Lun-Sab: 09:00 - 19:30"
+      hours: "Lun-Sab: 09:00 - 13:00"
     }
   },
   launchBanner: {
@@ -359,7 +359,7 @@ export const it = {
       title: "Modalità di Consegna",
       shipping: "Spedizione Standard",
       pickup: "Ritiro in negozio (Villacidro)",
-      pickupInfo: "Piazza Municipio 25, Villacidro (SU) | Lun-Sab: 09:00 - 19:30",
+      pickupInfo: "Via Parrocchia 29, 09039 Villacidro (SU) | Lun-Sab: 09:00 - 13:00",
     },
     invoice: {
       title: "Dati di Fatturazione",
