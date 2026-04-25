@@ -270,7 +270,7 @@ export const it = {
     voucher: "MANIFIESTO VOUCHER",
     codePlaceholder: "Codice...",
     addCode: "Aggiungi Codice",
-    checkout: "Procedi al Pagamento",
+    checkout: "Procedi alla Spedizione",
     loading: "Inizializzazione...",
     disclaimer: "Tasse e spedizione calcolate al checkout.",
     freeShipping: "Spedizione gratuita in tutta Italia.",

@@ -196,10 +196,11 @@ export default function EmbeddedStripeCheckout({ items, appliedCode, locale, onC
             {/* CTA Ritual */}
             <button
               onClick={handleProceed}
-              className="w-full bg-noir text-primary py-6 px-12 font-heading uppercase tracking-[0.4em] flex items-center justify-center gap-4 group hover:scale-[1.02] active:scale-[0.98] transition-all shadow-2xl"
+              className="w-full murgia-btn-noir py-6 px-12 text-sm tracking-[0.4em] transform hover:scale-[1.02] active:scale-[0.98] transition-all shadow-2xl"
             >
-              <span>{checkoutT.proceed}</span>
-              <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+              <span className="murgia-btn-text">{checkoutT.proceed}</span>
+              <ChevronRight className="murgia-btn-icon" />
+              <div className="murgia-btn-hover-wipe" />
             </button>
           </div>
         ) : (

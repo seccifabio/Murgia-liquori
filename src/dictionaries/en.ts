@@ -270,7 +270,7 @@ export const en = {
     voucher: "VOUCHER MANIFESTO",
     codePlaceholder: "Code...",
     addCode: "Add Code",
-    checkout: "Proceed to Payment",
+    checkout: "Proceed to shipping",
     loading: "Initializing...",
     disclaimer: "Taxes and shipping calculated at checkout.",
     freeShipping: "Free shipping throughout Italy.",
