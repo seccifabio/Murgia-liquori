@@ -31,7 +31,7 @@ export const getLiveProducts = unstable_cache(
           .map(id => stripe.prices.retrieve(id, { expand: ["product"] }))
       );
 
-      const liveData: Record<string, { name: string; price: number; description: string }> = {};
+      const liveData: Record<string, { name: string; price: number; description: string; metadata: any }> = {};
 
       prices.forEach((price) => {
         const product = price.product as Stripe.Product;
