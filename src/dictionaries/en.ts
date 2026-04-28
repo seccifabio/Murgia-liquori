@@ -187,7 +187,7 @@ export const en = {
       origine: "Origin",
       formula: "Formula",
       secret: "Secret (1882)",
-      discover: "Discover Collection",
+      discover: "Discover",
       ascend: "Ascend",
       otherProducts: "Other Products"
     },
@@ -228,7 +228,7 @@ export const en = {
     selectCity: "Select Domain",
     viewMap: "View Map",
     partner: {
-      ritual: "Become a Partner",
+      ritual: "Partnership",
       title: "Become a",
       titleAccent: "Murgia Partner",
       description: "Infuse your venue with the authenticity of Murgia Liquori. Join our circle of distribution and unlock exclusive professional advantages.",
@@ -325,6 +325,7 @@ export const en = {
       address: "Via Parrocchia 29, 09039 Villacidro (SU)",
       email: "Email Terminal",
       phone: "Phone Ritual",
+      whatsapp: "Message us on WhatsApp",
       opening: "Alchemical Hours",
       hours: "Mon-Sat: 09:00 - 13:00"
     }

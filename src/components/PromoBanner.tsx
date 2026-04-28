@@ -18,8 +18,8 @@ export default function PromoBanner() {
   // Resolve localized content from manifest
   const localizedPromo = (MARKETING_MANIFEST.promo as any)[language] || MARKETING_MANIFEST.promo.it;
 
-  // Visibility Manifest: Only on Home and Product pages
-  const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
+  // Visibility Manifest: Only on Home, Collection and Product pages
+  const isEligiblePage = pathname === "/" || pathname?.includes("/shop/") || pathname === "/la-collezione";
 
   // Hide on restricted pages or when menu/takeovers are manifest
   if (!isEligiblePage || isMenuOpen || isBagOpen || isVisitOpen) return null;
@@ -90,8 +90,8 @@ export default function PromoBanner() {
                   exit={{ opacity: 0 }}
                   className="flex items-center gap-2"
                 >
-                  <Copy className="w-4 h-4 group-hover:scale-120 transition-transform" />
-                  <span className="font-heading text-[10px] uppercase tracking-widest font-bold hidden md:inline">{localizedPromo.cta}</span>
+                  <Copy className="w-4 h-4 group-hover:scale-120 transition-transform text-neutral-600" />
+                  <span className="font-heading text-[10px] uppercase tracking-widest font-bold hidden md:inline text-neutral-600">{localizedPromo.cta}</span>
                 </motion.div>
               )}
             </AnimatePresence>

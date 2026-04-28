@@ -25,6 +25,8 @@ interface CartContextType {
   setIsMenuOpen: (open: boolean) => void;
   showToast: boolean;
   setShowToast: (show: boolean) => void;
+  showPartnerToast: boolean;
+  setShowPartnerToast: (show: boolean) => void;
   total: number;
   appliedCode: string | null;
   setAppliedCode: (code: string | null) => void;
@@ -47,6 +49,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isBagOpen, setIsBagOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [showPartnerToast, setShowPartnerToast] = useState(false);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
   const [isBannerVisible, setIsBannerVisible] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -169,7 +172,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         isPartnerOpen,
         setIsPartnerOpen,
         isPreLaunchOpen,
-        setIsPreLaunchOpen
+        setIsPreLaunchOpen,
+        showPartnerToast,
+        setShowPartnerToast
       }}
     >
       {children}

@@ -1,7 +1,7 @@
 import SbagliataHero from "@/components/SbagliataHero";
 import SbagliataRitual from "@/components/SbagliataRitual";
 import SbagliataSpecs from "@/components/SbagliataSpecs";
-import SbagliataCocktails from "@/components/SbagliataCocktails";
+// import SbagliataCocktails from "@/components/SbagliataCocktails";
 import ProductDiscovery from "@/components/ProductDiscovery";
 import Footer from "@/components/Footer";
 import { getLiveProducts } from "@/lib/stripe-sync";
@@ -37,7 +37,7 @@ export default async function LaSbagliataPage() {
       />
 
       {/* Cinematic Phase 4: Modern Mixology (Collector Ed.) */}
-      <SbagliataCocktails />
+      {/* <SbagliataCocktails /> */}
 
       {/* Collection Discovery */}
       <ProductDiscovery 

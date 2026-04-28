@@ -1,7 +1,7 @@
 import BiancoHero from "@/components/BiancoHero";
 import BiancoRitual from "@/components/BiancoRitual";
 import BiancoSpecs from "@/components/BiancoSpecs";
-import BiancoCocktails from "@/components/BiancoCocktails";
+// import BiancoCocktails from "@/components/BiancoCocktails";
 import ProductDiscovery from "@/components/ProductDiscovery";
 import Footer from "@/components/Footer";
 import { getLiveProducts } from "@/lib/stripe-sync";
@@ -37,7 +37,7 @@ export default async function MurgiaBiancoPage() {
       />
 
       {/* Cinematic Phase 4: Modern Mixology (Signature Serves) */}
-      <BiancoCocktails />
+      {/* <BiancoCocktails /> */}
 
       {/* Collection Discovery */}
       <ProductDiscovery 

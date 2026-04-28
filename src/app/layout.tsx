@@ -61,6 +61,7 @@ import VisitDrawer from "@/components/VisitDrawer";
 import PartnerDrawer from "@/components/PartnerDrawer";
 import PreLaunchDrawer from "@/components/PreLaunchDrawer";
 import CartToast from "@/components/CartToast";
+import PartnerToast from "@/components/PartnerToast";
 import AgeVerification from "@/components/AgeVerification";
 import CookieBanner from "@/components/CookieBanner";
 
@@ -88,6 +89,7 @@ export default function RootLayout({
             <PartnerDrawer />
             <PreLaunchDrawer />
             <CartToast />
+            <PartnerToast />
             <AgeVerification />
             <CookieBanner />
             {children}

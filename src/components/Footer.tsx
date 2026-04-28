@@ -64,23 +64,23 @@ export default function Footer() {
           <div className="flex-1 space-y-6">
             <h4 className="font-heading text-sm tracking-widest text-primary uppercase">{t.footer.contacts}</h4>
             <div className="space-y-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
-              <p>Email: info@murgialiquori.com</p>
-              <p>Tel: +39 070 931 52 09</p>
+              <p>Email: <a href="mailto:info@murgialiquori.it" className="hover:text-primary transition-colors lowercase">info@murgialiquori.it</a></p>
+              <p>Tel: <a href="tel:+393791781417" className="hover:text-primary transition-colors">+39 3791781417</a></p>
             </div>
           </div>
 
           <div className="flex-1 space-y-6">
             <h4 className="font-heading text-sm tracking-widest text-primary uppercase">{t.footer.social}</h4>
             <div className="flex flex-col gap-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
-              <a href="#" className="hover:text-primary transition-colors">Instagram</a>
-              <a href="#" className="hover:text-primary transition-colors">Facebook</a>
+              <a href="https://www.instagram.com/murgialiquori/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>
+              <a href="https://www.facebook.com/murgia.liquori" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Facebook</a>
             </div>
           </div>
           
           <div className="flex-1 space-y-6">
             <h4 className="font-heading text-sm tracking-widest text-primary uppercase">{t.footer.sede}</h4>
             <div className="space-y-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
-              <p>Via Nazionale 213</p>
+              <p>Via Parrocchia 29</p>
               <p>09039 Villacidro (SU)</p>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function Footer() {
                 P.IVA: 00065810921 — © 2026 Murgia Liquori
               </p>
               <p className="text-[10px] tracking-[0.4em] text-white/30 uppercase">
-                Gennaro Murgia eredi Alessandro Pietro Murgia S.a.s
+                GENNARO MURGIA EREDI DI ALESSANDRO PIETRO MURGIA S.A.S
               </p>
            </div>
            

@@ -11,6 +11,9 @@ export default function LaunchBanner({ variant = "hero" }: { variant?: "hero" | 
   const { t } = useTranslation();
   const { setIsPreLaunchOpen } = useCart();
   
+  // Hide from all pages for now as per user request
+  return null;
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,

@@ -13,7 +13,7 @@ export async function sendPartnerRequest(formData: any) {
   try {
     const data = await resend.emails.send({
       from: "Murgia Heritage <onboarding@resend.dev>", // Transition to custom domain after verification
-      to: ["murglialiquori@gmail.com"],
+      to: ["info@murgialiquori.it"],
       subject: `Nuova Manifestazione d'Interesse: ${name}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 20px;">

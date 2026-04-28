@@ -38,7 +38,7 @@ export default function Navbar() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const isPromoEligible = pathname === "/" || pathname?.includes("/shop/");
+  const isPromoEligible = pathname === "/" || pathname?.includes("/shop/") || pathname === "/la-collezione";
   
   // Visit Expiration Manifest
   const visitDate = new Date(`${VISIT_MANIFEST.date}T00:00:00`);

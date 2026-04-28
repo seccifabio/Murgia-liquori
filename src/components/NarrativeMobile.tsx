@@ -38,7 +38,7 @@ export default function NarrativeMobile({ t, products }: NarrativeMobileProps) {
           {t.origins.heritage.subtitle} <br /> <span className="text-primary italic">{t.origins.heritage.subtitleAccent}</span>
         </h2>
         <div className="aspect-[4/5] relative overflow-hidden rounded-[2vw] border border-white/10">
-          <LiquidImage src="/images/giallo.webp" alt="Murgia Giallo" />
+          <LiquidImage src="/images/heritage-labels.jpg" alt="Murgia Giallo" />
         </div>
         <p className="text-white/60 font-body text-lg max-w-md leading-relaxed">
           {t.origins.heritage.description}

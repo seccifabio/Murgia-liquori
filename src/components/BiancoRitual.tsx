@@ -74,7 +74,7 @@ export default function BiancoRitual({ liveProducts }: BiancoRitualProps) {
           className="relative md:absolute md:bottom-[-35px] md:right-0 z-20 pointer-events-none mt-6 md:mt-0"
         >
           <img 
-            src="/images/bianco_product.png" 
+            src="/images/bianco_rito.png" 
             alt="Murgia Bianco" 
             className="h-[40vh] md:h-[60vh] w-auto drop-shadow-[-40px_0_100px_rgba(0,0,0,0.6)] mx-auto" 
           />

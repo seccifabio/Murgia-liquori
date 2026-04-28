@@ -40,7 +40,7 @@ export default function StoriaShutter() {
     {
       id: "resilience",
       ...t.storia.phases.resilience,
-      floatingImg: "/images/storia/storia_resilience_ledger_1775937773299.png",
+      floatingImg: "/images/storia/teresita_resilience.png",
       archiveLabel: t.storia.archive
     }
   ];

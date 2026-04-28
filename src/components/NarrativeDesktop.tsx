@@ -74,7 +74,7 @@ export default function NarrativeDesktop({
                   style={{ y: p2SlideY }}
                   className="absolute inset-0"
                 >
-                  <LiquidImage src="/images/giallo.webp" alt="Murgia Legacy" />
+                  <LiquidImage src="/images/heritage-labels.jpg" alt="Murgia Legacy" />
                 </motion.div>
               </div>
             </div>

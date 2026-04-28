@@ -181,7 +181,7 @@ export const it = {
     selectCity: "Seleziona Città",
     viewMap: "Vedi Mappa",
     partner: {
-      ritual: "Diventa Partner",
+      ritual: "Partnership",
       title: "Diventa un",
       titleAccent: "Partner Murgia",
       description: "Porta le esclusive specialità di Murgia Liquori nel tuo locale. Unisciti alla nostra rete di distribuzione e scopri anche i vantaggi riservati ai professionisti della mixology.",
@@ -223,7 +223,7 @@ export const it = {
       origine: "Origine",
       formula: "Formula",
       secret: "Segreta (1882)",
-      discover: "Scopri la Collezione",
+      discover: "Scoprila",
       ascend: "Ascendi",
       otherProducts: "Altri Prodotti"
     },
@@ -264,7 +264,7 @@ export const it = {
     added: "PRODOTTO AGGIUNTO",
     expanded: "La tua collezione si espande",
     view: "VEDI BASKET",
-    shop: "Scopri i prodotti",
+    shop: "Scopri la collezione",
     subtotal: "Subtotale",
     clear: "Svuota Basket",
     voucher: "MANIFIESTO VOUCHER",
@@ -325,6 +325,7 @@ export const it = {
       address: "Via Parrocchia 29, 09039 Villacidro (SU)",
       email: "Email Terminal",
       phone: "Telefono Rito",
+      whatsapp: "Scrivici su WhatsApp",
       opening: "Orari Alchemici",
       hours: "Lun-Sab: 09:00 - 13:00"
     }

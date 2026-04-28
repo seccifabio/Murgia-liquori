@@ -108,7 +108,7 @@ export default function LocationsSection() {
               key={city}
               id={`chip-${city.toLowerCase().replace(" ", "-")}`}
               onClick={() => setActiveCity(city)}
-              className={`px-6 py-2 rounded-full border border-noir/10 font-heading text-[10px] tracking-widest uppercase transition-colors pointer-events-auto
+              className={`px-6 py-2 rounded-full border border-noir/10 font-heading text-[12px] tracking-widest uppercase transition-colors pointer-events-auto
                 ${activeCity === city 
                   ? "bg-noir border-noir text-primary" 
                   : "bg-transparent text-noir/70 hover:text-noir"
@@ -121,7 +121,7 @@ export default function LocationsSection() {
 
         {/* Town Dropdown - MOBILE NATIVE INTEGRATION */}
         <motion.div variants={itemVariants} className="block md:hidden mb-12 relative">
-          <label className="block text-noir/40 font-heading text-[10px] tracking-[0.3em] uppercase mb-4 ml-1">{t.locations.selectCity}</label>
+          <label className="block text-noir/40 font-heading text-[12px] tracking-[0.3em] uppercase mb-4 ml-1">{t.locations.selectCity}</label>
           <div className="relative">
             <select
               value={activeCity}
@@ -148,7 +148,7 @@ export default function LocationsSection() {
               className="border-b border-noir/10 pb-10 flex flex-col md:flex-row md:items-center justify-between gap-6"
             >
               <div className="pointer-events-auto">
-                <span className="text-black text-[10px] tracking-[0.3em] font-heading uppercase block mb-2">
+                <span className="text-black text-[12px] tracking-[0.3em] font-heading uppercase block mb-2">
                   {loc.city}
                 </span>
                 <h4 className="text-black font-heading text-2xl md:text-3xl uppercase tracking-tight mb-2 leading-none">
@@ -208,7 +208,7 @@ export default function LocationsSection() {
 
         <div className="absolute top-12 left-1/2 -translate-x-1/2 flex items-center gap-4 text-white/40">
           <div className="w-20 h-px bg-white/40" />
-          <span className="font-heading text-[10px] tracking-[0.8em] uppercase">{t.locations.partner.ritual}</span>
+          <span className="font-heading text-[12px] tracking-[0.8em] uppercase">{t.locations.partner.ritual}</span>
           <div className="w-20 h-px bg-white/40" />
         </div>
       </motion.div>
