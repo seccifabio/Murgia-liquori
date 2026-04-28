@@ -133,7 +133,7 @@ export default function PreLaunchDrawer() {
                       <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="space-y-2">
                           <label className="text-[10px] font-heading tracking-[0.4em] text-white/40 uppercase pl-1">
-                            MANIFESTO DIGITALE (EMAIL)
+                            ISCRIZIONE DIGITALE (EMAIL)
                           </label>
                           <input
                             type="email"

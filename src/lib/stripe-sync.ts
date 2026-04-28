@@ -39,6 +39,7 @@ export const getLiveProducts = unstable_cache(
           name: product.name,
           price: (price.unit_amount || 0) / 100,
           description: product.description || "",
+          metadata: product.metadata,
         };
       });
 

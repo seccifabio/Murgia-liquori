@@ -1,69 +1,40 @@
-import { NextResponse } from "next/server";
-import fs from "node:fs/promises";
-import path from "node:path";
-import { MARKETING_MANIFEST } from "@/manifest/marketing";
+import { NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(req.url);
-    const lang = (searchParams.get("lang") || "it") as "it" | "en";
-    const t = (MARKETING_MANIFEST as any).email[lang] || MARKETING_MANIFEST.email.it;
-
-    const templatePath = path.join(process.cwd(), "src/templates/OrderConfirmation.html");
-    let htmlContent = await fs.readFile(templatePath, "utf-8");
-
-    // MOCK DATA FOR PREVIEW
-    const itemsHtml = `
-      <tr>
-        <td style="padding-top: 30px;">
-          <span style="color:#FFFFFF; font-size:18px; font-weight:500; text-transform:uppercase; letter-spacing: 0.05em;">Villacidro Giallo</span>
-          <br/>
-          <span style="color:rgba(255,255,255,0.4); font-size:13px; font-style: italic;">70cl — Edizione Archivi</span>
-        </td>
-        <td align="right" style="padding-top: 30px;">
-          <span style="color:#FFFFFF; font-size:18px; font-weight: 300;">45.00€</span>
-        </td>
-      </tr>
-      <tr>
-        <td style="padding-top: 20px;">
-          <span style="color:#FFFFFF; font-size:18px; font-weight:500; text-transform:uppercase; letter-spacing: 0.05em;">Murgia Bianco</span>
-          <br/>
-          <span style="color:rgba(255,255,255,0.4); font-size:13px; font-style: italic;">70cl — Edizione Archivi</span>
-        </td>
-        <td align="right" style="padding-top: 20px;">
-          <span style="color:#FFFFFF; font-size:18px; font-weight: 300;">45.00€</span>
-        </td>
-      </tr>
-    `;
-
-    const startTag = "<!-- ITEM REPEATABLE -->";
-    const endTag = "<!-- END ITEM REPEATABLE -->";
-    const regex = new RegExp(`${startTag}[\\s\\S]*${endTag}`, "g");
+    const templatePath = path.join(process.cwd(), 'src/templates/OrderConfirmation.html');
+    const html = fs.readFileSync(templatePath, 'utf8');
     
-    htmlContent = htmlContent.replace(regex, itemsHtml);
-    
-    // NARRATIVE TRANSFORMATION
-    htmlContent = htmlContent
-      .replace("{{HERO_TITLE}}", t.heroTitle)
-      .replace("{{HERO_SUBTITLE}}", t.heroSubtitle)
-      .replace("{{ORDER_REF_LABEL}}", t.orderRef)
-      .replace("{{TOTAL_AMOUNT_LABEL}}", t.orderTotal)
-      .replace("{{SHIPPING_DEST_LABEL}}", t.shippingDest)
-      .replace("{{CROSS_TITLE}}", t.crossTitle)
-      .replace("{{CROSS_TEXT}}", t.crossText)
-      .replace("{{CROSS_CTA}}", t.crossCta)
-      .replace("{{SUPPORT_TEXT}}", t.supportText)
-      .replace("{{CONTACT_TEXT}}", t.contactText)
-      .replace("{{FOOTER_NOTE}}", t.footerNote)
-      .replace("{{ORDER_ID}}", "PREVIEW-2026")
-      .replace("{{TOTAL_AMOUNT}}", "90.00€")
-      .replace("{{CUSTOMER_NAME}}", lang === "it" ? "Fabio Secci" : "Alexander Sterling")
-      .replace("{{SHIPPING_ADDRESS}}", lang === "it" ? "Via Roma 123, 09039 Villacidro (IT)" : "221B Baker St, London (UK)");
+    // Replace placeholders with mock data for preview
+    const previewHtml = html
+      .replace(/{{HERO_TITLE}}/g, 'L\'Arte della Distillazione')
+      .replace(/{{HERO_SUBTITLE}}/g, 'Un pezzo della nostra storia sta per unirsi alla tua collezione.')
+      .replace(/{{ORDER_REF_LABEL}}/g, 'Riferimento Ordine')
+      .replace(/{{ORDER_ID}}/g, 'MURGIA-2024-XP')
+      .replace(/{{PRODUCT_NAME}}/g, 'VILLACIDRO GIALLO')
+      .replace(/{{PRODUCT_PRICE}}/g, '€48.00')
+      .replace(/{{TOTAL_AMOUNT_LABEL}}/g, 'Totale')
+      .replace(/{{TOTAL_AMOUNT}}/g, '€60.00')
+      .replace(/{{SHIPPING_DEST_LABEL}}/g, 'Destinazione')
+      .replace(/{{CUSTOMER_NAME}}/g, 'Gennaro Murgia')
+      .replace(/{{SHIPPING_ADDRESS}}/g, 'Via Parrocchia 29, Villacidro (SU)')
+      .replace(/{{CROSS_TITLE}}/g, 'Non Solo Liquore')
+      .replace(/{{CROSS_TEXT}}/g, 'Scopri le nostre creazioni sartoriali.')
+      .replace(/{{CROSS_CTA}}/g, 'Vedi Collezione')
+      .replace(/{{SUPPORT_TEXT}}/g, 'Hai bisogno di supporto?')
+      .replace(/{{CONTACT_TEXT}}/g, 'Scrivici a')
+      .replace(/{{PHONE_NUMBER}}/g, '+39 3791781417')
+      .replace(/{{FOOTER_NOTE}}/g, 'Villacidro Liquori © 2024')
+      .replace(/{{BASE_URL}}/g, '');
 
-    return new Response(htmlContent, {
-      headers: { "Content-Type": "text/html" },
+    return new NextResponse(previewHtml, {
+      headers: {
+        'Content-Type': 'text/html',
+      },
     });
   } catch (error) {
-    return NextResponse.json({ error: "Failed to render alchemical preview" }, { status: 500 });
+    return NextResponse.json({ error: 'Template not found' }, { status: 404 });
   }
 }

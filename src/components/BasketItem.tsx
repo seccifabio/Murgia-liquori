@@ -1,6 +1,7 @@
 "use client";
 
 import { Trash2 } from "lucide-react";
+import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
 interface CartItem {
   id: string;
@@ -45,19 +46,42 @@ export default function BasketItem({ item, t, updateItem, removeItem }: BasketIt
             <div className="flex flex-col gap-2">
               <span className="text-[9px] text-white/50 uppercase tracking-[0.2em] font-bold">{t.products.common.formato}</span>
               <div className="flex gap-2">
-                {["50cl", "70cl"].map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => updateItem(item.id, item.format, { format: size })}
-                    className={`px-3 py-1 text-[10px] font-heading uppercase tracking-widest border transition-all ${
-                      item.format === size 
-                        ? "bg-primary text-black border-primary font-bold" 
-                        : "bg-transparent text-white/60 border-white/10 hover:border-white/20"
-                    }`}
-                  >
-                    {size}
-                  </button>
-                ))}
+                {(() => {
+                  // Ritual: Find the product in the manifest by its canonical ID
+                  const manifestEntry = Object.values(PRODUCTS_MANIFEST).find(
+                    (p: any) => p.id === item.id
+                  ) as any;
+
+                  if (!manifestEntry) return <span className="text-[10px] uppercase opacity-50">{item.format}</span>;
+
+                  // Handle products with explicit variants (Giallo, Bianco)
+                  if (manifestEntry.variants) {
+                    return manifestEntry.variants.map((v: any) => (
+                      <button
+                        key={v.format}
+                        onClick={() => updateItem(item.id, item.format, { 
+                          format: v.format,
+                          price: `${v.price}€`,
+                          priceId: v.priceId
+                        })}
+                        className={`px-3 py-1 text-[10px] font-heading uppercase tracking-widest border transition-all ${
+                          item.format === v.format 
+                            ? "bg-primary text-black border-primary font-bold" 
+                            : "bg-transparent text-white/60 border-white/10 hover:border-white/20"
+                        }`}
+                      >
+                        {v.format}
+                      </button>
+                    ));
+                  }
+
+                  // Handle products with a single format (La Sbagliata)
+                  return (
+                    <span className="px-3 py-1 text-[10px] font-heading uppercase tracking-widest border border-white/10 bg-white/5 text-white/60">
+                      {manifestEntry.format || item.format}
+                    </span>
+                  );
+                })()}
               </div>
             </div>
 

@@ -12,7 +12,7 @@ export default function SbagliataSpecs() {
   const { t } = useTranslation();
   
   const specs = [
-    { label: t.products.common.gradazione, value: "35% Vol." },
+    { label: t.products.common.gradazione, value: "40% vol" },
     { label: t.products.common.formato, value: "20cl" },
     { label: t.products.common.origine, value: "Villacidro, SU" },
     { label: t.products.common.formula, value: t.products.common.secret }

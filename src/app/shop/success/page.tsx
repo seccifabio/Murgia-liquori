@@ -8,7 +8,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useSearchParams } from "next/navigation";
-import { getCheckoutSession } from "@/app/actions/stripe";
+import { getCheckoutSession, revalidateProducts } from "@/app/actions/stripe";
 import Image from "next/image";
 import { useTranslation } from "@/context/LanguageContext";
 import { MARKETING_MANIFEST } from "@/manifest/marketing";
@@ -41,7 +41,10 @@ function SuccessContent() {
     
     if (sessionId) {
       getCheckoutSession(sessionId)
-        .then(setSession)
+        .then((sess) => {
+          setSession(sess);
+          revalidateProducts(); // Force stock refresh
+        })
         .catch(console.error)
         .finally(() => setLoading(false));
     } else {
@@ -83,7 +86,7 @@ function SuccessContent() {
             {language === 'it' ? 'Grazie per' : 'Thank you for'} <br /> <span className="text-primary italic">{language === 'it' ? 'Il Tuo Ordine' : 'Your Order'}</span>
           </h1>
           <p className="font-body text-white/40 text-[10px] md:text-xs uppercase tracking-[0.4em]">
-            {language === 'it' ? 'Identificativo Rituale' : 'Ritual Identity'}: #{sessionId?.slice(-8).toUpperCase() || "RITUAL-XXXX"}
+            {language === 'it' ? 'Identificativo' : 'Order ID'}: #{sessionId?.slice(-8).toUpperCase() || "XXXX"}
           </p>
         </div>
       </div>
@@ -94,13 +97,13 @@ function SuccessContent() {
           <div className="space-y-10">
             <div className="flex items-center gap-3 border-b border-white/10 pb-6">
               <Package className="w-5 h-5 text-primary" />
-              <h3 className="font-heading text-xl tracking-widest uppercase">{language === 'it' ? 'Riepilogo Alchimia' : 'Alchemy Summary'}</h3>
+              <h3 className="font-heading text-xl tracking-widest uppercase">{language === 'it' ? 'Riepilogo Ordine' : 'Order Summary'}</h3>
             </div>
 
             {loading ? (
               <div className="flex flex-col items-center justify-center py-12 space-y-4">
                 <Loader2 className="w-8 h-8 text-primary animate-spin" />
-                <p className="font-heading text-[10px] tracking-widest uppercase text-white/40">{language === 'it' ? 'Recupero dati rituale...' : 'Retrieving ritual data...'}</p>
+                <p className="font-heading text-[10px] tracking-widest uppercase text-white/40">{language === 'it' ? 'Recupero dati...' : 'Retrieving data...'}</p>
               </div>
             ) : session ? (
               <div className="space-y-8">
@@ -141,14 +144,14 @@ function SuccessContent() {
                 </div>
 
                 <div className="pt-8 border-t border-white/10 flex justify-between items-center">
-                  <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Totale Manifestato' : 'Total Manifested'}</p>
+                  <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Totale Ordine' : 'Total Order'}</p>
                   <p className="font-heading text-4xl text-primary">
                     €{(session.amount_total / 100).toFixed(2)}
                   </p>
                 </div>
               </div>
             ) : (
-              <p className="text-white/40 italic">{language === 'it' ? 'Dettagli rituale non disponibili.' : 'Ritual details unavailable.'}</p>
+              <p className="text-white/40 italic">{language === 'it' ? 'Dettagli non disponibili.' : 'Details unavailable.'}</p>
             )}
 
             {/* Customer Identity Manifest */}
@@ -173,7 +176,7 @@ function SuccessContent() {
                 {session?.shipping_details?.address?.line1 ? (
                   <div className="space-y-4 pt-6 border-t border-white/5">
                     <div className="space-y-1">
-                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Destinazione Rituale' : 'Ritual Destination'}</p>
+                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Destinazione' : 'Destination'}</p>
                       <div className="font-body text-[10px] md:text-xs text-white/50 space-y-1 tracking-[0.2em] leading-relaxed uppercase">
                         <p className="text-white/80 font-heading tracking-widest">{session.shipping_details.name}</p>
                         <p>
@@ -191,10 +194,13 @@ function SuccessContent() {
                 ) : (
                   <div className="space-y-4 pt-6 border-t border-white/5">
                     <div className="space-y-1">
-                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Destinazione Rituale' : 'Ritual Destination'}</p>
-                      <p className="font-body text-xs text-white/50 tracking-[0.2em] uppercase">
-                        {language === 'it' ? 'Ritiro presso il Laboratorio (Villacidro)' : 'Collection at the Laboratory (Villacidro)'}
-                      </p>
+                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Ritiro in Laboratorio' : 'Laboratory Collection'}</p>
+                      <div className="font-body text-[10px] md:text-xs text-white/50 space-y-1 tracking-[0.2em] leading-relaxed uppercase">
+                        <p className="text-white/80 font-heading tracking-widest">Gennaro Murgia Eredi</p>
+                        <p>Via Parrocchia 29</p>
+                        <p>09039 Villacidro (SU)</p>
+                        <p className="pt-2 text-primary/80">{language === 'it' ? 'Orari: Lun-Sab: 09:00 - 13:00' : 'Hours: Mon-Sat: 09:00 - 13:00'}</p>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -202,27 +208,7 @@ function SuccessContent() {
             )}
           </div>
 
-          {/* Next Voucher Ritual */}
-          <div className="pt-8 mt-12 border-t border-dashed border-white/10">
-            <div className="bg-primary/5 border border-primary/20 p-8 space-y-6 relative overflow-hidden group">
-              <div className="flex items-center gap-2 text-primary">
-                <Tag className="w-4 h-4" />
-                <span className="font-heading text-[10px] tracking-[0.3em] uppercase">{language === 'it' ? 'Voucher Prossima Scelta' : 'Next Choice Voucher'}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <div className="space-y-1">
-                  <p className="font-heading text-3xl tracking-[0.2em] text-white uppercase">HERITAGE10</p>
-                  <p className="text-[10px] text-white/30 uppercase tracking-[0.2em]">{language === 'it' ? 'Usa questo sigillo per il tuo prossimo ordine' : 'Use this seal for your next order'}</p>
-                </div>
-                <div className="bg-primary text-black px-3 py-1 font-heading text-sm tracking-widest">
-                  -10%
-                </div>
-              </div>
-              <div className="absolute -right-6 -bottom-6 opacity-[0.03] group-hover:scale-110 transition-transform duration-1000">
-                <Tag className="w-32 h-32 rotate-12" />
-              </div>
-            </div>
-          </div>
+          <div className="h-4" />
         </div>
 
         {/* Visual Artifact Manifestation */}

@@ -128,7 +128,7 @@ export async function POST(req: Request) {
 
         // DISPATCH RITUAL
         await resend.emails.send({
-          from: "Murgia Liquori <onboarding@resend.dev>",
+          from: "Murgia Liquori <info@murgialiquori.it>",
           to: customerEmail,
           subject: `${t.subject} #${session.id.slice(-8).toUpperCase()}`,
           html: htmlContent,

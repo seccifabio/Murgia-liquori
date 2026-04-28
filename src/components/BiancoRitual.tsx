@@ -17,18 +17,22 @@ export default function BiancoRitual({ liveProducts }: BiancoRitualProps) {
   const [quantity, setQuantity] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const displayPrice = liveProducts?.[PRODUCTS_MANIFEST.bianco.priceId]?.price || PRODUCTS_MANIFEST.bianco.price;
+  // Derive active variant from manifest
+  const activeVariant = PRODUCTS_MANIFEST.bianco.variants.find(v => v.format === selectedFormat) 
+    || PRODUCTS_MANIFEST.bianco.variants[0]; // Fallback to 5cl
+
+  const displayPrice = liveProducts?.[activeVariant.priceId]?.price || activeVariant.price;
   const displayName = t.products.bianco.name;
 
   const handleAddToCart = () => {
     addItem({
       id: PRODUCTS_MANIFEST.bianco.id,
-      name: displayName,
+      name: `${displayName} (${selectedFormat})`,
       price: `${displayPrice}€`,
-      priceId: PRODUCTS_MANIFEST.bianco.priceId,
+      priceId: activeVariant.priceId,
       quantity: quantity,
       format: selectedFormat,
-      img: "/images/bianco_product.png"
+      img: "/images/bianco_rito.png"
     });
   };
 
@@ -90,11 +94,11 @@ export default function BiancoRitual({ liveProducts }: BiancoRitualProps) {
             <div className="flex flex-col items-center gap-4">
               <span className="font-heading text-[10px] text-noir/40 tracking-widest uppercase italic">{t.products.common.selectFormat}</span>
               <div className="flex gap-2">
-                {["5cl"].map((size) => (
+                {["5cl", "50cl"].map((size) => (
                   <button 
                     key={size} 
                     onClick={() => setSelectedFormat(size)}
-                    className={`px-6 py-3 border border-noir/10 font-heading text-xs tracking-widest uppercase transition-all ${selectedFormat === size ? "bg-noir text-white" : "bg-transparent text-noir hover:bg-noir/5"}`}
+                    className={`px-6 py-3 border border-noir/10 font-heading text-xs tracking-widest uppercase transition-all ${selectedFormat === size ? "bg-noir text-white shadow-xl" : "bg-transparent text-noir hover:bg-noir/5"}`}
                   >
                     {size}
                   </button>

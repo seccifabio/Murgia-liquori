@@ -19,7 +19,7 @@ export default function StoriaPage() {
       {/* The Fulfillment Manifest: Horizontal Kinetic Journey */}
       <ShippingRitual />
 
-      {/* Closing Manifesto Ritual: Full-Stage Takeover */}
+      {/* Closing Ritual: Full-Stage Takeover */}
       <motion.section 
         initial={{ opacity: 0, scale: 0.95, y: 40 }}
         whileInView={{ opacity: 1, scale: 1, y: 0 }}

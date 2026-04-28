@@ -17,7 +17,7 @@ export const VISIT_MANIFEST = {
   it: {
     displayDate: "21 Aprile",
     displayFullDate: "Sabato 21 Aprile 2026",
-    title: "Vieni a scoprire l'alchimia",
+    title: "Vieni a scoprire l'essenza",
     subtitle: "Visita la nostra distilleria",
     cta: "Prenota",
   },

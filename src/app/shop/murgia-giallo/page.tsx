@@ -1,7 +1,7 @@
 import GialloHero from "@/components/GialloHero";
 import GialloRitual from "@/components/GialloRitual";
 import GialloSpecs from "@/components/GialloSpecs";
-import GialloCocktails from "@/components/GialloCocktails";
+import AperitivoSection from "@/components/AperitivoSection";
 import ProductDiscovery from "@/components/ProductDiscovery";
 import Footer from "@/components/Footer";
 import { getLiveProducts } from "@/lib/stripe-sync";
@@ -10,7 +10,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Murgia Giallo | Il Liquore Zafferano",
-  description: "Scopri Murgia Giallo: l'alchimia perfetta tra erbe officinali e zafferano. Il capolavoro dorato di Villacidro.",
+  description: "Scopri Murgia Giallo: l'unione perfetta tra erbe officinali e zafferano. Il capolavoro dorato di Villacidro.",
   openGraph: {
     title: "Murgia Giallo | Murgia Liquori",
     description: "L'oro liquido della Sardegna.",
@@ -36,8 +36,8 @@ export default async function MurgiaGialloPage() {
         liveProducts={liveProducts} 
       />
 
-      {/* Cinematic Phase 4: Modern Mixology (Signature Serves) */}
-      <GialloCocktails />
+      {/* Cinematic Phase 4: Modern Mixology (Full Experience) */}
+      <AperitivoSection variant="dark" />
 
       {/* Terminal Phase: Collection Discovery */}
       <ProductDiscovery 

@@ -73,7 +73,7 @@ export const it = {
     drawer: {
       title: "Pianifica il tuo Rituale",
       successTitle: "Richiesta Inviata",
-      successText: "L'alchimia è in moto. Ti contatteremo a breve per confermare il tuo posto nel rituale.",
+      successText: "La richiesta è stata inviata. Ti contatteremo a breve per confermare il tuo posto nel rituale.",
       form: {
         firstName: "Nome",
         lastName: "Cognome",
@@ -135,7 +135,7 @@ export const it = {
       blackgold: {
         name: "BLACK GOLD",
         tagline: "INTENSE AFTERDARK",
-        description: "Murgia Giallo, Espresso, Liquore al Caffè. L'alchimia della notte.",
+        description: "Murgia Giallo, Espresso, Liquore al Caffè. L'essenza della notte.",
         ingredients: ["4cl Murgia Liquori Giallo", "3cl Caffè Espresso ristretto", "2cl Liquore al Caffè", "Chicchi di Caffè per guarnizione"],
         instructions: ["Shakerare energicamente tutti gli ingredienti con molto ghiaccio.", "Filtrare in doppio filtraggio (double strain) in un bicchiere da Martini.", "Guarnire con tre chicchi di caffè posizionati a triangolo."]
       }
@@ -144,16 +144,16 @@ export const it = {
       tiramisu: {
         name: "TIRAMISÙ AL VILLACIDRO",
         tagline: "DESSERT RITUAL",
-        description: "L'alchimia del caffè incontra l'oro di Murgia in una crema vellutata.",
+        description: "L'essenza del caffè incontra l'oro di Murgia in una crema vellutata.",
         ingredients: ["500g Mascarpone", "5 Uova Fresche", "5 Cucchiai di Zucchero", "1 Busta Dolceneve o Panna Montata", "1 Bicchiere di Murgia Giallo", "Savoiardi e Caffè amaro"],
         instructions: ["Montare gli albumi a neve ferma con un pizzico di sale.", "Lavorare i tuorli con lo zucchero e il composto Dolceneve.", "Unire delicatamente il Murgia Giallo alla crema di tuorli.", "Incorporare gli albumi dal basso verso l'alto con gesti lenti.", "Bagnare i savoiardi nel caffè e alternarli alla crema dorata.", "Spolverare con cacao amaro e lasciar riposare in frigo."]
       },
       pere: {
         name: "CREMA DI PERE AL VILLACIDRO",
-        tagline: "FRUIT ALCHEMY",
+        tagline: "FRUIT ESSENCE",
         description: "Pere Kaiser cotte a bassa temperatura, sfumate con l'essenza dello zafferano.",
         ingredients: ["600g Pere mature", "50g Zucchero integrale di canna", "70g Succo di Limone", "50g Vino Bianco Secco", "50g Murgia Liquori Giallo", "4 Stimmi di Zafferano Murgia"],
-        instructions: ["Tagliare le pere a tocchetti e cuocerle con vino e zucchero (10 min).", "Sfumare con il Murgia Giallo e il limone, proseguendo la cottura.", "Raffreddare e unire lo zafferano precedentemente sciolto.", "Frullare il tutto fino a ottenere un'alchimia setosa.", "Servire in coppette decorate con scaglie di cioccolato."]
+        instructions: ["Tagliare le pere a tocchetti e cuocerle con vino e zucchero (10 min).", "Sfumare con il Murgia Giallo e il limone, proseguendo la cottura.", "Raffreddare e unire lo zafferano precedentemente sciolto.", "Frullare il tutto fino a ottenere un composto setoso.", "Servire in coppette decorate con scaglie di cioccolato."]
       },
       arance: {
         name: "ARANCE E VILLACIDRO",
@@ -225,15 +225,17 @@ export const it = {
       secret: "Segreta (1882)",
       discover: "Scoprila",
       ascend: "Ascendi",
-      otherProducts: "Altri Prodotti"
+      otherProducts: "Altri Prodotti",
+      limitedUnits: "ULTIME {count} BOTTIGLIE",
+      soldOut: "ESAURITO"
     },
     giallo: {
       name: "Villacidro Giallo",
       heroTagline: "L'oro Giallo di Sardegna",
-      ritualDescription: "Si beveva l’“elisir de s’omu”, l’oro di Murgia: un rito che unisce generazioni.\nServire a 16–20°C in calice a tulipano per esaltarne l’anima allo zafferano.",
+      ritualDescription: "Si beveva l'elisir de Su Meri Mannu, un rito che unisce generazioni. Servire a 14–20°C in bicchiere a bocca larga per esaltarne l’anima.",
       ingredients: [
         { name: "Zafferano", detail: "Oro di San Gavino", desc: "Il cuore del giallo: delicato, essenziale, puro." },
-        { name: "Anice Stellato", detail: "Purezza Alchemica", desc: "La nota fresca che bilancia le spezie segrete." },
+        { name: "Finocchio", detail: "Fresco e chiaro", desc: "La nota fresca che bilancia le spezie segrete." },
         { name: "14 ingredienti", detail: "Ricetta Gennaro Murgia", desc: "Un mosaico botanico tramandato da Gennaro Murgia, miscelato in piccoli lotti per un’anima unica." }
       ]
     },
@@ -267,14 +269,14 @@ export const it = {
     shop: "Scopri la collezione",
     subtotal: "Subtotale",
     clear: "Svuota Basket",
-    voucher: "MANIFIESTO VOUCHER",
+    voucher: "VOUCHER",
     codePlaceholder: "Codice...",
     addCode: "Aggiungi Codice",
     checkout: "Procedi alla Spedizione",
     loading: "Inizializzazione...",
     disclaimer: "Tasse e spedizione calcolate al checkout.",
     freeShipping: "Spedizione gratuita in tutta Italia.",
-    discountLabel: "SCONTO ALCHIMIA",
+    discountLabel: "SCONTO",
   },
   footer: {
     brandText: "Segreti da oltre 140 anni.",

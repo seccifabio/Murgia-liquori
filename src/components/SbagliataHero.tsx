@@ -3,11 +3,18 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { useTranslation } from "@/context/LanguageContext";
+import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
-export default function SbagliataHero() {
-  const { t } = useTranslation();
+interface SbagliataHeroProps {
+  liveProducts?: any;
+}
+
+export default function SbagliataHero({ liveProducts }: SbagliataHeroProps) {
+  const { t, language } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const stockCount = liveProducts?.[PRODUCTS_MANIFEST.sbagliata.priceId]?.metadata?.stock;
 
   useEffect(() => {
     if (videoRef.current) {
@@ -51,7 +58,14 @@ export default function SbagliataHero() {
         className="relative z-10 h-full flex flex-col items-center justify-start md:justify-center text-center px-6 pt-32 md:pt-0"
       >
         <header className="mb-8">
-          <span className="font-heading text-xs tracking-[0.6em] text-primary uppercase mb-2 block">Collector&apos;s Edition</span>
+          <span className="font-heading text-xs tracking-[0.5em] text-primary uppercase block">
+            Collector&apos;s Edition 
+            {stockCount && Number(stockCount) > 0 && (
+              <span className="text-white/40 italic ml-2">
+                — {language === 'it' ? `Solo ${stockCount} bottiglie rimaste` : `Only ${stockCount} bottles left`}
+              </span>
+            )}
+          </span>
         </header>
 
         <h1 className="font-heading text-6xl md:text-[8rem] lg:text-[12rem] text-white uppercase tracking-tighter leading-[0.85] mb-6 drop-shadow-2xl py-4 overflow-hidden">

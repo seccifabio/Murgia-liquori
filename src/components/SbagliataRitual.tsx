@@ -122,13 +122,37 @@ export default function SbagliataRitual({ liveProducts }: SbagliataRitualProps) 
             </div>
           </div>
 
+
+
           <button 
             onClick={handleAddToCart}
-            className="murgia-btn-noir px-20 py-8 md:px-32 transform hover:scale-105 active:scale-95"
+            disabled={liveProducts?.[PRODUCTS_MANIFEST.sbagliata.priceId]?.metadata?.stock === "0"}
+            className={`murgia-btn-noir px-20 py-8 md:px-32 transform hover:scale-105 active:scale-95 ${liveProducts?.[PRODUCTS_MANIFEST.sbagliata.priceId]?.metadata?.stock === "0" ? "opacity-50 cursor-not-allowed grayscale" : ""}`}
           >
-            <span className="murgia-btn-text">{t.products.common.addToCart} &mdash; &euro;{(displayPrice * quantity).toFixed(2)}</span>
+            <span className="murgia-btn-text">
+              {liveProducts?.[PRODUCTS_MANIFEST.sbagliata.priceId]?.metadata?.stock === "0" 
+                ? t.products.common.soldOut 
+                : `${t.products.common.addToCart} — €${(displayPrice * quantity).toFixed(2)}`}
+            </span>
             <div className="murgia-btn-hover-wipe" />
           </button>
+
+          {/* Inventory Ritual */}
+          {liveProducts?.[PRODUCTS_MANIFEST.sbagliata.priceId]?.metadata?.stock && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0.4, 1, 0.4] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="flex items-center gap-3 mt-2"
+            >
+              <div className="w-1.5 h-1.5 rounded-full bg-noir animate-pulse" />
+              <span className="font-heading text-xs tracking-[0.3em] text-noir uppercase italic">
+                {Number(liveProducts[PRODUCTS_MANIFEST.sbagliata.priceId].metadata.stock) > 0 
+                  ? t.products.common.limitedUnits.replace("{count}", liveProducts[PRODUCTS_MANIFEST.sbagliata.priceId].metadata.stock)
+                  : t.products.common.soldOut}
+              </span>
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>

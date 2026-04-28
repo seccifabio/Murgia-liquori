@@ -24,19 +24,22 @@ export default function ProductDiscovery({
       name: getLiveName(PRODUCTS_MANIFEST.bianco.priceId, t.products.bianco.name),
       image: "/images/products/bianco.png",
       href: "/shop/murgia-bianco",
-      displayName: "Murgia Bianco"
+      displayName: "Murgia Bianco",
+      priceId: PRODUCTS_MANIFEST.bianco.priceId
     },
     {
       name: getLiveName(PRODUCTS_MANIFEST.giallo.priceId, t.products.giallo.name),
       image: "/images/giallo_sovereign.png",
       href: "/shop/murgia-giallo",
-      displayName: "Murgia Giallo"
+      displayName: "Murgia Giallo",
+      priceId: PRODUCTS_MANIFEST.giallo.priceId
     },
     {
       name: getLiveName(PRODUCTS_MANIFEST.sbagliata.priceId, t.products.sbagliata.name),
       image: "/images/products/sbagliata.png",
       href: "/shop/la-sbagliata",
-      displayName: "La Sbagliata"
+      displayName: "La Sbagliata",
+      priceId: PRODUCTS_MANIFEST.sbagliata.priceId
     }
   ];
 
@@ -71,6 +74,13 @@ export default function ProductDiscovery({
                 <div className="md:hidden absolute top-12 left-0 w-full text-center z-20">
                   <h4 className="text-white font-heading text-2xl uppercase tracking-tighter">{product.name}</h4>
                   <span className="text-primary font-heading text-[10px] tracking-[0.3em] uppercase block mt-1">{t.products.common.discover}</span>
+                  {liveProducts?.[product.priceId]?.metadata?.stock && (
+                    <span className="text-primary font-heading text-[10px] tracking-[0.2em] uppercase block mt-3 italic animate-pulse">
+                      {Number(liveProducts[product.priceId].metadata.stock) > 0 
+                        ? t.products.common.limitedUnits.replace("{count}", liveProducts[product.priceId].metadata.stock)
+                        : t.products.common.soldOut}
+                    </span>
+                  )}
                 </div>
 
                 <img 
@@ -90,6 +100,13 @@ export default function ProductDiscovery({
                    <span className="text-primary font-heading text-xs tracking-[0.4em] uppercase mt-4">
                      {t.products.common.discover}
                    </span>
+                   {liveProducts?.[product.priceId]?.metadata?.stock && (
+                      <span className="text-primary font-heading text-[10px] tracking-[0.3em] uppercase mt-6 italic border-t border-primary/20 pt-4">
+                        {Number(liveProducts[product.priceId].metadata.stock) > 0 
+                          ? t.products.common.limitedUnits.replace("{count}", liveProducts[product.priceId].metadata.stock)
+                          : t.products.common.soldOut}
+                      </span>
+                    )}
                 </div>
               </div>
             </Link>

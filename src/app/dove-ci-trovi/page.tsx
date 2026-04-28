@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Dove Ci Trovi | Murgia Liquori",
-  description: "Scopri la mappa dei partner e dei punti vendita Murgia Liquori in tutta la Sardegna e oltre. Porta l'alchimia nel tuo locale.",
+  description: "Scopri la mappa dei partner e dei punti vendita Murgia Liquori in tutta la Sardegna e oltre. Porta l'essenza Murgia nel tuo locale.",
   openGraph: {
     title: "Dove Trovare Murgia Liquori",
     description: "La mappa dei nostri partner e punti vendita selezionati.",

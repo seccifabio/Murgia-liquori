@@ -26,7 +26,7 @@ export default async function LaSbagliataPage() {
     <main className="bg-noir min-h-screen selection:bg-primary selection:text-noir overflow-x-hidden relative">
       
       {/* Cinematic Phase 1: The Arrival */}
-      <SbagliataHero />
+      <SbagliataHero liveProducts={liveProducts} />
 
       {/* Cinematic Phase 2: The Anatomy of an Error */}
       <SbagliataSpecs />

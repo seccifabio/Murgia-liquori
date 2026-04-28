@@ -2,7 +2,7 @@ export const en = {
   common: {
     back: "Back",
     close: "Close",
-    loading: "Manifesting...",
+    loading: "Loading...",
     send: "Send",
     sending: "Transmitting...",
     success: "Success",
@@ -12,8 +12,8 @@ export const en = {
   shipping: {
     preparing: {
       title: "Laboratory Preparing",
-      metric: "Certified Alchemy",
-      description: "Every drop is distilled and perfected in our Murgia Liquori laboratory, following the alchemical protocols of 1882."
+      metric: "Certified Quality",
+      description: "Every drop is distilled and perfected in our Murgia Liquori laboratory, following the traditional protocols of 1882."
     },
     sealing: {
       title: "Hand-Applied Seal",
@@ -45,7 +45,7 @@ export const en = {
     description: "Excellence distilled since 1882. Sardinian alchemy meets the avant-garde.",
     scroll: "Discover the essence",
     legacy_hud: "Heritage Gennaro Murgia",
-    craft_hud: "Sardinian Alchemy",
+    craft_hud: "Sardinian Tradition",
     heritage: "The Heritage",
     cta: "Discover the Collection"
   },
@@ -73,26 +73,26 @@ export const en = {
     drawer: {
       title: "Book your Ritual",
       successTitle: "Ritual Secured",
-      successText: "The alchemy is in motion. We will contact you shortly to confirm your place in the legacy.",
+      successText: "The request has been sent. We will contact you shortly to confirm your place in the legacy.",
       form: {
         firstName: "Given Name",
         lastName: "Family Name",
         email: "Email Terminal",
         phone: "Phone (Optional)",
-        guests: "Number of Alchemists",
+        guests: "Number of Guests",
         guestsLabel: "GUEST",
         guestsLabelPlural: "GUESTS",
         placeholderName: "E.G. JOHN",
         placeholderLastName: "E.G. SMITH",
-        placeholderEmail: "ALCHEMIST@MURGIA.IT",
+        placeholderEmail: "INFO@MURGIA.IT",
         submit: "Secure Ritual",
       },
-      footer: "Visits are conducted at the Murgia Liquori distillery. Price includes a guided tasting and an alchemical gift."
+      footer: "Visits are conducted at the Murgia Liquori distillery. Price includes a guided tasting and a special gift."
     }
   },
   aperitivo: {
     experience: "The Murgia Experience",
-    title: "Alchemy of",
+    title: "Art of",
     titleAccent: "Mixing.",
     mask: "SPIRITS & RITUALS",
     tabs: {
@@ -135,7 +135,7 @@ export const en = {
       blackgold: {
         name: "BLACK GOLD",
         tagline: "INTENSE AFTERDARK",
-        description: "Murgia Giallo, Espresso, Coffee Liqueur. The alchemy of the night.",
+        description: "Murgia Giallo, Espresso, Coffee Liqueur. The essence of the night.",
         ingredients: ["4cl Murgia Liquori Giallo", "3cl Ristretto Espresso", "2cl Coffee Liqueur", "Coffee beans for garnish"],
         instructions: ["Shake all elements vigorously with plenty of ice.", "Double strain into a chilled Martini glass.", "Garnish with three coffee beans in a triangle formation."]
       }
@@ -144,19 +144,19 @@ export const en = {
       tiramisu: {
         name: "TIRAMISÙ REDUX",
         tagline: "DESSERT RITUAL",
-        description: "Coffee alchemy meets the gold of Murgia Liquori in a velvet cream.",
+        description: "Coffee essence meets the gold of Murgia Liquori in a velvet cream.",
         ingredients: ["500g Mascarpone", "5 Fresh Eggs", "5 Spoons of Sugar", "Whipped Cream", "1 Glass of Murgia Giallo", "Ladyfingers and Bitter Coffee"],
         instructions: ["Whip egg whites until stiff peaks form.", "Whisk yolks with sugar until creamy.", "Gently fold Murgia Giallo into the yolk cream.", "Incorporate egg whites with slow, vertical motions.", "Dip ladyfingers in coffee and layer with the golden cream.", "Dust with bitter cocoa and let chill in the archives."]
       },
       pere: {
         name: "PEAR & SAFFRON ESSENCE",
-        tagline: "FRUIT ALCHEMY",
+        tagline: "FRUIT ESSENCE",
         description: "Kaiser pears cooked at low temperature, infused with saffron essence.",
         ingredients: ["600g Ripe Pears", "50g Brown Sugar", "70g Lemon Juice", "50g Dry White Wine", "50g Murgia Liquori Giallo", "4 Murgia Saffron threads"],
-        instructions: ["Dice pears and cook with wine and sugar (10 min).", "Deglaze with Murgia Giallo and lemon juice.", "Allow to cool and add dissolved saffron.", "Blend until a silky alchemy is achieved.", "Serve in bowls with dark chocolate shards."]
+        instructions: ["Dice pears and cook with wine and sugar (10 min).", "Deglaze with Murgia Giallo and lemon juice.", "Allow to cool and add dissolved saffron.", "Blend until a silky consistency is achieved.", "Serve in bowls with dark chocolate shards."]
       },
       arance: {
-        name: "CITRUS ALCHEMY",
+        name: "CITRUS ESSENCE",
         tagline: "CITRUS RITUAL",
         description: "Sardinian oranges sliced and submerged in pure Murgia Giallo.",
         ingredients: ["4 Sardinian Oranges", "10cl Murgia Liquori Giallo", "Freshly squeezed orange juice"],
@@ -168,7 +168,7 @@ export const en = {
     title: "The Collection",
     subtitle: "The Gold of",
     subtitleAccent: "Murgia Liquori",
-    description: "A spectrum of alchemical shades, distilled with the same fire since 1882.",
+    description: "A spectrum of artisanal shades, distilled with the same fire since 1882.",
     types: {
       historic: "Historic Liqueur",
       herbal: "Herbal Essence",
@@ -189,22 +189,24 @@ export const en = {
       secret: "Secret (1882)",
       discover: "Discover",
       ascend: "Ascend",
-      otherProducts: "Other Products"
+      otherProducts: "Other Products",
+      limitedUnits: "LAST {count} BOTTLES",
+      soldOut: "SOLD OUT"
     },
     giallo: {
       name: "Villacidro Giallo",
-      heroTagline: "The Alchemy of Saffron",
-      ritualDescription: "\"We would drink the elisir de s'omu, the gold of Murgia Liquori.\" A gesture that spans centuries, a collective ritual that unites generations. Best served at room temperature (16-20°C) in a tulip glass to release the soul of the saffron.",
+      heroTagline: "The Essence of Saffron",
+      ritualDescription: "We would drink the elisir de Su Meri Mannu, a ritual that unites generations. Serve at 14–20°C in a wide-mouthed glass to exalt its soul.",
       ingredients: [
         { name: "Saffron", detail: "Gold of San Gavino", desc: "The beating heart of Giallo. Harvested at dawn to preserve its purest color and aroma." },
-        { name: "Star Anise", detail: "Alchemical Purity", desc: "The top note that refresca the palate, balancing the warmth of the secret spices." },
+        { name: "Fennel", detail: "Fresh and Clear", desc: "The top note that refreshes the palate, balancing the warmth of the secret spices." },
         { name: "14 Secret Herbs", detail: "Gennaro Murgia Original Recipe", desc: "A botanical mosaic handed down since 1882, distilled in small batches for a unique soul." }
       ]
     },
     bianco: {
       name: "Villacidro Bianco",
       heroTagline: "The Botanical Essence of Sardinia",
-      ritualDescription: "An ancestral ritual of freshness. Bianco is the pure soul of our distillery, where medicinal herbs blend into a crystalline alchemy.",
+      ritualDescription: "An ancestral ritual of freshness. Bianco is the pure soul of our distillery, where medicinal herbs blend into a crystalline essence.",
       ingredients: [
         { name: "Mint", detail: "Sardinian Breath", desc: "Wild freshness that opens the senses." },
         { name: "Orange", detail: "Alchemical Zest", desc: "Citrus notes for a brilliant finish." },
@@ -214,7 +216,7 @@ export const en = {
     sbagliata: {
       name: "La Sbagliata",
       heroTagline: "The Nocturnal Ritual",
-      ritualDescription: "A bold alchemy born from a perfect error. The spirit that challenges tradition with elegance.",
+      ritualDescription: "A bold spirit born from a perfect error. The spirit that challenges tradition with elegance.",
       ingredients: [
         { name: "Curaçao", detail: "Bitter Essence", desc: "The complexity of bitter orange." },
         { name: "Gentian", detail: "Deep Root", desc: "The ancestral bittering agent that purifies the palate." },
@@ -267,14 +269,14 @@ export const en = {
     shop: "Discover the collection",
     subtotal: "Subtotal",
     clear: "Clear Basket",
-    voucher: "VOUCHER MANIFESTO",
+    voucher: "VOUCHER",
     codePlaceholder: "Code...",
     addCode: "Add Code",
     checkout: "Proceed to shipping",
     loading: "Initializing...",
     disclaimer: "Taxes and shipping calculated at checkout.",
     freeShipping: "Free shipping throughout Italy.",
-    discountLabel: "ALCHEMY DISCOUNT",
+    discountLabel: "DISCOUNT",
   },
   footer: {
     brandText: "Secrets for over 140 years.",
@@ -303,7 +305,7 @@ export const en = {
       giallo: {
         year: "BRILLIANT GOLD",
         title: "Villacidro Giallo",
-        subtitle: "SAFFRON ALCHEMY",
+        subtitle: "SAFFRON ESSENCE",
         description: "The signature product originated from the founder's herbal wisdom. The use of pure saffron not only imparts the brilliant gold color but also defines Murgia's aromatic soul in the world."
       },
       resilience: {
@@ -326,14 +328,14 @@ export const en = {
       email: "Email Terminal",
       phone: "Phone Ritual",
       whatsapp: "Message us on WhatsApp",
-      opening: "Alchemical Hours",
+      opening: "Opening Hours",
       hours: "Mon-Sat: 09:00 - 13:00"
     }
   },
   launchBanner: {
     title: "AMARO MURGIA",
     subtitle: "The Ritual Returns.",
-    description: "A new alchemical artifact forged in the fires of 1882 heritage. Coming soon to the collection.",
+    description: "A new artisanal product forged in the fires of 1882 heritage. Coming soon to the collection.",
     cta: "Secure Pre-Launch",
     vaultTitle: "SECURE PRE-LAUNCH",
     vaultDescription: "Enter your email to be one of the first to receive the new Murgia Liquore.",

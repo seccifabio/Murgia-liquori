@@ -6,12 +6,14 @@ import Masonry from "./ui/Masonry";
 import AperitivoModal from "./AperitivoModal";
 import { useTranslation } from "@/context/LanguageContext";
 
-export default function AperitivoSection() {
+export default function AperitivoSection({ variant = 'default' }: { variant?: 'default' | 'dark' }) {
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<'cocktails' | 'recipes'>('cocktails');
   
+  const isDark = variant === 'dark';
+
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -67,7 +69,7 @@ export default function AperitivoSection() {
     <section 
       id="aperitivo"
       ref={containerRef} 
-      className={`relative bg-primary py-20 md:py-24 px-6 md:px-12 scroll-mt-24 ${isModalOpen ? 'z-[100000]' : 'z-[110]'}`}
+      className={`relative py-20 md:py-24 px-6 md:px-12 scroll-mt-24 transition-colors duration-1000 ${isDark ? 'bg-noir' : 'bg-primary'} ${isModalOpen ? 'z-[100000]' : 'z-[110]'}`}
     >
       <div className="max-w-[1600px] mx-auto flex flex-col items-center">
         {/* HEADER SECTION - Always visible, clean typography */}
@@ -78,23 +80,23 @@ export default function AperitivoSection() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="text-black font-heading text-[10px] md:text-sm tracking-[0.4em] uppercase underline decoration-black/30 underline-offset-8 italic mb-8 block font-bold">
+            <span className={`font-heading text-[10px] md:text-sm tracking-[0.4em] uppercase underline underline-offset-8 italic mb-8 block font-bold transition-colors ${isDark ? 'text-primary decoration-primary/30' : 'text-black decoration-black/30'}`}>
               {t.aperitivo.experience}
             </span>
-            <h2 className="text-black font-heading text-6xl md:text-9xl uppercase tracking-tighter leading-none italic mb-12">
+            <h2 className={`font-heading text-6xl md:text-9xl uppercase tracking-tighter leading-none italic mb-12 transition-colors ${isDark ? 'text-white' : 'text-black'}`}>
               {t.aperitivo.title} <span className="opacity-40">{t.aperitivo.titleAccent}</span>
             </h2>
 
-            <div className="flex items-center justify-center gap-4 bg-noir/5 p-2 rounded-full backdrop-blur-sm border border-noir/10 w-fit mx-auto cursor-pointer">
+            <div className={`flex items-center justify-center gap-4 p-2 rounded-full backdrop-blur-sm border w-fit mx-auto cursor-pointer transition-colors ${isDark ? 'bg-white/5 border-white/10' : 'bg-noir/5 border-noir/10'}`}>
               <button 
                 onClick={() => setActiveTab('cocktails')}
-                className={`px-8 py-3 rounded-full font-heading text-[10px] md:text-xs uppercase transition-all duration-500 hover:scale-105 ${activeTab === 'cocktails' ? 'bg-noir text-primary shadow-xl' : 'text-black/60'}`}
+                className={`px-8 py-3 rounded-full font-heading text-[10px] md:text-xs uppercase transition-all duration-500 hover:scale-105 ${activeTab === 'cocktails' ? (isDark ? 'bg-primary text-noir shadow-2xl shadow-primary/20' : 'bg-noir text-primary shadow-xl') : (isDark ? 'text-white/60' : 'text-black/60')}`}
               >
                 {t.aperitivo.tabs.cocktails}
               </button>
               <button 
                 onClick={() => setActiveTab('recipes')}
-                className={`px-8 py-3 rounded-full font-heading text-[10px] md:text-xs uppercase transition-all duration-500 hover:scale-105 ${activeTab === 'recipes' ? 'bg-noir text-primary shadow-xl' : 'text-black/60'}`}
+                className={`px-8 py-3 rounded-full font-heading text-[10px] md:text-xs uppercase transition-all duration-500 hover:scale-105 ${activeTab === 'recipes' ? (isDark ? 'bg-primary text-noir shadow-2xl shadow-primary/20' : 'bg-noir text-primary shadow-xl') : (isDark ? 'text-white/60' : 'text-black/60')}`}
               >
                 {t.aperitivo.tabs.recipes}
               </button>
