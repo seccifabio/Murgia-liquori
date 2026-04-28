@@ -10,6 +10,7 @@ interface CartItem {
   img: string;
   format: string;
   quantity: number;
+  priceId: string;
 }
 
 interface BasketItemProps {
