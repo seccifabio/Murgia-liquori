@@ -135,7 +135,7 @@ function SuccessContent() {
                       )}
                       {session.total_details.amount_discount > 0 && (
                         <div className="flex justify-between items-center text-primary">
-                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">{language === 'it' ? 'Sconto Heritage' : 'Heritage Discount'}</p>
+                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">{language === 'it' ? 'Sconto' : 'Discount'}</p>
                           <p className="font-heading text-sm">-€{(session.total_details.amount_discount / 100).toFixed(2)}</p>
                         </div>
                       )}
@@ -165,7 +165,7 @@ function SuccessContent() {
                     </p>
                   </div>
                   <div className="space-y-1">
-                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Identificativo Digitale' : 'Digital ID'}</p>
+                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Email' : 'Email'}</p>
                     <p className="font-body text-xs text-white/50 tracking-widest break-all">
                       {session.customer_details.email}
                     </p>
@@ -194,10 +194,9 @@ function SuccessContent() {
                 ) : (
                   <div className="space-y-4 pt-6 border-t border-white/5">
                     <div className="space-y-1">
-                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Ritiro in Laboratorio' : 'Laboratory Collection'}</p>
+                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Ritiro' : 'Pickup'}</p>
                       <div className="font-body text-[10px] md:text-xs text-white/50 space-y-1 tracking-[0.2em] leading-relaxed uppercase">
-                        <p className="text-white/80 font-heading tracking-widest">Gennaro Murgia Eredi</p>
-                        <p>Via Parrocchia 29</p>
+                        <p className="text-white/80 font-heading tracking-widest">Via Parrocchia 29</p>
                         <p>09039 Villacidro (SU)</p>
                         <p className="pt-2 text-primary/80">{language === 'it' ? 'Orari: Lun-Sab: 09:00 - 13:00' : 'Hours: Mon-Sat: 09:00 - 13:00'}</p>
                       </div>
