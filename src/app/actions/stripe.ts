@@ -184,6 +184,6 @@ import { revalidateTag } from "next/cache";
 
 export async function revalidateProducts() {
   console.log("Stripe Ritual: Triggering global product revalidation...");
-  revalidateTag("products");
+  revalidateTag("products", "max");
 }
 
