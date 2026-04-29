@@ -69,7 +69,7 @@ export default function ControlRoomPage() {
         <div className="space-y-2">
           <div className="flex items-center gap-4">
             <div className="w-8 h-[1px] bg-primary" />
-            <p className="font-heading text-4xl md:text-6xl tracking-widest text-primary uppercase italic font-black">CONTROL ROOM</p>
+            <p className="font-heading text-4xl tracking-widest text-primary uppercase font-bold">CONTROL ROOM</p>
           </div>
         </div>
         
@@ -79,7 +79,7 @@ export default function ControlRoomPage() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
-                className={`font-heading text-xl uppercase italic font-black tracking-widest transition-all ${activeTab === tab ? 'text-primary border-b-2 border-primary pb-1' : 'text-white/20 hover:text-white'}`}
+                className={`font-heading text-sm uppercase font-bold tracking-widest transition-all ${activeTab === tab ? 'text-primary border-b-2 border-primary pb-1' : 'text-white/20 hover:text-white'}`}
               >
                 {tab}
               </button>
@@ -87,7 +87,7 @@ export default function ControlRoomPage() {
           </nav>
           <button 
             onClick={handleLogout}
-            className="flex items-center gap-4 text-white/40 hover:text-red-500 transition-colors font-heading text-xs tracking-widest uppercase font-bold"
+            className="flex items-center gap-4 text-white/40 hover:text-red-500 transition-colors font-heading text-[10px] tracking-widest uppercase font-bold"
           >
             Esci <LogOut className="w-4 h-4" />
           </button>
@@ -106,8 +106,8 @@ export default function ControlRoomPage() {
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-8">
                 <div className="space-y-1">
-                  <h2 className="font-heading text-4xl italic font-black text-primary">promo</h2>
-                  <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Gestione Banner Promozionale</p>
+                  <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Promozione</h2>
+                  <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Configura il banner di sconto</p>
                 </div>
                 <Switch 
                   active={config.promo.active} 
@@ -125,7 +125,8 @@ export default function ControlRoomPage() {
                       type="text" 
                       value={config.promo.code}
                       onChange={(e) => setConfig({ ...config, promo: { ...config.promo, code: e.target.value.toUpperCase() } })}
-                      className="w-full bg-transparent border-b-2 border-white/10 py-4 font-heading text-4xl uppercase italic font-black focus:border-primary outline-none transition-colors"
+                      className="w-full bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg text-white focus:border-primary outline-none transition-colors"
+                      placeholder="ES: MURGIA10"
                     />
                   </div>
                   <div className="space-y-2">
@@ -134,7 +135,7 @@ export default function ControlRoomPage() {
                       type="number" 
                       value={config.promo.discount}
                       onChange={(e) => setConfig({ ...config, promo: { ...config.promo, discount: parseInt(e.target.value) } })}
-                      className="w-full bg-transparent border-b-2 border-white/10 py-4 font-heading text-4xl italic font-black focus:border-primary outline-none transition-colors"
+                      className="w-full bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg text-white focus:border-primary outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -148,7 +149,7 @@ export default function ControlRoomPage() {
                     <div className="relative">
                       <button 
                         onClick={() => setShowPromoCalendar(!showPromoCalendar)}
-                        className="w-full flex items-center justify-between border-b-2 border-white/10 py-4 font-heading text-2xl italic font-black hover:border-primary transition-colors text-left"
+                        className="w-full flex items-center justify-between bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg hover:border-primary transition-colors text-left"
                       >
                         {config.promo.expiryDate}
                         <Calendar className={`w-5 h-5 ${showPromoCalendar ? 'text-primary' : 'text-white/20'}`} />
@@ -187,43 +188,49 @@ export default function ControlRoomPage() {
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-8">
                 <div className="space-y-1">
-                  <h2 className="font-heading text-4xl italic font-black text-primary">visit us</h2>
-                  <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Sincronizzazione Prossima Esperienza</p>
+                  <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Visit Us</h2>
+                  <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Pianificazione Prossima Visita</p>
                 </div>
                 <Switch 
-                  active={config.visit.active} 
-                  onChange={(val) => setConfig({ ...config, visit: { ...config.visit, active: val } })} 
+                  active={config.visits?.[0]?.active !== false} 
+                  onChange={(val) => {
+                    const newVisits = [...(config.visits || [])];
+                    if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                    newVisits[0].active = val;
+                    setConfig({ ...config, visits: newVisits });
+                  }} 
                 />
               </div>
 
               <div className="flex flex-col lg:flex-row gap-12 items-start">
                 <div className="flex-1 space-y-4">
                   <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold flex items-center gap-2">
-                    <Calendar className="w-3 h-3" /> Seleziona Giorno Esperienza
+                    <Calendar className="w-3 h-3" /> Seleziona Giorno Visita
                   </label>
                   
                   <DatePicker 
-                    value={config.visit.nextDate} 
+                    value={config.visits?.[0]?.date || "2024-05-18"} 
                     onChange={(date) => {
-                      const d = new Date(date);
-                      const monthName = MONTHS[d.getMonth()];
-                      setConfig({ 
-                        ...config, 
-                        visit: { 
-                          ...config.visit, 
-                          nextDate: date,
-                          displayMonth: monthName 
-                        } 
-                      });
+                      const newVisits = [...(config.visits || [])];
+                      if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                      newVisits[0].date = date;
+                      setConfig({ ...config, visits: newVisits });
                     }}
                   />
                 </div>
 
-                <div className="lg:w-80 p-8 bg-white/[0.02] space-y-4 self-stretch flex flex-col justify-center">
-                  <p className="font-heading text-xs tracking-widest text-white/40">anteprima:</p>
-                  <div className="flex items-end gap-4">
-                    <span className="font-heading text-6xl uppercase italic font-black text-primary leading-none">{config.visit.displayMonth}</span>
-                    <span className="font-heading text-2xl uppercase italic font-black text-white/20 mb-1">{config.visit.nextDate.split('-')[2]}</span>
+                <div className="lg:w-80 p-8 bg-white/[0.05] border border-white/10 space-y-4 self-stretch flex flex-col justify-center">
+                  <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Anteprima Live:</p>
+                  <div className="flex flex-col items-center">
+                    <span className="font-heading text-sm uppercase font-bold text-primary tracking-widest">
+                      {new Date(config.visits?.[0]?.date || "2024-05-18").toLocaleDateString('it-IT', { weekday: 'short' })}
+                    </span>
+                    <span className="font-heading text-7xl uppercase font-black text-white leading-none">
+                      {new Date(config.visits?.[0]?.date || "2024-05-18").getDate()}
+                    </span>
+                    <span className="font-heading text-lg uppercase font-bold text-white/40 tracking-[0.4em]">
+                      {new Date(config.visits?.[0]?.date || "2024-05-18").toLocaleDateString('it-IT', { month: 'short' })}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -237,9 +244,9 @@ export default function ControlRoomPage() {
         <button 
           onClick={handleSave}
           disabled={saving}
-          className="bg-primary text-noir flex items-center gap-6 px-12 py-6 font-heading text-2xl uppercase italic font-black shadow-[20px_20px_0px_0px_rgba(255,255,255,0.05)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all disabled:opacity-50"
+          className="bg-primary text-noir flex items-center gap-4 px-10 py-5 font-heading text-xl uppercase font-bold shadow-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
         >
-          {saving ? "SYNCING..." : "SALVA"} <Save className="w-6 h-6" />
+          {saving ? "SINCRONIZZAZIONE..." : "SALVA MODIFICHE"} <Save className="w-5 h-5" />
         </button>
       </footer>
     </div>
