@@ -54,6 +54,7 @@ export default function LoginPage() {
                 name="username"
                 type="text" 
                 required
+                suppressHydrationWarning={true}
                 className="w-full bg-transparent border-b-2 border-white/10 py-4 font-heading text-2xl text-white focus:border-primary outline-none transition-colors uppercase italic font-black"
                 placeholder="---"
               />
@@ -67,6 +68,7 @@ export default function LoginPage() {
                   name="password"
                   type={showPassword ? "text" : "password"} 
                   required
+                  suppressHydrationWarning={true}
                   className="w-full bg-transparent border-b-2 border-white/10 py-4 font-heading text-2xl text-white focus:border-primary outline-none transition-colors italic font-black pr-12"
                   placeholder="••••••••"
                 />
