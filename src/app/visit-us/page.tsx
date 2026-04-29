@@ -276,7 +276,7 @@ export default function VisitUsPage() {
         </div>
 
         {/* Right Column: Sticky Form Terminal (Hidden if Inactive) */}
-        {config?.visit?.active !== false && (
+        {visitActive !== false && (
           <SidebarScrollVisibility 
             isVisible={isSidebarVisible}
             hide={isFooterInView}
