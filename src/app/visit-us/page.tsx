@@ -52,13 +52,13 @@ export default function VisitUsPage() {
       {/* 1. Cinematic Background Layer */}
       <div className="fixed inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-noir/50 z-10" />
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           <motion.div
             key={activeStage.src}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="relative w-full h-full"
           >
             <motion.div 
