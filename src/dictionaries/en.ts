@@ -385,6 +385,7 @@ export const en = {
   success: {
     title: "Thank you for",
     subtitle: "Your order",
+    idLabel: "Order ID",
     summary: "Order Summary",
     retrieving: "Loading details...",
     quantity: "Quantity",
@@ -393,9 +394,9 @@ export const en = {
     total: "Total Order",
     customer: "Client",
     destination: "Destination",
-    pickup: "Laboratory Pickup",
     detailsUnavailable: "Order details unavailable.",
-    idLabel: "Order ID",
+    pickup: "Laboratory Pickup",
+    hours: "Hours: Mon-Sat: 09:00 - 13:00",
   },
   visitPage: {
     hero: {
