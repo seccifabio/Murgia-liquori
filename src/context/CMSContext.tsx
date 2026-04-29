@@ -14,6 +14,12 @@ type CMSConfig = {
     date: string;
     active: boolean;
   }>;
+  locations: Array<{
+    name: string;
+    city: string;
+    address: string;
+    map: string;
+  }>;
 };
 
 const CMSContext = createContext<{ 

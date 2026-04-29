@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { getCMSConfig, updateCMSConfig } from "@/actions/cms-actions";
-import { Save, LogOut, Calendar, Tag, Eye, EyeOff } from "lucide-react";
+import { Save, LogOut, Calendar, Tag, MapPin, Plus, Trash2, ExternalLink, Search } from "lucide-react";
 
 const MONTHS = [
   "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
@@ -15,7 +15,7 @@ export default function ControlRoomPage() {
   const [config, setConfig] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<"promo" | "visit">("promo");
+  const [activeTab, setActiveTab] = useState<"promo" | "visit" | "mappa">("promo");
   const [showPromoCalendar, setShowPromoCalendar] = useState(false);
   const router = useRouter();
 
@@ -75,7 +75,7 @@ export default function ControlRoomPage() {
         
         <div className="flex items-center gap-12">
           <nav className="flex gap-8">
-            {["promo", "visit"].map((tab) => (
+            {["promo", "visit", "mappa"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
@@ -178,7 +178,8 @@ export default function ControlRoomPage() {
                 </div>
               </div>
             </motion.section>
-          ) : (
+            </motion.section>
+          ) : activeTab === "visit" ? (
             <motion.section 
               key="visit"
               initial={{ opacity: 0, x: 20 }}
@@ -234,6 +235,16 @@ export default function ControlRoomPage() {
                   </div>
                 </div>
               </div>
+            </motion.section>
+          ) : (
+            <motion.section
+              key="mappa"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="space-y-12"
+            >
+              <LocationsManager config={config} setConfig={setConfig} />
             </motion.section>
           )}
         </AnimatePresence>
@@ -321,3 +332,136 @@ function DatePicker({ value, onChange }: { value: string, onChange: (date: strin
   );
 }
 
+
+function LocationsManager({ config, setConfig }: { config: any, setConfig: (c: any) => void }) {
+  const [search, setSearch] = useState("");
+  const locations = config.locations || [];
+  
+  const filtered = locations.filter((loc: any) => 
+    loc.name.toLowerCase().includes(search.toLowerCase()) || 
+    loc.city.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const addLocation = () => {
+    const newLoc = { name: "NUOVO PUNTO VENDITA", city: "CITTA", address: "VIA...", map: "" };
+    setConfig({ ...config, locations: [newLoc, ...locations] });
+  };
+
+  const updateLocation = (index: number, field: string, value: string) => {
+    const newLocations = [...locations];
+    newLocations[index] = { ...newLocations[index], [field]: value };
+    setConfig({ ...config, locations: newLocations });
+  };
+
+  const deleteLocation = (index: number) => {
+    if (confirm("Sei sicuro di voler eliminare questa location?")) {
+      const newLocations = locations.filter((_: any, i: number) => i !== index);
+      setConfig({ ...config, locations: newLocations });
+    }
+  };
+
+  return (
+    <div className="space-y-12 pb-32">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-8 border-b border-white/10 pb-8">
+        <div className="space-y-1">
+          <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Mappa Partner</h2>
+          <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Gestisci i punti vendita e i partner</p>
+        </div>
+        
+        <div className="flex items-center gap-4 w-full md:w-auto">
+          <div className="relative flex-1 md:w-64">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+            <input 
+              type="text" 
+              placeholder="CERCA..." 
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-white/5 border border-white/10 p-4 pl-12 font-heading text-xs tracking-widest uppercase focus:border-primary outline-none transition-colors"
+            />
+          </div>
+          <button 
+            onClick={addLocation}
+            className="bg-primary text-noir p-4 flex items-center gap-2 font-heading text-xs font-bold tracking-widest hover:scale-105 transition-transform"
+          >
+            <Plus className="w-4 h-4" /> AGGIUNGI
+          </button>
+        </div>
+      </div>
+
+      <div className="space-y-6">
+        {filtered.map((loc: any, idx: number) => {
+          // Find original index for updates
+          const originalIdx = locations.findIndex((l: any) => l === loc);
+          
+          return (
+            <motion.div 
+              layout
+              key={`loc-${originalIdx}`}
+              className="bg-white/[0.02] border border-white/10 p-6 md:p-8 space-y-6 group hover:border-white/20 transition-colors"
+            >
+              <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+                <div className="flex-1 space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Nome Locale</label>
+                      <input 
+                        type="text" 
+                        value={loc.name}
+                        onChange={(e) => updateLocation(originalIdx, "name", e.target.value.toUpperCase())}
+                        className="w-full bg-transparent border-b border-white/10 p-2 font-heading text-sm tracking-widest text-white focus:border-primary outline-none transition-colors uppercase"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Città</label>
+                      <input 
+                        type="text" 
+                        value={loc.city}
+                        onChange={(e) => updateLocation(originalIdx, "city", e.target.value)}
+                        className="w-full bg-transparent border-b border-white/10 p-2 font-heading text-sm tracking-widest text-white focus:border-primary outline-none transition-colors"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Indirizzo</label>
+                    <input 
+                      type="text" 
+                      value={loc.address}
+                      onChange={(e) => updateLocation(originalIdx, "address", e.target.value)}
+                      className="w-full bg-transparent border-b border-white/10 p-2 font-heading text-sm tracking-widest text-white focus:border-primary outline-none transition-colors"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Google Maps Link</label>
+                    <div className="flex items-center gap-4">
+                      <input 
+                        type="text" 
+                        value={loc.map}
+                        onChange={(e) => updateLocation(originalIdx, "map", e.target.value)}
+                        className="flex-1 bg-transparent border-b border-white/10 p-2 font-sans text-xs text-white/60 focus:border-primary outline-none transition-colors"
+                        placeholder="https://goo.gl/maps/..."
+                      />
+                      {loc.map && (
+                        <a href={loc.map} target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-primary transition-colors">
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex md:flex-col items-center justify-center gap-4 border-t md:border-t-0 md:border-l border-white/5 pt-6 md:pt-0 md:pl-8">
+                  <button 
+                    onClick={() => deleteLocation(originalIdx)}
+                    className="p-4 text-white/20 hover:text-red-500 hover:bg-red-500/10 transition-all rounded-full"
+                  >
+                    <Trash2 className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
