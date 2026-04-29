@@ -69,7 +69,7 @@ export async function authenticate(formData: FormData) {
   const username = formData.get("username");
   const password = formData.get("password");
 
-  if (username === "Sandrone" && password === "tipiacelaminchia") {
+  if (username?.toString().toLowerCase() === "sandrone" && password === "tipiacelaminchia") {
     // In a real app, set a secure cookie here. 
     // For this prototype, we'll return success.
     return { success: true };
