@@ -85,7 +85,7 @@ export const it = {
         guestsLabelPlural: "PERSONE",
         placeholderName: "ES. MARIO",
         placeholderLastName: "ES. ROSSI",
-        placeholderEmail: "ALCHIMISTA@MURGIA.IT",
+        placeholderEmail: "INSERISCI LA TUA EMAIL",
         submit: "Invia",
       },
       footer: "Le visite si svolgono presso la distilleria di Villacidro. Il prezzo include degustazione guidata."

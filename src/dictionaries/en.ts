@@ -85,7 +85,7 @@ export const en = {
         guestsLabelPlural: "GUESTS",
         placeholderName: "E.G. JOHN",
         placeholderLastName: "E.G. SMITH",
-        placeholderEmail: "INFO@MURGIA.IT",
+        placeholderEmail: "ADD YOUR EMAIL",
         submit: "Send",
       },
       footer: "Visits are conducted at the Murgia Liquori distillery. Price includes a guided tasting."
