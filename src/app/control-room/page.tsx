@@ -260,8 +260,8 @@ function DatePicker({ value, onChange }: { value: string, onChange: (date: strin
         <button onClick={nextMonth} className="p-2 hover:text-primary transition-colors italic font-black font-heading">{">"}</button>
       </div>
       <div className="grid grid-cols-7 text-center border-b border-white/10">
-        {["D", "L", "M", "M", "G", "V", "S"].map(d => (
-          <div key={d} className="p-2 text-[10px] font-bold text-white/40">{d}</div>
+        {["D", "L", "M", "M", "G", "V", "S"].map((d, i) => (
+          <div key={`${d}-${i}`} className="p-2 text-[10px] font-bold text-white/40">{d}</div>
         ))}
       </div>
       <div className="grid grid-cols-7">
