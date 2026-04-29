@@ -7,6 +7,7 @@ import { sendPartnerRequest } from "@/app/actions/partner";
 import { Loader2, CheckCircle2 } from "lucide-react";
 import { useTranslation } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
+import { useCMS } from "@/context/CMSContext";
 
 const STATIC_FALLBACK = [
   { name: "LA BOTTEGA DI TOMMY", city: "Alghero", address: "Via Gilbert Ferret, 76", map: "https://g.page/enoteca-la-bottega-di-tommy?share" },
