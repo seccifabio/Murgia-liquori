@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion";
 import { useTranslation } from "@/context/LanguageContext";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { 
   Users, 
@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import VisitSidebarContent from "@/components/visit/VisitSidebarContent";
 import { VISIT_MANIFEST } from "@/manifest/visit";
+import Footer from "@/components/Footer";
+import { useInView } from "framer-motion";
 
 /* Visit Us Ritual: A cinematic immersion into the Murgia Laboratory */
 /* Layout Refinement: Simplified Laboratory stats by removing redundant labels and elevating values to primary status */
@@ -35,6 +37,18 @@ export default function VisitUsPage() {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
+  });
+
+  const footerRef = useRef<HTMLDivElement>(null);
+  const isFooterInView = useInView(footerRef, { amount: 0.1 });
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+
+  useEffect(() => {
+    setIsSidebarVisible(scrollYProgress.get() > 0.15);
+  }, [scrollYProgress]);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setIsSidebarVisible(latest > 0.15);
   });
 
   // Cinematic Background Scaling & Filters
@@ -116,7 +130,7 @@ export default function VisitUsPage() {
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-                className="flex flex-col items-end text-right relative pr-4 lg:pr-12"
+                className="flex flex-col items-center md:items-end text-center md:text-right relative px-4 lg:pr-12"
               >
                 <div className="relative z-10 space-y-2 max-w-4xl group">
                   <div className="space-y-0">
@@ -124,7 +138,7 @@ export default function VisitUsPage() {
                     <h2 className="font-heading text-[12rem] md:text-[18rem] lg:text-[22rem] uppercase tracking-tighter leading-[0.6] italic font-black text-white mix-blend-overlay lg:mix-normal">{manifestData.displayDate.split(' ')[0]}</h2>
                     <span className="font-heading text-primary text-5xl md:text-7xl lg:text-9xl uppercase tracking-tighter leading-[0.8] italic font-black block">{manifestData.displayDate.split(' ').slice(1).join(' ')}</span>
                   </div>
-                  <div className="pt-8 border-t border-primary/20 w-full text-right">
+                  <div className="pt-8 border-t border-primary/20 w-full text-center md:text-right">
                     <p className="font-heading text-primary text-[10px] md:text-xs tracking-[0.6em] uppercase italic">{language === "it" ? "Prossima Esperienza" : "Next Experience"}</p>
                   </div>
                 </div>
@@ -217,34 +231,36 @@ export default function VisitUsPage() {
         </div>
 
         {/* Right Column: Sticky Form Terminal */}
-        <SidebarScrollVisibility>
+        <SidebarScrollVisibility 
+          isVisible={isSidebarVisible}
+          hide={isFooterInView}
+        >
           <div className="w-full h-full relative overflow-hidden border-l border-white/5 shadow-2xl">
              <VisitSidebarContent showCloseButton={false} />
           </div>
         </SidebarScrollVisibility>
 
       </div>
+
+      <div ref={footerRef}>
+        <Footer />
+      </div>
     </div>
   );
 }
 
-function SidebarScrollVisibility({ children }: { children: React.ReactNode }) {
-  const { scrollY } = useScroll();
-  const [isVisible, setIsVisible] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsVisible(latest > 100);
-  });
+function SidebarScrollVisibility({ children, isVisible, hide }: { children: React.ReactNode, isVisible: boolean, hide: boolean }) {
+  const shouldShow = isVisible && !hide;
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 100 }}
+      initial={false}
       animate={{ 
-        opacity: isVisible ? 1 : 0,
-        x: isVisible ? 0 : 100,
-        pointerEvents: isVisible ? "auto" : "none"
+        opacity: shouldShow ? 1 : 0,
+        x: shouldShow ? 0 : 50,
+        pointerEvents: shouldShow ? "auto" : "none"
       }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="w-full md:w-[550px] bg-[#050505] md:h-screen md:sticky md:top-0 z-[10000]"
     >
       {children}
