@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Lock, User } from "lucide-react";
 import { authenticate } from "@/actions/cms-actions";
 
