@@ -59,6 +59,7 @@ import PromoBanner from "@/components/PromoBanner";
 import VisitBanner from "@/components/VisitBanner";
 import { CartProvider } from "@/context/CartContext";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { CMSProvider } from "@/context/CMSContext";
 import BasketDrawer from "@/components/BasketDrawer";
 import VisitDrawer from "@/components/VisitDrawer";
 import PartnerDrawer from "@/components/PartnerDrawer";
@@ -83,20 +84,22 @@ export default function RootLayout({
         <div className="bg-texture fixed inset-0 z-50 mix-blend-overlay" />
         
         <LanguageProvider>
-          <CartProvider>
-            <PromoBanner />
-            <VisitBanner />
-            <Navbar />
-            <BasketDrawer />
-            <VisitDrawer />
-            <PartnerDrawer />
-            <PreLaunchDrawer />
-            <CartToast />
-            <PartnerToast />
-            <AgeVerification />
-            <CookieBanner />
-            {children}
-          </CartProvider>
+          <CMSProvider>
+            <CartProvider>
+              <PromoBanner />
+              <VisitBanner />
+              <Navbar />
+              <BasketDrawer />
+              <VisitDrawer />
+              <PartnerDrawer />
+              <PreLaunchDrawer />
+              <CartToast />
+              <PartnerToast />
+              <AgeVerification />
+              <CookieBanner />
+              {children}
+            </CartProvider>
+          </CMSProvider>
         </LanguageProvider>
       </body>
     </html>

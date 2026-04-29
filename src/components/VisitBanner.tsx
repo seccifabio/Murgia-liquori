@@ -5,12 +5,19 @@ import { ArrowRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 import { VISIT_MANIFEST } from "@/manifest/visit";
 
 export default function VisitBanner() {
   const { setIsVisitOpen, isMenuOpen, isBagOpen, isVisitOpen, hasInteractedWithPromo } = useCart();
   const pathname = usePathname();
   const { language } = useTranslation();
+  const { config } = useCMS();
+
+  // Dynamic Configuration from Control Room
+  const visitActive = config?.visit?.active ?? VISIT_MANIFEST.active;
+  const visitDateString = config?.visit?.nextDate || VISIT_MANIFEST.date;
+  const visitMonth = config?.visit?.displayMonth || VISIT_MANIFEST[language].displayDate;
 
   const manifest = VISIT_MANIFEST[language];
 
@@ -24,9 +31,9 @@ export default function VisitBanner() {
     pathname === "/contatti";
 
   // Temporal Gate: Hide if today is the visit date or has passed, or if inactive
-  const visitDate = new Date(`${VISIT_MANIFEST.date}T00:00:00`);
+  const visitDate = new Date(`${visitDateString}T00:00:00`);
   const isExpired = new Date().getTime() >= visitDate.getTime();
-  const isInactive = !VISIT_MANIFEST.active;
+  const isInactive = !visitActive;
 
   if (!isEligiblePage || isMenuOpen || isBagOpen || isVisitOpen || isExpired || isInactive) return null;
 
@@ -51,7 +58,7 @@ export default function VisitBanner() {
           {/* Combined Manifest: Date + Price + CTA */}
           <div className="flex items-center gap-4 md:gap-8">
             <span className="font-heading text-sm tracking-[0.2em] uppercase text-primary font-bold">
-              {manifest.displayDate}
+              {visitMonth}
             </span>
             
             <div className="h-4 w-px bg-white/10" />

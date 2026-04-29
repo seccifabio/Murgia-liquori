@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "framer-motion";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { 
@@ -26,9 +27,23 @@ const NARRATIVE_STAGES = [
 ];
 
 export default function VisitUsPage() {
-  const { t, language } = useTranslation();
-  // @ts-ignore
-  const manifestData = VISIT_MANIFEST[language as "it" | "en"] || VISIT_MANIFEST.it;
+  const { language } = useTranslation();
+  const { config } = useCMS();
+  const t = VISIT_MANIFEST[language as "it" | "en"] || VISIT_MANIFEST.it;
+  
+  // Dynamic Configuration from Control Room
+  const visitDate = config?.visit?.nextDate || VISIT_MANIFEST.it.displayDate;
+  const displayMonth = config?.visit?.displayMonth || t.displayDate;
+
+  // Use the manifest as a baseline but override with CMS date
+  const manifestData = {
+    ...t,
+    displayDate: displayMonth,
+    displayFullDate: config?.visit?.nextDate 
+      ? new Date(config.visit.nextDate).toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+      : t.displayFullDate
+  };
+
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Narrative State Tracking

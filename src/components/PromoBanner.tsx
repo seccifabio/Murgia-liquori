@@ -7,13 +7,19 @@ import { useCart } from "@/context/CartContext";
 import { usePathname } from "next/navigation";
 import { MARKETING_MANIFEST } from "@/manifest/marketing";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 
 export default function PromoBanner() {
   const { language } = useTranslation();
+  const { config } = useCMS();
   const [copied, setCopied] = useState(false);
   const { setAppliedCode, isBannerVisible, setIsBannerVisible, setHasInteractedWithPromo, isMenuOpen, isBagOpen, isVisitOpen } = useCart();
   const pathname = usePathname();
-  const promoCode = MARKETING_MANIFEST.promo.code;
+  
+  // Dynamic Configuration from Control Room
+  const promoActive = config?.promo?.active ?? MARKETING_MANIFEST.promo.active;
+  const promoCode = config?.promo?.code || MARKETING_MANIFEST.promo.code;
+  const promoDiscount = config?.promo?.discount !== undefined ? config?.promo?.discount / 100 : MARKETING_MANIFEST.promo.discount;
   
   // Resolve localized content from manifest
   const localizedPromo = (MARKETING_MANIFEST.promo as any)[language] || MARKETING_MANIFEST.promo.it;
@@ -21,8 +27,8 @@ export default function PromoBanner() {
   // Visibility Manifest: Only on Home, Collection and Product pages
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/") || pathname === "/la-collezione";
 
-  // Hide on restricted pages or when menu/takeovers are manifest
-  if (!isEligiblePage || isMenuOpen || isBagOpen || isVisitOpen) return null;
+  // Hide based on CMS toggle, restricted pages, or active takeovers
+  if (!promoActive || !isEligiblePage || isMenuOpen || isBagOpen || isVisitOpen) return null;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(promoCode);

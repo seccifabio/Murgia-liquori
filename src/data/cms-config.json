@@ -1,0 +1,13 @@
+{
+  "promo": {
+    "active": true,
+    "code": "MURGIA1882",
+    "discount": 10,
+    "expiryDate": "2026-05-31"
+  },
+  "visit": {
+    "active": true,
+    "nextDate": "2026-05-04",
+    "displayMonth": "Maggio"
+  }
+}
