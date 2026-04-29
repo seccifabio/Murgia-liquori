@@ -58,7 +58,7 @@ export default function VisitBanner() {
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12 text-white">
           {/* Core Proposal */}
           <span className="font-heading text-[11px] md:text-sm lg:text-base tracking-[0.2em] uppercase font-bold text-center">
-            {manifest.title} - <span className="text-white/60 hidden md:inline">{manifest.subtitle}</span>
+            {manifest.title} <span className="text-white/60 hidden md:inline">{manifest.subtitle}</span>
           </span>
 
           <div className="h-4 w-px bg-white/10 hidden md:block" />

@@ -15,7 +15,7 @@ export default function ControlRoomPage() {
   const [config, setConfig] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<"promo" | "visit" | "mappa">("promo");
+  const [activeTab, setActiveTab] = useState<"promo" | "visit" | "find-us">("promo");
   const [showPromoCalendar, setShowPromoCalendar] = useState(false);
   const router = useRouter();
 
@@ -61,7 +61,7 @@ export default function ControlRoomPage() {
   return (
     <div 
       className="min-h-screen bg-noir text-white px-6 md:px-12 selection:bg-primary selection:text-noir"
-      style={{ paddingTop: '250px' }}
+      style={{ paddingTop: '210px' }}
     >
       
       {/* Header Ritual */}
@@ -75,13 +75,13 @@ export default function ControlRoomPage() {
         
         <div className="flex items-center gap-12">
           <nav className="flex gap-8">
-            {["promo", "visit", "mappa"].map((tab) => (
+            {["promo", "visit", "find-us"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
                 className={`font-heading text-sm uppercase font-bold tracking-widest transition-all ${activeTab === tab ? 'text-primary border-b-2 border-primary pb-1' : 'text-white/20 hover:text-white'}`}
               >
-                {tab}
+                {tab === "find-us" ? "Find Us" : tab}
               </button>
             ))}
           </nav>
@@ -237,7 +237,7 @@ export default function ControlRoomPage() {
             </motion.section>
           ) : (
             <motion.section
-              key="mappa"
+              key="find-us"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -363,7 +363,7 @@ function LocationsManager({ config, setConfig }: { config: any, setConfig: (c: a
     <div className="space-y-12 pb-32">
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 border-b border-white/10 pb-8">
         <div className="space-y-1">
-          <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Mappa Partner</h2>
+          <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Find Us</h2>
           <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Gestisci i punti vendita e i partner</p>
         </div>
         
