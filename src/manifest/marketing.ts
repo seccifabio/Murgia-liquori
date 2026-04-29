@@ -6,6 +6,7 @@
 export const MARKETING_MANIFEST = {
   // Active promotion parameters
   promo: {
+    active: true,
     code: "MURGIA1882",
     discount: 0.1, // 10%
     
