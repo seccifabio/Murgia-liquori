@@ -13,15 +13,15 @@ export const en = {
     preparing: {
       title: "Laboratory Distillation",
       metric: "MURGIA LABORATORY",
-      description: "Every drop is distilled and perfected in our Murgia Liquori laboratory, following the traditional rituals of 1882."
+      description: "Every drop is distilled and perfected in our Murgia Liquori laboratory, following the traditional legacy of 1882."
     },
     sealing: {
       title: "Hand-Applied Seal",
       metric: "Guarantee Seal",
-      description: "Authenticity is manually sealed. A ritual of certification that guarantees the integrity of every single Murgia artifact."
+      description: "Authenticity is manually sealed. A process of certification that guarantees the integrity of every single Murgia artifact."
     },
     dispatch: {
-      title: "ALCHEMICAL JOURNEY",
+      title: "HERITAGE JOURNEY",
       metric: "TRACKED SHIPPING",
       description: "The collection leaves the laboratory in a protective vessel, ready to complete its journey to your archival collection."
     }
@@ -94,7 +94,7 @@ export const en = {
     experience: "The Murgia Experience",
     title: "Art of",
     titleAccent: "Mixing.",
-    mask: "SPIRITS & RITUALS",
+    mask: "SPIRITS & RECIPES",
     tabs: {
       cocktails: "Cocktails",
       recipes: "Recipes",
@@ -106,7 +106,7 @@ export const en = {
     items: {
       spritz: {
         name: "VILLACIDRO SPRITZ",
-        tagline: "GOLDEN HOUR RITUAL",
+        tagline: "GOLDEN HOUR EXPERIENCE",
         description: "Murgia Giallo, Prosecco, Soda, Orange. The Sardinian classic.",
         ingredients: ["5cl Murgia Liquori Giallo", "10cl San Pellegrino Cocktail", "Fresh Orange Juice", "A touch of Sardinian Honey", "Seltz/Soda"],
         instructions: ["Chill a large wine glass thoroughly.", "Pour Murgia Giallo over crystal ice.", "Add the aperitivo and soda.", "Stir gently to integrate.", "Garnish with fresh orange zest."]
@@ -143,7 +143,7 @@ export const en = {
     recipes: {
       tiramisu: {
         name: "TIRAMISÙ REDUX",
-        tagline: "DESSERT RITUAL",
+        tagline: "DESSERT EXPERIENCE",
         description: "Coffee essence meets the gold of Murgia Liquori in a velvet cream.",
         ingredients: ["500g Mascarpone", "5 Fresh Eggs", "5 Spoons of Sugar", "Whipped Cream", "1 Glass of Murgia Giallo", "Ladyfingers and Bitter Coffee"],
         instructions: ["Whip egg whites until stiff peaks form.", "Whisk yolks with sugar until creamy.", "Gently fold Murgia Giallo into the yolk cream.", "Incorporate egg whites with slow, vertical motions.", "Dip ladyfingers in coffee and layer with the golden cream.", "Dust with bitter cocoa and let chill in the archives."]
@@ -157,7 +157,7 @@ export const en = {
       },
       arance: {
         name: "CITRUS ESSENCE",
-        tagline: "CITRUS RITUAL",
+        tagline: "CITRUS EXPERIENCE",
         description: "Sardinian oranges sliced and submerged in pure Murgia Giallo.",
         ingredients: ["4 Sardinian Oranges", "10cl Murgia Liquori Giallo", "Freshly squeezed orange juice"],
         instructions: ["Peel oranges and slice into 1cm discs.", "Arrange in a ceramic or glass vessel.", "Drench with Murgia Giallo and fresh juice.", "Let macerate in the archives for at least 2 hours.", "Serve chilled as a regenerative finale."]
@@ -180,7 +180,7 @@ export const en = {
       addToCart: "ADD TO BASKET",
       selectFormat: "Select Volume",
       quantity: "Quantity",
-      ritual: "The Rite",
+      ritual: "Preparation",
       specs: "Specifics",
       gradazione: "Alchemical Strength",
       formato: "Volume",
@@ -196,7 +196,7 @@ export const en = {
     giallo: {
       name: "Villacidro Giallo",
       heroTagline: "The Yellow Gold of Sardinia.",
-      ritualDescription: "We would drink the elisir de Su Meri Mannu, a ritual that unites generations. Serve at 14–20°C in a wide-mouthed glass to exalt its soul.",
+      ritualDescription: "We would drink the elisir de Su Meri Mannu, a heritage that unites generations. Serve at 14–20°C in a wide-mouthed glass to exalt its soul.",
       ingredients: [
         { name: "Saffron", detail: "Gold of San Gavino", desc: "The beating heart of Giallo. Harvested at dawn to preserve its purest color and aroma." },
         { name: "Fennel", detail: "Fresh and Clear", desc: "The top note that refreshes the palate, balancing the warmth of the secret spices." },
@@ -206,7 +206,7 @@ export const en = {
     bianco: {
       name: "Villacidro Bianco",
       heroTagline: "Dry and fresh.",
-      ritualDescription: "An ancestral ritual of freshness. Bianco is the pure soul of our distillery, where medicinal herbs blend into a crystalline essence.",
+      ritualDescription: "An ancestral experience of freshness. Bianco is the pure soul of our distillery, where medicinal herbs blend into a crystalline essence.",
       ingredients: [
         { name: "Anise", detail: "Sardinian Breath", desc: "Balsamic freshness that opens the senses." },
         { name: "12 botanicals", detail: "another secret.", desc: "Blended to create contrasts." },
@@ -292,7 +292,7 @@ export const en = {
   },
   storia: {
     hero: {
-      label: "The Start of the Ritual",
+      label: "The Start of the Heritage",
       title: "The Heritage",
       company: "Murgia."
     },
@@ -324,10 +324,10 @@ export const en = {
     subtitleAccent: "Relationships",
     description: "Contact our laboratory for information on our archetypes, collaborations, or visits.",
     info: {
-      location: "Heart of the Ritual",
+      location: "Heart of the Laboratory",
       address: "Via Parrocchia 29, 09039 Villacidro (SU)",
       email: "Email Terminal",
-      phone: "Phone Ritual",
+      phone: "Phone Support",
       whatsapp: "Message us on WhatsApp",
       opening: "Opening Hours",
       hours: "Mon-Sat: 09:00 - 13:00"
@@ -335,7 +335,7 @@ export const en = {
   },
   launchBanner: {
     title: "AMARO MURGIA",
-    subtitle: "The Ritual Returns.",
+    subtitle: "The Legacy Returns.",
     description: "A new artisanal product forged in the fires of 1882 heritage. Coming soon to the collection.",
     cta: "Secure Pre-Launch",
     vaultTitle: "SECURE PRE-LAUNCH",
@@ -353,7 +353,7 @@ export const en = {
     yes: "Yes, I am of age",
     no: "Not yet",
     denied: {
-      title: "A RITUAL THAT REQUIRES TIME",
+      title: "A HERITAGE THAT REQUIRES TIME",
       message: "The secret of Villacidro is an essence that knows how to wait. Keep exploring the world, come back when you've seen more suns.",
       cta: "Discover our history"
     }

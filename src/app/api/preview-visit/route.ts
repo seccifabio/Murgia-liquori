@@ -12,7 +12,7 @@ export async function GET() {
       <p><strong>Telefono:</strong> +39 333 1234567</p>
       
       <div style="margin-top: 30px; background: #f9f9f9; padding: 15px; border-left: 4px solid #000;">
-        <p>Questa richiesta è stata inviata tramite il rituale "Visit Us" del sito Murgia.</p>
+        <p>Questa richiesta è stata inviata tramite la sezione "Visit Us" del sito Murgia.</p>
       </div>
       
       <p style="font-size: 10px; color: #999; margin-top: 40px;">

@@ -73,7 +73,7 @@ export const it = {
     drawer: {
       title: "Pianifica la tua visita",
       successTitle: "Richiesta Inviata",
-      successText: "La richiesta è stata inviata. Ti contatteremo a breve per confermare il tuo posto nel rituale.",
+      successText: "La richiesta è stata inviata. Ti contatteremo a breve per confermare il tuo posto in distilleria.",
       form: {
         firstName: "Nome",
         lastName: "Cognome",
@@ -216,7 +216,7 @@ export const it = {
       addToCart: "Aggiungi al basket",
       selectFormat: "Seleziona Formato",
       quantity: "Quantità",
-      ritual: "Il Rito",
+      ritual: "Preparazione",
       specs: "Specifiche",
       gradazione: "Gradazione",
       formato: "Formato",
@@ -232,7 +232,7 @@ export const it = {
     giallo: {
       name: "Villacidro Giallo",
       heroTagline: "L'oro Giallo di Sardegna",
-      ritualDescription: "Si beveva l'elisir de Su Meri Mannu, un rito che unisce generazioni. Servire a 14–20°C in bicchiere a bocca larga per esaltarne l’anima.",
+      ritualDescription: "Si beveva l'elisir de Su Meri Mannu, un'arte che unisce generazioni. Servire a 14–20°C in bicchiere a bocca larga per esaltarne l’anima.",
       ingredients: [
         { name: "Zafferano", detail: "Oro di San Gavino", desc: "Il cuore del giallo: delicato, essenziale, puro." },
         { name: "Finocchio", detail: "Fresco e chiaro", desc: "La nota fresca che bilancia le spezie segrete." },

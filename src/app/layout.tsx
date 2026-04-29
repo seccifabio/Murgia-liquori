@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
   description: "Descend into the alchemical legacy of Murgia Liquori. Artisanal Sardinian essences forged since 1882.",
   openGraph: {
-    title: "Murgia Liquori | Alchimia Liquida dal 1882",
+    title: "Murgia Liquori | L'oro Giallo di Sardegna",
     description: "Dall'antica distilleria Murgia, una collezione di essenze artigianali che racchiudono l'anima della Sardegna.",
     url: process.env.NEXT_PUBLIC_BASE_URL || "https://murgialiquori.it",
     siteName: "Murgia Liquori",
