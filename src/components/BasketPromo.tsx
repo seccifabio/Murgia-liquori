@@ -105,7 +105,7 @@ export default function BasketPromo({
       )}
 
       <div className="flex items-center justify-between text-white pt-2">
-        <span className="font-heading text-base tracking-widest uppercase">Trasporto</span>
+        <span className="font-heading text-base tracking-widest uppercase">{t.bag.shipping}</span>
         <span className="font-heading text-[10px] tracking-[0.2em] uppercase text-white/60">CALCULATED AT CHECKOUT</span>
       </div>
     </div>

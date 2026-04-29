@@ -116,7 +116,7 @@ export async function createCheckoutSession(
               amount: 0,
               currency: 'eur',
             },
-            display_name: 'Trasporto Heritage (Gratuito)',
+            display_name: locale === 'en' ? 'Heritage Shipment (Free)' : 'Trasporto Heritage (Gratuito)',
             delivery_estimate: {
               minimum: { unit: 'business_day', value: 3 },
               maximum: { unit: 'business_day', value: 5 },
@@ -136,6 +136,7 @@ export async function createCheckoutSession(
         invoice_company: invoiceInfo?.companyName || "n/a",
         invoice_vat: invoiceInfo?.vat || "n/a",
         invoice_sdi_pec: invoiceInfo?.sdi || "n/a",
+        lang: locale,
       },
       locale: locale as any,
     };

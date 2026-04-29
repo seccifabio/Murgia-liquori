@@ -18,7 +18,7 @@ export const MARKETING_MANIFEST = {
     en: {
       description: "AN EXCLUSIVE OFFER AWAITS",
       fullDescription: "CLAIM 10% OFF YOUR COLLECTION",
-      cta: "CLICK TO COPY",
+      cta: "COPY",
       successMsg: "VOUCHER SECURED!"
     }
   },
@@ -54,7 +54,7 @@ export const MARKETING_MANIFEST = {
       shippingDest: "Destination",
       crossTitle: "Beyond <br/> <span style=\"font-style:italic; opacity:0.75;\">Liquor</span>",
       crossText: "Discover our selection of artisanal panettone, typical sweets, and bespoke creations forged in the heart of Villacidro.",
-      crossCta: "Explore the Rituals",
+      crossCta: "Explore more",
       supportText: "Need Alchemical Support?",
       contactText: "Contact us at",
       footerNote: "Villacidro Liquori &copy; 2026 — Villacidro, Sardinia"

@@ -71,7 +71,7 @@ export const it = {
       cta: "Prenota",
     },
     drawer: {
-      title: "Pianifica il tuo Rituale",
+      title: "Pianifica la tua visita",
       successTitle: "Richiesta Inviata",
       successText: "La richiesta è stata inviata. Ti contatteremo a breve per confermare il tuo posto nel rituale.",
       form: {
@@ -85,7 +85,7 @@ export const it = {
         placeholderName: "ES. MARIO",
         placeholderLastName: "ES. ROSSI",
         placeholderEmail: "ALCHIMISTA@MURGIA.IT",
-        submit: "Pianifica Rituale",
+        submit: "Invia",
       },
       footer: "Le visite si svolgono presso la distilleria di Villacidro. Il prezzo include degustazione guidata e omaggio alchemico."
     }
@@ -277,6 +277,7 @@ export const it = {
     disclaimer: "Tasse e spedizione calcolate al checkout.",
     freeShipping: "Spedizione gratuita in tutta Italia.",
     discountLabel: "SCONTO",
+    shipping: "Trasporto",
   },
   footer: {
     brandText: "Segreti da oltre 140 anni.",

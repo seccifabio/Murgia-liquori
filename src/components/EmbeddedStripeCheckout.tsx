@@ -139,10 +139,6 @@ export default function EmbeddedStripeCheckout({ items, appliedCode, locale, onC
 
             {/* Invoicing Ritual */}
             <div className="space-y-6">
-              <div className="flex items-center gap-4 border-b border-white/10 pb-4">
-                <ReceiptText className="w-5 h-5 opacity-60" />
-                <h4 className="font-heading text-sm uppercase tracking-widest text-white">{checkoutT.invoice.title}</h4>
-              </div>
 
               <label className="flex items-center gap-4 cursor-pointer group">
                 <div className={`w-6 h-6 border flex items-center justify-center transition-all ${requestInvoice ? "bg-primary border-primary" : "border-white/20 group-hover:border-white/40"}`}>

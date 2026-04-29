@@ -30,8 +30,8 @@ export const en = {
     links: {
       story: "The Heritage",
       collection: "The Collection",
-      locations: "Purchase Terminals",
-      contacts: "Contact",
+      locations: "Find us",
+      contacts: "contact us",
     },
     social: {
       instagram: "Instagram",
@@ -40,10 +40,10 @@ export const en = {
     }
   },
   hero: {
-    title: "Liquid Alchemy since",
-    subtitle: "1882.",
-    description: "Sardinian alchemy meets the avant-garde. Guarding the secrets of Villacidro since 1882.",
-    scroll: "Begin the Ritual",
+    title: "The secret",
+    subtitle: "since 1882.",
+    description: "",
+    scroll: "Discover its true essence.",
     legacy_hud: "Gennaro Murgia Heritage",
     craft_hud: "Sardinian Craft",
     heritage: "The Heritage",
@@ -51,8 +51,8 @@ export const en = {
   },
   origins: {
     title: "Origins",
-    subtitle: "The Art of",
-    subtitleAccent: "Distillation",
+    subtitle: "Liqueur",
+    subtitleAccent: "craft",
     description: "Since 1882, we transform the fruits of Sardinian soil into immortal essences.",
     heritage: {
       title: "Murgia Heritage",
@@ -71,7 +71,7 @@ export const en = {
       cta: "Book",
     },
     drawer: {
-      title: "Book your Ritual",
+      title: "Arrange your visit.",
       successTitle: "Ritual Secured",
       successText: "The request has been sent. We will contact you shortly to confirm your place in the legacy.",
       form: {
@@ -85,7 +85,7 @@ export const en = {
         placeholderName: "E.G. JOHN",
         placeholderLastName: "E.G. SMITH",
         placeholderEmail: "INFO@MURGIA.IT",
-        submit: "Secure Ritual",
+        submit: "Send",
       },
       footer: "Visits are conducted at the Murgia Liquori distillery. Price includes a guided tasting and a special gift."
     }
@@ -100,8 +100,8 @@ export const en = {
       recipes: "Recipes",
     },
     modal: {
-      ingredients: "Elements",
-      ritual: "The Ritual",
+      ingredients: "Ingredients",
+      ritual: "Preparation",
     },
     items: {
       spritz: {
@@ -188,14 +188,14 @@ export const en = {
       formula: "Formula",
       secret: "Secret (1882)",
       discover: "Discover",
-      ascend: "Ascend",
+      ascend: "Back",
       otherProducts: "Other Products",
       limitedUnits: "LAST {count} BOTTLES",
       soldOut: "SOLD OUT"
     },
     giallo: {
       name: "Villacidro Giallo",
-      heroTagline: "The Essence of Saffron",
+      heroTagline: "The Yellow Gold of Sardinia.",
       ritualDescription: "We would drink the elisir de Su Meri Mannu, a ritual that unites generations. Serve at 14–20°C in a wide-mouthed glass to exalt its soul.",
       ingredients: [
         { name: "Saffron", detail: "Gold of San Gavino", desc: "The beating heart of Giallo. Harvested at dawn to preserve its purest color and aroma." },
@@ -205,28 +205,28 @@ export const en = {
     },
     bianco: {
       name: "Villacidro Bianco",
-      heroTagline: "The Botanical Essence of Sardinia",
+      heroTagline: "Dry and fresh.",
       ritualDescription: "An ancestral ritual of freshness. Bianco is the pure soul of our distillery, where medicinal herbs blend into a crystalline essence.",
       ingredients: [
-        { name: "Mint", detail: "Sardinian Breath", desc: "Wild freshness that opens the senses." },
-        { name: "Orange", detail: "Alchemical Zest", desc: "Citrus notes for a brilliant finish." },
-        { name: "Eucalyptus", detail: "Medicinal Heart", desc: "The essence of the forests of Murgia Liquori." }
+        { name: "Anise", detail: "Sardinian Breath", desc: "Balsamic freshness that opens the senses." },
+        { name: "12 botanicals", detail: "another secret.", desc: "Blended to create contrasts." },
+        { name: "Dry", detail: "low sugar.", desc: "A dry and fresh heart, a contrast that can only be appreciated by tasting." }
       ]
     },
     sbagliata: {
       name: "La Sbagliata",
-      heroTagline: "The Nocturnal Ritual",
-      ritualDescription: "A bold spirit born from a perfect error. The spirit that challenges tradition with elegance.",
+      heroTagline: "The collector’s mistake.",
+      ritualDescription: "An error that made us jump and change perspective. Only 200 specimens, the classic taste of Villacidro Giallo.",
       ingredients: [
-        { name: "Curaçao", detail: "Bitter Essence", desc: "The complexity of bitter orange." },
-        { name: "Gentian", detail: "Deep Root", desc: "The ancestral bittering agent that purifies the palate." },
-        { name: "Saffron", detail: "Murgia Touch", desc: "The gold that signatures every creation." }
+        { name: "Villacidro Giallo", detail: "Limited Edition.", desc: "A limited version of 200 bottles." },
+        { name: "200 unique bottles", detail: "an error.", desc: "From a label printing error, we created a collector's item." },
+        { name: "Shellac", detail: "the emblem.", desc: "Sealed with shellac to ensure you keep it safe." }
       ]
     }
   },
   locations: {
-    title: "Purchase",
-    titleAccent: "Terminals",
+    title: "Find",
+    titleAccent: "Us",
     selectCity: "Select Domain",
     viewMap: "View Map",
     partner: {
@@ -234,7 +234,7 @@ export const en = {
       title: "Become a",
       titleAccent: "Murgia Partner",
       description: "Infuse your venue with the authenticity of Murgia Liquori. Join our circle of distribution and unlock exclusive professional advantages.",
-      cta: "APPLY",
+      cta: "Get in touch",
       back: "Back to list",
       formTitle: "Join the Murgia Liquori Network",
       successTitle: "Request Received",
@@ -249,7 +249,7 @@ export const en = {
         placeholderName: "JOHN SMITH",
         placeholderCity: "LONDON / NEW YORK",
         placeholderMessage: "DESCRIBE YOUR VISION...",
-        submit: "Transmit Request",
+        submit: "get in touch",
         types: {
           bar: "Bar",
           pub: "Pub",
@@ -263,7 +263,7 @@ export const en = {
   bag: {
     title: "Your Basket",
     empty: "Your basket is empty",
-    added: "ESSENCE ADDED",
+    added: "PRODUCT ADDED",
     expanded: "Your collection expands",
     view: "VIEW BASKET",
     shop: "Discover the collection",
@@ -277,13 +277,14 @@ export const en = {
     disclaimer: "Taxes and shipping calculated at checkout.",
     freeShipping: "Free shipping throughout Italy.",
     discountLabel: "DISCOUNT",
+    shipping: "Shipment",
   },
   footer: {
-    brandText: "Alchemy and Secrets since 1882.",
+    brandText: "The secret since 1882.",
     contacts: "Support",
-    social: "Ascend",
-    sede: "Heart of the Rite",
-    backToTop: "Ascend",
+    social: "Socials",
+    sede: "Location",
+    backToTop: "Back to Top",
     privacy: "Privacy Policy",
     terms: "Terms of Service",
     cookies: "Cookie Policy",
@@ -318,7 +319,7 @@ export const en = {
     archive: "Murgia Archives"
   },
   contacts: {
-    title: "Connect",
+    title: "contact us",
     subtitle: "Distillation of",
     subtitleAccent: "Relationships",
     description: "Contact our laboratory for information on our archetypes, collaborations, or visits.",
@@ -365,13 +366,13 @@ export const en = {
       pickupInfo: "Via Parrocchia 29, 09039 Villacidro (SU) | Mon-Sat: 09:00 - 13:00",
     },
     invoice: {
-      title: "Invoicing Manifesto",
+      title: "request invoice",
       checkbox: "Request an invoice",
       companyName: "Company Name",
       vat: "VAT / Tax ID",
       sdi: "SDI Code / PEC Email",
     },
-    proceed: "Proceed to Manifestation",
+    proceed: "Proceed to Payment",
   },
   cookie: {
     title: "Privacy Respect",
@@ -382,18 +383,18 @@ export const en = {
   },
   success: {
     title: "Thank you for",
-    subtitle: "Your Manifest",
-    idLabel: "Manifest ID",
-    summary: "Manifest Summary",
-    retrieving: "Ritual Synchronization...",
+    subtitle: "Your order",
+    summary: "Order Summary",
+    retrieving: "Loading details...",
     quantity: "Quantity",
     shipping: "Shipping",
     discount: "Discount",
-    total: "Manifested Value",
-    customer: "Alchemist",
+    total: "Total Order",
+    customer: "Client",
     destination: "Destination",
     pickup: "Laboratory Pickup",
     hours: "Hours: Mon-Sat: 09:00 - 13:00",
-    detailsUnavailable: "Ritual details unavailable.",
+    detailsUnavailable: "Order details unavailable.",
+    idLabel: "Order ID",
   }
 };

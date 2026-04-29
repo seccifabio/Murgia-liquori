@@ -53,6 +53,8 @@ export default function ContattiPage() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder={t.visit.drawer.form.firstName.toUpperCase()} 
+                      autoComplete="name"
+                      suppressHydrationWarning
                       className="w-full bg-transparent border-b border-noir/30 py-4 font-body text-xl text-noir placeholder:text-noir/50 focus:border-noir focus:outline-none transition-colors uppercase tracking-widest"
                     />
                   </div>
@@ -63,6 +65,8 @@ export default function ContattiPage() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="EMAIL" 
+                      autoComplete="email"
+                      suppressHydrationWarning
                       className="w-full bg-transparent border-b border-noir/30 py-4 font-body text-xl text-noir placeholder:text-noir/50 focus:border-noir focus:outline-none transition-colors uppercase tracking-widest"
                     />
                   </div>
@@ -75,6 +79,7 @@ export default function ContattiPage() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder={t.locations.partner.fields.message.toUpperCase()} 
+                    suppressHydrationWarning
                     className="w-full bg-transparent border-b border-noir/30 py-4 font-body text-xl text-noir placeholder:text-noir/50 focus:border-noir focus:outline-none transition-colors uppercase tracking-widest resize-none"
                   />
                 </div>

@@ -40,6 +40,14 @@ export async function POST(req: Request) {
     // JOURNEY MAPPING: Retrieve line items
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
     const customerEmail = session.customer_details?.email;
+    const lang = session.metadata?.lang || "it";
+    const labels = lang === "en" ? {
+      shipping: "Shipment",
+      discount: "Heritage Discount"
+    } : {
+      shipping: "Trasporto",
+      discount: "Sconto Heritage"
+    };
 
     if (customerEmail) {
       try {
@@ -62,7 +70,7 @@ export async function POST(req: Request) {
           (session.total_details?.amount_shipping > 0 ? `
             <tr>
               <td style="padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
-                <span style="color:rgba(255,255,255,0.6); font-size:14px; text-transform:uppercase;">Trasporto</span>
+                <span style="color:rgba(255,255,255,0.6); font-size:14px; text-transform:uppercase;">${labels.shipping}</span>
               </td>
               <td align="right" style="padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
                 <span style="color:rgba(255,255,255,0.6); font-size:14px;">${(session.total_details.amount_shipping / 100).toFixed(2)}€</span>
@@ -72,7 +80,7 @@ export async function POST(req: Request) {
           (session.total_details?.amount_discount > 0 ? `
             <tr>
               <td style="padding-top: 10px;">
-                <span style="color:#F4B400; font-size:14px; text-transform:uppercase;">Sconto Heritage</span>
+                <span style="color:#F4B400; font-size:14px; text-transform:uppercase;">${labels.discount}</span>
               </td>
               <td align="right" style="padding-top: 10px;">
                 <span style="color:#F4B400; font-size:14px;">-${(session.total_details.amount_discount / 100).toFixed(2)}€</span>
