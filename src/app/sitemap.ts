@@ -5,6 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = [
     '',
+    '/visit-us',
     '/la-storia',
     '/la-collezione',
     '/dove-ci-trovi',
@@ -12,6 +13,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/shop/la-sbagliata',
     '/shop/murgia-bianco',
     '/shop/murgia-giallo',
+    '/legal/privacy-policy',
+    '/legal/cookie-policy',
+    '/legal/terms-of-service',
   ];
 
   return routes.map((route) => ({
