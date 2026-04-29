@@ -113,6 +113,7 @@ export default function Navbar() {
   const isStoriaPage = pathname?.includes("/la-storia");
   const isDoveCiTroviPage = pathname?.includes("/dove-ci-trovi");
   const isContattiPage = pathname?.includes("/contatti");
+  const isControlRoom = pathname?.startsWith("/control-room");
   const activeTheme = (isDarkTheme || isStoriaPage || isDoveCiTroviPage || isContattiPage) ? "dark" : "light";
   const iconColor = (isDarkTheme || isStoriaPage || isDoveCiTroviPage || isContattiPage) ? "text-noir" : "text-white";
   
@@ -134,54 +135,56 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-4 md:gap-10 pointer-events-auto relative">
-          <div className={`hidden md:flex items-center gap-4 font-heading text-xs tracking-[0.2em] uppercase ${iconColor}`}>
+        {!isControlRoom && (
+          <div className="flex items-center gap-4 md:gap-10 pointer-events-auto relative">
+            <div className={`hidden md:flex items-center gap-4 font-heading text-xs tracking-[0.2em] uppercase ${iconColor}`}>
+              <button 
+                onClick={() => setLanguage("it")}
+                className={`transition-all pb-1 ${isMobile ? 'border-transparent' : 'border-b-2'} ${language === "it" ? (activeTheme === "dark" ? "border-noir text-noir font-bold" : "border-primary text-primary font-bold") : "border-transparent opacity-40 hover:opacity-100"}`}
+              >
+                IT
+              </button>
+              <span className="opacity-10">|</span>
+              <button 
+                onClick={() => setLanguage("en")}
+                className={`transition-all pb-1 ${isMobile ? 'border-transparent' : 'border-b-2'} ${language === "en" ? (activeTheme === "dark" ? "border-noir text-noir font-bold" : "border-primary text-primary font-bold") : "border-transparent opacity-40 hover:opacity-100"}`}
+              >
+                EN
+              </button>
+            </div>
+
+            <div className={`flex md:hidden items-center relative gap-1 font-heading text-xs tracking-[0.2em] uppercase ${iconColor}`}>
+              <span className="font-bold">{language}</span>
+              <ChevronDown className="w-3 h-3 opacity-40" />
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value as "it" | "en")}
+                className="absolute inset-0 opacity-0 cursor-pointer appearance-none bg-transparent w-full h-full"
+              >
+                <option value="it">Italiano</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+
             <button 
-              onClick={() => setLanguage("it")}
-              className={`transition-all pb-1 ${isMobile ? 'border-transparent' : 'border-b-2'} ${language === "it" ? (activeTheme === "dark" ? "border-noir text-noir font-bold" : "border-primary text-primary font-bold") : "border-transparent opacity-40 hover:opacity-100"}`}
+              onClick={() => setIsBagOpen(true)}
+              className={`relative transition-all duration-300 hover:scale-110 ${iconColor}`}
             >
-              IT
+              <ShoppingBag className="w-5 h-5 md:w-6 md:h-6" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-black text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-in zoom-in duration-300">
+                  {totalItems}
+                </span>
+              )}
             </button>
-            <span className="opacity-10">|</span>
             <button 
-              onClick={() => setLanguage("en")}
-              className={`transition-all pb-1 ${isMobile ? 'border-transparent' : 'border-b-2'} ${language === "en" ? (activeTheme === "dark" ? "border-noir text-noir font-bold" : "border-primary text-primary font-bold") : "border-transparent opacity-40 hover:opacity-100"}`}
+              onClick={() => setIsMenuOpen(true)}
+              className={`transition-all duration-300 hover:rotate-90 ${iconColor}`}
             >
-              EN
+              <BurgerIcon className="w-6 h-6 md:w-7 md:h-7" />
             </button>
           </div>
-
-          <div className={`flex md:hidden items-center relative gap-1 font-heading text-xs tracking-[0.2em] uppercase ${iconColor}`}>
-            <span className="font-bold">{language}</span>
-            <ChevronDown className="w-3 h-3 opacity-40" />
-            <select
-              value={language}
-              onChange={(e) => setLanguage(e.target.value as "it" | "en")}
-              className="absolute inset-0 opacity-0 cursor-pointer appearance-none bg-transparent w-full h-full"
-            >
-              <option value="it">Italiano</option>
-              <option value="en">English</option>
-            </select>
-          </div>
-
-          <button 
-            onClick={() => setIsBagOpen(true)}
-            className={`relative transition-all duration-300 hover:scale-110 ${iconColor}`}
-          >
-            <ShoppingBag className="w-5 h-5 md:w-6 md:h-6" />
-            {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 bg-primary text-black text-[8px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-in zoom-in duration-300">
-                {totalItems}
-              </span>
-            )}
-          </button>
-          <button 
-            onClick={() => setIsMenuOpen(true)}
-            className={`transition-all duration-300 hover:rotate-90 ${iconColor}`}
-          >
-            <BurgerIcon className="w-6 h-6 md:w-7 md:h-7" />
-          </button>
-        </div>
+        )}
       </motion.nav>
 
       <NavDrawer 
