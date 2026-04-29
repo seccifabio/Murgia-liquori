@@ -30,7 +30,7 @@ export const it = {
     links: {
       story: "La Storia",
       collection: "La Collezione",
-      visitUs: "Visit Us",
+      visitUs: "Visitaci",
       locations: "Dove Ci Trovi",
       contacts: "Contatti",
     },
