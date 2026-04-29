@@ -64,8 +64,8 @@ export default function VisitBanner() {
           <div className="h-4 w-px bg-white/10 hidden md:block" />
 
           {/* Combined Manifest: Date + Price + CTA */}
-          <div className="flex items-center gap-4 md:gap-8">
-            <span className="font-heading text-sm tracking-[0.2em] uppercase text-primary font-bold">
+          <div className="flex items-center gap-6 md:gap-12">
+            <span className="font-heading text-sm tracking-[0.2em] uppercase text-primary font-bold whitespace-nowrap px-2">
               {visitMonth}
             </span>
             
