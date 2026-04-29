@@ -22,7 +22,7 @@ export default function VisitBanner() {
   // Format month for display
   const visitDateObj = new Date(`${visitDateString}T00:00:00`);
   const visitMonth = nextVisit?.date 
-    ? visitDateObj.toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { day: 'numeric', month: 'short' })
+    ? visitDateObj.toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { day: 'numeric', month: 'long' })
     : VISIT_MANIFEST[language].displayDate;
 
   const manifest = VISIT_MANIFEST[language];
