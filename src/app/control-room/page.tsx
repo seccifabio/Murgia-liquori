@@ -68,7 +68,6 @@ export default function ControlRoomPage() {
       <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16 border-b-2 border-white/10 pb-8">
         <div className="space-y-2">
           <div className="flex items-center gap-4">
-            <div className="w-8 h-[1px] bg-primary" />
             <p className="font-heading text-4xl tracking-widest text-primary uppercase font-bold">CONTROL ROOM</p>
           </div>
         </div>
@@ -87,9 +86,10 @@ export default function ControlRoomPage() {
           </nav>
           <button 
             onClick={handleLogout}
-            className="flex items-center gap-4 text-white/40 hover:text-red-500 transition-colors font-heading text-[10px] tracking-widest uppercase font-bold"
+            className="text-white/40 hover:text-red-500 transition-colors"
+            title="Esci"
           >
-            Esci <LogOut className="w-4 h-4" />
+            <LogOut className="w-6 h-6" />
           </button>
         </div>
       </header>
@@ -219,7 +219,7 @@ export default function ControlRoomPage() {
                   />
                 </div>
 
-                <div className="lg:w-80 p-8 bg-white/[0.05] border border-white/10 space-y-4 self-stretch flex flex-col justify-center">
+                <div className="lg:w-80 p-8 bg-white/[0.05] space-y-4 self-stretch flex flex-col justify-center">
                   <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Anteprima Live:</p>
                   <div className="flex flex-col items-center">
                     <span className="font-heading text-sm uppercase font-bold text-primary tracking-widest">
