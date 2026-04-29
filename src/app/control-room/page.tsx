@@ -94,7 +94,7 @@ export default function ControlRoomPage() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto py-12">
+      <main className="max-w-4xl py-12">
         <AnimatePresence mode="wait">
           {activeTab === "promo" ? (
             <motion.section 
