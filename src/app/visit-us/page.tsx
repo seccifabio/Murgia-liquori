@@ -28,19 +28,28 @@ const NARRATIVE_STAGES = [
 
 export default function VisitUsPage() {
   const { language } = useTranslation();
-  const { config } = useCMS();
+  const { config, loading } = useCMS();
   const t = VISIT_MANIFEST[language as "it" | "en"] || VISIT_MANIFEST.it;
   
+  if (loading) return (
+    <div className="min-h-screen bg-noir flex items-center justify-center font-heading text-white tracking-[1em] uppercase italic">
+      Sincronizzazione Lab...
+    </div>
+  );
+
   // Dynamic Configuration from Control Room
-  const visitDate = config?.visit?.nextDate || VISIT_MANIFEST.it.displayDate;
-  const displayMonth = config?.visit?.displayMonth || t.displayDate;
+  const nextVisit = config?.visits?.[0];
+  const visitActive = nextVisit?.active ?? VISIT_MANIFEST.active;
+  const visitDateString = nextVisit?.date || VISIT_MANIFEST.date;
 
   // Use the manifest as a baseline but override with CMS date
   const manifestData = {
     ...t,
-    displayDate: displayMonth,
-    displayFullDate: config?.visit?.nextDate 
-      ? new Date(config.visit.nextDate).toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+    displayDate: nextVisit?.date 
+      ? new Date(`${nextVisit.date}T00:00:00`).toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { day: 'numeric', month: 'short' })
+      : t.displayDate,
+    displayFullDate: nextVisit?.date 
+      ? new Date(`${nextVisit.date}T00:00:00`).toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
       : t.displayFullDate
   };
 
@@ -147,7 +156,7 @@ export default function VisitUsPage() {
                 transition={{ delay: 0.5, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-col items-center md:items-end text-center md:text-right relative px-4 lg:pr-12"
               >
-                {config?.visit?.active !== false ? (
+                {visitActive !== false ? (
                   <div className="relative z-10 space-y-2 max-w-4xl group">
                     <div className="space-y-0">
                       <span className="font-heading text-primary text-xl md:text-3xl tracking-[0.5em] uppercase font-bold block italic mb-2">
@@ -155,10 +164,10 @@ export default function VisitUsPage() {
                       </span>
                       <div className="flex items-start gap-4">
                         <span className="font-heading text-primary text-6xl md:text-8xl lg:text-9xl uppercase italic font-black leading-none mt-4">
-                          {config?.visit?.nextDate ? config.visit.nextDate.split('-')[2] : t.displayDate.split(' ')[0]}
+                          {nextVisit?.date ? nextVisit.date.split('-')[2] : VISIT_MANIFEST.date.split('-')[2]}
                         </span>
                         <h2 className="font-heading text-[10rem] md:text-[15rem] lg:text-[18rem] uppercase tracking-tighter leading-[0.7] italic font-black text-white mix-blend-overlay lg:mix-normal">
-                          {config?.visit?.displayMonth || t.displayDate.split(' ')[1]}
+                          {new Date(`${visitDateString}T00:00:00`).toLocaleDateString('it-IT', { month: 'short' })}
                         </h2>
                       </div>
                     </div>

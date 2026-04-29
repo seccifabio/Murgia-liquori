@@ -12,14 +12,22 @@ export default function VisitBanner() {
   const { setIsVisitOpen, isMenuOpen, isBagOpen, isVisitOpen, hasInteractedWithPromo } = useCart();
   const pathname = usePathname();
   const { language } = useTranslation();
-  const { config } = useCMS();
+  const { config, loading } = useCMS();
 
   // Dynamic Configuration from Control Room
-  const visitActive = config?.visit?.active ?? VISIT_MANIFEST.active;
-  const visitDateString = config?.visit?.nextDate || VISIT_MANIFEST.date;
-  const visitMonth = config?.visit?.displayMonth || VISIT_MANIFEST[language].displayDate;
+  const nextVisit = config?.visits?.[0];
+  const visitActive = nextVisit?.active ?? VISIT_MANIFEST.active;
+  const visitDateString = nextVisit?.date || VISIT_MANIFEST.date;
+  
+  // Format month for display
+  const visitDateObj = new Date(`${visitDateString}T00:00:00`);
+  const visitMonth = nextVisit?.date 
+    ? visitDateObj.toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { day: 'numeric', month: 'short' })
+    : VISIT_MANIFEST[language].displayDate;
 
   const manifest = VISIT_MANIFEST[language];
+
+  if (loading) return null;
 
   // Visibility Manifest: 
   // 1. Homepage: Only if user has already interacted with the primary promo banner

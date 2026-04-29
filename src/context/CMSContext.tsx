@@ -10,24 +10,35 @@ type CMSConfig = {
     discount: number;
     expiryDate: string;
   };
-  visit: {
+  visits: Array<{
+    date: string;
     active: boolean;
-    nextDate: string;
-    displayMonth: string;
-  };
+  }>;
 };
 
-const CMSContext = createContext<{ config: CMSConfig | null; refresh: () => Promise<void> }>({
+const CMSContext = createContext<{ 
+  config: CMSConfig | null; 
+  loading: boolean;
+  refresh: () => Promise<void> 
+}>({
   config: null,
+  loading: true,
   refresh: async () => {},
 });
 
 export function CMSProvider({ children }: { children: React.ReactNode }) {
   const [config, setConfig] = useState<CMSConfig | null>(null);
+  const [loading, setLoading] = useState(true);
 
   async function refresh() {
-    const data = await getCMSConfig();
-    setConfig(data);
+    try {
+      const data = await getCMSConfig();
+      setConfig(data);
+    } catch (e) {
+      console.error("CMS Provider Refresh Failed:", e);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -35,7 +46,7 @@ export function CMSProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <CMSContext.Provider value={{ config, refresh }}>
+    <CMSContext.Provider value={{ config, loading, refresh }}>
       {children}
     </CMSContext.Provider>
   );

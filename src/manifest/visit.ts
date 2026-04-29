@@ -13,6 +13,11 @@ export const VISIT_MANIFEST = {
   // Emergency override: set to false to hide the landing pathways regardless of date
   active: true,
 
+  // Primary store for scheduled experiences
+  visits: [
+    { date: "2026-05-04", active: true }
+  ],
+
   // Localized Editorial Manifest
   it: {
     displayDate: "4 Maggio",
