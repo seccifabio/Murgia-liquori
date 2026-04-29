@@ -37,7 +37,12 @@ export default function ControlRoomPage() {
 
   async function handleSave() {
     setSaving(true);
-    await updateCMSConfig(config);
+    const cleanConfig = {
+      ...config,
+      locations: config.locations?.map(({ isNew, ...rest }: any) => rest)
+    };
+    await updateCMSConfig(cleanConfig);
+    setConfig(cleanConfig);
     setSaving(false);
     // Visual feedback
     const toast = document.createElement("div");
@@ -342,7 +347,7 @@ function LocationsManager({ config, setConfig }: { config: any, setConfig: (c: a
   );
 
   const addLocation = () => {
-    const newLoc = { name: "NUOVO PUNTO VENDITA", city: "CITTA", address: "VIA...", map: "" };
+    const newLoc = { name: "NUOVO PUNTO VENDITA", city: "CITTA", address: "VIA...", map: "", isNew: true };
     setConfig({ ...config, locations: [newLoc, ...locations] });
   };
 
@@ -396,7 +401,11 @@ function LocationsManager({ config, setConfig }: { config: any, setConfig: (c: a
             <motion.div 
               layout
               key={`loc-${originalIdx}`}
-              className="bg-white/[0.02] border border-white/10 p-6 md:p-8 space-y-6 group hover:border-white/20 transition-colors"
+              className={`border p-6 md:p-8 space-y-6 group transition-all duration-500 ${
+                loc.isNew 
+                  ? 'bg-primary/10 border-primary/30 shadow-[0_0_40px_rgba(234,179,8,0.05)]' 
+                  : 'bg-white/[0.02] border-white/10 hover:border-white/20'
+              }`}
             >
               <div className="flex flex-col md:flex-row gap-6 md:gap-8">
                 <div className="flex-1 space-y-4">
