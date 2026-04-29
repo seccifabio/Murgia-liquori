@@ -7,8 +7,8 @@ import LaunchBanner from "@/components/LaunchBanner";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Murgia Liquori | Eccellenza Liquoristica dal 1882",
-  description: "Dall'antica distilleria Murgia, una collezione di liquori artigianali che racchiudono l'anima della Sardegna.",
+  title: "Murgia Liquori | Alchimia Liquida dal 1882",
+  description: "Dall'antica distilleria Murgia, una collezione di essenze artigianali che racchiudono l'anima della Sardegna.",
   alternates: {
     canonical: "/",
   },

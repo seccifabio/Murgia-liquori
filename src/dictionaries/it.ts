@@ -11,9 +11,9 @@ export const it = {
   },
   shipping: {
     preparing: {
-      title: "Preparazione in laboratorio",
-      metric: "LABORATORIO",
-      description: "Ogni goccia viene miscelata e perfezionata esattamente dove è sempre stato fatto, a Villacidro, seguendo le ricette che ci accompagnano dall'inizio."
+      title: "Distillazione in Laboratorio",
+      metric: "LABORATORIO MURGIA",
+      description: "Ogni goccia viene miscelata e perfezionata esattamente dove è sempre stato fatto, a Villacidro, seguendo i rituali che ci accompagnano dal 1882."
     },
     sealing: {
       title: "Contrassegno statale",
@@ -21,16 +21,16 @@ export const it = {
       description: "L'esclusiva specialità viene sigillata manualmente.\nUn rito che effettuiamo lenti, in mezzo a pensieri e chiacchere, e che sigilla ogni bottiglia. Applicato a mano come ci ha insegnato a fare chi lo ha fatto prima di noi."
     },
     dispatch: {
-      title: "VIAGGIO SICURO",
-      metric: "SPEDIZIONE",
-      description: "Gli ordini lasciano il nostro laboratorio in una confezione studiata per la spedizione, pronti per completare il viaggio verso la tua collezione."
+      title: "VIAGGIO ALCHEMICO",
+      metric: "SPEDIZIONE TRACCIATA",
+      description: "La tua collezione lascia il nostro laboratorio in un involucro protettivo, pronta per completare il viaggio verso il tuo archivio personale."
     }
   },
   nav: {
     links: {
-      story: "La Storia",
+      story: "L'Eredità",
       collection: "La Collezione",
-      locations: "Dove Ci Trovi",
+      locations: "Terminali d'Acquisto",
       contacts: "Contatti",
     },
     social: {
@@ -40,14 +40,14 @@ export const it = {
     }
   },
   hero: {
-    title: "Liquori da",
-    subtitle: "oltre 140 anni.",
-    description: "Dal 1882 custodiamo il segreto delle specialità liquoristiche di Villacidro, una storia orgogliosa che vive in ogni prodotto.",
-    scroll: "Scopri l'essenza",
-    legacy_hud: "Tradizione Gennaro Murgia",
+    title: "Alchimia Liquida dal",
+    subtitle: "1882.",
+    description: "Sardinian alchemy meets the avant-garde. Custodiamo il segreto delle specialità liquoristiche di Villacidro dal 1882.",
+    scroll: "Inizia il Rituale",
+    legacy_hud: "Eredità Gennaro Murgia",
     craft_hud: "Artigianato Sardo",
     heritage: "The Heritage",
-    cta: "Scopri la Collezione"
+    cta: "Esplora la Collezione"
   },
   origins: {
     title: "Le Origini",
@@ -77,8 +77,8 @@ export const it = {
       form: {
         firstName: "Nome",
         lastName: "Cognome",
-        email: "Email",
-        phone: "Telefono (Opzionale)",
+        email: "Email Terminal",
+        phone: "Telefono Rito (Opzionale)",
         guests: "Numero di Persone",
         guestsLabel: "PERSONA",
         guestsLabelPlural: "PERSONE",
@@ -176,9 +176,9 @@ export const it = {
     }
   },
   locations: {
-    title: "Dove Ci",
-    titleAccent: "Trovi",
-    selectCity: "Seleziona Città",
+    title: "Terminali",
+    titleAccent: "d'Acquisto",
+    selectCity: "Seleziona Dominio",
     viewMap: "Vedi Mappa",
     partner: {
       ritual: "Partnership",
@@ -263,7 +263,7 @@ export const it = {
   bag: {
     title: "Il Tuo Basket",
     empty: "basket vuoto",
-    added: "PRODOTTO AGGIUNTO",
+    added: "ESSENZA AGGIUNTA",
     expanded: "La tua collezione si espande",
     view: "VEDI BASKET",
     shop: "Scopri la collezione",
@@ -279,11 +279,11 @@ export const it = {
     discountLabel: "SCONTO",
   },
   footer: {
-    brandText: "Segreti da oltre 140 anni.",
-    contacts: "Contatti",
-    social: "Social",
-    sede: "Sede",
-    backToTop: "Tornasù",
+    brandText: "Alchimia e Segreti dal 1882.",
+    contacts: "Supporto",
+    social: "Ascendi",
+    sede: "Cuore del Rito",
+    backToTop: "Torna su",
     privacy: "Privacy Policy",
     terms: "Termini di Servizio",
     cookies: "Cookie Policy",
@@ -365,13 +365,13 @@ export const it = {
       pickupInfo: "Via Parrocchia 29, 09039 Villacidro (SU) | Lun-Sab: 09:00 - 13:00",
     },
     invoice: {
-      title: "Dati di Fatturazione",
+      title: "Manifesto di Fatturazione",
       checkbox: "Richiedo fattura",
       companyName: "Ragione Sociale",
       vat: "Partita IVA / Codice Fiscale",
       sdi: "Codice SDI / PEC",
     },
-    proceed: "Procedi al Pagamento",
+    proceed: "Procedi alla Manifestazione",
   },
   cookie: {
     title: "Rispetto della Privacy",

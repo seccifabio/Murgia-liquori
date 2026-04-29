@@ -16,13 +16,13 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://murgialiquori.it"),
   title: {
-    default: "Murgia Liquori | 1882 Heritage Spirits",
+    default: "Murgia Liquori | 1882 Alchemical Heritage",
     template: "%s | Murgia Liquori",
   },
-  description: "Experience the golden legacy of Murgia Liquori. Artisanal Sardinian spirits crafted since 1882.",
+  description: "Descend into the alchemical legacy of Murgia Liquori. Artisanal Sardinian essences forged since 1882.",
   openGraph: {
-    title: "Murgia Liquori | 1882 Heritage Spirits",
-    description: "Artisanal Sardinian spirits crafted since 1882. Discover the golden legacy.",
+    title: "Murgia Liquori | Alchimia Liquida dal 1882",
+    description: "Dall'antica distilleria Murgia, una collezione di essenze artigianali che racchiudono l'anima della Sardegna.",
     url: process.env.NEXT_PUBLIC_BASE_URL || "https://murgialiquori.it",
     siteName: "Murgia Liquori",
     images: [

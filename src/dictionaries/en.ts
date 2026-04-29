@@ -4,16 +4,16 @@ export const en = {
     close: "Close",
     loading: "Loading...",
     send: "Send",
-    sending: "Transmitting...",
+    sending: "Manifesting...",
     success: "Success",
     error: "Error",
     from: "From",
   },
   shipping: {
     preparing: {
-      title: "Laboratory Preparing",
-      metric: "Certified Quality",
-      description: "Every drop is distilled and perfected in our Murgia Liquori laboratory, following the traditional protocols of 1882."
+      title: "Laboratory Distillation",
+      metric: "MURGIA LABORATORY",
+      description: "Every drop is distilled and perfected in our Murgia Liquori laboratory, following the traditional rituals of 1882."
     },
     sealing: {
       title: "Hand-Applied Seal",
@@ -21,17 +21,17 @@ export const en = {
       description: "Authenticity is manually sealed. A ritual of certification that guarantees the integrity of every single Murgia artifact."
     },
     dispatch: {
-      title: "Archival Dispatch",
-      metric: "Tracked Shipping",
-      description: "The order leaves the laboratory in a tech-noir protective vessel, ready to complete its journey to your collection."
+      title: "ALCHEMICAL JOURNEY",
+      metric: "TRACKED SHIPPING",
+      description: "The collection leaves the laboratory in a protective vessel, ready to complete its journey to your archival collection."
     }
   },
   nav: {
     links: {
       story: "The Heritage",
       collection: "The Collection",
-      locations: "FIND US",
-      contacts: "CONTACT US",
+      locations: "Purchase Terminals",
+      contacts: "Contact",
     },
     social: {
       instagram: "Instagram",
@@ -40,14 +40,14 @@ export const en = {
     }
   },
   hero: {
-    title: "The Spirit",
-    subtitle: "of Ritual.",
-    description: "Excellence distilled since 1882. Sardinian alchemy meets the avant-garde.",
-    scroll: "Discover the essence",
-    legacy_hud: "Heritage Gennaro Murgia",
-    craft_hud: "Sardinian Tradition",
+    title: "Liquid Alchemy since",
+    subtitle: "1882.",
+    description: "Sardinian alchemy meets the avant-garde. Guarding the secrets of Villacidro since 1882.",
+    scroll: "Begin the Ritual",
+    legacy_hud: "Gennaro Murgia Heritage",
+    craft_hud: "Sardinian Craft",
     heritage: "The Heritage",
-    cta: "Discover the Collection"
+    cta: "Explore the Collection"
   },
   origins: {
     title: "Origins",
@@ -177,12 +177,12 @@ export const en = {
   },
   products: {
     common: {
-      addToCart: "ADD to Basket",
-      selectFormat: "Select Format",
+      addToCart: "ADD TO BASKET",
+      selectFormat: "Select Volume",
       quantity: "Quantity",
-      ritual: "The Ritual",
+      ritual: "The Rite",
       specs: "Specifics",
-      gradazione: "Intensity",
+      gradazione: "Alchemical Strength",
       formato: "Volume",
       origine: "Origin",
       formula: "Formula",
@@ -225,8 +225,8 @@ export const en = {
     }
   },
   locations: {
-    title: "Where to",
-    titleAccent: "Find Us",
+    title: "Purchase",
+    titleAccent: "Terminals",
     selectCity: "Select Domain",
     viewMap: "View Map",
     partner: {
@@ -263,7 +263,7 @@ export const en = {
   bag: {
     title: "Your Basket",
     empty: "Your basket is empty",
-    added: "PRODUCT ADDED",
+    added: "ESSENCE ADDED",
     expanded: "Your collection expands",
     view: "VIEW BASKET",
     shop: "Discover the collection",
@@ -279,10 +279,10 @@ export const en = {
     discountLabel: "DISCOUNT",
   },
   footer: {
-    brandText: "Secrets for over 140 years.",
+    brandText: "Alchemy and Secrets since 1882.",
     contacts: "Support",
     social: "Ascend",
-    sede: "Heart",
+    sede: "Heart of the Rite",
     backToTop: "Ascend",
     privacy: "Privacy Policy",
     terms: "Terms of Service",
@@ -365,13 +365,13 @@ export const en = {
       pickupInfo: "Via Parrocchia 29, 09039 Villacidro (SU) | Mon-Sat: 09:00 - 13:00",
     },
     invoice: {
-      title: "Invoicing Details",
+      title: "Invoicing Manifesto",
       checkbox: "Request an invoice",
       companyName: "Company Name",
       vat: "VAT / Tax ID",
       sdi: "SDI Code / PEC Email",
     },
-    proceed: "Proceed to Payment",
+    proceed: "Proceed to Manifestation",
   },
   cookie: {
     title: "Privacy Respect",
