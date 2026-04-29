@@ -19,7 +19,21 @@ export async function getCMSConfig() {
       const cached = await redis.get(REDIS_KEY);
       if (cached) {
         console.log("CMS: Fetched from Redis successfully");
-        return JSON.parse(cached);
+        let parsed = JSON.parse(cached);
+        
+        // Migration Ritual (Redis): Transform legacy 'visit' to 'visits' array
+        if (parsed.visit && !parsed.visits) {
+          console.log("CMS: Migrating legacy 'visit' in Redis");
+          parsed.visits = [{
+            date: parsed.visit.nextDate || "2026-05-04",
+            active: parsed.visit.active ?? true
+          }];
+          delete parsed.visit;
+          // Re-sync to Redis
+          await redis.set(REDIS_KEY, JSON.stringify(parsed));
+        }
+        
+        return parsed;
       }
       console.log("CMS: Redis key empty, falling back to FS");
     } catch (e) {
@@ -32,8 +46,18 @@ export async function getCMSConfig() {
   // 2. Fallback to Filesystem (Local Prototype)
   try {
     const data = await fs.readFile(CONFIG_PATH, "utf-8");
-    const parsed = JSON.parse(data);
+    let parsed = JSON.parse(data);
     
+    // Migration Ritual: Transform legacy 'visit' to 'visits' array
+    if (parsed.visit && !parsed.visits) {
+      console.log("CMS: Migrating legacy 'visit' to 'visits' array");
+      parsed.visits = [{
+        date: parsed.visit.nextDate || "2026-05-04",
+        active: parsed.visit.active ?? true
+      }];
+      delete parsed.visit;
+    }
+
     // Seed Redis if it's empty but we have local data
     if (redis && parsed) {
       await redis.set(REDIS_KEY, JSON.stringify(parsed));
@@ -44,7 +68,7 @@ export async function getCMSConfig() {
     console.error("Failed to read CMS config:", error);
     return {
       promo: { active: true, code: "MURGIA1882", discount: 10, expiryDate: "2026-05-31" },
-      visit: { active: true, nextDate: "2026-05-04", displayMonth: "Maggio" }
+      visits: [{ active: true, date: "2026-05-04" }]
     };
   }
 }
