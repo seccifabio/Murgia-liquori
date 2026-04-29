@@ -42,7 +42,7 @@ export const it = {
   hero: {
     title: "Liquori da",
     subtitle: "oltre 140 anni.",
-    description: "Dal 1882 custodiamo il segreto delle specialità liquoristiche di Villacidro, una story orgogliosa che vive in ogni prodotto.",
+    description: "Dal 1882 custodiamo il segreto delle specialità liquoristiche di Villacidro, una storia orgogliosa che vive in ogni prodotto.",
     scroll: "Scopri l'essenza",
     legacy_hud: "Tradizione Gennaro Murgia",
     craft_hud: "Artigianato Sardo",
