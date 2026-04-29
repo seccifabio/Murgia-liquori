@@ -101,7 +101,7 @@ export const it = {
     },
     modal: {
       ingredients: "Ingredienti",
-      ritual: "Il Rituale",
+      ritual: "Preparazione",
     },
     items: {
       spritz: {
