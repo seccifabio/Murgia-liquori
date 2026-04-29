@@ -14,7 +14,10 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://murgialiquori.it"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || 
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://murgialiquori.it")
+  ),
   title: {
     default: "Murgia Liquori | 1882 Alchemical Heritage",
     template: "%s | Murgia Liquori",
