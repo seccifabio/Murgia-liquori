@@ -72,7 +72,7 @@ export const en = {
     },
     drawer: {
       title: "Arrange your visit.",
-      successTitle: "Ritual Secured",
+      successTitle: "Request sent",
       successText: "The request has been sent. We will contact you shortly to confirm your place in the legacy.",
       form: {
         firstName: "Given Name",
@@ -87,7 +87,7 @@ export const en = {
         placeholderEmail: "INFO@MURGIA.IT",
         submit: "Send",
       },
-      footer: "Visits are conducted at the Murgia Liquori distillery. Price includes a guided tasting and a special gift."
+      footer: "Visits are conducted at the Murgia Liquori distillery. Price includes a guided tasting."
     }
   },
   aperitivo: {

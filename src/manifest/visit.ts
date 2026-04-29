@@ -5,7 +5,7 @@
 
 export const VISIT_MANIFEST = {
   // The scheduled date of the next ritual
-  date: "2026-04-21", 
+  date: "2026-05-04", 
   
   // Starting price for the experience
   price: "15",
@@ -15,18 +15,18 @@ export const VISIT_MANIFEST = {
 
   // Localized Editorial Manifest
   it: {
-    displayDate: "21 Aprile",
-    displayFullDate: "Sabato 21 Aprile 2026",
+    displayDate: "4 Maggio",
+    displayFullDate: "Lunedì 4 Maggio 2026",
     title: "Vieni a scoprire l'essenza",
     subtitle: "Visita la nostra distilleria",
     cta: "Prenota",
   },
   en: {
-    displayDate: "April 21st",
-    displayFullDate: "Saturday, April 21st 2026",
-    title: "The Alchemy of Discovery",
+    displayDate: "May 4th",
+    displayFullDate: "Monday, May 4th 2026",
+    title: "Come discover the essence",
     subtitle: "Experience the Distillery",
-    cta: "Book Ritual",
+    cta: "Book",
   }
 };
 

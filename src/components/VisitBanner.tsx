@@ -8,14 +8,20 @@ import { useTranslation } from "@/context/LanguageContext";
 import { VISIT_MANIFEST } from "@/manifest/visit";
 
 export default function VisitBanner() {
-  const { setIsVisitOpen, isMenuOpen, isBagOpen, isVisitOpen } = useCart();
+  const { setIsVisitOpen, isMenuOpen, isBagOpen, isVisitOpen, hasInteractedWithPromo } = useCart();
   const pathname = usePathname();
   const { language } = useTranslation();
 
   const manifest = VISIT_MANIFEST[language];
 
-  // Visibility Manifest: Only on "Dove Ci Trovi" page and when no taking-overs are active
-  const isEligiblePage = pathname === "/dove-ci-trovi";
+  // Visibility Manifest: 
+  // 1. Homepage: Only if user has already interacted with the primary promo banner
+  // 2. Archive/Journey Pages: Always visible (Dove Ci Trovi, La Storia, Contatti)
+  const isEligiblePage = 
+    (pathname === "/" && hasInteractedWithPromo) || 
+    pathname === "/dove-ci-trovi" || 
+    pathname === "/la-storia" || 
+    pathname === "/contatti";
 
   // Temporal Gate: Hide if today is the visit date or has passed, or if inactive
   const visitDate = new Date(`${VISIT_MANIFEST.date}T00:00:00`);
@@ -32,27 +38,27 @@ export default function VisitBanner() {
         exit={{ y: -100, opacity: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         onClick={() => setIsVisitOpen(true)}
-        className="bg-noir border-b border-white/10 w-full min-h-[52px] md:h-[52px] py-4 md:py-0 px-6 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 cursor-pointer group relative overflow-hidden z-[10002]"
+        className="bg-noir border-b border-white/10 w-full min-h-[52px] md:h-[52px] py-8 md:py-0 px-6 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 cursor-pointer group relative overflow-hidden z-[10002]"
       >
-        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-12 text-white">
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12 text-white">
           {/* Core Proposal */}
-          <span className="font-heading text-[10px] md:text-sm lg:text-base tracking-[0.2em] uppercase font-bold text-center">
-            {manifest.title}: <span className="text-white/60 hidden md:inline">{manifest.subtitle}</span>
+          <span className="font-heading text-[11px] md:text-sm lg:text-base tracking-[0.2em] uppercase font-bold text-center">
+            {manifest.title} - <span className="text-white/60 hidden md:inline">{manifest.subtitle}</span>
           </span>
 
           <div className="h-4 w-px bg-white/10 hidden md:block" />
 
           {/* Combined Manifest: Date + Price + CTA */}
           <div className="flex items-center gap-4 md:gap-8">
-            <span className="font-heading text-xs md:text-sm tracking-[0.2em] uppercase text-primary font-bold">
+            <span className="font-heading text-sm tracking-[0.2em] uppercase text-primary font-bold">
               {manifest.displayDate}
             </span>
             
             <div className="h-4 w-px bg-white/10" />
 
             <div className="flex items-center gap-3">
-              <span className="font-heading text-[10px] md:text-xs tracking-[0.2em] uppercase text-white/40">{language === "it" ? "Da" : "From"} &euro;{VISIT_MANIFEST.price}</span>
-              <span className="font-heading text-xs md:text-base uppercase tracking-[0.3em] font-bold group-hover:text-primary transition-colors">{manifest.cta}</span>
+              <span className="font-heading text-xs md:text-xs tracking-[0.2em] uppercase text-white/40">{language === "it" ? "Da" : "From"} &euro;{VISIT_MANIFEST.price}</span>
+              <span className="font-heading text-sm md:text-base uppercase tracking-[0.3em] font-bold group-hover:text-primary transition-colors">{manifest.cta}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-2 group-hover:text-primary transition-all" />
             </div>
           </div>

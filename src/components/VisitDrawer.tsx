@@ -6,6 +6,7 @@ import { useCart } from "@/context/CartContext";
 import { useEffect, useState } from "react";
 import { useTranslation } from "@/context/LanguageContext";
 import { VISIT_MANIFEST } from "@/manifest/visit";
+import { sendVisitRequest } from "@/app/actions/visit";
 
 export default function VisitDrawer() {
   const { isVisitOpen, setIsVisitOpen } = useCart();
@@ -37,22 +38,26 @@ export default function VisitDrawer() {
     };
   }, [isVisitOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Alchemical Simulation of Transmission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await sendVisitRequest(formData);
       setIsSuccess(true);
-      
+
       // Auto-liquidation after success confirmation
       setTimeout(() => {
         setIsVisitOpen(false);
         // Reset after animations finish
         setTimeout(() => setIsSuccess(false), 500);
       }, 3000);
-    }, 1500);
+    } catch (err) {
+      console.error("Transmission failed", err);
+      // Optional: Show error state
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -215,7 +220,7 @@ export default function VisitDrawer() {
 
             {/* Footer Manifest */}
             <div className="p-8 border-t border-white/5 bg-noir/50 backdrop-blur-xl">
-               <p className="text-center text-white/60 font-heading text-[10px] tracking-[0.2em] uppercase italic leading-relaxed">
+               <p className="text-center text-white/60 font-heading text-[11px] tracking-[0.2em] uppercase italic leading-relaxed">
                   {t.visit.drawer.footer}
                </p>
             </div>

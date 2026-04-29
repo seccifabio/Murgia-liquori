@@ -7,6 +7,7 @@ import { Phone, Mail, MessageCircle } from "lucide-react";
 
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { sendContactRequest } from "@/app/actions/contact";
 
 export default function ContattiPage() {
   const { t } = useTranslation();
@@ -18,15 +19,21 @@ export default function ContattiPage() {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Manifesting Transmission
-    setShowPartnerToast(true);
-    setTimeout(() => setShowPartnerToast(false), 3000);
-    
-    // Archiving Form
-    setFormData({ name: "", email: "", message: "" });
+    try {
+      await sendContactRequest(formData);
+      
+      // Manifesting Transmission Ritual
+      setShowPartnerToast(true);
+      setTimeout(() => setShowPartnerToast(false), 3000);
+      
+      // Archiving Form
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error("Contact submission failed", err);
+    }
   };
 
   return (

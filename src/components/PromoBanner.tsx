@@ -11,7 +11,7 @@ import { useTranslation } from "@/context/LanguageContext";
 export default function PromoBanner() {
   const { language } = useTranslation();
   const [copied, setCopied] = useState(false);
-  const { setAppliedCode, isBannerVisible, setIsBannerVisible, isMenuOpen, isBagOpen, isVisitOpen } = useCart();
+  const { setAppliedCode, isBannerVisible, setIsBannerVisible, setHasInteractedWithPromo, isMenuOpen, isBagOpen, isVisitOpen } = useCart();
   const pathname = usePathname();
   const promoCode = MARKETING_MANIFEST.promo.code;
   
@@ -28,6 +28,7 @@ export default function PromoBanner() {
     navigator.clipboard.writeText(promoCode);
     setCopied(true);
     setAppliedCode(promoCode);
+    setHasInteractedWithPromo(true);
     
     // Slide out ritual after short delay to let user see "COPIATO"
     setTimeout(() => {

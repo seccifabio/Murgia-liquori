@@ -87,7 +87,7 @@ export const it = {
         placeholderEmail: "ALCHIMISTA@MURGIA.IT",
         submit: "Invia",
       },
-      footer: "Le visite si svolgono presso la distilleria di Villacidro. Il prezzo include degustazione guidata e omaggio alchemico."
+      footer: "Le visite si svolgono presso la distilleria di Villacidro. Il prezzo include degustazione guidata."
     }
   },
   aperitivo: {

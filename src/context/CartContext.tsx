@@ -41,6 +41,8 @@ interface CartContextType {
   setIsPartnerOpen: (open: boolean) => void;
   isPreLaunchOpen: boolean;
   setIsPreLaunchOpen: (open: boolean) => void;
+  hasInteractedWithPromo: boolean;
+  setHasInteractedWithPromo: (interacted: boolean) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -56,6 +58,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [isVisitOpen, setIsVisitOpen] = useState(false);
   const [isPartnerOpen, setIsPartnerOpen] = useState(false);
   const [isPreLaunchOpen, setIsPreLaunchOpen] = useState(false);
+  const [hasInteractedWithPromo, setHasInteractedWithPromo] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   // Persistence Ritual: Hydrate from localStorage
@@ -70,6 +73,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
     }
     if (savedCode) setAppliedCode(savedCode);
+    const hasInteracted = localStorage.getItem("murgia_promo_interacted") === "true";
+    if (hasInteracted) setHasInteractedWithPromo(true);
     setMounted(true);
   }, []);
 
@@ -82,8 +87,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       } else {
         localStorage.removeItem("murgia_promo");
       }
+      localStorage.setItem("murgia_promo_interacted", hasInteractedWithPromo.toString());
     }
-  }, [items, appliedCode, mounted]);
+  }, [items, appliedCode, mounted, hasInteractedWithPromo]);
 
   const addItem = React.useCallback((newItem: CartItem) => {
     setItems((prev) => {
@@ -174,7 +180,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         isPreLaunchOpen,
         setIsPreLaunchOpen,
         showPartnerToast,
-        setShowPartnerToast
+        setShowPartnerToast,
+        hasInteractedWithPromo,
+        setHasInteractedWithPromo
       }}
     >
       {children}

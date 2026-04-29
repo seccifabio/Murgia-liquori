@@ -24,7 +24,7 @@ import NavDrawer from "./NavDrawer";
 export default function Navbar() {
   const { scrollY } = useScroll();
   const pathname = usePathname();
-  const { setIsBagOpen, items, isBannerVisible, isMenuOpen, setIsMenuOpen } = useCart();
+  const { setIsBagOpen, items, isBannerVisible, hasInteractedWithPromo, isMenuOpen, setIsMenuOpen } = useCart();
   const { language, setLanguage, t } = useTranslation();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -43,14 +43,19 @@ export default function Navbar() {
   // Visit Expiration Manifest
   const visitDate = new Date(`${VISIT_MANIFEST.date}T00:00:00`);
   const isVisitExpired = new Date().getTime() >= visitDate.getTime();
-  const isVisitEligible = pathname === "/dove-ci-trovi" && !isVisitExpired && VISIT_MANIFEST.active;
+  const isVisitEligible = (
+    (pathname === "/" && hasInteractedWithPromo) || 
+    pathname === "/dove-ci-trovi" || 
+    pathname === "/la-storia" || 
+    pathname === "/contatti"
+  ) && !isVisitExpired && VISIT_MANIFEST.active;
 
   const hasActiveBanner = (isPromoEligible && isBannerVisible) || isVisitEligible;
 
   // Responsive Manifest: Sync with CSS --banner-height tokens
   const getBannerHeight = () => {
     if (typeof window === "undefined") return 52;
-    return window.innerWidth < 768 ? 82 : 52;
+    return window.innerWidth < 768 ? 124 : 52;
   };
 
   useEffect(() => {
