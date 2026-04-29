@@ -45,8 +45,9 @@ export default function Navbar() {
   const promoActive = config?.promo?.active ?? true;
   
   // Visit Expiration Manifest
-  const visitActive = config?.visit?.active ?? VISIT_MANIFEST.active;
-  const visitDateString = config?.visit?.nextDate || VISIT_MANIFEST.date;
+  const nextVisit = config?.visits?.[0];
+  const visitActive = nextVisit?.active ?? VISIT_MANIFEST.active;
+  const visitDateString = nextVisit?.date || VISIT_MANIFEST.date;
   const visitDate = new Date(`${visitDateString}T00:00:00`);
   const isVisitExpired = new Date().getTime() >= visitDate.getTime();
   const isVisitEligible = (

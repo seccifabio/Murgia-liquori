@@ -22,10 +22,11 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
   const manifest = VISIT_MANIFEST[language as "it" | "en"] || VISIT_MANIFEST.it;
   
   // Dynamic Date from CMS
-  const currentVisitDate = config?.visit?.nextDate || VISIT_MANIFEST.date;
-  const displayFullDate = config?.visit?.nextDate 
-    ? new Date(config.visit.nextDate).toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
-    : manifest.displayFullDate;
+  const nextVisit = config?.visits?.[0];
+  const currentVisitDate = nextVisit?.date || VISIT_MANIFEST.date;
+  const displayFullDate = nextVisit?.date 
+    ? new Date(`${nextVisit.date}T00:00:00`).toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+    : VISIT_MANIFEST[language as "it" | "en"].displayFullDate;
 
   // Form Manifest
   const [formData, setFormData] = useState({

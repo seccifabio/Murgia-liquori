@@ -23,8 +23,9 @@ export default function Hero() {
   const promoActive = config?.promo?.active ?? true;
 
   // Visit Visibility Check (Mirroring VisitBanner.tsx)
-  const visitActive = config?.visit?.active ?? true;
-  const visitDateString = config?.visit?.nextDate || "2026-05-04";
+  const nextVisit = config?.visits?.[0];
+  const visitActive = nextVisit?.active ?? true;
+  const visitDateString = nextVisit?.date || "2026-05-04";
   const visitDate = new Date(`${visitDateString}T00:00:00`);
   const isVisitExpired = new Date().getTime() >= visitDate.getTime();
   const { hasInteractedWithPromo } = useCart();
