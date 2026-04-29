@@ -400,12 +400,18 @@ export const en = {
   },
   visitPage: {
     hero: {
-      title: "Visit Us",
+      title: "Visit",
+      titleAccent: "Us",
       subtitle: "A JOURNEY INTO THE YELLOW GOLD.",
       description: "Step into the beating heart of our distillery. Breathe in the history, touch the craft, and taste the soul of Villacidro."
     },
     expectations: {
-      title: "What to Expect",
+      title: "Our",
+      titleAccent: "Laboratory",
+      craftTitle: "The Art of",
+      craftTitleAccent: "Wisdom",
+      craftDescription: "Every phase of our production is a ritual of precision, where Sardinian raw materials meet the fire of our 1882 steam boiler.",
+      sectionTitle: "What to Expect",
       duration: {
         label: "Duration",
         value: "90 Minutes"

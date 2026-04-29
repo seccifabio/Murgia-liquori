@@ -400,12 +400,18 @@ export const it = {
   },
   visitPage: {
     hero: {
-      title: "Vieni A Trovarci",
+      title: "Vieni A",
+      titleAccent: "Trovarci",
       subtitle: "UN VIAGGIO NELL'ORO GIALLO.",
       description: "Entra nel cuore pulsante della nostra distilleria. Respira la storia, tocca la materia, assapora l'anima di Villacidro."
     },
     expectations: {
-      title: "Cosa Ti Aspetta",
+      title: "Il Nostro",
+      titleAccent: "Laboratorio",
+      craftTitle: "L'Arte Del",
+      craftTitleAccent: "Sapere",
+      craftDescription: "Ogni fase della nostra produzione è un rituale di precisione, dove le materie prime sarde incontrano il fuoco della nostra caldaia a vapore del 1882.",
+      sectionTitle: "Cosa Ti Aspetta",
       duration: {
         label: "Durata",
         value: "90 Minuti"

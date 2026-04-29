@@ -105,7 +105,7 @@ export default function VisitUsPage() {
                     <span className="font-heading text-primary text-sm tracking-[0.6em] uppercase block">{t.visitPage.hero.subtitle}</span>
                   </motion.div>
                   <h1 className={`font-heading text-white leading-[0.8] uppercase italic font-black tracking-normal ${language === "en" ? "text-6xl md:text-8xl lg:text-9xl" : "text-7xl md:text-9xl lg:text-[11rem]"}`}>
-                    Vieni A <br/> <span className="text-primary italic">Trovarci</span>
+                    {t.visitPage.hero.title} <br/> <span className="text-primary italic">{t.visitPage.hero.titleAccent}</span>
                   </h1>
                 </div>
                 <p className="font-body text-xl md:text-2xl text-white/90 leading-relaxed max-w-xl italic tracking-wide font-light">{t.visitPage.hero.description}</p>
@@ -143,9 +143,9 @@ export default function VisitUsPage() {
             >
               <div className="space-y-6">
                 <span className="font-heading text-primary text-sm tracking-[0.6em] uppercase">Distillation Mastery</span>
-                <h2 className="font-heading text-6xl md:text-8xl uppercase italic tracking-normal leading-tight font-black">L'Arte Del <br/> <span className="text-primary italic">Sapere</span></h2>
+                <h2 className="font-heading text-6xl md:text-8xl uppercase italic tracking-normal leading-tight font-black">{t.visitPage.expectations.craftTitle} <br/> <span className="text-primary italic">{t.visitPage.expectations.craftTitleAccent}</span></h2>
               </div>
-              <p className="font-body text-xl md:text-2xl text-white/90 italic leading-relaxed font-light">Ogni fase della nostra produzione è un rituale di precisione, dove le materie prime sarde incontrano il fuoco della nostra caldaia a vapore del 1882.</p>
+              <p className="font-body text-xl md:text-2xl text-white/90 italic leading-relaxed font-light">{t.visitPage.expectations.craftDescription}</p>
             </motion.div>
           </section>
 
@@ -163,7 +163,7 @@ export default function VisitUsPage() {
                   <div className="h-[2px] w-16 bg-primary" />
                   <span className="font-heading text-primary text-sm tracking-[0.8em] uppercase font-bold">The Heart of Murgia</span>
                 </div>
-                <h2 className="font-heading text-6xl md:text-9xl uppercase italic tracking-tight leading-none font-black">Il Nostro <br/> <span className="text-primary italic">Laboratorio</span></h2>
+                <h2 className="font-heading text-6xl md:text-9xl uppercase italic tracking-tight leading-none font-black">{t.visitPage.expectations.title} <br/> <span className="text-primary italic">{t.visitPage.expectations.titleAccent}</span></h2>
               </div>
               
               {/* Elevated Primary Stats (Labels removed as per request) */}
