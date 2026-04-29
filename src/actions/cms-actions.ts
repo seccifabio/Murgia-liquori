@@ -2,7 +2,7 @@
 
 import fs from "fs/promises";
 import path from "path";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, unstable_noStore as noStore } from "next/cache";
 
 import { redis } from "@/lib/redis";
 
@@ -10,14 +10,23 @@ const CONFIG_PATH = path.join(process.cwd(), "src/data/cms-config.json");
 const REDIS_KEY = "murgia_cms_config";
 
 export async function getCMSConfig() {
+  noStore();
+  console.log("CMS: Attempting to fetch config...");
+
   // 1. Try Redis first (Production Store)
   if (redis) {
     try {
       const cached = await redis.get(REDIS_KEY);
-      if (cached) return JSON.parse(cached);
+      if (cached) {
+        console.log("CMS: Fetched from Redis successfully");
+        return JSON.parse(cached);
+      }
+      console.log("CMS: Redis key empty, falling back to FS");
     } catch (e) {
-      console.error("Redis Read Failed:", e);
+      console.error("CMS: Redis Read Failed:", e);
     }
+  } else {
+    console.warn("CMS: Redis client not initialized (check REDIS_URL)");
   }
 
   // 2. Fallback to Filesystem (Local Prototype)
@@ -41,17 +50,21 @@ export async function getCMSConfig() {
 }
 
 export async function updateCMSConfig(newData: any) {
+  noStore();
+  console.log("CMS: Attempting to update config...");
   try {
     // 1. Update Redis
     if (redis) {
       await redis.set(REDIS_KEY, JSON.stringify(newData));
+      console.log("CMS: Redis update successful");
     }
 
     // 2. Update Local (for Dev Consistency)
     try {
       await fs.writeFile(CONFIG_PATH, JSON.stringify(newData, null, 2), "utf-8");
+      console.log("CMS: Local FS update successful");
     } catch (e) {
-      console.warn("Local FS Sync failed (Expected on Vercel):", e);
+      console.warn("CMS: Local FS Sync skipped (Production):", e);
     }
 
     revalidatePath("/");
