@@ -22,8 +22,8 @@ export const VISIT_MANIFEST = {
     cta: "Prenota",
   },
   en: {
-    displayDate: "May 4th",
-    displayFullDate: "Monday, May 4th 2026",
+    displayDate: "4 May",
+    displayFullDate: "Monday, 4 May 2026",
     title: "Come discover the essence",
     subtitle: "Experience the Distillery",
     cta: "Book",
