@@ -30,6 +30,7 @@ export const en = {
     links: {
       story: "The Heritage",
       collection: "The Collection",
+      visitUs: "Visit Us",
       locations: "Find us",
       contacts: "contact us",
     },
@@ -393,8 +394,44 @@ export const en = {
     customer: "Client",
     destination: "Destination",
     pickup: "Laboratory Pickup",
-    hours: "Hours: Mon-Sat: 09:00 - 13:00",
     detailsUnavailable: "Order details unavailable.",
     idLabel: "Order ID",
+  },
+  visitPage: {
+    hero: {
+      title: "Visit Us",
+      subtitle: "A JOURNEY INTO THE YELLOW GOLD.",
+      description: "Step into the beating heart of our distillery. Breathe in the history, touch the craft, and taste the soul of Villacidro."
+    },
+    expectations: {
+      title: "What to Expect",
+      duration: {
+        label: "Duration",
+        value: "90 Minutes"
+      },
+      capacity: {
+        label: "Capacity",
+        value: "Up to 12 Guests"
+      },
+      groups: {
+        label: "Groups",
+        value: "Private event availability"
+      },
+      highlights: [
+        "Guided tour of the historic stills",
+        "Access to the aging cellars",
+        "Tale of family secrets",
+        "Final guided tasting"
+      ]
+    },
+    tasting: {
+      title: "The Finale",
+      subtitle: "The Tasting",
+      description: "Gold isn't just seen, it's tasted. We will conclude the visit with a tasting of our most iconic liqueurs.",
+      reviews: [
+        { text: "An experience that takes you back in time. Magical.", author: "Joseph R." },
+        { text: "The attention to detail and passion are felt in every word.", author: "Helen M." }
+      ]
+    }
   }
 };

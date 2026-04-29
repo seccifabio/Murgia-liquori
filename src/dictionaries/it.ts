@@ -30,6 +30,7 @@ export const it = {
     links: {
       story: "La Storia",
       collection: "La Collezione",
+      visitUs: "Visit Us",
       locations: "Dove Ci Trovi",
       contacts: "Contatti",
     },
@@ -393,8 +394,45 @@ export const it = {
     total: "Totale Ordine",
     customer: "Cliente",
     destination: "Destinazione",
+    detailsUnavailable: "Dettagli non disponibili.",
     pickup: "Ritiro",
     hours: "Orari: Lun-Sab: 09:00 - 13:00",
-    detailsUnavailable: "Dettagli non disponibili.",
+  },
+  visitPage: {
+    hero: {
+      title: "Vieni A Trovarci",
+      subtitle: "UN VIAGGIO NELL'ORO GIALLO.",
+      description: "Entra nel cuore pulsante della nostra distilleria. Respira la storia, tocca la materia, assapora l'anima di Villacidro."
+    },
+    expectations: {
+      title: "Cosa Ti Aspetta",
+      duration: {
+        label: "Durata",
+        value: "90 Minuti"
+      },
+      capacity: {
+        label: "Capacità",
+        value: "Fino a 12 Persone"
+      },
+      groups: {
+        label: "Gruppi",
+        value: "Disponibilità per eventi privati"
+      },
+      highlights: [
+        "Tour guidato degli alambicchi storici",
+        "Accesso alle cantine di invecchiamento",
+        "Racconto dei segreti di famiglia",
+        "Degustazione finale guidata"
+      ]
+    },
+    tasting: {
+      title: "Il Finale",
+      subtitle: "La Degustazione",
+      description: "L'oro non si vede solo, si assapora. Concluderemo la visita con una degustazione dei nostri liquori più iconici.",
+      reviews: [
+        { text: "Un'esperienza che ti riporta indietro nel tempo. Magico.", author: "Giuseppe R." },
+        { text: "La cura dei dettagli e la passione si sentono in ogni parola.", author: "Elena M." }
+      ]
+    }
   }
 };

@@ -15,6 +15,7 @@ import { VISIT_MANIFEST } from "@/manifest/visit";
 const NAV_LINKS = [
   { id: "story", path: "/la-storia" },
   { id: "collection", path: "/la-collezione" },
+  { id: "visitUs", path: "/visit-us" },
   { id: "locations", path: "/dove-ci-trovi" },
   { id: "contacts", path: "/contatti" },
 ];
