@@ -178,7 +178,6 @@ export default function ControlRoomPage() {
                 </div>
               </div>
             </motion.section>
-            </motion.section>
           ) : activeTab === "visit" ? (
             <motion.section 
               key="visit"
