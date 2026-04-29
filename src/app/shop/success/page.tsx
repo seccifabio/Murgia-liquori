@@ -280,6 +280,7 @@ function SuccessContent() {
 }
 
 export default function SuccessPage() {
+  const { t } = useTranslation();
   return (
     <main className="bg-noir min-h-screen selection:bg-primary selection:text-noir overflow-hidden">
       <Navbar />
