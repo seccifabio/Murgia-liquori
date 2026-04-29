@@ -16,6 +16,7 @@ export default function ControlRoomPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [activeTab, setActiveTab] = useState<"promo" | "visit">("promo");
+  const [showPromoCalendar, setShowPromoCalendar] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -40,8 +41,8 @@ export default function ControlRoomPage() {
     setSaving(false);
     // Visual feedback
     const toast = document.createElement("div");
-    toast.className = "fixed bottom-8 left-1/2 -translate-x-1/2 bg-primary text-noir px-8 py-4 font-heading uppercase italic font-black z-[100000]";
-    toast.innerText = "ALCHEMICAL SYNC COMPLETE";
+    toast.className = "fixed bottom-8 left-1/2 -translate-x-1/2 bg-primary text-noir px-8 py-4 font-heading italic font-black z-[100000]";
+    toast.innerText = "saved";
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 3000);
   }
@@ -58,17 +59,17 @@ export default function ControlRoomPage() {
   );
 
   return (
-    <div className="min-h-screen bg-noir text-white p-6 md:p-12 selection:bg-primary selection:text-noir pt-[40px]">
+    <div 
+      className="min-h-screen bg-noir text-white px-6 md:px-12 selection:bg-primary selection:text-noir"
+      style={{ paddingTop: '250px' }}
+    >
       
       {/* Header Ritual */}
       <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-16 border-b-2 border-white/10 pb-8">
         <div className="space-y-2">
-          <h1 className="font-heading text-6xl md:text-9xl uppercase italic font-black leading-none tracking-tighter flex items-center gap-4">
-            CONTROL <span className="text-primary">ROOM</span>
-          </h1>
           <div className="flex items-center gap-4">
             <div className="w-8 h-[1px] bg-primary" />
-            <p className="font-heading text-[10px] tracking-[0.5em] text-white/40 uppercase">Archivio Digitale Murgia &mdash; Sessione Attiva</p>
+            <p className="font-heading text-4xl md:text-6xl tracking-widest text-primary uppercase italic font-black">CONTROL ROOM</p>
           </div>
         </div>
         
@@ -105,7 +106,7 @@ export default function ControlRoomPage() {
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-8">
                 <div className="space-y-1">
-                  <h2 className="font-heading text-4xl uppercase italic font-black text-primary">Promo Ritual</h2>
+                  <h2 className="font-heading text-4xl italic font-black text-primary">promo</h2>
                   <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Gestione Banner Promozionale</p>
                 </div>
                 <Switch 
@@ -139,14 +140,39 @@ export default function ControlRoomPage() {
                 </div>
 
                 <div className="space-y-8">
-                  <div className="space-y-2">
-                    <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold">Data Scadenza</label>
-                    <input 
-                      type="date" 
-                      value={config.promo.expiryDate}
-                      onChange={(e) => setConfig({ ...config, promo: { ...config.promo, expiryDate: e.target.value } })}
-                      className="w-full bg-transparent border-b-2 border-white/10 py-4 font-heading text-2xl italic font-black focus:border-primary outline-none transition-colors invert dark:invert-0"
-                    />
+                  <div className="space-y-4">
+                    <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold flex items-center gap-2">
+                      <Calendar className="w-3 h-3" /> Data Scadenza
+                    </label>
+                    
+                    <div className="relative">
+                      <button 
+                        onClick={() => setShowPromoCalendar(!showPromoCalendar)}
+                        className="w-full flex items-center justify-between border-b-2 border-white/10 py-4 font-heading text-2xl italic font-black hover:border-primary transition-colors text-left"
+                      >
+                        {config.promo.expiryDate}
+                        <Calendar className={`w-5 h-5 ${showPromoCalendar ? 'text-primary' : 'text-white/20'}`} />
+                      </button>
+
+                      <AnimatePresence>
+                        {showPromoCalendar && (
+                          <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            className="absolute top-full left-0 z-50 mt-4 shadow-2xl"
+                          >
+                            <DatePicker 
+                              value={config.promo.expiryDate}
+                              onChange={(date) => {
+                                setConfig({ ...config, promo: { ...config.promo, expiryDate: date } });
+                                setShowPromoCalendar(false);
+                              }}
+                            />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -161,7 +187,7 @@ export default function ControlRoomPage() {
             >
               <div className="flex items-center justify-between border-b border-white/10 pb-8">
                 <div className="space-y-1">
-                  <h2 className="font-heading text-4xl uppercase italic font-black text-primary">Visit Us Ritual</h2>
+                  <h2 className="font-heading text-4xl italic font-black text-primary">visit us</h2>
                   <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Sincronizzazione Prossima Esperienza</p>
                 </div>
                 <Switch 
@@ -170,8 +196,8 @@ export default function ControlRoomPage() {
                 />
               </div>
 
-              <div className="space-y-12">
-                <div className="space-y-4">
+              <div className="flex flex-col lg:flex-row gap-12 items-start">
+                <div className="flex-1 space-y-4">
                   <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold flex items-center gap-2">
                     <Calendar className="w-3 h-3" /> Seleziona Giorno Esperienza
                   </label>
@@ -193,8 +219,8 @@ export default function ControlRoomPage() {
                   />
                 </div>
 
-                <div className="p-8 border-2 border-white/5 bg-white/[0.02] space-y-4">
-                  <p className="font-heading text-xs tracking-widest text-white/40 uppercase">Anteprima Mural:</p>
+                <div className="lg:w-80 p-8 bg-white/[0.02] space-y-4 self-stretch flex flex-col justify-center">
+                  <p className="font-heading text-xs tracking-widest text-white/40">anteprima:</p>
                   <div className="flex items-end gap-4">
                     <span className="font-heading text-6xl uppercase italic font-black text-primary leading-none">{config.visit.displayMonth}</span>
                     <span className="font-heading text-2xl uppercase italic font-black text-white/20 mb-1">{config.visit.nextDate.split('-')[2]}</span>
@@ -213,7 +239,7 @@ export default function ControlRoomPage() {
           disabled={saving}
           className="bg-primary text-noir flex items-center gap-6 px-12 py-6 font-heading text-2xl uppercase italic font-black shadow-[20px_20px_0px_0px_rgba(255,255,255,0.05)] hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all disabled:opacity-50"
         >
-          {saving ? "SYNCING..." : "SALVA RITUALE"} <Save className="w-6 h-6" />
+          {saving ? "SYNCING..." : "SALVA"} <Save className="w-6 h-6" />
         </button>
       </footer>
     </div>

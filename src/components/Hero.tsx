@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 
 export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
@@ -14,14 +15,32 @@ export default function Hero() {
   const { scrollY } = useScroll();
   const { setIsBannerVisible, isBannerVisible } = useCart();
   const pathname = usePathname();
-  const { t, language } = useTranslation();
+  const { language, t } = useTranslation();
+  const { config } = useCMS();
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/");
+  
+  // Dynamic Configuration from Control Room
+  const promoActive = config?.promo?.active ?? true;
+
+  // Visit Visibility Check (Mirroring VisitBanner.tsx)
+  const visitActive = config?.visit?.active ?? true;
+  const visitDateString = config?.visit?.nextDate || "2026-05-04";
+  const visitDate = new Date(`${visitDateString}T00:00:00`);
+  const isVisitExpired = new Date().getTime() >= visitDate.getTime();
+  const { hasInteractedWithPromo } = useCart();
+  const isVisitEligible = (
+    (pathname === "/" && hasInteractedWithPromo) || 
+    pathname === "/dove-ci-trovi" || 
+    pathname === "/la-storia" || 
+    pathname === "/contatti"
+  ) && !isVisitExpired && visitActive;
+
+  const hasActiveBanner = (isBannerVisible && isEligiblePage && promoActive) || isVisitEligible;
 
   // Cinematic Performance: We use Motion Values for the top/height logic 
-  // to avoid React re-renders on every scroll tick.
-  const dynamicTop = useTransform(scrollY, [0, 52], [isBannerVisible && isEligiblePage ? 52 : 0, 0]);
+  const dynamicTop = useTransform(scrollY, [0, 52], [hasActiveBanner ? 52 : 0, 0]);
   const dynamicHeight = useTransform(scrollY, [0, 52], [
-    isBannerVisible && isEligiblePage ? "calc(100dvh - 52px)" : "100dvh", 
+    hasActiveBanner ? "calc(100dvh - 52px)" : "100dvh", 
     "100dvh"
   ]);
 

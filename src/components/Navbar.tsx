@@ -10,6 +10,7 @@ import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 import { VISIT_MANIFEST } from "@/manifest/visit";
 
 const NAV_LINKS = [
@@ -27,6 +28,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { setIsBagOpen, items, isBannerVisible, hasInteractedWithPromo, isMenuOpen, setIsMenuOpen } = useCart();
   const { language, setLanguage, t } = useTranslation();
+  const { config } = useCMS();
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
@@ -40,18 +42,21 @@ export default function Navbar() {
   }, []);
 
   const isPromoEligible = pathname === "/" || pathname?.includes("/shop/") || pathname === "/la-collezione";
+  const promoActive = config?.promo?.active ?? true;
   
   // Visit Expiration Manifest
-  const visitDate = new Date(`${VISIT_MANIFEST.date}T00:00:00`);
+  const visitActive = config?.visit?.active ?? VISIT_MANIFEST.active;
+  const visitDateString = config?.visit?.nextDate || VISIT_MANIFEST.date;
+  const visitDate = new Date(`${visitDateString}T00:00:00`);
   const isVisitExpired = new Date().getTime() >= visitDate.getTime();
   const isVisitEligible = (
     (pathname === "/" && hasInteractedWithPromo) || 
     pathname === "/dove-ci-trovi" || 
     pathname === "/la-storia" || 
     pathname === "/contatti"
-  ) && !isVisitExpired && VISIT_MANIFEST.active;
+  ) && !isVisitExpired && visitActive;
 
-  const hasActiveBanner = (isPromoEligible && isBannerVisible) || isVisitEligible;
+  const hasActiveBanner = (isPromoEligible && isBannerVisible && promoActive) || isVisitEligible;
 
   // Responsive Manifest: Sync with CSS --banner-height tokens
   const getBannerHeight = () => {

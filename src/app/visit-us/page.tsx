@@ -140,23 +140,44 @@ export default function VisitUsPage() {
                 <p className="font-body text-xl md:text-2xl text-white/90 leading-relaxed max-w-xl italic tracking-wide font-light">{t.visitPage.hero.description}</p>
               </motion.div>
 
-              {/* TIER 2: Next Visit Mural */}
+              {/* TIER 2: Next Visit Mural or Inactive Message */}
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                 className="flex flex-col items-center md:items-end text-center md:text-right relative px-4 lg:pr-12"
               >
-                <div className="relative z-10 space-y-2 max-w-4xl group">
-                  <div className="space-y-0">
-                    <span className="font-heading text-primary text-xl md:text-3xl tracking-[0.5em] uppercase font-bold block italic">{manifestData.displayFullDate.split(',')[0].split(' ')[0]}</span>
-                    <h2 className="font-heading text-[12rem] md:text-[18rem] lg:text-[22rem] uppercase tracking-tighter leading-[0.6] italic font-black text-white mix-blend-overlay lg:mix-normal">{manifestData.displayDate.split(' ')[0]}</h2>
-                    <span className="font-heading text-primary text-5xl md:text-7xl lg:text-9xl uppercase tracking-tighter leading-[0.8] italic font-black block">{manifestData.displayDate.split(' ').slice(1).join(' ')}</span>
+                {config?.visit?.active !== false ? (
+                  <div className="relative z-10 space-y-2 max-w-4xl group">
+                    <div className="space-y-0">
+                      <span className="font-heading text-primary text-xl md:text-3xl tracking-[0.5em] uppercase font-bold block italic mb-2">
+                        {manifestData.displayFullDate.split(' ')[0]}
+                      </span>
+                      <div className="flex items-start gap-4">
+                        <span className="font-heading text-primary text-6xl md:text-8xl lg:text-9xl uppercase italic font-black leading-none mt-4">
+                          {config?.visit?.nextDate ? config.visit.nextDate.split('-')[2] : t.displayDate.split(' ')[0]}
+                        </span>
+                        <h2 className="font-heading text-[10rem] md:text-[15rem] lg:text-[18rem] uppercase tracking-tighter leading-[0.7] italic font-black text-white mix-blend-overlay lg:mix-normal">
+                          {config?.visit?.displayMonth || t.displayDate.split(' ')[1]}
+                        </h2>
+                      </div>
+                    </div>
+                    <div className="pt-8 border-t border-primary/20 w-full text-center md:text-right">
+                      <p className="font-heading text-primary text-[10px] md:text-xs tracking-[0.6em] uppercase italic">{language === "it" ? "Prossima Esperienza" : "Next Experience"}</p>
+                    </div>
                   </div>
-                  <div className="pt-8 border-t border-primary/20 w-full text-center md:text-right">
-                    <p className="font-heading text-primary text-[10px] md:text-xs tracking-[0.6em] uppercase italic">{language === "it" ? "Prossima Esperienza" : "Next Experience"}</p>
+                ) : (
+                  <div className="relative z-10 space-y-8 max-w-4xl">
+                    <div className="pt-8 border-t border-primary/20 w-full">
+                      <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl uppercase tracking-[0.2em] font-bold text-white leading-relaxed max-w-2xl">
+                        {t.visitPage.expectations.noVisits}
+                      </h2>
+                      <p className="font-heading text-primary text-[10px] md:text-xs tracking-[0.6em] uppercase italic mt-8">
+                        {language === "it" ? "Ritorni presto per nuovi aggiornamenti" : "Check back soon for updates"}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
               </motion.div>
             </div>
           </section>
@@ -245,15 +266,17 @@ export default function VisitUsPage() {
 
         </div>
 
-        {/* Right Column: Sticky Form Terminal */}
-        <SidebarScrollVisibility 
-          isVisible={isSidebarVisible}
-          hide={isFooterInView}
-        >
-          <div className="w-full h-full relative overflow-hidden border-l border-white/5 shadow-2xl">
-             <VisitSidebarContent showCloseButton={false} />
-          </div>
-        </SidebarScrollVisibility>
+        {/* Right Column: Sticky Form Terminal (Hidden if Inactive) */}
+        {config?.visit?.active !== false && (
+          <SidebarScrollVisibility 
+            isVisible={isSidebarVisible}
+            hide={isFooterInView}
+          >
+            <div className="w-full h-full relative overflow-hidden border-l border-white/5 shadow-2xl">
+               <VisitSidebarContent showCloseButton={false} />
+            </div>
+          </SidebarScrollVisibility>
+        )}
 
       </div>
 

@@ -30,6 +30,9 @@ export default function PromoBanner() {
   // Hide based on CMS toggle, restricted pages, or active takeovers
   if (!promoActive || !isEligiblePage || isMenuOpen || isBagOpen || isVisitOpen) return null;
 
+  const promoDiscountPercentage = config?.promo?.discount !== undefined ? config?.promo?.discount : (MARKETING_MANIFEST.promo.discount * 100);
+  const dynamicFullDescription = localizedPromo.fullDescription.replace(/10%/g, `${promoDiscountPercentage}%`);
+
   const handleCopy = () => {
     navigator.clipboard.writeText(promoCode);
     setCopied(true);
@@ -58,7 +61,7 @@ export default function PromoBanner() {
           <div className="flex items-center gap-4 text-black overflow-hidden whitespace-nowrap">
             {/* Mobile Manifest: Minimalist frequency */}
             <span className="font-heading text-xs tracking-[0.2em] uppercase font-bold md:hidden">
-              SCONTO {MARKETING_MANIFEST.promo.discount * 100}% &mdash; 
+              SCONTO {promoDiscountPercentage}% &mdash; 
             </span>
 
             {/* Desktop Manifest: Editorial depth */}
@@ -72,7 +75,7 @@ export default function PromoBanner() {
             </div>
 
             <span className="font-heading text-[10px] md:text-sm tracking-[0.3em] uppercase font-bold hidden md:inline">
-              {localizedPromo.fullDescription}
+              {dynamicFullDescription}
             </span>
           </div>
 

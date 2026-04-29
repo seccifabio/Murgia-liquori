@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Users, Mail, Phone, User, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 import { VISIT_MANIFEST } from "@/manifest/visit";
 import { sendVisitRequest } from "@/app/actions/visit";
 
@@ -14,10 +15,17 @@ interface VisitSidebarContentProps {
 
 export default function VisitSidebarContent({ onClose, showCloseButton = true }: VisitSidebarContentProps) {
   const { t, language } = useTranslation();
+  const { config } = useCMS();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const manifest = VISIT_MANIFEST[language];
+  const manifest = VISIT_MANIFEST[language as "it" | "en"] || VISIT_MANIFEST.it;
+  
+  // Dynamic Date from CMS
+  const currentVisitDate = config?.visit?.nextDate || VISIT_MANIFEST.date;
+  const displayFullDate = config?.visit?.nextDate 
+    ? new Date(config.visit.nextDate).toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+    : manifest.displayFullDate;
 
   // Form Manifest
   const [formData, setFormData] = useState({
@@ -26,7 +34,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
     guests: "2",
     email: "",
     phone: "",
-    date: VISIT_MANIFEST.date
+    date: currentVisitDate
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,7 +64,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
       <div className="p-8 pt-20 border-b border-white/5 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Calendar className="w-5 h-5 text-primary" />
-          <h2 className="font-heading text-lg md:text-xl tracking-widest uppercase text-primary font-bold">{manifest.displayFullDate}</h2>
+          <h2 className="font-heading text-lg md:text-xl tracking-widest uppercase text-primary font-bold">{displayFullDate}</h2>
         </div>
         {showCloseButton && onClose && (
           <button
