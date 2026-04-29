@@ -53,7 +53,7 @@ function SuccessContent() {
   }, [sessionId, clearCart, items.length]);
 
 
-  const { language } = useTranslation();
+  const { language, t } = useTranslation();
   const localizedMarketing = (MARKETING_MANIFEST.email as any)[language] || MARKETING_MANIFEST.email.it;
 
   return (
@@ -83,10 +83,10 @@ function SuccessContent() {
 
         <div className="space-y-4">
           <h1 className="font-heading text-6xl md:text-8xl uppercase tracking-tighter leading-none">
-            {language === 'it' ? 'Grazie per' : 'Thank you for'} <br /> <span className="text-primary italic">{language === 'it' ? 'Il Tuo Ordine' : 'Your Order'}</span>
+            {t.success.title} <br /> <span className="text-primary italic">{t.success.subtitle}</span>
           </h1>
           <p className="font-body text-white/40 text-[10px] md:text-xs uppercase tracking-[0.4em]">
-            {language === 'it' ? 'Identificativo' : 'Order ID'}: #{sessionId?.slice(-8).toUpperCase() || "XXXX"}
+            {t.success.idLabel}: #{sessionId?.slice(-8).toUpperCase() || "XXXX"}
           </p>
         </div>
       </div>
@@ -97,13 +97,13 @@ function SuccessContent() {
           <div className="space-y-10">
             <div className="flex items-center gap-3 border-b border-white/10 pb-6">
               <Package className="w-5 h-5 text-primary" />
-              <h3 className="font-heading text-xl tracking-widest uppercase">{language === 'it' ? 'Riepilogo Ordine' : 'Order Summary'}</h3>
+              <h3 className="font-heading text-xl tracking-widest uppercase">{t.success.summary}</h3>
             </div>
 
             {loading ? (
               <div className="flex flex-col items-center justify-center py-12 space-y-4">
                 <Loader2 className="w-8 h-8 text-primary animate-spin" />
-                <p className="font-heading text-[10px] tracking-widest uppercase text-white/40">{language === 'it' ? 'Recupero dati...' : 'Retrieving data...'}</p>
+                <p className="font-heading text-[10px] tracking-widest uppercase text-white/40">{t.success.retrieving}</p>
               </div>
             ) : session ? (
               <div className="space-y-8">
@@ -115,7 +115,7 @@ function SuccessContent() {
                           {item.description}
                         </p>
                         <p className="font-body text-[10px] text-white/30 uppercase tracking-[0.2em]">
-                          {language === 'it' ? 'Quantità' : 'Quantity'}: {item.quantity}
+                          {t.success.quantity}: {item.quantity}
                         </p>
                       </div>
                       <p className="font-heading text-white/80 text-lg">
@@ -129,13 +129,13 @@ function SuccessContent() {
                     <div className="pt-4 space-y-3 border-t border-white/5">
                       {session.total_details.amount_shipping > 0 && (
                         <div className="flex justify-between items-center opacity-60">
-                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">{language === 'it' ? 'Trasporto' : 'Shipping'}</p>
+                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">{t.success.shipping}</p>
                           <p className="font-heading text-sm">€{(session.total_details.amount_shipping / 100).toFixed(2)}</p>
                         </div>
                       )}
                       {session.total_details.amount_discount > 0 && (
                         <div className="flex justify-between items-center text-primary">
-                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">{language === 'it' ? 'Sconto' : 'Discount'}</p>
+                          <p className="font-heading text-[10px] uppercase tracking-[0.2em]">{t.success.discount}</p>
                           <p className="font-heading text-sm">-€{(session.total_details.amount_discount / 100).toFixed(2)}</p>
                         </div>
                       )}
@@ -144,14 +144,14 @@ function SuccessContent() {
                 </div>
 
                 <div className="pt-8 border-t border-white/10 flex justify-between items-center">
-                  <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Totale Ordine' : 'Total Order'}</p>
+                  <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{t.success.total}</p>
                   <p className="font-heading text-4xl text-primary">
                     €{(session.amount_total / 100).toFixed(2)}
                   </p>
                 </div>
               </div>
             ) : (
-              <p className="text-white/40 italic">{language === 'it' ? 'Dettagli non disponibili.' : 'Details unavailable.'}</p>
+              <p className="text-white/40 italic">{t.success.detailsUnavailable}</p>
             )}
 
             {/* Customer Identity Manifest */}
@@ -159,13 +159,13 @@ function SuccessContent() {
               <div className="space-y-6 pt-10 border-t border-white/10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div className="space-y-1">
-                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Cliente' : 'Customer'}</p>
+                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{t.success.customer}</p>
                     <p className="font-heading text-xl text-white/90 tracking-wide uppercase">
                       {session.customer_details.name}
                     </p>
                   </div>
                   <div className="space-y-1">
-                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Email' : 'Email'}</p>
+                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Email</p>
                     <p className="font-body text-xs text-white/50 tracking-widest break-all">
                       {session.customer_details.email}
                     </p>
@@ -176,7 +176,7 @@ function SuccessContent() {
                 {session?.shipping_details?.address?.line1 ? (
                   <div className="space-y-4 pt-6 border-t border-white/5">
                     <div className="space-y-1">
-                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Destinazione' : 'Destination'}</p>
+                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{t.success.destination}</p>
                       <div className="font-body text-[10px] md:text-xs text-white/50 space-y-1 tracking-[0.2em] leading-relaxed uppercase">
                         <p className="text-white/80 font-heading tracking-widest">{session.shipping_details.name}</p>
                         <p>
@@ -194,11 +194,11 @@ function SuccessContent() {
                 ) : (
                   <div className="space-y-4 pt-6 border-t border-white/5">
                     <div className="space-y-1">
-                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{language === 'it' ? 'Ritiro' : 'Pickup'}</p>
+                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{t.success.pickup}</p>
                       <div className="font-body text-[10px] md:text-xs text-white/50 space-y-1 tracking-[0.2em] leading-relaxed uppercase">
                         <p className="text-white/80 font-heading tracking-widest">Via Parrocchia 29</p>
                         <p>09039 Villacidro (SU)</p>
-                        <p className="pt-2 text-primary/80">{language === 'it' ? 'Orari: Lun-Sab: 09:00 - 13:00' : 'Hours: Mon-Sat: 09:00 - 13:00'}</p>
+                        <p className="pt-2 text-primary/80">{t.success.hours}</p>
                       </div>
                     </div>
                   </div>
@@ -291,7 +291,7 @@ export default function SuccessPage() {
         <Suspense fallback={
           <div className="flex flex-col items-center justify-center space-y-6">
             <Loader2 className="w-12 h-12 text-primary animate-spin" />
-            <p className="font-heading text-xs tracking-[0.5em] uppercase text-white/20">Sincronizzazione Rituale...</p>
+            <p className="font-heading text-xs tracking-[0.5em] uppercase text-white/20">{t.success.retrieving}</p>
           </div>
         }>
           <SuccessContent />

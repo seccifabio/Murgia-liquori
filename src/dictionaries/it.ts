@@ -379,5 +379,21 @@ export const it = {
     acceptAll: "Accetta Tutto",
     reject: "Solo Necessari",
     policy: "Scopri di più",
+  },
+  success: {
+    title: "Grazie per",
+    subtitle: "Il Tuo Manifesto",
+    idLabel: "Identificativo",
+    summary: "Riepilogo Manifesto",
+    retrieving: "Sincronizzazione Rituale...",
+    quantity: "Quantità",
+    shipping: "Trasporto",
+    discount: "Sconto",
+    total: "Valore Manifestato",
+    customer: "Alchimista",
+    destination: "Destinazione",
+    pickup: "Ritiro in Laboratorio",
+    hours: "Orari: Lun-Sab: 09:00 - 13:00",
+    detailsUnavailable: "Dettagli del rito non disponibili.",
   }
 };

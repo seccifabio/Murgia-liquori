@@ -379,5 +379,21 @@ export const en = {
     acceptAll: "Accept All",
     reject: "Necessary Only",
     policy: "Learn more",
+  },
+  success: {
+    title: "Thank you for",
+    subtitle: "Your Manifest",
+    idLabel: "Manifest ID",
+    summary: "Manifest Summary",
+    retrieving: "Ritual Synchronization...",
+    quantity: "Quantity",
+    shipping: "Shipping",
+    discount: "Discount",
+    total: "Manifested Value",
+    customer: "Alchemist",
+    destination: "Destination",
+    pickup: "Laboratory Pickup",
+    hours: "Hours: Mon-Sat: 09:00 - 13:00",
+    detailsUnavailable: "Ritual details unavailable.",
   }
 };
