@@ -27,10 +27,10 @@ export const metadata: Metadata = {
     siteName: "Murgia Liquori",
     images: [
       {
-        url: "/images/lasbagliata.webp",
+        url: "/images/og-share.png",
         width: 1200,
         height: 630,
-        alt: "Murgia Liquori - Heritage Spirits",
+        alt: "Murgia Liquori | 1882 Alchemical Heritage",
       },
     ],
     locale: "it_IT",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Murgia Liquori | 1882 Heritage Spirits",
     description: "Artisanal Sardinian spirits crafted since 1882.",
-    images: ["/images/lasbagliata.webp"],
+    images: ["/images/og-share.png"],
   },
   alternates: {
     canonical: "/",
