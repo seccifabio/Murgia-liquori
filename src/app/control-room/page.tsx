@@ -310,9 +310,9 @@ export default function ControlRoomPage() {
 
                   <div className="lg:w-80 p-8 bg-white/5 space-y-6 self-stretch flex flex-col justify-center border border-white/10">
                     <div className="space-y-4">
-                      <label className="font-heading text-[10px] tracking-widest text-white/40 uppercase font-bold">Prezzo Visita (&euro;)</label>
+                      <label className="font-heading text-[10px] tracking-widest text-white/40 uppercase font-bold text-center block">Prezzo Visita (&euro;)</label>
                       
-                      <div className="flex items-center gap-4 bg-white/5 p-2 border-b border-white/10">
+                      <div className="flex items-center justify-between bg-noir/40 p-4 border border-white/10 rounded-sm">
                         <button 
                           onClick={() => {
                             const newVisits = [...(config.visits || [])];
@@ -320,9 +320,9 @@ export default function ControlRoomPage() {
                             newVisits[0].price = Math.max(0, (newVisits[0].price || 0) - 1);
                             setConfig({ ...config, visits: newVisits });
                           }}
-                          className="p-3 hover:text-primary transition-colors text-white/40"
+                          className="p-2 hover:text-primary hover:bg-white/5 transition-all text-white/20 active:scale-90"
                         >
-                          <Minus className="w-5 h-5" />
+                          <Minus className="w-6 h-6" />
                         </button>
 
                         <input
@@ -334,7 +334,7 @@ export default function ControlRoomPage() {
                             newVisits[0].price = parseInt(e.target.value) || 0;
                             setConfig({ ...config, visits: newVisits });
                           }}
-                          className="flex-1 bg-transparent text-center text-4xl text-primary outline-none font-black appearance-none"
+                          className="w-24 bg-transparent text-center text-5xl text-primary outline-none font-black [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
 
                         <button 
@@ -344,9 +344,9 @@ export default function ControlRoomPage() {
                             newVisits[0].price = (newVisits[0].price || 0) + 1;
                             setConfig({ ...config, visits: newVisits });
                           }}
-                          className="p-3 hover:text-primary transition-colors text-white/40"
+                          className="p-2 hover:text-primary hover:bg-white/5 transition-all text-white/20 active:scale-90"
                         >
-                          <Plus className="w-5 h-5" />
+                          <Plus className="w-6 h-6" />
                         </button>
                       </div>
                     </div>
