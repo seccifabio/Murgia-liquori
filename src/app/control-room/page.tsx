@@ -120,6 +120,9 @@ export default function ControlRoomPage() {
                 />
               </div>
 
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div className="space-y-8">
                   <div className="space-y-2">
@@ -182,6 +185,76 @@ export default function ControlRoomPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Multilingual Contents Ritual (Promo) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pt-8 border-t border-white/5">
+                {['it', 'en'].map((lang) => (
+                  <div key={`promo-lang-${lang}`} className="space-y-8">
+                    <h3 className="font-heading text-xs tracking-[0.4em] text-primary uppercase font-bold">
+                      Contenuti {lang.toUpperCase()}
+                    </h3>
+                    
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Descrizione Breve</label>
+                        <input 
+                          type="text" 
+                          value={config.promo.texts?.[lang]?.description || ""}
+                          onChange={(e) => {
+                            const newTexts = { ...config.promo.texts };
+                            newTexts[lang] = { ...newTexts[lang], description: e.target.value.toUpperCase() };
+                            setConfig({ ...config, promo: { ...config.promo, texts: newTexts } });
+                          }}
+                          className="w-full bg-white/5 border-b border-white/10 p-3 font-sans text-sm text-white focus:border-primary outline-none transition-colors uppercase"
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Descrizione Estesa</label>
+                        <textarea 
+                          value={config.promo.texts?.[lang]?.fullDescription || ""}
+                          onChange={(e) => {
+                            const newTexts = { ...config.promo.texts };
+                            newTexts[lang] = { ...newTexts[lang], fullDescription: e.target.value.toUpperCase() };
+                            setConfig({ ...config, promo: { ...config.promo, texts: newTexts } });
+                          }}
+                          className="w-full bg-white/5 border-b border-white/10 p-3 font-sans text-sm text-white focus:border-primary outline-none transition-colors uppercase h-20 resize-none"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Testo CTA</label>
+                          <input 
+                            type="text" 
+                            value={config.promo.texts?.[lang]?.cta || ""}
+                            onChange={(e) => {
+                              const newTexts = { ...config.promo.texts };
+                              newTexts[lang] = { ...newTexts[lang], cta: e.target.value.toUpperCase() };
+                              setConfig({ ...config, promo: { ...config.promo, texts: newTexts } });
+                            }}
+                            className="w-full bg-white/5 border-b border-white/10 p-3 font-sans text-sm text-white focus:border-primary outline-none transition-colors uppercase"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Messaggio Successo</label>
+                          <input 
+                            type="text" 
+                            value={config.promo.texts?.[lang]?.successMsg || ""}
+                            onChange={(e) => {
+                              const newTexts = { ...config.promo.texts };
+                              newTexts[lang] = { ...newTexts[lang], successMsg: e.target.value.toUpperCase() };
+                              setConfig({ ...config, promo: { ...config.promo, texts: newTexts } });
+                            }}
+                            className="w-full bg-white/5 border-b border-white/10 p-3 font-sans text-sm text-white focus:border-primary outline-none transition-colors uppercase"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
             </motion.section>
           ) : activeTab === "visit" ? (
             <motion.section 
@@ -237,7 +310,82 @@ export default function ControlRoomPage() {
                       {new Date(config.visits?.[0]?.date || "2024-05-18").toLocaleDateString('it-IT', { month: 'short' })}
                     </span>
                   </div>
+                  
+                  <div className="pt-4 border-t border-white/5">
+                    <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold block mb-2 text-center">Prezzo Visita (&euro;)</label>
+                    <input 
+                      type="number" 
+                      value={config.visits?.[0]?.price || 0}
+                      onChange={(e) => {
+                        const newVisits = [...(config.visits || [])];
+                        if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                        newVisits[0].price = parseInt(e.target.value);
+                        setConfig({ ...config, visits: newVisits });
+                      }}
+                      className="w-full bg-noir border border-white/10 p-2 font-sans text-center text-lg text-primary focus:border-primary outline-none transition-colors"
+                    />
+                  </div>
                 </div>
+              </div>
+
+              {/* Multilingual Contents Ritual (Visit) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pt-8 border-t border-white/5">
+                {['it', 'en'].map((lang) => (
+                  <div key={`visit-lang-${lang}`} className="space-y-8">
+                    <h3 className="font-heading text-xs tracking-[0.4em] text-primary uppercase font-bold">
+                      Contenuti {lang.toUpperCase()}
+                    </h3>
+                    
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Titolo</label>
+                        <input 
+                          type="text" 
+                          value={config.visits?.[0]?.texts?.[lang]?.title || ""}
+                          onChange={(e) => {
+                            const newVisits = [...(config.visits || [])];
+                            if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                            if (!newVisits[0].texts) newVisits[0].texts = { it: { title: "", subtitle: "", cta: "" }, en: { title: "", subtitle: "", cta: "" } };
+                            newVisits[0].texts[lang] = { ...newVisits[0].texts[lang], title: e.target.value.toUpperCase() };
+                            setConfig({ ...config, visits: newVisits });
+                          }}
+                          className="w-full bg-white/5 border-b border-white/10 p-3 font-sans text-sm text-white focus:border-primary outline-none transition-colors uppercase"
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Sottotitolo</label>
+                        <textarea 
+                          value={config.visits?.[0]?.texts?.[lang]?.subtitle || ""}
+                          onChange={(e) => {
+                            const newVisits = [...(config.visits || [])];
+                            if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                            if (!newVisits[0].texts) newVisits[0].texts = { it: { title: "", subtitle: "", cta: "" }, en: { title: "", subtitle: "", cta: "" } };
+                            newVisits[0].texts[lang] = { ...newVisits[0].texts[lang], subtitle: e.target.value.toUpperCase() };
+                            setConfig({ ...config, visits: newVisits });
+                          }}
+                          className="w-full bg-white/5 border-b border-white/10 p-3 font-sans text-sm text-white focus:border-primary outline-none transition-colors uppercase h-20 resize-none"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Testo CTA</label>
+                        <input 
+                          type="text" 
+                          value={config.visits?.[0]?.texts?.[lang]?.cta || ""}
+                          onChange={(e) => {
+                            const newVisits = [...(config.visits || [])];
+                            if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                            if (!newVisits[0].texts) newVisits[0].texts = { it: { title: "", subtitle: "", cta: "" }, en: { title: "", subtitle: "", cta: "" } };
+                            newVisits[0].texts[lang] = { ...newVisits[0].texts[lang], cta: e.target.value.toUpperCase() };
+                            setConfig({ ...config, visits: newVisits });
+                          }}
+                          className="w-full bg-white/5 border-b border-white/10 p-3 font-sans text-sm text-white focus:border-primary outline-none transition-colors uppercase"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.section>
           ) : (

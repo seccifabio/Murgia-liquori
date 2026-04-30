@@ -9,10 +9,19 @@ type CMSConfig = {
     code: string;
     discount: number;
     expiryDate: string;
+    texts?: {
+      it: { description: string; fullDescription: string; cta: string; successMsg: string };
+      en: { description: string; fullDescription: string; cta: string; successMsg: string };
+    };
   };
   visits: Array<{
     date: string;
     active: boolean;
+    texts?: {
+      it: { title: string; subtitle: string; cta: string };
+      en: { title: string; subtitle: string; cta: string };
+    };
+    price?: number;
   }>;
   locations: Array<{
     name: string;

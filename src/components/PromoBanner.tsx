@@ -21,8 +21,8 @@ export default function PromoBanner() {
   const promoCode = config?.promo?.code || MARKETING_MANIFEST.promo.code;
   const promoDiscount = config?.promo?.discount !== undefined ? config?.promo?.discount / 100 : MARKETING_MANIFEST.promo.discount;
   
-  // Resolve localized content from manifest
-  const localizedPromo = (MARKETING_MANIFEST.promo as any)[language] || MARKETING_MANIFEST.promo.it;
+  // Resolve localized content from CMS config or fallback to manifest
+  const localizedPromo = config?.promo?.texts?.[language as 'it' | 'en'] || (MARKETING_MANIFEST.promo as any)[language] || MARKETING_MANIFEST.promo.it;
 
   // Visibility Manifest: Only on Home, Collection and Product pages
   const isEligiblePage = pathname === "/" || pathname?.includes("/shop/") || pathname === "/la-collezione";

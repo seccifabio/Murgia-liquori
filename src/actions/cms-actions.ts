@@ -5,6 +5,8 @@ import path from "path";
 import { revalidatePath, unstable_noStore as noStore } from "next/cache";
 
 import { redis } from "@/lib/redis";
+import { MARKETING_MANIFEST } from "@/manifest/marketing";
+import { VISIT_MANIFEST } from "@/manifest/visit";
 
 const CONFIG_PATH = path.join(process.cwd(), "src/data/cms-config.json");
 const REDIS_KEY = "murgia_cms_config";
@@ -73,6 +75,27 @@ export async function getCMSConfig() {
           parsed.locations = STATIC_LOCATIONS;
           await redis.set(REDIS_KEY, JSON.stringify(parsed));
         }
+
+        // Migration Ritual (Banner Texts): Add 'texts' to promo if missing
+        if (!parsed.promo.texts) {
+          console.log("CMS: Migrating promo texts to Redis");
+          parsed.promo.texts = {
+            it: { ...MARKETING_MANIFEST.promo.it },
+            en: { ...MARKETING_MANIFEST.promo.en }
+          };
+          await redis.set(REDIS_KEY, JSON.stringify(parsed));
+        }
+
+        // Migration Ritual (Visit Texts): Add 'texts' and 'price' to visits if missing
+        if (parsed.visits?.[0] && !parsed.visits[0].texts) {
+          console.log("CMS: Migrating visit texts and price to Redis");
+          parsed.visits[0].texts = {
+            it: { title: VISIT_MANIFEST.it.title, subtitle: VISIT_MANIFEST.it.subtitle, cta: VISIT_MANIFEST.it.cta },
+            en: { title: VISIT_MANIFEST.en.title, subtitle: VISIT_MANIFEST.en.subtitle, cta: VISIT_MANIFEST.en.cta }
+          };
+          parsed.visits[0].price = VISIT_MANIFEST.price;
+          await redis.set(REDIS_KEY, JSON.stringify(parsed));
+        }
         
         return parsed;
       }
@@ -110,8 +133,25 @@ export async function getCMSConfig() {
   } catch (error) {
     console.error("Failed to read CMS config:", error);
     return {
-      promo: { active: true, code: "MURGIA1882", discount: 10, expiryDate: "2026-05-31" },
-      visits: [{ active: true, date: "2026-05-04" }],
+      promo: { 
+        active: true, 
+        code: "MURGIA1882", 
+        discount: 10, 
+        expiryDate: "2026-05-31",
+        texts: {
+          it: { ...MARKETING_MANIFEST.promo.it },
+          en: { ...MARKETING_MANIFEST.promo.en }
+        }
+      },
+      visits: [{ 
+        active: true, 
+        date: "2026-05-04",
+        texts: {
+          it: { title: VISIT_MANIFEST.it.title, subtitle: VISIT_MANIFEST.it.subtitle, cta: VISIT_MANIFEST.it.cta },
+          en: { title: VISIT_MANIFEST.en.title, subtitle: VISIT_MANIFEST.en.subtitle, cta: VISIT_MANIFEST.en.cta }
+        },
+        price: VISIT_MANIFEST.price
+      }],
       locations: STATIC_LOCATIONS
     };
   }

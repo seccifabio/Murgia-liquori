@@ -25,7 +25,8 @@ export default function VisitBanner() {
     ? visitDateObj.toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { day: 'numeric', month: 'long' })
     : VISIT_MANIFEST[language].displayDate;
 
-  const manifest = VISIT_MANIFEST[language];
+  const manifest = config?.visits?.[0]?.texts?.[language as 'it' | 'en'] || VISIT_MANIFEST[language as 'it' | 'en'];
+  const price = config?.visits?.[0]?.price ?? VISIT_MANIFEST.price;
 
   if (loading) return null;
 
@@ -72,7 +73,7 @@ export default function VisitBanner() {
             <div className="h-4 w-px bg-white/10" />
 
             <div className="flex items-center gap-3">
-              <span className="font-heading text-xs md:text-xs tracking-[0.2em] uppercase text-white/40">{language === "it" ? "Da" : "From"} &euro;{VISIT_MANIFEST.price}</span>
+              <span className="font-heading text-xs md:text-xs tracking-[0.2em] uppercase text-white/40">{language === "it" ? "Da" : "From"} &euro;{price}</span>
               <span className="font-heading text-sm md:text-base uppercase tracking-[0.3em] font-bold group-hover:text-primary transition-colors">{manifest.cta}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-2 group-hover:text-primary transition-all" />
             </div>
