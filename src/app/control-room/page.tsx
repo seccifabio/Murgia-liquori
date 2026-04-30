@@ -193,7 +193,7 @@ export default function ControlRoomPage() {
                   <div className="flex flex-col md:flex-row items-center justify-between border-b border-noir/10 pb-8 gap-8">
                     <div className="space-y-1">
                       <h3 className="font-heading text-2xl font-black text-noir uppercase tracking-tight">Testi Localizzati</h3>
-                      <p className="font-heading text-[10px] tracking-widest text-noir/40 uppercase">Personalizza i messaggi del banner per ogni lingua</p>
+                      <p className="font-heading text-[10px] tracking-widest text-noir/40 uppercase">Personalizza i messaggi del banner for ogni lingua</p>
                     </div>
 
                     <div className="flex bg-noir/5 p-1 rounded-sm border border-noir/10">
@@ -733,7 +733,6 @@ function EmailManager({ config, setConfig }: { config: any, setConfig: (c: any) 
                   value={emailConfig[field.id] || ""}
                   onChange={(e) => updateField(field.id, e.target.value)}
                   className="w-full bg-white/5 border-b-2 border-white/10 p-4 font-sans text-sm text-white focus:border-primary outline-none transition-colors h-24 resize-none"
-                  placeholder={field.placeholder}
                 />
               ) : (
                 <input
@@ -741,7 +740,6 @@ function EmailManager({ config, setConfig }: { config: any, setConfig: (c: any) 
                   value={emailConfig[field.id] || ""}
                   onChange={(e) => updateField(field.id, e.target.value)}
                   className="w-full bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg text-white focus:border-primary outline-none transition-colors"
-                  placeholder={field.placeholder}
                 />
               )}
             </div>
