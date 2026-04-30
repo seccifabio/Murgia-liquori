@@ -46,8 +46,8 @@ export default function ControlRoomPage() {
     setSaving(false);
     // Visual feedback
     const toast = document.createElement("div");
-    toast.className = "fixed bottom-8 left-1/2 -translate-x-1/2 bg-primary text-noir px-8 py-4 font-heading italic font-black z-[100000]";
-    toast.innerText = "saved";
+    toast.className = "fixed bottom-8 left-1/2 -translate-x-1/2 bg-[#22c55e] text-black px-10 py-5 font-heading italic font-black z-[100000] shadow-[0_0_50px_rgba(34,197,94,0.3)]";
+    toast.innerText = "CONFIGURAZIONE SINCRONIZZATA";
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 3000);
   }
@@ -269,20 +269,37 @@ export default function ControlRoomPage() {
               exit={{ opacity: 0, x: -20 }}
               className="space-y-12"
             >
-              <div className="flex items-center justify-between border-b border-white/10 pb-8">
+              <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/10 pb-8 gap-8">
                 <div className="space-y-1">
                   <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Visit Us</h2>
                   <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Pianificazione Prossima Visita</p>
                 </div>
-                <Switch
-                  active={config.visits?.[0]?.active !== false}
-                  onChange={(val) => {
-                    const newVisits = [...(config.visits || [])];
-                    if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
-                    newVisits[0].active = val;
-                    setConfig({ ...config, visits: newVisits });
-                  }}
-                />
+                
+                <div className="flex items-center gap-12">
+                  <div className="flex flex-col items-end gap-2">
+                    <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Prezzo Visita (&euro;)</label>
+                    <input
+                      type="number"
+                      value={config.visits?.[0]?.price || 0}
+                      onChange={(e) => {
+                        const newVisits = [...(config.visits || [])];
+                        if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                        newVisits[0].price = parseInt(e.target.value);
+                        setConfig({ ...config, visits: newVisits });
+                      }}
+                      className="w-24 bg-white/5 border border-white/10 p-3 font-sans text-center text-xl text-primary focus:border-primary outline-none transition-colors font-bold"
+                    />
+                  </div>
+                  <Switch
+                    active={config.visits?.[0]?.active !== false}
+                    onChange={(val) => {
+                      const newVisits = [...(config.visits || [])];
+                      if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                      newVisits[0].active = val;
+                      setConfig({ ...config, visits: newVisits });
+                    }}
+                  />
+                </div>
               </div>
 
               <div className="flex flex-col lg:flex-row gap-12 items-start">
@@ -302,7 +319,7 @@ export default function ControlRoomPage() {
                   />
                 </div>
 
-                <div className="lg:w-80 p-8 bg-white/[0.05] space-y-4 self-stretch flex flex-col justify-center">
+                <div className="lg:w-80 p-8 bg-white/[0.05] space-y-4 self-stretch flex flex-col justify-center border border-white/10">
                   <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Anteprima Live:</p>
                   <div className="flex flex-col items-center">
                     <span className="font-heading text-sm uppercase font-bold text-primary tracking-widest">
@@ -315,41 +332,26 @@ export default function ControlRoomPage() {
                       {new Date(config.visits?.[0]?.date || "2024-05-18").toLocaleDateString('it-IT', { month: 'short' })}
                     </span>
                   </div>
-
-                  <div className="pt-4 border-t border-white/5">
-                    <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold block mb-2 text-center">Prezzo Visita (&euro;)</label>
-                    <input
-                      type="number"
-                      value={config.visits?.[0]?.price || 0}
-                      onChange={(e) => {
-                        const newVisits = [...(config.visits || [])];
-                        if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
-                        newVisits[0].price = parseInt(e.target.value);
-                        setConfig({ ...config, visits: newVisits });
-                      }}
-                      className="w-full bg-noir border border-white/10 p-2 font-sans text-center text-lg text-primary focus:border-primary outline-none transition-colors"
-                    />
-                  </div>
                 </div>
               </div>
 
               {/* Multilingual Contents Ritual (Visit) */}
-              <div className="mt-16 p-8 bg-white/[0.03] border border-white/5 rounded-sm space-y-12">
-                <div className="space-y-1">
-                  <h3 className="font-heading text-lg font-bold text-primary uppercase tracking-tight">Testi Esperienza</h3>
-                  <p className="font-heading text-[9px] tracking-widest text-white/40 uppercase">Gestisci i contenuti della sidebar "Prenota Visita"</p>
+              <div className="mt-16 p-12 bg-white text-noir rounded-sm space-y-12 shadow-[0_0_100px_rgba(255,255,255,0.05)]">
+                <div className="space-y-1 border-b border-noir/10 pb-8">
+                  <h3 className="font-heading text-2xl font-black text-noir uppercase tracking-tight">Testi Esperienza</h3>
+                  <p className="font-heading text-[10px] tracking-widest text-noir/40 uppercase">Gestisci i contenuti della sidebar "Prenota Visita"</p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                   {['it', 'en'].map((lang) => (
                     <div key={`visit-lang-${lang}`} className="space-y-8">
-                      <h4 className="font-heading text-xs tracking-[0.4em] text-primary uppercase font-bold opacity-60">
-                        Versione {lang.toUpperCase()}
+                      <h4 className="font-heading text-sm tracking-[0.4em] text-noir/30 uppercase font-black">
+                        VERSIONE {lang.toUpperCase()}
                       </h4>
 
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                       <div className="space-y-2">
-                        <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Titolo</label>
+                        <label className="font-heading text-[10px] tracking-widest text-noir/40 uppercase font-bold">Titolo</label>
                         <input
                           type="text"
                           value={config.visits?.[0]?.texts?.[lang]?.title || ""}
@@ -360,12 +362,12 @@ export default function ControlRoomPage() {
                             newVisits[0].texts[lang] = { ...newVisits[0].texts[lang], title: e.target.value.toUpperCase() };
                             setConfig({ ...config, visits: newVisits });
                           }}
-                          className="w-full bg-white/5 border-b border-white/10 p-3 font-sans text-sm text-white focus:border-primary outline-none transition-colors uppercase"
+                          className="w-full bg-noir/5 border-b-2 border-noir/10 p-4 font-sans text-lg text-noir focus:border-primary outline-none transition-colors uppercase font-bold"
                         />
                       </div>
 
                       <div className="space-y-2">
-                        <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Sottotitolo</label>
+                        <label className="font-heading text-[10px] tracking-widest text-noir/40 uppercase font-bold">Sottotitolo</label>
                         <textarea
                           value={config.visits?.[0]?.texts?.[lang]?.subtitle || ""}
                           onChange={(e) => {
@@ -375,12 +377,12 @@ export default function ControlRoomPage() {
                             newVisits[0].texts[lang] = { ...newVisits[0].texts[lang], subtitle: e.target.value.toUpperCase() };
                             setConfig({ ...config, visits: newVisits });
                           }}
-                          className="w-full bg-white/5 border-b border-white/10 p-3 font-sans text-sm text-white focus:border-primary outline-none transition-colors uppercase h-20 resize-none"
+                          className="w-full bg-noir/5 border-b-2 border-noir/10 p-4 font-sans text-sm text-noir focus:border-primary outline-none transition-colors uppercase h-32 resize-none"
                         />
                       </div>
 
                       <div className="space-y-2">
-                        <label className="font-heading text-[9px] tracking-widest text-white/20 uppercase font-bold">Testo CTA</label>
+                        <label className="font-heading text-[10px] tracking-widest text-noir/40 uppercase font-bold">Testo CTA</label>
                         <input
                           type="text"
                           value={config.visits?.[0]?.texts?.[lang]?.cta || ""}
@@ -391,7 +393,7 @@ export default function ControlRoomPage() {
                             newVisits[0].texts[lang] = { ...newVisits[0].texts[lang], cta: e.target.value.toUpperCase() };
                             setConfig({ ...config, visits: newVisits });
                           }}
-                          className="w-full bg-white/5 border-b border-white/10 p-3 font-sans text-sm text-white focus:border-primary outline-none transition-colors uppercase"
+                          className="w-full bg-noir/5 border-b-2 border-noir/10 p-4 font-sans text-lg text-noir focus:border-primary outline-none transition-colors uppercase font-bold"
                         />
                       </div>
                     </div>
