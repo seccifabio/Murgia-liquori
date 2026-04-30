@@ -185,6 +185,7 @@ export default function ControlRoomPage() {
                   </div>
                 </div>
               </div>
+              </div>
 
               {/* Multilingual Contents Ritual (Promo) */}
               <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white text-noir mt-24 py-24 shadow-[0_0_100px_rgba(255,255,255,0.05)]">
