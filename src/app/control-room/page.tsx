@@ -67,7 +67,7 @@ export default function ControlRoomPage() {
 
   return (
     <div
-      className="min-h-screen bg-noir text-white px-6 md:px-12 selection:bg-primary selection:text-noir pb-32"
+      className="min-h-screen bg-noir text-white px-6 md:px-12 selection:bg-primary selection:text-noir"
       style={{ paddingTop: '210px' }}
     >
 
@@ -112,76 +112,75 @@ export default function ControlRoomPage() {
               className="space-y-12"
             >
               <div className="max-w-4xl mx-auto space-y-12">
-                <div className="flex items-center justify-between border-b border-white/10 pb-8">
-                  <div className="space-y-1">
-                    <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Promozione</h2>
-                    <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Configura il banner di sconto</p>
+              <div className="flex items-center justify-between border-b border-white/10 pb-8">
+                <div className="space-y-1">
+                  <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Promozione</h2>
+                  <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Configura il banner di sconto</p>
+                </div>
+                <Switch
+                  active={config.promo.active}
+                  onChange={(val) => setConfig({ ...config, promo: { ...config.promo, active: val } })}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div className="space-y-8">
+                  <div className="space-y-2">
+                    <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold flex items-center gap-2">
+                      <Tag className="w-3 h-3" /> Codice Voucher
+                    </label>
+                    <input
+                      type="text"
+                      value={config.promo.code}
+                      onChange={(e) => setConfig({ ...config, promo: { ...config.promo, code: e.target.value.toUpperCase() } })}
+                      className="w-full bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg text-white focus:border-primary outline-none transition-colors"
+                      placeholder="ES: MURGIA10"
+                    />
                   </div>
-                  <Switch
-                    active={config.promo.active}
-                    onChange={(val) => setConfig({ ...config, promo: { ...config.promo, active: val } })}
-                  />
+                  <div className="space-y-2">
+                    <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold">Sconto (%)</label>
+                    <input
+                      type="number"
+                      value={config.promo.discount}
+                      onChange={(e) => setConfig({ ...config, promo: { ...config.promo, discount: parseInt(e.target.value) } })}
+                      className="w-full bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg text-white focus:border-primary outline-none transition-colors"
+                    />
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                  <div className="space-y-8">
-                    <div className="space-y-2">
-                      <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold flex items-center gap-2">
-                        <Tag className="w-3 h-3" /> Codice Voucher
-                      </label>
-                      <input
-                        type="text"
-                        value={config.promo.code}
-                        onChange={(e) => setConfig({ ...config, promo: { ...config.promo, code: e.target.value.toUpperCase() } })}
-                        className="w-full bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg text-white focus:border-primary outline-none transition-colors"
-                        placeholder="ES: MURGIA10"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold">Sconto (%)</label>
-                      <input
-                        type="number"
-                        value={config.promo.discount}
-                        onChange={(e) => setConfig({ ...config, promo: { ...config.promo, discount: parseInt(e.target.value) } })}
-                        className="w-full bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg text-white focus:border-primary outline-none transition-colors"
-                      />
-                    </div>
-                  </div>
+                <div className="space-y-8">
+                  <div className="space-y-4">
+                    <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold flex items-center gap-2">
+                      <Calendar className="w-3 h-3" /> Data Scadenza
+                    </label>
 
-                  <div className="space-y-8">
-                    <div className="space-y-4">
-                      <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold flex items-center gap-2">
-                        <Calendar className="w-3 h-3" /> Data Scadenza
-                      </label>
+                    <div className="relative">
+                      <button
+                        onClick={() => setShowPromoCalendar(!showPromoCalendar)}
+                        className="w-full flex items-center justify-between bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg hover:border-primary transition-colors text-left"
+                      >
+                        {config.promo.expiryDate}
+                        <Calendar className={`w-5 h-5 ${showPromoCalendar ? 'text-primary' : 'text-white/20'}`} />
+                      </button>
 
-                      <div className="relative">
-                        <button
-                          onClick={() => setShowPromoCalendar(!showPromoCalendar)}
-                          className="w-full flex items-center justify-between bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg hover:border-primary transition-colors text-left"
-                        >
-                          {config.promo.expiryDate}
-                          <Calendar className={`w-5 h-5 ${showPromoCalendar ? 'text-primary' : 'text-white/20'}`} />
-                        </button>
-
-                        <AnimatePresence>
-                          {showPromoCalendar && (
-                            <motion.div
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: 10 }}
-                              className="absolute top-full left-0 z-50 mt-4 shadow-2xl"
-                            >
-                              <DatePicker
-                                value={config.promo.expiryDate}
-                                onChange={(date) => {
-                                  setConfig({ ...config, promo: { ...config.promo, expiryDate: date } });
-                                  setShowPromoCalendar(false);
-                                }}
-                              />
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
+                      <AnimatePresence>
+                        {showPromoCalendar && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            className="absolute top-full left-0 z-50 mt-4 shadow-2xl"
+                          >
+                            <DatePicker
+                              value={config.promo.expiryDate}
+                              onChange={(date) => {
+                                setConfig({ ...config, promo: { ...config.promo, expiryDate: date } });
+                                setShowPromoCalendar(false);
+                              }}
+                            />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </div>
                 </div>
@@ -289,142 +288,142 @@ export default function ControlRoomPage() {
               className="space-y-12"
             >
               <div className="max-w-4xl mx-auto space-y-12">
-                <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/10 pb-8 gap-8">
-                  <div className="space-y-1">
-                    <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Visit Us</h2>
-                    <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Pianificazione Prossima Visita</p>
-                  </div>
+              <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/10 pb-8 gap-8">
+                <div className="space-y-1">
+                  <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Visit Us</h2>
+                  <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Pianificazione Prossima Visita</p>
+                </div>
+                
+                <Switch
+                  active={config.visits?.[0]?.active !== false}
+                  onChange={(val) => {
+                    const newVisits = [...(config.visits || [])];
+                    if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                    newVisits[0].active = val;
+                    setConfig({ ...config, visits: newVisits });
+                  }}
+                />
+              </div>
 
-                  <Switch
-                    active={config.visits?.[0]?.active !== false}
-                    onChange={(val) => {
+              <div className="flex flex-col lg:flex-row gap-12 items-start">
+                <div className="flex-1 space-y-4">
+                  <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold flex items-center gap-2">
+                    <Calendar className="w-3 h-3" /> Seleziona Giorno Visita
+                  </label>
+
+                  <DatePicker
+                    value={config.visits?.[0]?.date || "2024-05-18"}
+                    onChange={(date) => {
                       const newVisits = [...(config.visits || [])];
                       if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
-                      newVisits[0].active = val;
+                      newVisits[0].date = date;
                       setConfig({ ...config, visits: newVisits });
                     }}
                   />
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-12 items-start">
-                  <div className="flex-1 space-y-4">
-                    <label className="font-heading text-[10px] tracking-[0.4em] text-white/40 uppercase font-bold flex items-center gap-2">
-                      <Calendar className="w-3 h-3" /> Seleziona Giorno Visita
-                    </label>
-
-                    <DatePicker
-                      value={config.visits?.[0]?.date || "2024-05-18"}
-                      onChange={(date) => {
+                <div className="lg:w-80 p-8 bg-white/5 space-y-6 self-stretch flex flex-col justify-center border border-white/10">
+                  <div className="space-y-4">
+                    <label className="font-heading text-[10px] tracking-widest text-white/40 uppercase font-bold text-center block">Prezzo Visita (€)</label>
+                    <input
+                      type="number"
+                      value={config.visits?.[0]?.price || 0}
+                      onChange={(e) => {
                         const newVisits = [...(config.visits || [])];
                         if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
-                        newVisits[0].date = date;
+                        newVisits[0].price = parseInt(e.target.value) || 0;
                         setConfig({ ...config, visits: newVisits });
                       }}
+                      className="w-full bg-transparent border-b border-white/10 p-6 font-heading text-center text-5xl text-primary focus:border-primary outline-none transition-colors font-black [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
                   </div>
-
-                  <div className="lg:w-80 p-8 bg-white/5 space-y-6 self-stretch flex flex-col justify-center border border-white/10">
-                    <div className="space-y-4">
-                      <label className="font-heading text-[10px] tracking-widest text-white/40 uppercase font-bold text-center block">Prezzo Visita (&euro;)</label>
-                      <input
-                        type="number"
-                        value={config.visits?.[0]?.price || 0}
-                        onChange={(e) => {
-                          const newVisits = [...(config.visits || [])];
-                          if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
-                          newVisits[0].price = parseInt(e.target.value) || 0;
-                          setConfig({ ...config, visits: newVisits });
-                        }}
-                        className="w-full bg-transparent border-b border-white/10 p-6 font-heading text-center text-5xl text-primary focus:border-primary outline-none transition-colors font-black [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                      />
-                    </div>
-                  </div>
                 </div>
               </div>
+            </div>
 
-              {/* Multilingual Contents Ritual (Visit) */}
-              <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white text-noir mt-24 py-24 shadow-[0_0_100px_rgba(255,255,255,0.05)]">
-                <div className="max-w-4xl mx-auto px-6 md:px-0 space-y-12">
-                  <div className="flex flex-col md:flex-row items-center justify-between border-b border-noir/10 pb-8 gap-8">
-                    <div className="space-y-1">
-                      <h3 className="font-heading text-2xl font-black text-noir uppercase tracking-tight">Testi Esperienza</h3>
-                      <p className="font-heading text-[10px] tracking-widest text-noir/40 uppercase">Gestisci i contenuti della sidebar "Prenota Visita"</p>
-                    </div>
-
-                    <div className="flex bg-noir/5 p-1 rounded-sm border border-noir/10">
-                      {["it", "en"].map((l) => (
-                        <button
-                          key={l}
-                          onClick={() => setVisitLang(l as any)}
-                          className={`px-8 py-3 font-heading text-[10px] tracking-widest uppercase transition-all ${visitLang === l ? 'bg-primary text-noir font-black' : 'text-noir/40 hover:text-noir'}`}
-                        >
-                          {l === "it" ? "ITALIANO" : "ENGLISH"}
-                        </button>
-                      ))}
-                    </div>
+            {/* Multilingual Contents Ritual (Visit) */}
+            <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] bg-white text-noir mt-24 py-24 shadow-[0_0_100px_rgba(255,255,255,0.05)]">
+              <div className="max-w-4xl mx-auto px-6 md:px-0 space-y-12">
+                <div className="flex flex-col md:flex-row items-center justify-between border-b border-noir/10 pb-8 gap-8">
+                  <div className="space-y-1">
+                    <h3 className="font-heading text-2xl font-black text-noir uppercase tracking-tight">Testi Esperienza</h3>
+                    <p className="font-heading text-[10px] tracking-widest text-noir/40 uppercase">Gestisci i contenuti della sidebar "Prenota Visita"</p>
                   </div>
 
-                  <div className="max-w-2xl mx-auto w-full">
-                    <motion.div
-                      key={visitLang}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="space-y-8"
-                    >
-                      <div className="space-y-6">
-                        <div className="space-y-2">
-                          <label className="font-heading text-[10px] tracking-widest text-noir/40 uppercase font-bold">Titolo</label>
-                          <input
-                            type="text"
-                            value={config.visits?.[0]?.texts?.[visitLang]?.title || ""}
-                            onChange={(e) => {
-                              const newVisits = [...(config.visits || [])];
-                              if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
-                              if (!newVisits[0].texts) newVisits[0].texts = { it: { title: "", subtitle: "", cta: "" }, en: { title: "", subtitle: "", cta: "" } };
-                              newVisits[0].texts[visitLang] = { ...newVisits[0].texts[visitLang], title: e.target.value.toUpperCase() };
-                              setConfig({ ...config, visits: newVisits });
-                            }}
-                            className="w-full bg-noir/5 border-b-2 border-noir/10 p-4 font-sans text-lg text-noir focus:border-primary outline-none transition-colors uppercase font-bold"
-                          />
-                        </div>
+                  <div className="flex bg-noir/5 p-1 rounded-sm border border-noir/10">
+                    {["it", "en"].map((l) => (
+                      <button
+                        key={l}
+                        onClick={() => setVisitLang(l as any)}
+                        className={`px-8 py-3 font-heading text-[10px] tracking-widest uppercase transition-all ${visitLang === l ? 'bg-primary text-noir font-black' : 'text-noir/40 hover:text-noir'}`}
+                      >
+                        {l === "it" ? "ITALIANO" : "ENGLISH"}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-                        <div className="space-y-2">
-                          <label className="font-heading text-[10px] tracking-widest text-noir/40 uppercase font-bold">Sottotitolo</label>
-                          <textarea
-                            value={config.visits?.[0]?.texts?.[visitLang]?.subtitle || ""}
-                            onChange={(e) => {
-                              const newVisits = [...(config.visits || [])];
-                              if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
-                              if (!newVisits[0].texts) newVisits[0].texts = { it: { title: "", subtitle: "", cta: "" }, en: { title: "", subtitle: "", cta: "" } };
-                              newVisits[0].texts[visitLang] = { ...newVisits[0].texts[visitLang], subtitle: e.target.value.toUpperCase() };
-                              setConfig({ ...config, visits: newVisits });
-                            }}
-                            className="w-full bg-noir/5 border-b-2 border-noir/10 p-4 font-sans text-sm text-noir focus:border-primary outline-none transition-colors uppercase h-32 resize-none"
-                          />
-                        </div>
-
-                        <div className="space-y-2">
-                          <label className="font-heading text-[10px] tracking-widest text-noir/40 uppercase font-bold">Testo CTA</label>
-                          <input
-                            type="text"
-                            value={config.visits?.[0]?.texts?.[visitLang]?.cta || ""}
-                            onChange={(e) => {
-                              const newVisits = [...(config.visits || [])];
-                              if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
-                              if (!newVisits[0].texts) newVisits[0].texts = { it: { title: "", subtitle: "", cta: "" }, en: { title: "", subtitle: "", cta: "" } };
-                              newVisits[0].texts[visitLang] = { ...newVisits[0].texts[visitLang], cta: e.target.value.toUpperCase() };
-                              setConfig({ ...config, visits: newVisits });
-                            }}
-                            className="w-full bg-noir/5 border-b-2 border-noir/10 p-4 font-sans text-lg text-noir focus:border-primary outline-none transition-colors uppercase font-bold"
-                          />
-                        </div>
+                <div className="max-w-2xl mx-auto w-full">
+                  <motion.div
+                    key={visitLang}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-8"
+                  >
+                    <div className="space-y-6">
+                      <div className="space-y-2">
+                        <label className="font-heading text-[10px] tracking-widest text-noir/40 uppercase font-bold">Titolo</label>
+                        <input
+                          type="text"
+                          value={config.visits?.[0]?.texts?.[visitLang]?.title || ""}
+                          onChange={(e) => {
+                            const newVisits = [...(config.visits || [])];
+                            if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                            if (!newVisits[0].texts) newVisits[0].texts = { it: { title: "", subtitle: "", cta: "" }, en: { title: "", subtitle: "", cta: "" } };
+                            newVisits[0].texts[visitLang] = { ...newVisits[0].texts[visitLang], title: e.target.value.toUpperCase() };
+                            setConfig({ ...config, visits: newVisits });
+                          }}
+                          className="w-full bg-noir/5 border-b-2 border-noir/10 p-4 font-sans text-lg text-noir focus:border-primary outline-none transition-colors uppercase font-bold"
+                        />
                       </div>
-                    </motion.div>
-                  </div>
+
+                      <div className="space-y-2">
+                        <label className="font-heading text-[10px] tracking-widest text-noir/40 uppercase font-bold">Sottotitolo</label>
+                        <textarea
+                          value={config.visits?.[0]?.texts?.[visitLang]?.subtitle || ""}
+                          onChange={(e) => {
+                            const newVisits = [...(config.visits || [])];
+                            if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                            if (!newVisits[0].texts) newVisits[0].texts = { it: { title: "", subtitle: "", cta: "" }, en: { title: "", subtitle: "", cta: "" } };
+                            newVisits[0].texts[visitLang] = { ...newVisits[0].texts[visitLang], subtitle: e.target.value.toUpperCase() };
+                            setConfig({ ...config, visits: newVisits });
+                          }}
+                          className="w-full bg-noir/5 border-b-2 border-noir/10 p-4 font-sans text-sm text-noir focus:border-primary outline-none transition-colors uppercase h-32 resize-none"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="font-heading text-[10px] tracking-widest text-noir/40 uppercase font-bold">Testo CTA</label>
+                        <input
+                          type="text"
+                          value={config.visits?.[0]?.texts?.[visitLang]?.cta || ""}
+                          onChange={(e) => {
+                            const newVisits = [...(config.visits || [])];
+                            if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                            if (!newVisits[0].texts) newVisits[0].texts = { it: { title: "", subtitle: "", cta: "" }, en: { title: "", subtitle: "", cta: "" } };
+                            newVisits[0].texts[visitLang] = { ...newVisits[0].texts[visitLang], cta: e.target.value.toUpperCase() };
+                            setConfig({ ...config, visits: newVisits });
+                          }}
+                          className="w-full bg-noir/5 border-b-2 border-noir/10 p-4 font-sans text-lg text-noir focus:border-primary outline-none transition-colors uppercase font-bold"
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
-              </div>
-            </motion.section>
-          )}
+            </div>
+          </div>
+        </motion.section>
+      )}
 
           {activeTab === "find-us" && (
             <motion.section

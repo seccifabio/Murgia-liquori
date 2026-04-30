@@ -74,7 +74,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
     if (savedCode) setAppliedCode(savedCode);
     const hasInteracted = localStorage.getItem("murgia_promo_interacted") === "true";
-    if (hasInteracted) setHasInteractedWithPromo(true);
+    if (hasInteracted) {
+      setHasInteractedWithPromo(true);
+      setIsBannerVisible(false);
+    }
     setMounted(true);
   }, []);
 

@@ -11,11 +11,19 @@ import { useCMS } from "@/context/CMSContext";
 
 export default function PromoBanner() {
   const { language } = useTranslation();
-  const { config } = useCMS();
+  const { config, loading } = useCMS();
   const [copied, setCopied] = useState(false);
-  const { setAppliedCode, isBannerVisible, setIsBannerVisible, setHasInteractedWithPromo, isMenuOpen, isBagOpen, isVisitOpen } = useCart();
+  const { setAppliedCode, isBannerVisible, setIsBannerVisible, setHasInteractedWithPromo, isMenuOpen, isBagOpen, isVisitOpen, hasInteractedWithPromo } = useCart();
   const pathname = usePathname();
   
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (loading || !mounted) return null;
+
   // Dynamic Configuration from Control Room
   const promoActive = config?.promo?.active ?? MARKETING_MANIFEST.promo.active;
   const promoCode = config?.promo?.code || MARKETING_MANIFEST.promo.code;
@@ -45,7 +53,6 @@ export default function PromoBanner() {
     }, 1200);
   };
 
-  if (!isEligiblePage) return null;
 
   return (
     <AnimatePresence>
