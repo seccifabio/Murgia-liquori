@@ -193,7 +193,7 @@ export default function ControlRoomPage() {
                   <div className="flex flex-col md:flex-row items-center justify-between border-b border-noir/10 pb-8 gap-8">
                     <div className="space-y-1">
                       <h3 className="font-heading text-2xl font-black text-noir uppercase tracking-tight">Testi Localizzati</h3>
-                      <p className="font-heading text-[10px] tracking-widest text-noir/40 uppercase">Personalizza i messaggi del banner for ogni lingua</p>
+                      <p className="font-heading text-[10px] tracking-widest text-noir/40 uppercase">Personalizza i messaggi del banner per ogni lingua</p>
                     </div>
 
                     <div className="flex bg-noir/5 p-1 rounded-sm border border-noir/10">
@@ -692,7 +692,6 @@ function EmailManager({ config, setConfig }: { config: any, setConfig: (c: any) 
     { id: 'orderRef', label: 'Label Riferimento Ordine', icon: Tag, type: 'text' },
     { id: 'orderTotal', label: 'Label Totale Ordine', icon: Tag, type: 'text' },
     { id: 'shippingDest', label: 'Label Destinazione', icon: MapPin, type: 'text' },
-    { id: 'crossTitle', label: 'Titolo Cross-Sell', icon: Type, type: 'text' },
     { id: 'crossText', label: 'Testo Cross-Sell', icon: MessageSquare, type: 'textarea' },
     { id: 'crossCta', label: 'CTA Cross-Sell', icon: ArrowRight, type: 'text' },
     { id: 'supportText', label: 'Testo Supporto', icon: MessageSquare, type: 'text' },
@@ -824,7 +823,6 @@ function EmailPreview({ data, lang }: { data: any, lang: string }) {
 
         {/* Cross-sell */}
         <div className="bg-[#121212] p-10 text-center space-y-4">
-          <h3 className="font-heading text-xl font-light uppercase">{data.crossTitle}</h3>
           <p className="text-[9px] text-white/40 leading-relaxed">
             {data.crossText}
           </p>
