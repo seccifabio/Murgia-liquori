@@ -15,11 +15,23 @@ export default function VisitBanner() {
   const pathname = usePathname();
   const { language } = useTranslation();
   const { config, loading } = useCMS();
-  const [mounted, setMounted] = useState(false);
+  const [isEligibleInSession, setIsEligibleInSession] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    
+    const interacted = typeof window !== 'undefined' && localStorage.getItem("murgia_promo_interacted") === "true";
+    
+    // Smooth Transition Ritual:
+    // 1. If we are NOT on the homepage, it's always eligible (if active)
+    // 2. If we ARE on the homepage, it only becomes eligible if the interaction happened 
+    //    BEFORE this mount cycle (i.e. it was already in localStorage)
+    if (pathname !== "/") {
+      setIsEligibleInSession(true);
+    } else if (interacted) {
+      setIsEligibleInSession(true);
+    }
+  }, [pathname]);
 
   if (loading || !mounted) return null;
 
@@ -39,14 +51,14 @@ export default function VisitBanner() {
   const price = config?.visits?.[0]?.price ?? VISIT_MANIFEST.price;
 
   // Visibility Manifest: 
-  // 1. Homepage: Only show if the Promo Banner is NOT active and visible
-  const isPromoVisibleOnHome = pathname === "/" && isBannerVisible && promoActive;
-  
+  // On Homepage, we strictly honor the 'isEligibleInSession' gate to prevent sudden banner swaps
   const isEligiblePage = 
-    (pathname === "/" && !isPromoVisibleOnHome) || 
-    pathname === "/dove-ci-trovi" || 
-    pathname === "/la-storia" || 
-    pathname === "/contatti";
+    (pathname === "/" && isEligibleInSession) || 
+    (pathname !== "/" && (
+      pathname === "/dove-ci-trovi" || 
+      pathname === "/la-storia" || 
+      pathname === "/contatti"
+    ));
 
   // Temporal Gate: Hide if today is the visit date or has passed, or if inactive
   const visitDate = new Date(`${visitDateString}T00:00:00`);
@@ -54,9 +66,6 @@ export default function VisitBanner() {
   const isInactive = !visitActive;
 
   if (!isEligiblePage || isMenuOpen || isBagOpen || isVisitOpen || isExpired || isInactive) return null;
-
-  // Final Exclusivity Ritual: Double check we are not overlapping on the homepage
-  if (pathname === "/" && isBannerVisible && promoActive) return null;
 
   return (
     <AnimatePresence>
