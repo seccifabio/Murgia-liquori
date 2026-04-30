@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { getCMSConfig, updateCMSConfig } from "@/actions/cms-actions";
-import { Save, LogOut, Calendar, Tag, MapPin, Plus, Minus, Trash2, ExternalLink, Search, Mail, Type, MessageSquare, ArrowRight } from "lucide-react";
+import { Save, LogOut, Calendar, Tag, MapPin, Plus, Minus, Trash2, ExternalLink, Search, Mail, Type, MessageSquare, ArrowRight, Info } from "lucide-react";
 
 const MONTHS = [
   "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
@@ -455,12 +455,30 @@ export default function ControlRoomPage() {
       </main>
 
       {/* Footer Controls */}
-      <footer className="fixed bottom-0 left-0 w-full bg-noir border-t border-white/10 p-6 z-[100]">
-        <div className="max-w-7xl mx-auto w-full flex justify-end px-6 md:px-12">
+      <footer className="fixed bottom-0 left-0 w-full bg-noir border-t border-white/10 p-6 z-[100] backdrop-blur-md bg-noir/90">
+        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-6 px-6 md:px-12">
+          
+          {/* Logic Manifest Info Module */}
+          <div className="flex items-center gap-6 px-6 py-3 bg-white/5 border border-white/10 rounded-sm group hover:border-primary/30 transition-colors max-w-xl">
+            <div className="relative shrink-0">
+              <div className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center animate-pulse">
+                <Info className="w-5 h-5 text-primary" />
+              </div>
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full shadow-[0_0_10px_#EAB308]" />
+            </div>
+            
+            <div className="space-y-1">
+              <p className="font-heading text-[10px] tracking-widest text-primary font-black uppercase">Banner Logic Ritual</p>
+              <p className="font-heading text-[8px] tracking-[0.2em] text-white/60 uppercase leading-relaxed">
+                Il Promo Banner ha la precedenza in Homepage. Il banner "Visit us" appare solo se il Promo è <span className="text-primary font-bold">OFF</span> o dopo che l'utente ha interagito/navigato.
+              </p>
+            </div>
+          </div>
+
           <button
             onClick={handleSave}
             disabled={saving}
-            className="bg-primary text-noir flex items-center gap-4 px-10 py-5 font-heading text-xl uppercase font-bold shadow-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
+            className="bg-primary text-noir flex items-center gap-4 px-10 py-5 font-heading text-xl uppercase font-bold shadow-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50 w-full md:w-auto justify-center"
           >
             {saving ? "SINCRONIZZAZIONE..." : "SALVA MODIFICHE"} <Save className="w-5 h-5" />
           </button>
