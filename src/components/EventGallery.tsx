@@ -50,12 +50,9 @@ export default function EventGallery() {
           <div className="flex items-center gap-4">
             <div className="w-12 h-[1px] bg-primary" />
             <span className="font-heading text-primary text-xs md:text-sm tracking-[0.6em] uppercase block">
-              Recent Memories
+              Memorie
             </span>
           </div>
-          <h2 className="font-heading text-5xl md:text-7xl uppercase italic font-black text-white">
-            Event <span className="text-primary">Stills</span>
-          </h2>
         </div>
 
         {/* Mobile Horizontal Slider (MWEB) */}
