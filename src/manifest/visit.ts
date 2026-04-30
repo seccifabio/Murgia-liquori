@@ -19,7 +19,6 @@ export const VISIT_MANIFEST = {
   ],
 
   // Localized Editorial Manifest
-  // Localized Editorial Manifest
   it: {
     displayDate: "4 Maggio",
     displayFullDate: "Lunedì 4 Maggio 2026",
