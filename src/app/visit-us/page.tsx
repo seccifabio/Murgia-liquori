@@ -164,10 +164,10 @@ export default function VisitUsPage() {
                         {manifestData.displayFullDate.split(' ')[0]}
                       </span>
                       <div className="flex items-start gap-4">
-                        <span className="font-heading text-primary text-6xl md:text-8xl lg:text-9xl uppercase italic font-black leading-none mt-4">
+                        <span className="font-heading text-primary text-6xl md:text-8xl lg:text-9xl uppercase italic font-black leading-[1.1] py-2 mt-4">
                           {nextVisit?.date ? nextVisit.date.split('-')[2] : VISIT_MANIFEST.date.split('-')[2]}
                         </span>
-                        <h2 className="font-heading text-[10rem] md:text-[15rem] lg:text-[18rem] uppercase tracking-tighter leading-[0.7] italic font-black text-white mix-blend-overlay lg:mix-normal">
+                        <h2 className="font-heading text-[10rem] md:text-[15rem] lg:text-[18rem] uppercase tracking-tighter leading-[0.8] py-2 italic font-black text-white mix-blend-overlay lg:mix-normal">
                           {new Date(`${visitDateString}T00:00:00`).toLocaleDateString('it-IT', { month: 'short' })}
                         </h2>
                       </div>
