@@ -201,7 +201,7 @@ export default function ControlRoomPage() {
                         <button
                           key={l}
                           onClick={() => setPromoLang(l as any)}
-                          className={`px-8 py-3 font-heading text-[10px] tracking-widest uppercase transition-all ${promoLang === l ? 'bg-primary text-noir font-black' : 'text-noir/40 hover:text-noir'}`}
+                          className={`px-8 py-3 font-heading text-[11px] tracking-widest uppercase transition-all ${promoLang === l ? 'bg-noir text-white font-black shadow-lg border border-white/10' : 'text-noir/40 hover:text-noir'}`}
                         >
                           {l === "it" ? "ITALIANO" : "ENGLISH"}
                         </button>
@@ -356,7 +356,7 @@ export default function ControlRoomPage() {
                       <button
                         key={l}
                         onClick={() => setVisitLang(l as any)}
-                        className={`px-8 py-3 font-heading text-[10px] tracking-widest uppercase transition-all ${visitLang === l ? 'bg-primary text-noir font-black' : 'text-noir/40 hover:text-noir'}`}
+                        className={`px-8 py-3 font-heading text-[11px] tracking-widest uppercase transition-all ${visitLang === l ? 'bg-noir text-white font-black shadow-lg border border-white/10' : 'text-noir/40 hover:text-noir'}`}
                       >
                         {l === "it" ? "ITALIANO" : "ENGLISH"}
                       </button>
@@ -469,7 +469,7 @@ export default function ControlRoomPage() {
             
             <div className="space-y-1">
               <p className="font-heading text-[10px] tracking-widest text-primary font-black uppercase">Banner Logic Ritual</p>
-              <p className="font-heading text-[8px] tracking-[0.2em] text-white/60 uppercase leading-relaxed">
+              <p className="font-heading text-[10px] tracking-[0.1em] text-white/70 uppercase leading-relaxed">
                 Il Promo Banner ha la precedenza in Homepage. Il banner "Visit us" appare solo se il Promo è <span className="text-primary font-bold">OFF</span> o dopo che l'utente ha interagito/navigato.
               </p>
             </div>
