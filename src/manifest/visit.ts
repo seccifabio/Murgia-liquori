@@ -30,7 +30,7 @@ export const VISIT_MANIFEST = {
         subtitle: "La storia del Liquorificio",
         title: "5",
         titleAccent: "Generazioni",
-        description: "Un viaggio nei luoghi in cui la famiglia Murgia ha lavorato e creato per oltre 140 anni"
+        description: "Un viaggio nei luoghi in cui la famiglia Murgia ha lavorato e creato per oltre 140 anni."
       },
       expectations: {
         craftTitle: "L'Arte",
@@ -45,8 +45,8 @@ export const VISIT_MANIFEST = {
         highlights: [
           "Percorso storico attraverso l'eredità Murgia",
           "Spiegazione dei processi produttivi",
-          "I nostri archivi esposti.",
-          "Accesso esclusivo alle aree di affinamento e produzione."
+          "I nostri archivi esposti",
+          "Accesso esclusivo alle aree di affinamento e produzione"
         ]
       },
       tasting: {
@@ -66,7 +66,7 @@ export const VISIT_MANIFEST = {
         subtitle: "The history of the Distillery",
         title: "5",
         titleAccent: "Generations",
-        description: "A journey in the places where the Murgia family has worked and created for over 140 years"
+        description: "A journey in the places where the Murgia family has worked and created for over 140 years."
       },
       expectations: {
         craftTitle: "The Art of",
