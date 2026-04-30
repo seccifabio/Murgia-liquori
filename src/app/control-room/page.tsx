@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { getCMSConfig, updateCMSConfig } from "@/actions/cms-actions";
-import { Save, LogOut, Calendar, Tag, MapPin, Plus, Trash2, ExternalLink, Search } from "lucide-react";
+import { Save, LogOut, Calendar, Tag, MapPin, Plus, Minus, Trash2, ExternalLink, Search } from "lucide-react";
 
 const MONTHS = [
   "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
@@ -65,7 +65,7 @@ export default function ControlRoomPage() {
 
   return (
     <div
-      className="min-h-screen bg-noir text-white px-6 md:px-12 selection:bg-primary selection:text-noir"
+      className="min-h-screen bg-noir text-white px-6 md:px-12 selection:bg-primary selection:text-noir pb-32"
       style={{ paddingTop: '210px' }}
     >
 
@@ -309,19 +309,46 @@ export default function ControlRoomPage() {
                   </div>
 
                   <div className="lg:w-80 p-8 bg-white/5 space-y-6 self-stretch flex flex-col justify-center border border-white/10">
-                    <div className="space-y-2">
+                    <div className="space-y-4">
                       <label className="font-heading text-[10px] tracking-widest text-white/40 uppercase font-bold">Prezzo Visita (&euro;)</label>
-                      <input
-                        type="number"
-                        value={config.visits?.[0]?.price || 0}
-                        onChange={(e) => {
-                          const newVisits = [...(config.visits || [])];
-                          if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
-                          newVisits[0].price = parseInt(e.target.value);
-                          setConfig({ ...config, visits: newVisits });
-                        }}
-                        className="w-full bg-white/5 border-b border-white/10 p-4 font-sans text-center text-3xl text-primary focus:border-primary outline-none transition-colors font-bold"
-                      />
+                      
+                      <div className="flex items-center gap-4 bg-white/5 p-2 border-b border-white/10">
+                        <button 
+                          onClick={() => {
+                            const newVisits = [...(config.visits || [])];
+                            if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true, price: 0 };
+                            newVisits[0].price = Math.max(0, (newVisits[0].price || 0) - 1);
+                            setConfig({ ...config, visits: newVisits });
+                          }}
+                          className="p-3 hover:text-primary transition-colors text-white/40"
+                        >
+                          <Minus className="w-5 h-5" />
+                        </button>
+
+                        <input
+                          type="number"
+                          value={config.visits?.[0]?.price || 0}
+                          onChange={(e) => {
+                            const newVisits = [...(config.visits || [])];
+                            if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true };
+                            newVisits[0].price = parseInt(e.target.value) || 0;
+                            setConfig({ ...config, visits: newVisits });
+                          }}
+                          className="flex-1 bg-transparent text-center text-4xl text-primary outline-none font-black appearance-none"
+                        />
+
+                        <button 
+                          onClick={() => {
+                            const newVisits = [...(config.visits || [])];
+                            if (!newVisits[0]) newVisits[0] = { date: "2024-05-18", active: true, price: 0 };
+                            newVisits[0].price = (newVisits[0].price || 0) + 1;
+                            setConfig({ ...config, visits: newVisits });
+                          }}
+                          className="p-3 hover:text-primary transition-colors text-white/40"
+                        >
+                          <Plus className="w-5 h-5" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -415,14 +442,16 @@ export default function ControlRoomPage() {
       </main>
 
       {/* Footer Controls */}
-      <footer className="fixed bottom-12 right-12 z-[100]">
-        <button
-          onClick={handleSave}
-          disabled={saving}
-          className="bg-primary text-noir flex items-center gap-4 px-10 py-5 font-heading text-xl uppercase font-bold shadow-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
-        >
-          {saving ? "SINCRONIZZAZIONE..." : "SALVA MODIFICHE"} <Save className="w-5 h-5" />
-        </button>
+      <footer className="fixed bottom-0 left-0 w-full bg-noir border-t border-white/10 p-6 z-[100]">
+        <div className="max-w-7xl mx-auto w-full flex justify-end px-6 md:px-12">
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="bg-primary text-noir flex items-center gap-4 px-10 py-5 font-heading text-xl uppercase font-bold shadow-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
+          >
+            {saving ? "SINCRONIZZAZIONE..." : "SALVA MODIFICHE"} <Save className="w-5 h-5" />
+          </button>
+        </div>
       </footer>
     </div>
   );
