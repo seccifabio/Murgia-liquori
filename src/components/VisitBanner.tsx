@@ -18,6 +18,9 @@ export default function VisitBanner() {
   const [isEligibleInSession, setIsEligibleInSession] = useState(false);
   const [mounted, setMounted] = useState(false);
 
+  // Dynamic Configuration from Control Room
+  const promoActive = config?.promo?.active ?? MARKETING_MANIFEST.promo.active;
+
   useEffect(() => {
     setMounted(true);
     
@@ -25,19 +28,17 @@ export default function VisitBanner() {
     
     // Smooth Transition Ritual:
     // 1. If we are NOT on the homepage, it's always eligible (if active)
-    // 2. If we ARE on the homepage, it only becomes eligible if the interaction happened 
+    // 2. If the Promo is ALREADY OFF in CMS, it's immediately eligible on Home
+    // 3. If the Promo is ON, it only becomes eligible if the interaction happened 
     //    BEFORE this mount cycle (i.e. it was already in localStorage)
     if (pathname !== "/") {
       setIsEligibleInSession(true);
-    } else if (interacted) {
+    } else if (!promoActive || interacted) {
       setIsEligibleInSession(true);
     }
-  }, [pathname]);
+  }, [pathname, promoActive]);
 
   if (loading || !mounted) return null;
-
-  // Dynamic Configuration from Control Room
-  const promoActive = config?.promo?.active ?? MARKETING_MANIFEST.promo.active;
   const nextVisit = config?.visits?.[0];
   const visitActive = nextVisit?.active ?? VISIT_MANIFEST.active;
   const visitDateString = nextVisit?.date || VISIT_MANIFEST.date;
