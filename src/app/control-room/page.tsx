@@ -120,9 +120,6 @@ export default function ControlRoomPage() {
                 />
               </div>
 
-                </div>
-              </div>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div className="space-y-8">
                   <div className="space-y-2">
@@ -254,7 +251,6 @@ export default function ControlRoomPage() {
                   </div>
                 ))}
               </div>
-            </motion.section>
             </motion.section>
           ) : activeTab === "visit" ? (
             <motion.section 
