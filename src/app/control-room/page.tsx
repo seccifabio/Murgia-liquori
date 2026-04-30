@@ -184,12 +184,18 @@ export default function ControlRoomPage() {
               </div>
 
               {/* Multilingual Contents Ritual (Promo) */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pt-8 border-t border-white/5">
-                {['it', 'en'].map((lang) => (
-                  <div key={`promo-lang-${lang}`} className="space-y-8">
-                    <h3 className="font-heading text-xs tracking-[0.4em] text-primary uppercase font-bold">
-                      Contenuti {lang.toUpperCase()}
-                    </h3>
+              <div className="mt-16 p-8 bg-white/[0.03] border border-white/5 rounded-sm space-y-12">
+                <div className="space-y-1">
+                  <h3 className="font-heading text-lg font-bold text-primary uppercase tracking-tight">Testi Localizzati</h3>
+                  <p className="font-heading text-[9px] tracking-widest text-white/40 uppercase">Personalizza i messaggi del banner per ogni lingua</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                  {['it', 'en'].map((lang) => (
+                    <div key={`promo-lang-${lang}`} className="space-y-8">
+                      <h4 className="font-heading text-xs tracking-[0.4em] text-primary uppercase font-bold opacity-60">
+                        Versione {lang.toUpperCase()}
+                      </h4>
                     
                     <div className="space-y-4">
                       <div className="space-y-2">
@@ -325,12 +331,18 @@ export default function ControlRoomPage() {
               </div>
 
               {/* Multilingual Contents Ritual (Visit) */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pt-8 border-t border-white/5">
-                {['it', 'en'].map((lang) => (
-                  <div key={`visit-lang-${lang}`} className="space-y-8">
-                    <h3 className="font-heading text-xs tracking-[0.4em] text-primary uppercase font-bold">
-                      Contenuti {lang.toUpperCase()}
-                    </h3>
+              <div className="mt-16 p-8 bg-white/[0.03] border border-white/5 rounded-sm space-y-12">
+                <div className="space-y-1">
+                  <h3 className="font-heading text-lg font-bold text-primary uppercase tracking-tight">Testi Esperienza</h3>
+                  <p className="font-heading text-[9px] tracking-widest text-white/40 uppercase">Gestisci i contenuti della sidebar "Prenota Visita"</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                  {['it', 'en'].map((lang) => (
+                    <div key={`visit-lang-${lang}`} className="space-y-8">
+                      <h4 className="font-heading text-xs tracking-[0.4em] text-primary uppercase font-bold opacity-60">
+                        Versione {lang.toUpperCase()}
+                      </h4>
                     
                     <div className="space-y-4">
                       <div className="space-y-2">
