@@ -19,6 +19,7 @@ export const VISIT_MANIFEST = {
   ],
 
   // Localized Editorial Manifest
+  // Localized Editorial Manifest
   it: {
     displayDate: "4 Maggio",
     displayFullDate: "Lunedì 4 Maggio 2026",
@@ -27,15 +28,15 @@ export const VISIT_MANIFEST = {
     cta: "Prenota",
     visitPage: {
       hero: {
-        subtitle: "L'Essenza del Liquorificio",
-        title: "Dalla Terra",
-        titleAccent: "Al Vetro",
-        description: "Un viaggio sensoriale attraverso l'eredità alchemica della distilleria Murgia. Dove la tradizione incontra l'innovazione dal 1882."
+        subtitle: "La storia del Liquorificio",
+        title: "5",
+        titleAccent: "Generazioni",
+        description: "Un viaggio nei luoghi in cui la famiglia Murgia ha lavorato e creato per oltre 140 anni"
       },
       expectations: {
-        craftTitle: "L'Arte della",
-        craftTitleAccent: "Distillazione",
-        craftDescription: "Osserva come le essenze sarde vengono forgiate nel cuore del nostro liquorificio, seguendo metodi che sfidano il tempo.",
+        craftTitle: "L'Arte",
+        craftTitleAccent: "Dei Liquori",
+        craftDescription: "Scopri i processi che ci accompagnano da sempre. Stessi segreti diverse mani.",
         title: "Il Nostro",
         titleAccent: "Laboratorio",
         duration: { value: "90 MINUTI" },
@@ -44,14 +45,14 @@ export const VISIT_MANIFEST = {
         noVisits: "Nessuna visita programmata per questo mese",
         highlights: [
           "Percorso storico attraverso l'eredità Murgia",
-          "Dimostrazione dei processi alchemici",
-          "Selezione curata di botaniche locali",
-          "Accesso esclusivo alle aree di affinamento"
+          "Spiegazione dei processi produttivi",
+          "I nostri archivi esposti.",
+          "Accesso esclusivo alle aree di affinamento e produzione."
         ]
       },
       tasting: {
         title: "La Degustazione",
-        description: "Il culmine dell'esperienza: una selezione guidata dei nostri liquori più iconici, accompagnati da sapori tipici del territorio."
+        description: "Il culmine dell'esperienza: una selezione guidata delle nostre esclusive specialità."
       }
     }
   },
@@ -63,10 +64,10 @@ export const VISIT_MANIFEST = {
     cta: "Book",
     visitPage: {
       hero: {
-        subtitle: "The Essence of the Distillery",
-        title: "From Earth",
-        titleAccent: "To Glass",
-        description: "A sensory journey through the alchemical heritage of the Murgia distillery. Where tradition meets innovation since 1882."
+        subtitle: "The history of the Distillery",
+        title: "5",
+        titleAccent: "Generations",
+        description: "A journey in the places where the Murgia family has worked and created for over 140 years"
       },
       expectations: {
         craftTitle: "The Art of",
