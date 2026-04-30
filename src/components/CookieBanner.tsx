@@ -54,6 +54,7 @@ export default function CookieBanner() {
       type,
       timestamp: new Date().toISOString()
     }));
+    window.dispatchEvent(new Event("murgia-consent-updated"));
     setIsVisible(false);
   };
 

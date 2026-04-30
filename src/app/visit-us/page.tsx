@@ -14,6 +14,7 @@ import {
 import VisitSidebarContent from "@/components/visit/VisitSidebarContent";
 import { VISIT_MANIFEST } from "@/manifest/visit";
 import Footer from "@/components/Footer";
+import EventGallery from "@/components/EventGallery";
 import { useInView } from "framer-motion";
 
 /* Visit Us Ritual: A cinematic immersion into the Murgia Laboratory */
@@ -31,8 +32,39 @@ export default function VisitUsPage() {
   const { config, loading } = useCMS();
   const t = VISIT_MANIFEST[language as "it" | "en"] || VISIT_MANIFEST.it;
   
+  const containerRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  
+  // Narrative State Tracking
+  const [activeStage, setActiveStage] = useState(NARRATIVE_STAGES[0]);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const isFooterInView = useInView(footerRef, { amount: 0.1 });
+
+  useEffect(() => {
+    setIsSidebarVisible(scrollYProgress.get() > 0.15);
+  }, [scrollYProgress]);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setIsSidebarVisible(latest > 0.15);
+  });
+
+  // Cinematic Background Scaling & Filters
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const grayscale = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [1, 0, 0, 1]);
+  
+  const filterMotion = useTransform(
+    [grayscale],
+    ([g]) => `grayscale(${g}) brightness(0.4)`
+  );
+
   if (loading) return (
-    <div className="min-h-screen bg-noir flex items-center justify-center font-heading text-white tracking-[1em] uppercase italic">
+    <div ref={containerRef} className="min-h-screen bg-noir flex items-center justify-center font-heading text-white tracking-[1em] uppercase italic">
       Sincronizzazione Lab...
     </div>
   );
@@ -52,37 +84,6 @@ export default function VisitUsPage() {
       ? new Date(`${nextVisit.date}T00:00:00`).toLocaleDateString(language === 'it' ? 'it-IT' : 'en-US', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
       : t.displayFullDate
   };
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Narrative State Tracking
-  const [activeStage, setActiveStage] = useState(NARRATIVE_STAGES[0]);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const footerRef = useRef<HTMLDivElement>(null);
-  const isFooterInView = useInView(footerRef, { amount: 0.1 });
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-
-  useEffect(() => {
-    setIsSidebarVisible(scrollYProgress.get() > 0.15);
-  }, [scrollYProgress]);
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setIsSidebarVisible(latest > 0.15);
-  });
-
-  // Cinematic Background Scaling & Filters
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  const grayscale = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [1, 0, 0, 1]);
-  
-  const filterMotion = useTransform(
-    [grayscale],
-    ([g]) => `grayscale(${g}) brightness(0.4)`
-  );
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-noir text-white selection:bg-primary selection:text-black">
@@ -288,6 +289,8 @@ export default function VisitUsPage() {
         )}
 
       </div>
+
+      <EventGallery />
 
       <div ref={footerRef}>
         <Footer />

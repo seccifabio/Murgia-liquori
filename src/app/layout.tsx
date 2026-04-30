@@ -68,6 +68,7 @@ import CartToast from "@/components/CartToast";
 import PartnerToast from "@/components/PartnerToast";
 import AgeVerification from "@/components/AgeVerification";
 import CookieBanner from "@/components/CookieBanner";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export default function RootLayout({
   children,
@@ -80,6 +81,7 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${montserrat.variable} bg-noir antialiased`}
     >
       <body className="relative min-h-screen overflow-x-hidden selection:bg-primary selection:text-noir">
+        <GoogleAnalytics />
         {/* Cinematic Grain Texture Layer */}
         <div className="bg-texture fixed inset-0 z-50 mix-blend-overlay" />
         
