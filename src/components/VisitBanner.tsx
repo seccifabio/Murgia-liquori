@@ -16,6 +16,7 @@ export default function VisitBanner() {
   const { language } = useTranslation();
   const { config, loading } = useCMS();
   const [isEligibleInSession, setIsEligibleInSession] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
