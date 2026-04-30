@@ -39,7 +39,7 @@ export const VISIT_MANIFEST = {
         title: "Il Nostro",
         titleAccent: "Laboratorio",
         duration: { value: "90 MINUTI" },
-        capacity: { value: "MAX 12 PERSONE" },
+        capacity: { value: "MAX 20 PERSONE" },
         groups: { value: "PRIVATI & GRUPPI" },
         noVisits: "Nessuna visita programmata per questo mese",
         highlights: [
@@ -75,7 +75,7 @@ export const VISIT_MANIFEST = {
         title: "Our",
         titleAccent: "Laboratory",
         duration: { value: "90 MINUTES" },
-        capacity: { value: "MAX 12 PEOPLE" },
+        capacity: { value: "MAX 20 PEOPLE" },
         groups: { value: "PRIVATE & GROUPS" },
         noVisits: "No visits planned for this month",
         highlights: [
