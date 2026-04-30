@@ -103,7 +103,7 @@ export default function ControlRoomPage() {
 
       <main className="w-full py-12">
         <AnimatePresence mode="wait">
-          {activeTab === "promo" && (
+          {activeTab === "promo" &&
             <motion.section
               key="promo"
               initial={{ opacity: 0, x: -20 }}
@@ -277,9 +277,9 @@ export default function ControlRoomPage() {
                 </div>
               </div>
             </motion.section>
-          )}
+          }
 
-          {activeTab === "visit" && (
+          {activeTab === "visit" &&
             <motion.section
               key="visit"
               initial={{ opacity: 0, x: 20 }}
@@ -423,9 +423,9 @@ export default function ControlRoomPage() {
             </div>
           </div>
         </motion.section>
-      )}
+          }
 
-          {activeTab === "find-us" && (
+          {activeTab === "find-us" &&
             <motion.section
               key="find-us"
               initial={{ opacity: 0, scale: 0.95 }}
@@ -437,9 +437,9 @@ export default function ControlRoomPage() {
                 <LocationsManager config={config} setConfig={setConfig} />
               </div>
             </motion.section>
-          )}
+          }
 
-          {activeTab === "email" && (
+          {activeTab === "email" &&
             <motion.section
               key="email"
               initial={{ opacity: 0, y: 20 }}
@@ -449,7 +449,7 @@ export default function ControlRoomPage() {
             >
               <EmailManager config={config} setConfig={setConfig} />
             </motion.section>
-          )}
+          }
         </AnimatePresence>
       </main>
 
