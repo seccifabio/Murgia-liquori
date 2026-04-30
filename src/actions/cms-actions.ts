@@ -96,6 +96,13 @@ export async function getCMSConfig() {
           parsed.visits[0].price = VISIT_MANIFEST.price;
           await redis.set(REDIS_KEY, JSON.stringify(parsed));
         }
+
+        // Migration Ritual (Email): Add 'email' if missing
+        if (!parsed.email) {
+          console.log("CMS: Migrating email templates to Redis");
+          parsed.email = MARKETING_MANIFEST.email;
+          await redis.set(REDIS_KEY, JSON.stringify(parsed));
+        }
         
         return parsed;
       }
@@ -152,6 +159,7 @@ export async function getCMSConfig() {
         },
         price: VISIT_MANIFEST.price
       }],
+      email: MARKETING_MANIFEST.email,
       locations: STATIC_LOCATIONS
     };
   }

@@ -4,7 +4,7 @@ import Stripe from "stripe";
 import { Resend } from "resend";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { MARKETING_MANIFEST } from "@/manifest/marketing";
+import { getCMSConfig } from "@/actions/cms-actions";
 
 // ALCHEMICAL LAZY INITIALIZATION
 // This prevents build-time failures when keys are absent
@@ -23,6 +23,7 @@ export async function POST(req: Request) {
   const signature = (await headers()).get("stripe-signature") as string;
 
   const { stripe, resend, webhookSecret } = getClients();
+  const cmsConfig = await getCMSConfig();
 
   let event: Stripe.Event;
 
@@ -79,10 +80,10 @@ export async function POST(req: Request) {
           ` : '') +
           (session.total_details?.amount_discount > 0 ? `
             <tr>
-              <td style="padding-top: 10px;">
+              <td style="padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
                 <span style="color:#F4B400; font-size:14px; text-transform:uppercase;">${labels.discount}</span>
               </td>
-              <td align="right" style="padding-top: 10px;">
+              <td align="right" style="padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05);">
                 <span style="color:#F4B400; font-size:14px;">-${(session.total_details.amount_discount / 100).toFixed(2)}€</span>
               </td>
             </tr>
@@ -93,7 +94,7 @@ export async function POST(req: Request) {
         
         // LANGUAGE AUDIT
         const locale = (session.locale || "it").split("-")[0] as "it" | "en";
-        const t = (MARKETING_MANIFEST as any).email[locale] || MARKETING_MANIFEST.email.it;
+        const t = cmsConfig.email?.[locale] || cmsConfig.email?.it;
 
         // CUSTOMER DATA RITUAL: Searching through all layers of the session for the address
         const shippingDetails = session.shipping_details;

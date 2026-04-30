@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { getCMSConfig, updateCMSConfig } from "@/actions/cms-actions";
-import { Save, LogOut, Calendar, Tag, MapPin, Plus, Minus, Trash2, ExternalLink, Search } from "lucide-react";
+import { Save, LogOut, Calendar, Tag, MapPin, Plus, Minus, Trash2, ExternalLink, Search, Mail, Type, MessageSquare, ArrowRight } from "lucide-react";
 
 const MONTHS = [
   "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
@@ -15,7 +15,7 @@ export default function ControlRoomPage() {
   const [config, setConfig] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<"promo" | "visit" | "find-us">("promo");
+  const [activeTab, setActiveTab] = useState<"promo" | "visit" | "find-us" | "email">("promo");
   const [showPromoCalendar, setShowPromoCalendar] = useState(false);
   const router = useRouter();
 
@@ -79,13 +79,13 @@ export default function ControlRoomPage() {
 
         <div className="flex items-center gap-12">
           <nav className="flex gap-8">
-            {["promo", "visit", "find-us"].map((tab) => (
+            {["promo", "visit", "email", "find-us"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
                 className={`font-heading text-sm uppercase font-bold tracking-widest transition-all ${activeTab === tab ? 'text-primary border-b-2 border-primary pb-1' : 'text-white/20 hover:text-white'}`}
               >
-                {tab === "find-us" ? "Find Us" : tab}
+                {tab === "find-us" ? "Find Us" : tab === "email" ? "Order Email" : tab}
               </button>
             ))}
           </nav>
@@ -411,6 +411,18 @@ export default function ControlRoomPage() {
               </div>
             </motion.section>
           )}
+
+          {activeTab === "email" && (
+            <motion.section
+              key="email"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="w-full"
+            >
+              <EmailManager config={config} setConfig={setConfig} />
+            </motion.section>
+          )}
         </AnimatePresence>
       </main>
 
@@ -631,6 +643,191 @@ function LocationsManager({ config, setConfig }: { config: any, setConfig: (c: a
             </motion.div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+function EmailManager({ config, setConfig }: { config: any, setConfig: (c: any) => void }) {
+  const [lang, setLang] = useState<"it" | "en">("it");
+  const emailConfig = config.email?.[lang] || {};
+
+  const updateField = (field: string, value: string) => {
+    const newEmail = { ...config.email };
+    newEmail[lang] = { ...newEmail[lang], [field]: value };
+    setConfig({ ...config, email: newEmail });
+  };
+
+  const fields = [
+    { id: 'subject', label: 'Oggetto Email', icon: Mail, type: 'text' },
+    { id: 'heroTitle', label: 'Titolo Hero', icon: Type, type: 'text', placeholder: 'Usa <br/> per andare a capo' },
+    { id: 'heroSubtitle', label: 'Sottotitolo Hero', icon: MessageSquare, type: 'textarea' },
+    { id: 'orderRef', label: 'Label Riferimento Ordine', icon: Tag, type: 'text' },
+    { id: 'orderTotal', label: 'Label Totale Ordine', icon: Tag, type: 'text' },
+    { id: 'shippingDest', label: 'Label Destinazione', icon: MapPin, type: 'text' },
+    { id: 'crossTitle', label: 'Titolo Cross-Sell', icon: Type, type: 'text' },
+    { id: 'crossText', label: 'Testo Cross-Sell', icon: MessageSquare, type: 'textarea' },
+    { id: 'crossCta', label: 'CTA Cross-Sell', icon: ArrowRight, type: 'text' },
+    { id: 'supportText', label: 'Testo Supporto', icon: MessageSquare, type: 'text' },
+    { id: 'contactText', label: 'Label Contatto', icon: MessageSquare, type: 'text' },
+    { id: 'footerNote', label: 'Nota Footer', icon: Type, type: 'text' },
+  ];
+
+  return (
+    <div className="flex flex-col xl:flex-row gap-16 items-start">
+      {/* Editor Side */}
+      <div className="flex-1 space-y-12">
+        <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/10 pb-8 gap-8">
+          <div className="space-y-1">
+            <h2 className="font-heading text-2xl font-bold text-primary uppercase tracking-tight">Email Confirmation</h2>
+            <p className="font-heading text-[10px] tracking-widest text-white/40 uppercase">Transactional orders experience</p>
+          </div>
+          <div className="flex bg-white/5 p-1 rounded-sm border border-white/10">
+            {["it", "en"].map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l as any)}
+                className={`px-8 py-3 font-heading text-[10px] tracking-widest uppercase transition-all ${lang === l ? 'bg-primary text-noir font-black' : 'text-white/40 hover:text-white'}`}
+              >
+                {l === "it" ? "ITALIANO" : "ENGLISH"}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+          {fields.map((field) => (
+            <div key={field.id} className={`space-y-2 ${field.type === 'textarea' ? 'md:col-span-2' : ''}`}>
+              <label className="font-heading text-[10px] tracking-widest text-white/40 uppercase font-bold flex items-center gap-2">
+                <field.icon className="w-3 h-3" /> {field.label}
+              </label>
+              {field.type === 'textarea' ? (
+                <textarea
+                  value={emailConfig[field.id] || ""}
+                  onChange={(e) => updateField(field.id, e.target.value)}
+                  className="w-full bg-white/5 border-b-2 border-white/10 p-4 font-sans text-sm text-white focus:border-primary outline-none transition-colors h-24 resize-none"
+                  placeholder={field.placeholder}
+                />
+              ) : (
+                <input
+                  type="text"
+                  value={emailConfig[field.id] || ""}
+                  onChange={(e) => updateField(field.id, e.target.value)}
+                  className="w-full bg-white/5 border-b-2 border-white/10 p-4 font-sans text-lg text-white focus:border-primary outline-none transition-colors"
+                  placeholder={field.placeholder}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Preview Side */}
+      <div className="xl:w-[450px] w-full shrink-0 space-y-6">
+        <h3 className="font-heading text-[10px] tracking-widest text-white/40 uppercase font-bold text-center">Live Preview</h3>
+        <div className="bg-[#0A0A0A] border border-white/10 rounded-sm overflow-hidden shadow-2xl sticky top-32 scale-90 origin-top">
+           <EmailPreview data={emailConfig} lang={lang} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EmailPreview({ data, lang }: { data: any, lang: string }) {
+  return (
+    <div className="font-sans text-white/90 text-xs">
+      {/* Subject Line Bar */}
+      <div className="bg-white/5 p-4 border-b border-white/10 flex items-center gap-4">
+        <div className="flex gap-1.5">
+          <div className="w-2 h-2 rounded-full bg-red-500/40" />
+          <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
+          <div className="w-2 h-2 rounded-full bg-green-500/40" />
+        </div>
+        <span className="text-[10px] text-white/20 uppercase tracking-widest font-heading overflow-hidden text-ellipsis whitespace-nowrap">
+          {data.subject || "Order Confirmation"} #ABC12345
+        </span>
+      </div>
+
+      <div className="max-h-[600px] overflow-y-auto bg-[#0A0A0A]">
+        {/* Yellow Header */}
+        <div className="bg-primary p-6 text-center">
+          <h1 className="font-heading text-2xl font-black text-noir tracking-[0.2em] m-0">MURGIA</h1>
+          <p className="font-heading text-[6px] tracking-[0.5em] text-noir/60 m-0 -mt-1">LIQUORI</p>
+        </div>
+
+        {/* Hero Section */}
+        <div className="relative aspect-video bg-[#121212] flex items-center justify-center p-8 text-center overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-noir/80 to-noir" />
+          <div className="relative z-10 space-y-4">
+            <h2 
+              className="font-heading text-2xl font-light text-white leading-tight uppercase"
+              dangerouslySetInnerHTML={{ __html: data.heroTitle || "L'Arte della Distillazione" }}
+            />
+            <div className="w-8 h-[1px] bg-primary mx-auto" />
+            <p className="text-[10px] italic text-white/60 leading-relaxed max-w-[200px] mx-auto">
+              {data.heroSubtitle}
+            </p>
+          </div>
+        </div>
+
+        {/* Order Details */}
+        <div className="p-8 space-y-8">
+          <div className="flex justify-between items-end border-b border-white/10 pb-4">
+            <span className="text-[8px] tracking-[0.3em] text-white/20 uppercase font-heading">{data.orderRef}</span>
+            <span className="font-mono text-[10px]">#ABC12345</span>
+          </div>
+
+          <div className="space-y-6">
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <p className="font-heading text-xs font-black tracking-widest uppercase">FIL’E FERRU</p>
+                <p className="text-[8px] italic text-white/40">70cl — Edizione Archivi</p>
+              </div>
+              <span className="text-xs">38,00€</span>
+            </div>
+            
+            <div className="flex justify-between items-center pt-6 border-t border-white/10">
+              <span className="font-heading text-sm tracking-widest uppercase">{data.orderTotal}</span>
+              <span className="text-xl text-primary font-light">38,00€</span>
+            </div>
+          </div>
+
+          <div className="space-y-3 pt-4">
+            <span className="text-[8px] tracking-[0.3em] text-white/20 uppercase font-heading">{data.shippingDest}</span>
+            <p className="text-[10px] leading-relaxed">
+              <strong className="block mb-1">Alessandro Murgia</strong>
+              Via Parrocchia 29, 09039 Villacidro (SU)
+            </p>
+          </div>
+        </div>
+
+        {/* Cross-sell */}
+        <div className="bg-[#121212] p-10 text-center space-y-4">
+          <h3 className="font-heading text-xl font-light uppercase">{data.crossTitle}</h3>
+          <p className="text-[9px] text-white/40 leading-relaxed">
+            {data.crossText}
+          </p>
+          <div className="inline-block bg-primary text-noir px-6 py-3 font-heading text-[8px] font-black tracking-[0.3em] uppercase">
+            {data.crossCta}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="bg-black p-10 text-center space-y-8">
+          <div className="space-y-2">
+            <h1 className="font-heading text-3xl font-black text-primary tracking-[0.1em] m-0 leading-none">MURGIA</h1>
+            <p className="font-heading text-[6px] tracking-[0.4em] text-white/20 m-0">LIQUORI</p>
+          </div>
+
+          <div className="space-y-4">
+            <p className="text-[8px] tracking-[0.1em] text-white/40 uppercase">{data.supportText}</p>
+            <p className="text-primary text-[10px]">{data.contactText} info@murgialiquori.it</p>
+          </div>
+
+          <p className="text-[7px] text-white/10 uppercase tracking-widest pt-8 border-t border-white/5">
+            {data.footerNote}
+          </p>
+        </div>
       </div>
     </div>
   );
