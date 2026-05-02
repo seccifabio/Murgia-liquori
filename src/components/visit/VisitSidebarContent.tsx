@@ -99,6 +99,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true, i
             </motion.div>
           ) : (
             <motion.form 
+              id="visit-form"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -186,32 +187,31 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true, i
                             ))}
                         </select>
                       </div>
-                  </div>
                 </div>
-
-                <button 
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full murgia-btn-primary py-8 text-sm tracking-[0.2em] md:tracking-[0.4em] transform hover:scale-[1.02] active:scale-95 disabled:opacity-70 mt-12 rounded-none"
-                >
-                  <span className="murgia-btn-text px-4">
-                    {isSubmitting ? t.common.sending : t.visit.drawer.form.submit}
-                  </span>
-                  {!isSubmitting && <ArrowRight className="murgia-btn-icon" />}
-                  {isSubmitting && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
-                  <div className="murgia-btn-hover-wipe" />
-                </button>
+              </div>
             </motion.form>
           )}
         </AnimatePresence>
       </div>
 
-      {/* Footer Manifest */}
-      <div className={`${isInline ? "px-6 py-12" : "p-8"} border-t border-white/5 bg-noir/50 backdrop-blur-xl`}>
-          <p className={`${isInline ? "text-left" : "text-center"} text-white/60 font-heading text-[11px] tracking-[0.2em] uppercase italic leading-relaxed`}>
-            {t.visit.drawer.footer}
-          </p>
-      </div>
+      {/* Footer Ritual: The Final Signature */}
+      {!isSuccess && (
+        <div className={`${isInline ? "px-6 py-12" : "p-8"} border-t border-white/5 bg-noir/50 backdrop-blur-xl`}>
+          <button 
+            form="visit-form"
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full murgia-btn-primary py-8 text-sm tracking-[0.2em] md:tracking-[0.4em] transform hover:scale-[1.02] active:scale-95 disabled:opacity-70 rounded-none"
+          >
+            <span className="murgia-btn-text px-4">
+              {isSubmitting ? t.common.sending : t.visit.drawer.form.submit}
+            </span>
+            {!isSubmitting && <ArrowRight className="murgia-btn-icon" />}
+            {isSubmitting && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
+            <div className="murgia-btn-hover-wipe" />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
