@@ -85,7 +85,7 @@ function SuccessContent() {
           <h1 className="font-heading text-6xl md:text-8xl uppercase tracking-tighter leading-none">
             {t.success.title} <br /> <span className="text-primary italic">{t.success.subtitle}</span>
           </h1>
-          <p className="font-body text-white/40 text-[10px] md:text-xs uppercase tracking-[0.4em]">
+          <p className="font-body text-white/40 text-xs uppercase tracking-[0.4em]">
             {t.success.idLabel}: #{sessionId?.slice(-8).toUpperCase() || "XXXX"}
           </p>
         </div>
@@ -114,7 +114,7 @@ function SuccessContent() {
                         <p className="font-heading text-primary text-xl tracking-wider uppercase">
                           {item.description}
                         </p>
-                        <p className="font-body text-[10px] text-white/30 uppercase tracking-[0.2em]">
+                        <p className="font-body text-xs text-white/30 uppercase tracking-[0.2em]">
                           {t.success.quantity}: {item.quantity}
                         </p>
                       </div>
@@ -144,7 +144,7 @@ function SuccessContent() {
                 </div>
 
                 <div className="pt-8 border-t border-white/10 flex justify-between items-center">
-                  <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{t.success.total}</p>
+                  <p className="font-heading text-xs text-white/40 uppercase tracking-[0.3em]">{t.success.total}</p>
                   <p className="font-heading text-4xl text-primary">
                     €{(session.amount_total / 100).toFixed(2)}
                   </p>
@@ -159,13 +159,13 @@ function SuccessContent() {
               <div className="space-y-6 pt-10 border-t border-white/10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div className="space-y-1">
-                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{t.success.customer}</p>
+                    <p className="font-heading text-xs text-white/40 uppercase tracking-[0.3em]">{t.success.customer}</p>
                     <p className="font-heading text-xl text-white/90 tracking-wide uppercase">
                       {session.customer_details.name}
                     </p>
                   </div>
                   <div className="space-y-1">
-                    <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">Email</p>
+                    <p className="font-heading text-xs text-white/40 uppercase tracking-[0.3em]">Email</p>
                     <p className="font-body text-xs text-white/50 tracking-widest break-all">
                       {session.customer_details.email}
                     </p>
@@ -176,7 +176,7 @@ function SuccessContent() {
                 {session?.shipping_details?.address?.line1 ? (
                   <div className="space-y-4 pt-6 border-t border-white/5">
                     <div className="space-y-1">
-                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{t.success.destination}</p>
+                      <p className="font-heading text-xs text-white/40 uppercase tracking-[0.3em]">{t.success.destination}</p>
                       <div className="font-body text-[10px] md:text-xs text-white/50 space-y-1 tracking-[0.2em] leading-relaxed uppercase">
                         <p className="text-white/80 font-heading tracking-widest">{session.shipping_details.name}</p>
                         <p>
@@ -194,7 +194,7 @@ function SuccessContent() {
                 ) : (
                   <div className="space-y-4 pt-6 border-t border-white/5">
                     <div className="space-y-1">
-                      <p className="font-heading text-[10px] text-white/40 uppercase tracking-[0.3em]">{t.success.pickup}</p>
+                      <p className="font-heading text-xs text-white/40 uppercase tracking-[0.3em]">{t.success.pickup}</p>
                       <div className="font-body text-[10px] md:text-xs text-white/50 space-y-1 tracking-[0.2em] leading-relaxed uppercase">
                         <p className="text-white/80 font-heading tracking-widest">Via Parrocchia 29</p>
                         <p>09039 Villacidro (SU)</p>

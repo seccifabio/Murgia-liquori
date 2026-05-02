@@ -13,7 +13,8 @@ export default function Hero() {
   const containerRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollY } = useScroll();
-  const { setIsBannerVisible, isBannerVisible } = useCart();
+  const { setIsBannerVisible, isBannerVisible, hasInteractedWithPromo } = useCart();
+  const [isVisitEligibleInSession, setIsVisitEligibleInSession] = useState(false);
   const pathname = usePathname();
   const { language, t } = useTranslation();
   const { config } = useCMS();
@@ -28,15 +29,27 @@ export default function Hero() {
   const visitDateString = nextVisit?.date || "2026-05-04";
   const visitDate = new Date(`${visitDateString}T00:00:00`);
   const isVisitExpired = new Date().getTime() >= visitDate.getTime();
-  const { hasInteractedWithPromo } = useCart();
-  const isVisitEligible = (
-    (pathname === "/" && hasInteractedWithPromo) || 
+  useEffect(() => {
+    const interacted = typeof window !== 'undefined' && localStorage.getItem("murgia_promo_interacted") === "true";
+    if (pathname !== "/") {
+      setIsVisitEligibleInSession(true);
+    } else if (!promoActive || interacted) {
+      setIsVisitEligibleInSession(true);
+    }
+  }, [pathname, promoActive]);
+
+  // Mutual Exclusivity Ritual: Mirror VisitBanner.tsx logic
+  const isPromoEligibleOnThisPage = pathname === "/" || pathname?.includes("/shop/") || pathname === "/la-collezione";
+  const isPromoShowing = isPromoEligibleOnThisPage && isBannerVisible && promoActive;
+
+  const isVisitEligible = !isPromoShowing && (
+    (pathname === "/" && isVisitEligibleInSession) || 
     pathname === "/dove-ci-trovi" || 
     pathname === "/la-storia" || 
     pathname === "/contatti"
   ) && !isVisitExpired && visitActive;
 
-  const hasActiveBanner = (isBannerVisible && isEligiblePage && promoActive) || isVisitEligible;
+  const hasActiveBanner = isPromoShowing || isVisitEligible;
 
   // Cinematic Performance: We use Motion Values for the top/height logic 
   const dynamicTop = useTransform(scrollY, [0, 52], [hasActiveBanner ? 52 : 0, 0]);

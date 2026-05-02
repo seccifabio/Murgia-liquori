@@ -36,9 +36,13 @@ export default function NarrativeCollection({ isSealed, t, products }: Narrative
             <motion.div initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: i * 0.1 }}>
               <div className="aspect-[4/5] max-h-[60vh] bg-noir rounded-[2vw] overflow-hidden relative border border-white/5 shadow-2xl">
                 <LiquidImage src={p.img} alt={p.name} className="object-contain p-4" />
-                <div className="absolute inset-x-0 bottom-6 text-center">
-                  <h4 className="text-white font-heading text-2xl uppercase tracking-tighter">{p.name}</h4>
-                  <p className="text-primary font-heading text-xl">{p.price}</p>
+                
+                {/* Grounding Ritual: Subtle Gradient for legibility */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+                
+                <div className="absolute inset-x-0 bottom-6 text-center z-10 px-4">
+                  <h4 className="text-white font-heading text-2xl uppercase tracking-tighter drop-shadow-sm">{p.name}</h4>
+                  <p className="text-primary font-heading text-xl drop-shadow-sm">{p.price}</p>
                 </div>
               </div>
             </motion.div>

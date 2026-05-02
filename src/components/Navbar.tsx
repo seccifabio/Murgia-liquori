@@ -33,6 +33,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [currentTop, setCurrentTop] = useState(0);
+  const [isVisitEligibleInSession, setIsVisitEligibleInSession] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -43,21 +44,32 @@ export default function Navbar() {
 
   const isPromoEligible = pathname === "/" || pathname?.includes("/shop/") || pathname === "/la-collezione";
   const promoActive = config?.promo?.active ?? true;
-  
+  const isPromoShowing = isPromoEligible && isBannerVisible && promoActive;
+
   // Visit Expiration Manifest
   const nextVisit = config?.visits?.[0];
   const visitActive = nextVisit?.active ?? VISIT_MANIFEST.active;
   const visitDateString = nextVisit?.date || VISIT_MANIFEST.date;
   const visitDate = new Date(`${visitDateString}T00:00:00`);
   const isVisitExpired = new Date().getTime() >= visitDate.getTime();
-  const isVisitEligible = (
-    (pathname === "/" && hasInteractedWithPromo) || 
+  
+  useEffect(() => {
+    const interacted = typeof window !== 'undefined' && localStorage.getItem("murgia_promo_interacted") === "true";
+    if (pathname !== "/") {
+      setIsVisitEligibleInSession(true);
+    } else if (!promoActive || interacted) {
+      setIsVisitEligibleInSession(true);
+    }
+  }, [pathname, promoActive]);
+
+  const isVisitEligible = !isPromoShowing && (
+    (pathname === "/" && isVisitEligibleInSession) || 
     pathname === "/dove-ci-trovi" || 
     pathname === "/la-storia" || 
     pathname === "/contatti"
   ) && !isVisitExpired && visitActive;
 
-  const hasActiveBanner = (isPromoEligible && isBannerVisible && promoActive) || isVisitEligible;
+  const hasActiveBanner = isPromoShowing || isVisitEligible;
 
   // Responsive Manifest: Sync with CSS --banner-height tokens
   const getBannerHeight = () => {
@@ -123,10 +135,10 @@ export default function Navbar() {
         initial={{ y: 0, opacity: 1 }}
         animate={{ 
           y: isVisible ? 0 : -100,
-          opacity: isVisible ? 1 : 0
+          opacity: isVisible ? 1 : 0,
+          top: currentTop
         }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        style={{ top: currentTop }}
         className="fixed left-0 right-0 z-[9999] px-6 py-8 md:px-12 flex items-center justify-between pointer-events-none"
       >
         <div className="pointer-events-auto relative">

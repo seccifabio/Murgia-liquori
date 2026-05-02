@@ -112,8 +112,8 @@ export default function AperitivoModal(props: AperitivoModalProps) {
             {/* Content Panel (Right/Bottom) - Expanded for better readability */}
             <div className="relative w-full md:w-[60%] h-[60%] md:h-full flex flex-col p-8 md:p-16 lg:p-24 overflow-y-auto custom-scrollbar">
               
-              {/* Navigation Chips - Wrapped for Total Visibility */}
-              <div className="flex flex-wrap gap-3 mt-32 mb-16 py-2 shrink-0">
+              {/* Navigation Chips - Inline with Horizontal Scroll & Premium Mask */}
+              <div className="flex flex-nowrap gap-3 mt-32 mb-16 py-4 shrink-0 overflow-x-auto no-scrollbar -mx-2 px-2 mask-linear-edges">
                 {items.map((navItem, index) => (
                   <button
                     key={navItem.id}

@@ -58,17 +58,17 @@ export default function SbagliataHero({ liveProducts }: SbagliataHeroProps) {
         className="relative z-10 h-full flex flex-col items-center justify-start md:justify-center text-center px-6 pt-32 md:pt-0"
       >
         <header className="mb-8">
-          <span className="font-heading text-xs tracking-[0.5em] text-primary uppercase block">
+          <span className="font-heading text-xs tracking-[0.5em] text-white uppercase block">
             Collector&apos;s Edition 
             {stockCount && Number(stockCount) > 0 && (
-              <span className="text-white/40 italic ml-2">
+              <span className="text-primary font-bold italic ml-2">
                 — {language === 'it' ? `Solo ${stockCount} bottiglie rimaste` : `Only ${stockCount} bottles left`}
               </span>
             )}
           </span>
         </header>
 
-        <h1 className="font-heading text-6xl md:text-[8rem] lg:text-[12rem] text-white uppercase tracking-tighter leading-[0.85] mb-6 drop-shadow-2xl py-4 overflow-hidden">
+        <h1 className="font-heading text-6xl md:text-[8rem] lg:text-[12rem] text-white uppercase tracking-tighter leading-[0.85] mb-6 drop-shadow-2xl py-4 px-8 overflow-hidden">
           {"La".split("").map((char, i) => (
             <motion.span
               key={i}
@@ -87,7 +87,7 @@ export default function SbagliataHero({ liveProducts }: SbagliataHeroProps) {
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ delay: 0.5 + i * 0.05, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-block text-primary italic"
+              className="inline-block text-primary italic pr-[0.05em]"
             >
               {char}
             </motion.span>

@@ -11,9 +11,10 @@ import { sendVisitRequest } from "@/app/actions/visit";
 interface VisitSidebarContentProps {
   onClose?: () => void;
   showCloseButton?: boolean;
+  isInline?: boolean;
 }
 
-export default function VisitSidebarContent({ onClose, showCloseButton = true }: VisitSidebarContentProps) {
+export default function VisitSidebarContent({ onClose, showCloseButton = true, isInline = false }: VisitSidebarContentProps) {
   const { t, language } = useTranslation();
   const { config } = useCMS();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -60,10 +61,10 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#0A0A0A]">
+    <div className={`flex flex-col ${isInline ? "bg-transparent h-auto" : "h-full bg-[#0A0A0A]"}`}>
       {/* Header Ritual */}
-      <div className="p-8 pt-20 border-b border-white/5 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className={`${isInline ? "p-0 pb-12" : "p-8 pt-20"} border-b border-white/5 flex items-center justify-between`}>
+        <div className={`flex items-center gap-4 ${isInline ? "px-6" : ""}`}>
           <Calendar className="w-5 h-5 text-primary" />
           <h2 className="font-heading text-lg md:text-xl tracking-widest uppercase text-primary font-bold">{displayFullDate}</h2>
         </div>
@@ -78,7 +79,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
       </div>
 
       {/* Content Manifest */}
-      <div className="flex-1 overflow-y-auto p-8 custom-scrollbar">
+      <div className={`${isInline ? "px-6 py-12" : "flex-1 overflow-y-auto p-8 custom-scrollbar"}`}>
         <AnimatePresence mode="wait">
           {isSuccess ? (
             <motion.div
@@ -106,7 +107,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
             >
               <div className="space-y-8">
                   {/* Name Ritual */}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className={`grid ${isInline ? "grid-cols-1" : "grid-cols-2"} gap-8`}>
                       <div className="space-y-2">
                         <label className="text-[9px] text-white/30 uppercase tracking-widest block font-bold">{t.visit.drawer.form.firstName}</label>
                         <div className="relative">
@@ -115,7 +116,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
                               suppressHydrationWarning
                               required
                               type="text" 
-                              className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
+                              className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase rounded-none"
                               placeholder={t.visit.drawer.form.placeholderName}
                               value={formData.firstName}
                               onChange={(e) => setFormData({...formData, firstName: e.target.value})}
@@ -128,7 +129,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
                           suppressHydrationWarning
                           required
                           type="text" 
-                          className="w-full bg-white/5 border border-white/10 px-4 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
+                          className="w-full bg-white/5 border border-white/10 px-4 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase rounded-none"
                           placeholder={t.visit.drawer.form.placeholderLastName}
                           value={formData.lastName}
                           onChange={(e) => setFormData({...formData, lastName: e.target.value})}
@@ -145,7 +146,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
                           suppressHydrationWarning
                           required
                           type="email" 
-                          className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
+                          className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase rounded-none"
                           placeholder={t.visit.drawer.form.placeholderEmail}
                           value={formData.email}
                           onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -161,7 +162,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
                         <input 
                           suppressHydrationWarning
                           type="tel" 
-                          className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase"
+                          className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors uppercase rounded-none"
                           placeholder="+39 000 0000000"
                           value={formData.phone}
                           onChange={(e) => setFormData({...formData, phone: e.target.value})}
@@ -176,7 +177,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
                         <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
                         <select 
                           suppressHydrationWarning
-                          className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors appearance-none cursor-pointer uppercase"
+                          className="w-full bg-white/5 border border-white/10 px-10 py-4 text-sm font-heading tracking-widest focus:outline-none focus:border-primary/40 transition-colors appearance-none cursor-pointer uppercase rounded-none"
                           value={formData.guests}
                           onChange={(e) => setFormData({...formData, guests: e.target.value})}
                         >
@@ -191,7 +192,7 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full murgia-btn-primary py-8 text-sm tracking-[0.2em] md:tracking-[0.4em] transform hover:scale-[1.02] active:scale-95 disabled:opacity-70 mt-12"
+                  className="w-full murgia-btn-primary py-8 text-sm tracking-[0.2em] md:tracking-[0.4em] transform hover:scale-[1.02] active:scale-95 disabled:opacity-70 mt-12 rounded-none"
                 >
                   <span className="murgia-btn-text px-4">
                     {isSubmitting ? t.common.sending : t.visit.drawer.form.submit}
@@ -206,8 +207,8 @@ export default function VisitSidebarContent({ onClose, showCloseButton = true }:
       </div>
 
       {/* Footer Manifest */}
-      <div className="p-8 border-t border-white/5 bg-noir/50 backdrop-blur-xl">
-          <p className="text-center text-white/60 font-heading text-[11px] tracking-[0.2em] uppercase italic leading-relaxed">
+      <div className={`${isInline ? "px-6 py-12" : "p-8"} border-t border-white/5 bg-noir/50 backdrop-blur-xl`}>
+          <p className={`${isInline ? "text-left" : "text-center"} text-white/60 font-heading text-[11px] tracking-[0.2em] uppercase italic leading-relaxed`}>
             {t.visit.drawer.footer}
           </p>
       </div>

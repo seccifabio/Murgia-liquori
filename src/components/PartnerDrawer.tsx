@@ -99,6 +99,7 @@ export default function PartnerDrawer() {
             {/* Content Manifest */}
             <div className="flex-1 overflow-y-auto p-8 custom-scrollbar">
               <motion.form 
+                id="partner-form"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -230,26 +231,25 @@ export default function PartnerDrawer() {
                     <p className="text-red-500 font-heading text-[10px] tracking-widest uppercase">{error}</p>
                  )}
 
-                 <button 
-                   type="submit"
-                   disabled={isSubmitting}
-                   className="w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.2em] md:tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 disabled:opacity-70 disabled:cursor-wait mt-4"
-                 >
-                   <span className="relative z-10 font-bold px-4">
-                     {isSubmitting ? t.common.sending : t.locations.partner.fields.submit}
-                   </span>
-                   {!isSubmitting && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}
-                   {isSubmitting && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
-                   <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                 </button>
-              </motion.form>
+                  {/* The button was moved to the sticky footer for better accessibility */}
+               </motion.form>
             </div>
 
-            {/* Footer Manifest */}
+            {/* Footer Manifest - Replaced text with the main Submit Action */}
             <div className="p-8 border-t border-white/5 bg-noir/50 backdrop-blur-xl">
-               <p className="text-center text-white/60 font-heading text-[10px] tracking-[0.2em] uppercase italic leading-relaxed">
-                  {t.locations.partner.ritual} &mdash; Murgia Liquori
-               </p>
+               <button 
+                 form="partner-form"
+                 type="submit"
+                 disabled={isSubmitting}
+                 className="w-full group relative py-8 overflow-hidden bg-primary text-black font-heading uppercase text-sm tracking-[0.2em] md:tracking-[0.4em] transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-4 disabled:opacity-70 disabled:cursor-wait"
+               >
+                 <span className="relative z-10 font-bold px-4">
+                   {isSubmitting ? t.common.sending : t.locations.partner.fields.submit}
+                 </span>
+                 {!isSubmitting && <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform" />}
+                 {isSubmitting && <Loader2 className="w-5 h-5 animate-spin relative z-10" />}
+                 <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+               </button>
             </div>
           </motion.div>
         </>

@@ -149,3 +149,9 @@ a,
 .murgia-btn-noir:hover .murgia-btn-icon {
   transform: translateX(0.5rem);
 }
+
+/* Premium Scrolling Mask */
+.mask-linear-edges {
+  mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
+}

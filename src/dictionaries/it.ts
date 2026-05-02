@@ -385,7 +385,7 @@ export const it = {
   success: {
     title: "Grazie per",
     subtitle: "Il Tuo Ordine",
-    idLabel: "Email",
+    idLabel: "Order ID",
     summary: "Riepilogo Ordine",
     retrieving: "Recupero dati...",
     quantity: "Quantità",

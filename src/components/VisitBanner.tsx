@@ -52,15 +52,20 @@ export default function VisitBanner() {
   const manifest = config?.visits?.[0]?.texts?.[language as 'it' | 'en'] || VISIT_MANIFEST[language as 'it' | 'en'];
   const price = config?.visits?.[0]?.price ?? VISIT_MANIFEST.price;
 
+  // Mutual Exclusivity Ritual: If Promo is showing, Visit hides
+  const isPromoEligibleOnThisPage = pathname === "/" || pathname?.includes("/shop/") || pathname === "/la-collezione";
+  const isPromoShowing = isPromoEligibleOnThisPage && isBannerVisible && promoActive;
+
   // Visibility Manifest: 
-  // On Homepage, we strictly honor the 'isEligibleInSession' gate to prevent sudden banner swaps
   const isEligiblePage = 
-    (pathname === "/" && isEligibleInSession) || 
-    (pathname !== "/" && (
-      pathname === "/dove-ci-trovi" || 
-      pathname === "/la-storia" || 
-      pathname === "/contatti"
-    ));
+    !isPromoShowing && (
+      (pathname === "/" && isEligibleInSession) || 
+      (pathname !== "/" && (
+        pathname === "/dove-ci-trovi" || 
+        pathname === "/la-storia" || 
+        pathname === "/contatti"
+      ))
+    );
 
   // Temporal Gate: Hide if today is the visit date or has passed, or if inactive
   const visitDate = new Date(`${visitDateString}T00:00:00`);

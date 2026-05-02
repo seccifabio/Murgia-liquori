@@ -52,6 +52,12 @@ export const VISIT_MANIFEST = {
       tasting: {
         title: "La Degustazione",
         description: "Il culmine dell'esperienza: una selezione guidata delle nostre esclusive specialità."
+      },
+      share: {
+        title: "Condividi questa esperienza.",
+        subtitle: "Invita un amico alla scoperta del Laboratorio Murgia.",
+        cta: "Condividi invito",
+        copied: "Link Copiato"
       }
     }
   },
@@ -88,6 +94,12 @@ export const VISIT_MANIFEST = {
       tasting: {
         title: "The Tasting",
         description: "The peak of the experience: a guided selection of our most iconic spirits, paired with local delicacies."
+      },
+      share: {
+        title: "Share this experience.",
+        subtitle: "Invite a friend to discover the Murgia Laboratory.",
+        cta: "Share invitation",
+        copied: "Link Copied"
       }
     }
   }

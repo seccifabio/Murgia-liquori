@@ -163,7 +163,7 @@ export default function LocationsSection() {
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="w-full min-h-screen bg-noir flex flex-col items-center justify-center gap-12 text-center z-50 mt-32 relative overflow-hidden py-32"
+        className="-mx-6 md:mx-0 w-[calc(100%+3rem)] md:w-full min-h-screen bg-noir flex flex-col items-center justify-center gap-12 text-center z-50 mt-32 relative overflow-hidden py-32"
       >
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}

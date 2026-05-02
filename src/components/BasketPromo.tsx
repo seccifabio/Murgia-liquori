@@ -36,10 +36,7 @@ export default function BasketPromo({
 
   return (
     <div className="flex flex-col gap-4 py-4 border-b border-white/5">
-      <div className="flex items-center justify-between text-white/40">
-        <span className="font-heading text-sm tracking-widest uppercase">{t.bag.subtotal}</span>
-        <span className="font-heading text-base">€{total.toFixed(2)}</span>
-      </div>
+
 
       <div className="flex items-center justify-between">
         <span className="text-white/40 font-heading text-sm tracking-[0.2em] uppercase">{t.bag.voucher}</span>

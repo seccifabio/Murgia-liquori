@@ -1,9 +1,10 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "@/context/LanguageContext";
+import { InstagramIcon, FacebookIcon } from "./SocialIcons";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -63,17 +64,49 @@ export default function Footer() {
         <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-20 text-center md:text-left mb-24 items-center md:items-start justify-center w-full max-w-4xl">
           <div className="flex-1 space-y-6">
             <h4 className="font-heading text-sm tracking-widest text-primary uppercase">{t.footer.contacts}</h4>
-            <div className="space-y-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
-              <p>Email: <a href="mailto:info@murgialiquori.it" className="hover:text-primary transition-colors lowercase">info@murgialiquori.it</a></p>
-              <p>Tel: <a href="tel:+393791781417" className="hover:text-primary transition-colors">+39 3791781417</a></p>
+            <div className="space-y-4 font-body text-sm tracking-widest text-white/50 uppercase">
+              <a 
+                href="mailto:info@murgialiquori.it" 
+                className="flex items-center gap-3 hover:text-primary transition-colors group justify-center md:justify-start"
+              >
+                <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors">
+                  <Mail size={14} strokeWidth={1.5} className="text-white/40 group-hover:text-primary transition-colors" />
+                </div>
+                <span className="lowercase border-b border-transparent group-hover:border-primary/20 pb-0.5 transition-all">info@murgialiquori.it</span>
+              </a>
+              <a 
+                href="tel:+393791781417" 
+                className="flex items-center gap-3 hover:text-primary transition-colors group justify-center md:justify-start"
+              >
+                <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-colors">
+                  <Phone size={14} strokeWidth={1.5} className="text-white/40 group-hover:text-primary transition-colors" />
+                </div>
+                <span className="border-b border-transparent group-hover:border-primary/20 pb-0.5 transition-all">+39 3791781417</span>
+              </a>
             </div>
           </div>
 
           <div className="flex-1 space-y-6">
             <h4 className="font-heading text-sm tracking-widest text-primary uppercase">{t.footer.social}</h4>
-            <div className="flex flex-col gap-2 font-body text-sm tracking-widest text-white/50 uppercase leading-loose">
-              <a href="https://www.instagram.com/murgialiquori/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Instagram</a>
-              <a href="https://www.facebook.com/murgia.liquori" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Facebook</a>
+            <div className="flex items-center gap-4 justify-center md:justify-start">
+              <a 
+                href="https://www.instagram.com/murgialiquori/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary group transition-all"
+                aria-label="Instagram"
+              >
+                <InstagramIcon size={18} strokeWidth={1.5} className="text-white/40 group-hover:text-primary transition-colors" />
+              </a>
+              <a 
+                href="https://www.facebook.com/murgia.liquori" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary group transition-all"
+                aria-label="Facebook"
+              >
+                <FacebookIcon size={18} strokeWidth={1.5} className="text-white/40 group-hover:text-primary transition-colors" />
+              </a>
             </div>
           </div>
           

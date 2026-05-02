@@ -15,6 +15,7 @@ import VisitSidebarContent from "@/components/visit/VisitSidebarContent";
 import { VISIT_MANIFEST } from "@/manifest/visit";
 import Footer from "@/components/Footer";
 import EventGallery from "@/components/EventGallery";
+import ShareRitual from "@/components/visit/ShareRitual";
 import { useInView } from "framer-motion";
 
 /* Visit Us Ritual: A cinematic immersion into the Murgia Laboratory */
@@ -33,25 +34,30 @@ export default function VisitUsPage() {
   const t = VISIT_MANIFEST[language as "it" | "en"] || VISIT_MANIFEST.it;
   
   const containerRef = useRef<HTMLDivElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
-  
-  // Narrative State Tracking
   const [activeStage, setActiveStage] = useState(NARRATIVE_STAGES[0]);
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const tastingRef = useRef<HTMLElement>(null);
   
+  const { scrollY } = useScroll();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  const isFooterInView = useInView(footerRef, { amount: 0.1 });
+  const [hasStartedNarrative, setHasStartedNarrative] = useState(false);
+  const [isTastingAtTop, setIsTastingAtTop] = useState(false);
+  const isSidebarVisible = hasStartedNarrative && !isTastingAtTop;
 
-  useEffect(() => {
-    setIsSidebarVisible(scrollYProgress.get() > 0.15);
-  }, [scrollYProgress]);
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setIsSidebarVisible(latest > 0.15);
+  useMotionValueEvent(scrollY, "change", () => {
+    if (containerRef.current) {
+      const scrollPos = window.scrollY;
+      setHasStartedNarrative(scrollPos > 600);
+    }
+    
+    if (tastingRef.current) {
+      const rect = tastingRef.current.getBoundingClientRect();
+      // Trigger when the tasting section top hits the viewport top (or is above it)
+      setIsTastingAtTop(rect.top <= 0);
+    }
   });
 
   // Cinematic Background Scaling & Filters
@@ -86,7 +92,7 @@ export default function VisitUsPage() {
   };
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-noir text-white selection:bg-primary selection:text-black">
+    <div ref={containerRef} className="relative min-h-screen bg-noir text-white selection:bg-primary selection:text-black overflow-x-hidden">
       
       {/* 1. Cinematic Background Layer */}
       <div className="fixed inset-0 z-0 overflow-hidden">
@@ -258,7 +264,7 @@ export default function VisitUsPage() {
           </section>
 
           {/* 4. Tasting Finale */}
-          <section className="min-h-[60vh] flex flex-col justify-center pb-[40px]">
+          <section ref={tastingRef} className="min-h-[60vh] flex flex-col justify-center pb-[40px]">
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -272,46 +278,77 @@ export default function VisitUsPage() {
               </div>
               <p className="font-body text-xl md:text-2xl text-white/90 max-w-3xl leading-relaxed italic border-l-4 border-primary/40 pl-12 font-light">{t.visitPage.tasting.description}</p>
             </motion.div>
+
+
+          </section>
+
+          {/* 5. Inline Booking Section for Mobile - Full Width & Optimized Space */}
+          <section className="block md:hidden border-t border-white/5 mt-16 bg-[#050505] -mx-6">
+            <div className="w-full py-12 relative overflow-hidden">
+              <div className="relative z-10">
+                <div className="flex flex-col gap-2 mb-10 text-center">
+                  <span className="font-heading text-primary text-[10px] tracking-[0.5em] uppercase font-bold">Secure Your Ritual</span>
+                  <h2 className="font-heading text-4xl uppercase italic font-black text-white leading-none">{language === "it" ? "Prenota la tua Visita" : "Book Your Experience"}</h2>
+                </div>
+                <div className="w-full">
+                  <VisitSidebarContent showCloseButton={false} isInline={true} />
+                </div>
+              </div>
+            </div>
           </section>
 
         </div>
 
-        {/* Right Column: Sticky Form Terminal (Hidden if Inactive) */}
+        {/* Right Column: Placeholder to keep space for fixed sidebar on desktop */}
         {visitActive !== false && (
-          <SidebarScrollVisibility 
-            isVisible={isSidebarVisible}
-            hide={isFooterInView}
-          >
-            <div className="w-full h-full relative overflow-hidden border-l border-white/5 shadow-2xl">
+          <div className="hidden md:block md:w-[480px] shrink-0" />
+        )}
+
+        {/* The Actual Fixed Sidebar - Unmounted when not needed */}
+        {visitActive !== false && isSidebarVisible && (
+          <SidebarScrollVisibility isVisible={isSidebarVisible}>
+            <div className="w-full h-full relative overflow-y-auto overflow-x-hidden no-scrollbar">
                <VisitSidebarContent showCloseButton={false} />
             </div>
           </SidebarScrollVisibility>
         )}
 
+
+
       </div>
 
-      <EventGallery />
+      {/* Share Ritual - Full Width Cinematic Breakout (Desktop & Mobile) */}
+      <section className="relative z-20 w-full">
+        <ShareRitual t={manifestData} variant="highlight" className="w-full" />
+      </section>
 
-      <div ref={footerRef}>
-        <Footer />
+      {/* Sidebar Exit Sensor: Triggers hide when reaching the gallery */}
+      <div className="relative z-20">
+
+        <EventGallery />
+        
+        <div>
+          <Footer />
+        </div>
       </div>
     </div>
   );
 }
 
-function SidebarScrollVisibility({ children, isVisible, hide }: { children: React.ReactNode, isVisible: boolean, hide: boolean }) {
-  const shouldShow = isVisible && !hide;
+function SidebarScrollVisibility({ children, isVisible }: { children: React.ReactNode, isVisible: boolean }) {
+  const shouldShow = isVisible;
 
   return (
     <motion.div
-      initial={false}
+      initial={{ opacity: 0, x: 40 }}
       animate={{ 
         opacity: shouldShow ? 1 : 0,
-        x: shouldShow ? 0 : 50,
-        pointerEvents: shouldShow ? "auto" : "none"
+        x: shouldShow ? 0 : 40,
+        pointerEvents: shouldShow ? "auto" : "none",
+        visibility: shouldShow ? "visible" : "hidden"
       }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="w-full md:w-[550px] bg-[#050505] md:h-screen md:sticky md:top-0 z-[10000]"
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className="hidden md:block w-[480px] bg-[#050505] h-screen fixed top-0 right-0 z-[10000] border-l border-white/5 shadow-2xl"
     >
       {children}
     </motion.div>

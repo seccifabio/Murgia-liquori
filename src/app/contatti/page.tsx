@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
 import { useTranslation } from "@/context/LanguageContext";
 import { Phone, Mail, MessageCircle } from "lucide-react";
+import { InstagramIcon, FacebookIcon } from "@/components/SocialIcons";
 
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
@@ -130,6 +131,28 @@ export default function ContattiPage() {
                     <Mail size={20} strokeWidth={1.5} className="text-noir group-hover:text-white transition-colors duration-500" />
                   </div>
                   <span className="text-noir group-hover:text-noir/60 transition-colors font-body text-sm uppercase tracking-[0.2em]">info@murgialiquori.it</span>
+                </a>
+              </div>
+
+              {/* Social Ritual Cluster */}
+              <div className="flex justify-center gap-6 mt-16">
+                <a 
+                  href="https://www.instagram.com/murgialiquori/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-14 h-14 rounded-full border border-noir/20 flex items-center justify-center hover:bg-noir group transition-all duration-500"
+                  aria-label="Instagram"
+                >
+                  <InstagramIcon size={24} className="text-noir group-hover:text-primary transition-colors" />
+                </a>
+                <a 
+                  href="https://www.facebook.com/murgia.liquori" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-14 h-14 rounded-full border border-noir/20 flex items-center justify-center hover:bg-noir group transition-all duration-500"
+                  aria-label="Facebook"
+                >
+                  <FacebookIcon size={24} className="text-noir group-hover:text-primary transition-colors" />
                 </a>
               </div>
             </div>

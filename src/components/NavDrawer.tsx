@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { X } from "lucide-react";
 
+import { InstagramIcon, FacebookIcon } from "./SocialIcons";
+
 interface NavLink {
   id: string;
   path: string;
@@ -50,10 +52,29 @@ export default function NavDrawer({ isOpen, onClose, links, translations }: NavD
             ))}
           </div>
 
-          <div className="absolute bottom-12 left-12 md:left-24 flex gap-8 text-[10px] tracking-[0.3em] uppercase text-white/30 font-medium">
-            <a href="https://www.instagram.com/murgialiquori/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">{translations.nav.social.instagram}</a>
-            <a href="https://www.facebook.com/murgia.liquori" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">{translations.nav.social.facebook}</a>
-            <Link href="/legal/cookie-policy" onClick={onClose} className="hover:text-primary transition-colors">
+          <div className="absolute bottom-12 left-12 md:left-24 flex items-center gap-12">
+            <div className="flex gap-4">
+              <a 
+                href="https://www.instagram.com/murgialiquori/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary group transition-all"
+                aria-label="Instagram"
+              >
+                <InstagramIcon size={18} className="text-white/40 group-hover:text-primary transition-colors" />
+              </a>
+              <a 
+                href="https://www.facebook.com/murgia.liquori" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-primary group transition-all"
+                aria-label="Facebook"
+              >
+                <FacebookIcon size={18} className="text-white/40 group-hover:text-primary transition-colors" />
+              </a>
+            </div>
+            
+            <Link href="/legal/cookie-policy" onClick={onClose} className="text-[10px] tracking-[0.3em] uppercase text-white/30 font-medium hover:text-primary transition-colors">
               {translations.nav.social.privacy}
             </Link>
           </div>
