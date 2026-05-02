@@ -5,9 +5,15 @@ import StoriaHero from "@/components/storia/StoriaHero";
 import StoriaShutter from "@/components/storia/StoriaShutter";
 import ShippingRitual from "@/components/storia/ShippingRitual";
 import StoriaVideo from "@/components/storia/StoriaVideo";
+import ShareRitual from "@/components/visit/ShareRitual";
 import { motion } from "framer-motion";
+import { useTranslation } from "@/context/LanguageContext";
+import { VISIT_MANIFEST } from "@/manifest/visit";
 
 export default function StoriaPage() {
+  const { language } = useTranslation();
+  const manifestData = VISIT_MANIFEST[language];
+
   return (
     <main className="bg-noir min-h-screen">
       
@@ -62,6 +68,18 @@ export default function StoriaPage() {
       </motion.section>
 
       <StoriaVideo />
+
+      {/* Share Ritual - Full Width Breakout with Storia-Specific Copy */}
+      <section className="relative z-20 w-full mt-20">
+        <ShareRitual 
+          t={manifestData} 
+          variant="highlight" 
+          className="w-full"
+          title={language === "it" ? "Condividi <br/> la storia" : "Share <br/> the story"}
+          subtitle={language === "it" ? "140 anni di segreti e passione." : "140 years of secrets and passion."}
+          cta={language === "it" ? "Condividi" : "Share"}
+        />
+      </section>
 
       <Footer />
     </main>

@@ -6,11 +6,14 @@ import { useState } from "react";
 
 interface ShareRitualProps {
   t: any;
+  variant?: 'list' | 'highlight';
   className?: string;
-  variant?: "default" | "highlight";
+  title?: string;
+  subtitle?: string;
+  cta?: string;
 }
 
-export default function ShareRitual({ t, className = "", variant = "default" }: ShareRitualProps) {
+export default function ShareRitual({ t, variant = 'list', className = "", title, subtitle, cta }: ShareRitualProps) {
   const [copied, setCopied] = useState(false);
   const isHighlight = variant === "highlight";
 
@@ -44,27 +47,29 @@ export default function ShareRitual({ t, className = "", variant = "default" }: 
         <div className="space-y-6">
           {!isHighlight && (
             <span className={`font-heading text-[10px] tracking-[0.6em] uppercase block font-bold italic ${isHighlight ? "text-noir/60" : "text-primary"}`}>
-              {t.visitPage.share.title}
+              {title || t.visitPage.share.title}
             </span>
           )}
           {isHighlight ? (
-            <h2 className="font-heading text-5xl md:text-[8rem] uppercase tracking-normal leading-[0.8] italic font-black text-noir">
-              {t.visitPage.share.title}
-            </h2>
+            <h2 
+              className="font-heading text-5xl md:text-[8rem] uppercase tracking-normal leading-[0.8] italic font-black text-noir"
+              dangerouslySetInnerHTML={{ __html: title || t.visitPage.share.title }}
+            />
           ) : null}
-          <p className={`font-body text-sm md:text-xl italic max-w-xl leading-relaxed font-light ${isHighlight ? "text-noir/80" : "text-white/60"}`}>
-            {t.visitPage.share.subtitle}
-          </p>
         </div>
+
+        <p className={`font-body text-sm md:text-lg italic max-w-md ${isHighlight ? "text-noir/70" : "text-white/60"}`}>
+          {subtitle || t.visitPage.share.subtitle}
+        </p>
 
         <button
           onClick={handleShare}
           className="flex items-center gap-6 group/btn"
         >
-          <div className={`w-16 h-16 rounded-full border flex items-center justify-center transition-all duration-500 ${
+          <div className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-500 ${
             isHighlight 
-              ? "border-noir/20 bg-transparent group-hover/btn:bg-noir" 
-              : "border-primary/20 bg-noir group-hover/btn:bg-primary"
+              ? "border-noir bg-transparent text-noir group-hover/btn:bg-noir group-hover/btn:text-primary" 
+              : "border-primary/30 group-hover/btn:border-primary group-hover/btn:bg-primary/10"
           }`}>
             <AnimatePresence mode="wait">
               {copied ? (
@@ -74,7 +79,7 @@ export default function ShareRitual({ t, className = "", variant = "default" }: 
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0, opacity: 0 }}
                 >
-                  <Check className={`w-6 h-6 ${isHighlight ? "text-primary" : "text-noir"}`} />
+                  <Check className={`w-5 h-5 ${isHighlight ? "text-primary group-hover/btn:text-primary" : "text-primary"}`} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -94,9 +99,9 @@ export default function ShareRitual({ t, className = "", variant = "default" }: 
           </div>
           
           <span className={`font-heading text-sm tracking-[0.4em] uppercase transition-colors italic font-bold ${
-            isHighlight ? "text-noir/40 group-hover/btn:text-noir" : "text-white/40 group-hover/btn:text-primary"
+            isHighlight ? "text-noir/60 group-hover/btn:text-noir" : "text-white/40 group-hover/btn:text-primary"
           }`}>
-            {copied ? t.visitPage.share.copied : t.visitPage.share.cta}
+            {copied ? t.visitPage.share.copied : (cta || t.visitPage.share.cta)}
           </span>
         </button>
       </div>
