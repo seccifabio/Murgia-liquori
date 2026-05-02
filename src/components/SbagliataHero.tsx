@@ -55,7 +55,7 @@ export default function SbagliataHero({ liveProducts }: SbagliataHeroProps) {
 
       <motion.div 
         style={{ y: textY, opacity: textOpacity }}
-        className="relative z-10 h-full flex flex-col items-center justify-start md:justify-center text-center px-6 pt-32 md:pt-0"
+        className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6"
       >
         <header className="mb-8">
           <span className="font-heading text-xs tracking-[0.5em] text-white uppercase block">
