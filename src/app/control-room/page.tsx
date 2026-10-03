@@ -81,13 +81,13 @@ export default function ControlRoomPage() {
 
         <div className="flex items-center gap-12">
           <nav className="flex gap-8">
-            {["promo", "visit", "email", "find-us"].map((tab) => (
+            {["promo", "visit", "email", "find-us", "media"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab as any)}
                 className={`font-heading text-sm uppercase font-bold tracking-widest transition-all ${activeTab === tab ? 'text-primary border-b-2 border-primary pb-1' : 'text-white/20 hover:text-white'}`}
               >
-                {tab === "find-us" ? "Find Us" : tab === "email" ? "Order Email" : tab}
+                {tab === "find-us" ? "Find Us" : tab === "email" ? "Order Email" : tab === "media" ? "Media & Video" : tab}
               </button>
             ))}
           </nav>
