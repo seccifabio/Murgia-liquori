@@ -15,7 +15,7 @@ export default function ControlRoomPage() {
   const [config, setConfig] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<"promo" | "visit" | "find-us" | "email">("promo");
+  const [activeTab, setActiveTab] = useState<"promo" | "visit" | "find-us" | "email" | "media">("promo");
   const [promoLang, setPromoLang] = useState<"it" | "en">("it");
   const [visitLang, setVisitLang] = useState<"it" | "en">("it");
   const [showPromoCalendar, setShowPromoCalendar] = useState(false);
@@ -451,12 +451,21 @@ export default function ControlRoomPage() {
               <EmailManager config={config} setConfig={setConfig} />
             </motion.section>
           }
-        </AnimatePresence>
+
+          {activeTab === "media" && (
+            <motion.section 
+              key="media"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="pt-12"
+            >
+
 
         {/* Media Ritual (Video & Images) */}
         <motion.section 
           id="media"
-          className="pt-24 min-h-[50vh]"
+          
         >
           <div className="space-y-12">
             <div className="flex flex-col md:flex-row items-center justify-between border-b border-white/10 pb-8 gap-8">
@@ -533,6 +542,9 @@ export default function ControlRoomPage() {
             </div>
           </div>
         </motion.section>
+            </motion.section>
+          )}
+        </AnimatePresence>
       </main>
 
       {/* Footer Controls */}
