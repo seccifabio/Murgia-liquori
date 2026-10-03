@@ -11,6 +11,7 @@ interface SbagliataHeroProps {
 }
 
 export default function SbagliataHero({ liveProducts }: SbagliataHeroProps) {
+  const { config } = useCMS();
   const { t, language } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
