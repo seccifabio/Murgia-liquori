@@ -1,4 +1,5 @@
 "use client";
+import { useCMS } from "@/context/CMSContext";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
