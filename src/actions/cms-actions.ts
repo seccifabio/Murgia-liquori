@@ -133,7 +133,11 @@ export async function getCMSConfig() {
 
     // Seed Redis if it's empty but we have local data
     if (redis && parsed) {
-      await redis.set(REDIS_KEY, JSON.stringify(parsed));
+      try {
+        await redis.set(REDIS_KEY, JSON.stringify(parsed));
+      } catch (seedError) {
+        console.error("CMS: Failed to seed Redis, continuing with FS data:", seedError);
+      }
     }
     
     return parsed;
@@ -171,8 +175,12 @@ export async function updateCMSConfig(newData: any) {
   try {
     // 1. Update Redis
     if (redis) {
-      await redis.set(REDIS_KEY, JSON.stringify(newData));
-      console.log("CMS: Redis update successful");
+      try {
+        await redis.set(REDIS_KEY, JSON.stringify(newData));
+        console.log("CMS: Redis update successful");
+      } catch (redisError) {
+        console.error("CMS: Redis update failed, falling back to local FS:", redisError);
+      }
     }
 
     // 2. Update Local (for Dev Consistency)

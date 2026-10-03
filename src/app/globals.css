@@ -98,7 +98,7 @@ a,
 
 @layer base {
   :focus-visible {
-    outline: 2px solid theme('colors.primary');
+    outline: 2px solid var(--primary);
     outline-offset: 4px;
   }
 }
