@@ -29,6 +29,17 @@ type CMSConfig = {
     address: string;
     map: string;
   }>;
+  videos?: {
+    hero: string;
+    giallo: string;
+    bianco: string;
+    sbagliata: string;
+    storiaYoutubeId: string;
+  };
+  images?: {
+    storiaHero: string;
+    preparazioneLab: string;
+  };
 };
 
 const CMSContext = createContext<{ 

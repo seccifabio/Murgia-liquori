@@ -3,8 +3,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 
 export default function GialloHero() {
+  const { config } = useCMS();
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -35,7 +37,7 @@ export default function GialloHero() {
           playsInline 
           className="w-full h-full object-cover opacity-70"
         >
-          <source src="/videos/giallo_product.mp4" type="video/mp4" />
+          <source src={config?.videos?.giallo || "/videos/giallo_product.mp4"} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-noir/80 via-transparent to-noir" />
       </motion.div>

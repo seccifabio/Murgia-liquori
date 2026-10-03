@@ -98,7 +98,7 @@ export default function Hero() {
           preload="auto"
           className="h-full w-full object-cover saturate-[0.3] brightness-75 opacity-70"
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src={config?.videos?.hero || "/videos/hero.mp4"} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-noir/40 via-transparent to-noir" />
       </div>

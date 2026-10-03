@@ -96,13 +96,27 @@ export async function getCMSConfig() {
           parsed.visits[0].price = VISIT_MANIFEST.price;
           await redis.set(REDIS_KEY, JSON.stringify(parsed));
         }
-
         // Migration Ritual (Email): Add 'email' if missing
         if (!parsed.email) {
           console.log("CMS: Migrating email templates to Redis");
           parsed.email = MARKETING_MANIFEST.email;
           await redis.set(REDIS_KEY, JSON.stringify(parsed));
         }
+        
+        // Migration Ritual (Videos & Images)
+        let needsSave = false;
+        if (!parsed.videos) {
+          parsed.videos = { hero: "/videos/hero.mp4", giallo: "/videos/giallo_product.mp4", bianco: "/videos/bianco.mp4", sbagliata: "/videos/sbagliata.mp4", storiaYoutubeId: "TpAl52rlf4s" };
+          needsSave = true;
+        }
+        if (!parsed.images) {
+          parsed.images = { storiaHero: "/images/storia/storia_origins_1882_1775937746086.png", preparazioneLab: "/images/storia/shipping_ritual_lab_preparing.png" };
+          needsSave = true;
+        }
+        if (needsSave) {
+          await redis.set(REDIS_KEY, JSON.stringify(parsed));
+        }
+
         
         return parsed;
       }
@@ -125,11 +139,19 @@ export async function getCMSConfig() {
       }];
       delete parsed.visit;
     }
-
     // Migration Ritual: Add 'locations' if missing
     if (!parsed.locations) {
       parsed.locations = STATIC_LOCATIONS;
     }
+    
+    // Migration Ritual (Videos & Images)
+    if (!parsed.videos) {
+      parsed.videos = { hero: "/videos/hero.mp4", giallo: "/videos/giallo_product.mp4", bianco: "/videos/bianco.mp4", sbagliata: "/videos/sbagliata.mp4", storiaYoutubeId: "TpAl52rlf4s" };
+    }
+    if (!parsed.images) {
+      parsed.images = { storiaHero: "/images/storia/storia_origins_1882_1775937746086.png", preparazioneLab: "/images/storia/shipping_ritual_lab_preparing.png" };
+    }
+
 
     // Seed Redis if it's empty but we have local data
     if (redis && parsed) {
@@ -162,9 +184,10 @@ export async function getCMSConfig() {
           en: { title: VISIT_MANIFEST.en.title, subtitle: VISIT_MANIFEST.en.subtitle, cta: VISIT_MANIFEST.en.cta }
         },
         price: VISIT_MANIFEST.price
-      }],
-      email: MARKETING_MANIFEST.email,
-      locations: STATIC_LOCATIONS
+      }],      email: MARKETING_MANIFEST.email,
+      locations: STATIC_LOCATIONS,
+      videos: { hero: "/videos/hero.mp4", giallo: "/videos/giallo_product.mp4", bianco: "/videos/bianco.mp4", sbagliata: "/videos/sbagliata.mp4", storiaYoutubeId: "TpAl52rlf4s" },
+      images: { storiaHero: "/images/storia/storia_origins_1882_1775937746086.png", preparazioneLab: "/images/storia/shipping_ritual_lab_preparing.png" }
     };
   }
 }

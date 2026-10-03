@@ -3,8 +3,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 
 export default function StoriaHero() {
+  const { config } = useCMS();
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -35,7 +37,7 @@ export default function StoriaHero() {
         {/* Archival Background Photo */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/storia/storia_origins_1882_1775937746086.png" 
+            src={config?.images?.storiaHero || "/images/storia/storia_origins_1882_1775937746086.png"} 
             alt="Murgia 1882 Laboratory" 
             className="w-full h-full object-cover opacity-60 grayscale brightness-50"
           />

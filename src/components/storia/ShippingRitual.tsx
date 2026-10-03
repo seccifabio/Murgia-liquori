@@ -3,10 +3,12 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 
 import RitualStep from "./RitualStep";
 
 export default function ShippingRitual() {
+  const { config } = useCMS();
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -15,7 +17,7 @@ export default function ShippingRitual() {
       id: "preparing",
       title: t.shipping.preparing.title,
       description: t.shipping.preparing.description,
-      img: "/images/storia/shipping_ritual_lab_preparing.png",
+      img: config?.images?.preparazioneLab || "/images/storia/shipping_ritual_lab_preparing.png",
       metric: t.shipping.preparing.metric
     },
     {

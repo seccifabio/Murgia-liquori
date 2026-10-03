@@ -5,10 +5,11 @@ import { useState, useRef } from "react";
 import { Play, X } from "lucide-react";
 
 export default function StoriaVideo() {
+  const { config } = useCMS();
   const [isRevealed, setIsRevealed] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  const videoId = "TpAl52rlf4s";
+  const videoId = config?.videos?.storiaYoutubeId || "TpAl52rlf4s";
   // Logic: Keep mute=1 always in the URL to ensure it autoplays in background on mobile.
   // We will unmute via postMessage API in the ritual click.
   const videoSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=1`;

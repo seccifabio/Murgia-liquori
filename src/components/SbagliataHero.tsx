@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 import { PRODUCTS_MANIFEST } from "@/manifest/products";
 
 interface SbagliataHeroProps {
@@ -48,7 +49,7 @@ export default function SbagliataHero({ liveProducts }: SbagliataHeroProps) {
           playsInline 
           className="w-full h-full object-cover opacity-60"
         >
-          <source src="/videos/sbagliata.mp4" type="video/mp4" />
+          <source src={config?.videos?.sbagliata || "/videos/sbagliata.mp4"} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-noir/90 via-transparent to-noir" />
       </motion.div>

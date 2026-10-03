@@ -3,8 +3,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect } from "react";
 import { useTranslation } from "@/context/LanguageContext";
+import { useCMS } from "@/context/CMSContext";
 
 export default function BiancoHero() {
+  const { config } = useCMS();
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -41,7 +43,7 @@ export default function BiancoHero() {
           playsInline 
           className="w-full h-full object-cover opacity-50"
         >
-          <source src="/videos/bianco.mp4" type="video/mp4" />
+          <source src={config?.videos?.bianco || "/videos/bianco.mp4"} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-noir via-transparent to-noir" />
       </motion.div>
