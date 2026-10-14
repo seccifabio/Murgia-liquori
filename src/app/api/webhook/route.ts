@@ -116,9 +116,29 @@ export async function POST(req: Request) {
         
         const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://murgialiquori.it";
 
+        // HERO PRODUCT IMAGE RESOLUTION
+        let heroImagePath = "/images/giallo_sovereign.png";
+        let heroImageAlt = "Murgia Giallo";
+
+        const firstItemDesc = lineItems.data[0]?.description?.toLowerCase() || "";
+        const allItemsDesc = lineItems.data.map(i => (i.description || "").toLowerCase()).join(" ");
+
+        if (firstItemDesc.includes("bianco") || (allItemsDesc.includes("bianco") && !allItemsDesc.includes("giallo"))) {
+          heroImagePath = "/images/products/bianco.png";
+          heroImageAlt = "Murgia Bianco";
+        } else if (firstItemDesc.includes("sbagliata") || (allItemsDesc.includes("sbagliata") && !allItemsDesc.includes("giallo"))) {
+          heroImagePath = "/images/products/sbagliata.png";
+          heroImageAlt = "La Sbagliata";
+        } else if (firstItemDesc.includes("giallo") || allItemsDesc.includes("giallo")) {
+          heroImagePath = "/images/giallo_sovereign.png";
+          heroImageAlt = "Murgia Giallo";
+        }
+
         // NARRATIVE TRANSFORMATION
         htmlContent = htmlContent
           .replace(/{{BASE_URL}}/g, baseUrl)
+          .replace("{{HERO_PRODUCT_IMAGE}}", `${baseUrl}${heroImagePath}`)
+          .replace("{{HERO_PRODUCT_ALT}}", heroImageAlt)
           .replace("{{HERO_TITLE}}", t.heroTitle)
           .replace("{{HERO_SUBTITLE}}", t.heroSubtitle)
           .replace("{{ORDER_REF_LABEL}}", t.orderRef)

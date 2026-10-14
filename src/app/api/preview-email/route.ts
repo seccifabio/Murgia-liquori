@@ -26,7 +26,8 @@ export async function GET() {
       .replace(/{{SUPPORT_TEXT}}/g, 'Hai bisogno di supporto?')
       .replace(/{{CONTACT_TEXT}}/g, 'Scrivici a')
       .replace(/{{PHONE_NUMBER}}/g, '+39 3791781417')
-      .replace(/{{FOOTER_NOTE}}/g, 'Villacidro Liquori © 2024')
+      .replace(/{{HERO_PRODUCT_IMAGE}}/g, '/images/giallo_sovereign.png')
+      .replace(/{{HERO_PRODUCT_ALT}}/g, 'Murgia Giallo')
       .replace(/{{BASE_URL}}/g, '');
 
     return new NextResponse(previewHtml, {
